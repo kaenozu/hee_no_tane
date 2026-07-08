@@ -12,7 +12,7 @@ class DungeonMapScreen extends StatelessWidget {
   final DailyDungeonService dungeonService;
   final BattleService battleService;
   final GameAudioService audioService;
-  final ValueNotifier<BattleState> battleStateNotifier;
+  final void Function(BattleState) onStateChanged;
   final VoidCallback onDungeonComplete;
 
   const DungeonMapScreen({
@@ -21,7 +21,7 @@ class DungeonMapScreen extends StatelessWidget {
     required this.dungeonService,
     required this.battleService,
     required this.audioService,
-    required this.battleStateNotifier,
+    required this.onStateChanged,
     required this.onDungeonComplete,
   });
 
@@ -266,7 +266,7 @@ class DungeonMapScreen extends StatelessWidget {
           dungeonService: dungeonService,
           audioService: audioService,
           onDungeonComplete: onDungeonComplete,
-          battleStateNotifier: battleStateNotifier,
+          onStateChanged: onStateChanged,
         ),
       ),
     );

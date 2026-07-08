@@ -25,8 +25,7 @@ void main() {
   ) async {
     SharedPreferences.setMockInitialValues({});
     final repository = SaveRepository();
-    final data = SaveData();
-    data.settings.soundEnabled = false;
+    final data = SaveData(settings: const GameSettings(soundEnabled: false));
     await repository.save(data);
     final audioService = RecordingAudioService();
 

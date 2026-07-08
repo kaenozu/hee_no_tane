@@ -254,8 +254,8 @@ void main() {
         lastPlayedDate: '2026-07-08',
         lastRewardDate: '2026-07-08',
         ownedCardIds: ['card_a', 'card_b'],
+        settings: const GameSettings(soundEnabled: false),
       );
-      data.settings.soundEnabled = false;
 
       final json = data.toJson();
       final restored = SaveData.fromJson(json);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hee_no_tane_app/domain/models/battle_state.dart';
 import 'package:hee_no_tane_app/domain/models/enemy.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/services/audio_service.dart';
@@ -56,19 +55,7 @@ void main() {
           dungeonService: DailyDungeonService([enemy], boss),
           battleService: BattleService(),
           audioService: GameAudioService(enabled: false),
-          battleStateNotifier: ValueNotifier<BattleState>(
-            BattleState(
-              playerHp: 0,
-              playerMaxHp: 0,
-              enemyHp: 0,
-              enemyMaxHp: 0,
-              combo: 0,
-              floor: 0,
-              currentQuestionIndex: 0,
-              questions: const [],
-              enemy: enemy,
-            ),
-          ),
+          onStateChanged: (_) {},
           onDungeonComplete: () {},
         ),
       ),
