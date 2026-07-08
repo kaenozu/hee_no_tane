@@ -213,9 +213,22 @@ void main() {
       ];
       final owned = ['card_a'];
 
-      final result = rewardService.determineReward(todayQuestions: qs, ownedCardIds: owned, allCards: cards);
+      final result = rewardService.determineReward(todayQuestions: qs, ownedCardIds: owned, allCards: cards, today: '2024-01-01', lastRewardDate: '');
       expect(result, isNotNull);
       expect(result!.id, 'card_b');
+    });
+
+    test('returns null when reward already given today', () {
+      final qs = [
+        Question(id: 'q1', category: 't', difficulty: 'e', question: 'q', choices: ['A', 'B', 'C', 'D'], answerIndex: 0, explanation: 'e', relatedCardId: 'card_a', sourceNote: 's', verified: true),
+      ];
+      final cards = [
+        HeeCard(id: 'card_a', title: 'A', category: 't', shortText: 's', detailText: 'd', imageAsset: '', rarity: 'normal', sourceNote: 's'),
+      ];
+      final owned = <String>[];
+
+      final result = rewardService.determineReward(todayQuestions: qs, ownedCardIds: owned, allCards: cards, today: '2024-01-01', lastRewardDate: '2024-01-01');
+      expect(result, isNull);
     });
 
     test('returns null when all cards owned', () {
@@ -227,7 +240,7 @@ void main() {
       ];
       final owned = ['card_a'];
 
-      final result = rewardService.determineReward(todayQuestions: qs, ownedCardIds: owned, allCards: cards);
+      final result = rewardService.determineReward(todayQuestions: qs, ownedCardIds: owned, allCards: cards, today: '2024-01-01', lastRewardDate: '');
       expect(result, isNull);
     });
   });

@@ -67,7 +67,7 @@ flutter:
     - assets/images/
     - assets/images/characters/
     - assets/images/enemies/
-    - assets/images/cards/
+
     - assets/images/backgrounds/
     - assets/images/ui/
     - assets/images/effects/

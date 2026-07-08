@@ -137,6 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
         todayQuestions: questions,
         ownedCardIds: _saveData.ownedCardIds,
         allCards: widget.allCards,
+        today: dateStr,
+        lastRewardDate: _saveData.lastRewardDate,
       );
       if (obtainedCard != null) {
         _saveData = widget.rewardService.applyReward(_saveData, obtainedCard);
@@ -156,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
           isClear: isClear,
           correctCount: finalState.correctCount,
           finalFloor: finalState.floor + (isGameOver ? 0 : (isClear ? 0 : 1)),
-          remainingHp: finalState.playerHp.clamp(0, 60),
+          remainingHp: finalState.playerHp.clamp(0, BattleService.playerMaxHp),
           obtainedCard: obtainedCard,
         ),
       ),

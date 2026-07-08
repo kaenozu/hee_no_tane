@@ -19,7 +19,7 @@ class _CardListScreenState extends State<CardListScreen> {
 
   List<HeeCard> get _displayCards {
     final filtered = _selectedCategory.isEmpty
-        ? widget.allCards
+        ? List<HeeCard>.from(widget.allCards)
         : widget.allCards.where((c) => c.category == _selectedCategory).toList();
     filtered.sort((a, b) {
       final aOwned = widget.saveData.ownedCardIds.contains(a.id);

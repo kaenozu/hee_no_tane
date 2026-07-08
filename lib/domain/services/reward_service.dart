@@ -3,11 +3,17 @@ import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 
 class RewardService {
+  /// `today` に既に報酬を取得済みなら null を返す。
+  /// 未取得の場合は todayQuestions から未所有カードを探して返す。
   HeeCard? determineReward({
     required List<Question> todayQuestions,
     required List<String> ownedCardIds,
     required List<HeeCard> allCards,
+    required String today,
+    required String lastRewardDate,
   }) {
+    if (lastRewardDate == today) return null;
+
     final cardMap = {for (final c in allCards) c.id: c};
 
     for (final q in todayQuestions) {
