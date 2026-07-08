@@ -1,0 +1,28 @@
+{
+  "id": "card_tempura_001",
+  "title": "天ぷらはどこの国から来たの？",
+  "hook": "天ぷらのルーツは実はポルトガル。",
+  "short_body": "天ぷらは日本発祥と思われがちですが、実は16世紀にポルトガルから伝わった南蛮料理が起源です。日本で独自に発展し、現在の天ぷらになりました。",
+  "long_body": "天ぷらの語源はポルトガル語の「tempero（調味料・料理）」あるいは「tempora（斎日）」といわれています。1543年にポルトガル船が種子島に漂着した後、南蛮貿易を通じて揚げ物料理が日本に传入しました。当初は「南蛮揚げ」と呼ばれ、精進料理の影響で魚や野菜を揚げるスタイルが確立されました。江戸時代には屋台料理として庶民に広がり、現在のようなゴマ油と薄衣のスタイルに洗練されました。海外の日本食レストランでも人気のメニューです。",
+  "category": "food_origin",
+  "confidence_level": "B",
+  "sources": [
+    {
+      "title": "天ぷらの歴史 - 国立民族学博物館",
+      "url": "https://www.minpaku.ac.jp/",
+      "source_type": "academic",
+      "retrieved_at": "2026-07-08"
+    }
+  ],
+  "quiz": {
+    "question": "天ぷらの語源とされるポルトガル語は？",
+    "choices": [
+      "tempero または tempora",
+      "tempura（テンプラ）",
+      "frito（フリート）"
+    ],
+    "answer_index": 0,
+    "explanation": "tempero（調味料）または tempora（斎日）が語源とされています。"
+  },
+  "related_card_ids": ["card_wasabi_001"]
+}

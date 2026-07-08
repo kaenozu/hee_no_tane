@@ -24,5 +24,5 @@
     "answer_index": 0,
     "explanation": "乾燥した空気では電気が逃げにくく、体にたまりやすくなります。"
   },
-  "related_card_ids": []
+  "related_card_ids": ["card_magnet_001"]
 }

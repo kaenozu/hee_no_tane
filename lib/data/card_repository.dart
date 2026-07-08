@@ -7,6 +7,12 @@ class CardRepository {
     'card_manhole_round_001',
     'card_sewer_001',
     'card_static_electricity_001',
+    'card_wasabi_001',
+    'card_tempura_001',
+    'card_itadakimasu_001',
+    'card_ringo_001',
+    'card_syrup_001',
+    'card_magnet_001',
   ];
 
   Future<Map<String, HeeCard>> loadAllCards() async {
