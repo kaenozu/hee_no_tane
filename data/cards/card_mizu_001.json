@@ -1,0 +1,30 @@
+{
+  "id": "card_mizu_001",
+  "title": "日本で水道水が飲めるのはなぜ？",
+  "hook": "厳格な水質基準と高度な浄水技術の賜物です。",
+  "short_body": "日本の水道水がそのまま飲めるのは、世界でもトップクラスの厳しい水質基準と、水道局による徹底した管理のおかげです。",
+  "long_body": "日本の水道水を直接飲める国は世界でわずか15カ国程度といわれています。日本の水道水質基準は51項目にも及び、EUやWHOの基準よりも厳しいものもあります。高度浄水処理（オゾン処理や活性炭処理）を導入している自治体も多く、水源から蛇口まで一貫して管理されています。また、水道管の定期的な交換や水質検査も欠かせません。ただし、古い建物の水道管や貯水タンクのあるビルでは水質が低下することがあるため、すべての蛇口で安全とは限らない点には注意が必要です。",
+  "category": "history_bite",
+  "confidence_level": "B",
+  "sources": [
+    {
+      "title": "日本の水道水質基準 - 厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/topics/bukyoku/kenkou/suido/kijun/index.html",
+      "source_type": "official",
+      "retrieved_at": "2026-07-08"
+    }
+  ],
+  "quiz": {
+    "question": "日本の水道水質基準の検査項目数は？",
+    "choices": [
+      "約51項目",
+      "約10項目",
+      "約100項目"
+    ],
+    "answer_index": 0,
+    "explanation": "日本の水道水質基準は51項目あり、国際的にも非常に厳しい基準です。"
+  },
+  "related_card_ids": [
+    "card_sewer_001"
+  ]
+}
