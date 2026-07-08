@@ -1,0 +1,65 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+class UserRepository {
+  static const _keySavedCardIds = 'saved_card_ids';
+  static const _keyStreakCurrent = 'streak_current';
+  static const _keyStreakLastDate = 'streak_last_date';
+  static const _keyPreferredCategories = 'preferred_categories';
+
+  Future<List<String>> getSavedCardIds() async {
+    final prefs = await SharedPreferences.getInstance();
+    return List<String>.from(prefs.getStringList(_keySavedCardIds) ?? const <String>[]);
+  }
+
+  Future<bool> isCardSaved(String cardId) async {
+    final ids = await getSavedCardIds();
+    return ids.contains(cardId);
+  }
+
+  Future<void> saveCard(String cardId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final ids = List<String>.from(prefs.getStringList(_keySavedCardIds) ?? const <String>[]);
+    ids.add(cardId);
+    await prefs.setStringList(_keySavedCardIds, ids);
+  }
+
+  Future<void> unsaveCard(String cardId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final ids = List<String>.from(prefs.getStringList(_keySavedCardIds) ?? const <String>[]);
+    ids.remove(cardId);
+    await prefs.setStringList(_keySavedCardIds, ids);
+  }
+
+  Future<int> getStreakCurrent() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_keyStreakCurrent) ?? 0;
+  }
+
+  Future<String?> getStreakLastDate() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_keyStreakLastDate);
+  }
+
+  Future<void> recordRead(String date) async {
+    final prefs = await SharedPreferences.getInstance();
+    final lastDate = prefs.getString(_keyStreakLastDate);
+    final currentStreak = prefs.getInt(_keyStreakCurrent) ?? 0;
+
+    if (lastDate != null && lastDate != date) {
+      await prefs.setInt(_keyStreakCurrent, currentStreak + 1);
+    } else if (lastDate != date) {
+      await prefs.setInt(_keyStreakCurrent, 1);
+    }
+    await prefs.setString(_keyStreakLastDate, date);
+  }
+
+  Future<List<String>> getPreferredCategories() async {
+    final prefs = await SharedPreferences.getInstance();
+    return List<String>.from(prefs.getStringList(_keyPreferredCategories) ?? const <String>[]);
+  }
+
+  Future<void> setPreferredCategories(List<String> categories) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_keyPreferredCategories, categories);
+  }
+}

@@ -1,0 +1,23 @@
+flowchart LR
+  subgraph Client
+    App[Mobile App]
+  end
+  subgraph Backend
+    API[API / Edge Functions]
+    DB[(PostgreSQL)]
+    Cache[(Cache)]
+  end
+  subgraph Ops
+    Admin[Admin Web]
+    Batch[AI Content Jobs]
+  end
+  Sources[Wikimedia / Official Sources]
+  LLM[LLM API]
+
+  App --> API
+  API --> DB
+  API --> Cache
+  Admin --> API
+  Batch --> Sources
+  Batch --> LLM
+  Batch --> DB

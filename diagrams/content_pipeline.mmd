@@ -1,0 +1,11 @@
+flowchart TD
+  A[Topic discovery] --> B[Source collection]
+  B --> C[LLM draft]
+  C --> D[Claim extraction]
+  D --> E[Evidence mapping]
+  E --> F{{Confidence}}
+  F -->|A/B| G[Human approval]
+  F -->|C| H[Publish as contested]
+  F -->|D| I[Reject]
+  G --> J[Publish schedule]
+  J --> K[Daily deck]

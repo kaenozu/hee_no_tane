@@ -1,0 +1,68 @@
+[
+  {
+    "id": "card_manhole_round_001",
+    "title": "なぜマンホールのふたは丸いことが多いの？",
+    "hook": "落ちにくさと扱いやすさに理由があります。",
+    "short_body": "マンホールのふたが丸いと、どの向きにしても穴に落ちにくいという利点があります。また、重いふたを転がして動かしやすい点も、現場では便利です。",
+    "long_body": "マンホールのふたが丸い理由としてよく挙げられるのは、円形なら向きを変えても直径が変わらず、穴の中へ落ちにくいことです。四角形や長方形だと、斜めにすると開口部を通って落ちる可能性があります。さらに、鉄製のふたは重いため、円形であれば転がして移動しやすいという実務上の利点もあります。ただし、すべてのふたが丸いわけではなく、用途や場所によって角形のものもあります。",
+    "category_slug": "daily_why",
+    "confidence_level": "B",
+    "sources": [
+      {
+        "title": "Example source placeholder",
+        "url": "https://example.com",
+        "source_type": "official",
+        "retrieved_at": "2026-07-07",
+        "license_note": "replace before publish"
+      }
+    ],
+    "quiz": {
+      "question": "マンホールのふたが丸い理由として、よく挙げられるものは？",
+      "choices": [
+        "穴に落ちにくいから",
+        "必ず製造費が安いから",
+        "水を吸いやすいから"
+      ],
+      "answer_index": 0,
+      "explanation": "円は向きを変えても直径が一定なので、開口部に落ちにくいと説明されます。"
+    },
+    "related_keywords": [
+      "下水道",
+      "道路",
+      "都市インフラ"
+    ]
+  },
+  {
+    "id": "card_static_electricity_001",
+    "title": "冬にドアノブでバチッとなるのはなぜ？",
+    "hook": "乾燥した空気では、体にたまった電気が逃げにくくなります。",
+    "short_body": "冬は空気が乾燥しやすく、服や体にたまった静電気が逃げにくくなります。その状態で金属のドアノブに触れると、一気に電気が流れてバチッと感じます。",
+    "long_body": "静電気は、物と物がこすれたり離れたりするときに電気の偏りが生じることで起こります。冬に起きやすいのは、空気が乾いていて電気が少しずつ逃げにくいためです。人の体や衣服にたまった電気は、金属のように電気を通しやすいものに触れた瞬間に移動します。その小さな放電を、私たちは痛みや音として感じます。加湿したり、先に壁や木製部分に触れたりすると、急な放電を和らげられる場合があります。",
+    "category_slug": "science_nearby",
+    "confidence_level": "B",
+    "sources": [
+      {
+        "title": "Example source placeholder",
+        "url": "https://example.com",
+        "source_type": "academic",
+        "retrieved_at": "2026-07-07",
+        "license_note": "replace before publish"
+      }
+    ],
+    "quiz": {
+      "question": "冬に静電気を感じやすい主な理由は？",
+      "choices": [
+        "空気が乾燥しやすいから",
+        "金属が冬だけ電気を作るから",
+        "寒いと電気が増えるから"
+      ],
+      "answer_index": 0,
+      "explanation": "乾燥した空気では電気が逃げにくく、体にたまりやすくなります。"
+    },
+    "related_keywords": [
+      "電気",
+      "乾燥",
+      "冬"
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {"slug": "daily_why", "name": "日常のなぜ", "sort_order": 1},
+  {"slug": "body_mystery", "name": "体のふしぎ", "sort_order": 2},
+  {"slug": "word_origin", "name": "言葉の由来", "sort_order": 3},
+  {"slug": "history_bite", "name": "歴史の小ネタ", "sort_order": 4},
+  {"slug": "science_nearby", "name": "身近な科学", "sort_order": 5},
+  {"slug": "social_system", "name": "社会のしくみ", "sort_order": 6}
+]

@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Hee no Tane API
+  version: 0.1.0
+servers:
+  - url: https://api.example.com
+paths:
+  /v1/daily-deck:
+    get:
+      summary: Get today's three cards
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: segment
+          schema:
+            type: string
+            default: default
+      responses:
+        '200':
+          description: Daily deck
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyDeck'
+  /v1/cards/{cardId}:
+    get:
+      summary: Get card detail
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Card detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+  /v1/cards/{cardId}/related:
+    get:
+      summary: Get related cards
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Related cards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CardSummary'
+  /v1/cards/{cardId}/save:
+    post:
+      summary: Save card
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Saved
+    delete:
+      summary: Unsave card
+      parameters:
+        - in: path
+          name: cardId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Unsaved
+  /v1/events:
+    post:
+      summary: Track a user event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEvent'
+      responses:
+        '202':
+          description: Accepted
+components:
+  schemas:
+    DailyDeck:
+      type: object
+      properties:
+        deck_date:
+          type: string
+          format: date
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSummary'
+    CardSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        hook:
+          type: string
+        category_slug:
+          type: string
+        confidence_level:
+          type: string
+          enum: [A, B, C, D]
+    Card:
+      allOf:
+        - $ref: '#/components/schemas/CardSummary'
+        - type: object
+          properties:
+            short_body:
+              type: string
+            long_body:
+              type: string
+            sources:
+              type: array
+              items:
+                $ref: '#/components/schemas/Source'
+            quiz:
+              $ref: '#/components/schemas/Quiz'
+    Source:
+      type: object
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+        source_type:
+          type: string
+        retrieved_at:
+          type: string
+          format: date
+        license_note:
+          type: string
+    Quiz:
+      type: object
+      properties:
+        question:
+          type: string
+        choices:
+          type: array
+          items:
+            type: string
+        answer_index:
+          type: integer
+        explanation:
+          type: string
+    UserEvent:
+      type: object
+      required: [event_type]
+      properties:
+        event_type:
+          type: string
+          enum: [card_view, card_read, save, unsave, quiz_answer, share, source_click, deck_view]
+        card_id:
+          type: string
+        metadata:
+          type: object

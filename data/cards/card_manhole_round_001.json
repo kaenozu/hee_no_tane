@@ -1,0 +1,34 @@
+{
+  "id": "card_manhole_round_001",
+  "title": "なぜマンホールのふたは丸いことが多いの？",
+  "hook": "落ちにくさと扱いやすさに理由があります。",
+  "short_body": "マンホールのふたが丸いと、どの向きにしても穴に落ちにくいという利点があります。また、重いふたを転がして動かしやすい点も、現場では便利です。",
+  "long_body": "マンホールのふたが丸い理由としてよく挙げられるのは、円形なら向きを変えても直径が変わらず、穴の中へ落ちにくいことです。四角形や長方形だと、斜めにすると開口部を通って落ちる可能性があります。さらに、鉄製のふたは重いため、円形であれば転がして移動しやすいという実務上の利点もあります。ただし、すべてのふたが丸いわけではなく、用途や場所によって角形のものもあります。",
+  "category": "daily_why",
+  "confidence_level": "B",
+  "sources": [
+    {
+      "title": "下水道事業の概要",
+      "url": "https://www.mlit.go.jp/mizukaridaun/",
+      "source_type": "official",
+      "retrieved_at": "2026-07-07"
+    },
+    {
+      "title": "Manhole cover - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Manhole_cover",
+      "source_type": "wiki",
+      "retrieved_at": "2026-07-07"
+    }
+  ],
+  "quiz": {
+    "question": "マンホールのふたが丸い理由として、よく挙げられるものは？",
+    "choices": [
+      "穴に落ちにくいから",
+      "必ず製造費が安いから",
+      "水を吸いやすいから"
+    ],
+    "answer_index": 0,
+    "explanation": "円は向きを変えても直径が一定なので、開口部に落ちにくいと説明されます。"
+  },
+  "related_card_ids": ["card_sewer_001"]
+}
