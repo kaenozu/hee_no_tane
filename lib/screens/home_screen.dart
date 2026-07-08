@@ -50,8 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
         _isLoading = false;
       });
 
-      final streak = await _userRepo.getStreakCurrent();
-      setState(() => _readCount = streak);
+      final todayCount = await _userRepo.getTodayReadCount(dateStr);
+      setState(() => _readCount = todayCount);
     } catch (e) {
       setState(() => _error = '読み込みに失敗しました: $e');
     }
@@ -134,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
             final dateStr =
                 '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
             await _userRepo.recordRead(dateStr);
-            setState(() {});
+            await _userRepo.recordCardReadToday(dateStr);
+            final todayCount = await _userRepo.getTodayReadCount(dateStr);
+            setState(() => _readCount = todayCount);
           },
         );
       },

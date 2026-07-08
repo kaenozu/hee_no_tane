@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:hee_no_tane_app/models/card.dart';
 import 'package:hee_no_tane_app/widgets/confidence_badge.dart';
 import 'package:hee_no_tane_app/data/user_repository.dart';
+import 'package:hee_no_tane_app/data/card_repository.dart';
 
 class CardDetailScreen extends StatefulWidget {
   final HeeCard card;
@@ -14,19 +15,37 @@ class CardDetailScreen extends StatefulWidget {
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
   late final UserRepository _userRepo;
+  late final CardRepository _cardRepo;
   bool _isSaved = false;
+  int? _selectedAnswer;
+  bool _answered = false;
+  Map<String, HeeCard> _relatedCards = {};
 
   @override
   void initState() {
     super.initState();
     _userRepo = UserRepository();
+    _cardRepo = CardRepository();
     _checkSaved();
+    _loadRelatedCards();
   }
 
   Future<void> _checkSaved() async {
     final saved = await _userRepo.isCardSaved(widget.card.id);
     if (mounted) {
       setState(() => _isSaved = saved);
+    }
+  }
+
+  Future<void> _loadRelatedCards() async {
+    final allCards = await _cardRepo.loadAllCards();
+    if (mounted) {
+      setState(() {
+        _relatedCards = {
+          for (final id in widget.card.relatedCardIds)
+            if (allCards.containsKey(id)) id: allCards[id]!
+        };
+      });
     }
   }
 
@@ -37,6 +56,92 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       await _userRepo.saveCard(widget.card.id);
     }
     setState(() => _isSaved = !_isSaved);
+  }
+
+  void _showQuiz() {
+    setState(() {
+      _selectedAnswer = null;
+      _answered = false;
+    });
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: Text(widget.card.quiz.question),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(
+                  widget.card.quiz.choices.length,
+                  (index) {
+                    final isCorrect = index == widget.card.quiz.answerIndex;
+                    Color? tileColor;
+                    if (_answered) {
+                      tileColor = isCorrect
+                          ? Colors.green.withValues(alpha: 0.15)
+                          : _selectedAnswer == index
+                              ? Colors.red.withValues(alpha: 0.15)
+                              : null;
+                    }
+                    return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 2),
+                      decoration: tileColor != null
+                          ? BoxDecoration(
+                              color: tileColor,
+                              borderRadius: BorderRadius.circular(8),
+                            )
+                          : null,
+                      child: RadioListTile<int>(
+                        title: Text(widget.card.quiz.choices[index]),
+                        value: index,
+                        groupValue: _selectedAnswer,
+                        onChanged: _answered
+                            ? null
+                            : (value) {
+                                setState(() => _selectedAnswer = value);
+                                setDialogState(() {});
+                              },
+                      ),
+                    );
+                  },
+                ),
+              ),
+              actions: [
+                if (!_answered)
+                  TextButton(
+                    onPressed: _selectedAnswer == null
+                        ? null
+                        : () {
+                            setState(() => _answered = true);
+                            setDialogState(() {});
+                          },
+                    child: const Text('回答する'),
+                  ),
+                if (_answered) ...[
+                  Text(
+                    _selectedAnswer == widget.card.quiz.answerIndex
+                        ? '正解！'
+                        : '不正解...',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: _selectedAnswer == widget.card.quiz.answerIndex
+                          ? Colors.green
+                          : Colors.red,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('閉じる'),
+                  ),
+                ],
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -126,50 +231,33 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 ),
               );
             }),
-            const SizedBox(height: 24),
-            Text(
-              '関連するへぇ',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            ...card.relatedCardIds.map((id) {
-              return ListTile(
-                title: Text(id.replaceFirst('card_', '').replaceAll('_', ' ')),
-                trailing: const Icon(Icons.chevron_right),
-              );
-            }),
+            if (_relatedCards.isNotEmpty) ...[
+              const SizedBox(height: 24),
+              Text(
+                '関連するへぇ',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              ..._relatedCards.entries.map((entry) {
+                return ListTile(
+                  title: Text(entry.value.title),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CardDetailScreen(card: entry.value),
+                      ),
+                    );
+                  },
+                );
+              }),
+            ],
             const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text(card.quiz.question),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            card.quiz.choices.length,
-                            (index) => RadioListTile(
-                              title: Text(card.quiz.choices[index]),
-                              value: index,
-                              groupValue: -1,
-                              onChanged: (value) {},
-                            ),
-                          ),
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('閉じる'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
+                onPressed: _showQuiz,
                 child: const Text('さっきのへぇ、覚えてる？'),
               ),
             ),

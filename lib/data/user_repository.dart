@@ -4,6 +4,8 @@ class UserRepository {
   static const _keySavedCardIds = 'saved_card_ids';
   static const _keyStreakCurrent = 'streak_current';
   static const _keyStreakLastDate = 'streak_last_date';
+  static const _keyTodayReadCount = 'today_read_count';
+  static const _keyTodayReadDate = 'today_read_date';
   static const _keyPreferredCategories = 'preferred_categories';
 
   Future<List<String>> getSavedCardIds() async {
@@ -45,12 +47,47 @@ class UserRepository {
     final lastDate = prefs.getString(_keyStreakLastDate);
     final currentStreak = prefs.getInt(_keyStreakCurrent) ?? 0;
 
-    if (lastDate != null && lastDate != date) {
+    if (lastDate == null) {
+      await prefs.setInt(_keyStreakCurrent, 1);
+    } else if (lastDate == date) {
+      // Same day: no streak change
+    } else if (_isYesterday(lastDate, date)) {
       await prefs.setInt(_keyStreakCurrent, currentStreak + 1);
-    } else if (lastDate != date) {
+    } else {
       await prefs.setInt(_keyStreakCurrent, 1);
     }
     await prefs.setString(_keyStreakLastDate, date);
+  }
+
+  bool _isYesterday(String lastDate, String today) {
+    try {
+      final last = DateTime.parse(lastDate);
+      final now = DateTime.parse(today);
+      final diff = now.difference(last).inDays;
+      return diff == 1;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> recordCardReadToday(String date) async {
+    final prefs = await SharedPreferences.getInstance();
+    final todayReadDate = prefs.getString(_keyTodayReadDate);
+
+    if (todayReadDate != date) {
+      await prefs.setInt(_keyTodayReadCount, 1);
+      await prefs.setString(_keyTodayReadDate, date);
+    } else {
+      final count = prefs.getInt(_keyTodayReadCount) ?? 0;
+      await prefs.setInt(_keyTodayReadCount, count + 1);
+    }
+  }
+
+  Future<int> getTodayReadCount(String date) async {
+    final prefs = await SharedPreferences.getInstance();
+    final todayReadDate = prefs.getString(_keyTodayReadDate);
+    if (todayReadDate != date) return 0;
+    return prefs.getInt(_keyTodayReadCount) ?? 0;
   }
 
   Future<List<String>> getPreferredCategories() async {
