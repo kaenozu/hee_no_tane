@@ -1,0 +1,34 @@
+[
+  {
+    "id": "enemy_slime_001",
+    "name": "なぞスライム",
+    "type": "normal",
+    "maxHp": 20,
+    "attack": 8,
+    "imageAsset": "assets/images/enemies/enemy_slime_001.png"
+  },
+  {
+    "id": "enemy_bat_001",
+    "name": "はてなコウモリ",
+    "type": "normal",
+    "maxHp": 24,
+    "attack": 9,
+    "imageAsset": "assets/images/enemies/enemy_bat_001.png"
+  },
+  {
+    "id": "enemy_book_001",
+    "name": "めくれ本の亡霊",
+    "type": "normal",
+    "maxHp": 28,
+    "attack": 10,
+    "imageAsset": "assets/images/enemies/enemy_book_001.png"
+  },
+  {
+    "id": "enemy_boss_001",
+    "name": "忘却のボス",
+    "type": "boss",
+    "maxHp": 48,
+    "attack": 12,
+    "imageAsset": "assets/images/enemies/enemy_boss_001.png"
+  }
+]

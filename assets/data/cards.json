@@ -1,0 +1,302 @@
+[
+  {
+    "id": "card_geo_001",
+    "title": "バイカル湖",
+    "category": "nature_geography",
+    "shortText": "世界で最も深い湖。ロシアにあり、透明度の高さでも有名。",
+    "detailText": "バイカル湖はロシアのシベリアにある湖で、最大深度は約1,642m。深さだけでなく透明度の高さや多数の固有種でも知られている。",
+    "imageAsset": "assets/images/cards/card_geo_001.png",
+    "rarity": "normal",
+    "sourceNote": "Wikipedia: Lake Baikal"
+  },
+  {
+    "id": "card_geo_002",
+    "title": "北海道",
+    "category": "nature_geography",
+    "shortText": "日本で最も面積が大きい都道府県。",
+    "detailText": "北海道の面積は約83,424km²で、2位の岩手県の約2倍。日本の総面積の約22%を占める。",
+    "imageAsset": "assets/images/cards/card_geo_002.png",
+    "rarity": "normal",
+    "sourceNote": "国土地理院"
+  },
+  {
+    "id": "card_bio_001",
+    "title": "ジョーイ",
+    "category": "living_things",
+    "shortText": "カンガルーの赤ちゃんの呼び名。",
+    "detailText": "カンガルーの赤ちゃんは「ジョーイ」と呼ばれる。生まれた時の大きさはわずか2cmほどで、母親の袋の中で育つ。",
+    "imageAsset": "assets/images/cards/card_bio_001.png",
+    "rarity": "normal",
+    "sourceNote": "Australian Museum"
+  },
+  {
+    "id": "card_bio_002",
+    "title": "シロナガスクジラの心臓",
+    "category": "living_things",
+    "shortText": "地球上で最も大きな心臓。",
+    "detailText": "シロナガスクジラの心臓は約180kg。小型車1台分の重さで、1回の拍動で約80リットルの血液を送り出す。",
+    "imageAsset": "assets/images/cards/card_bio_002.png",
+    "rarity": "rare",
+    "sourceNote": "National Geographic"
+  },
+  {
+    "id": "card_his_001",
+    "title": "俳句",
+    "category": "history",
+    "shortText": "世界一短い詩の形式。",
+    "detailText": "俳句は「五・七・五」の17音で詠む日本発祥の詩。江戸時代に松尾芭蕉によって芸術として確立され、庶民文化として広まった。",
+    "imageAsset": "assets/images/cards/card_his_001.png",
+    "rarity": "normal",
+    "sourceNote": "文化庁 日本文化紹介"
+  },
+  {
+    "id": "card_his_002",
+    "title": "奈良の大仏",
+    "category": "history",
+    "shortText": "約500トンの銅で作られた巨大仏像。",
+    "detailText": "東大寺の盧舎那仏像（奈良の大仏）は高さ約15m。752年の開眼供養には多くの人々が集まった。",
+    "imageAsset": "assets/images/cards/card_his_002.png",
+    "rarity": "rare",
+    "sourceNote": "東大寺公式サイト"
+  },
+  {
+    "id": "card_sci_001",
+    "title": "大気の成分",
+    "category": "science",
+    "shortText": "空気の約78%は窒素。",
+    "detailText": "地球の大気は窒素約78%、酸素約21%、アルゴン約0.9%、二酸化炭素約0.04%で構成されている。",
+    "imageAsset": "assets/images/cards/card_sci_001.png",
+    "rarity": "normal",
+    "sourceNote": "気象庁 大気成分"
+  },
+  {
+    "id": "card_sci_002",
+    "title": "光の速さ",
+    "category": "science",
+    "shortText": "1秒で地球を約7.5周。",
+    "detailText": "光の速度は秒速約299,792km。地球1周が約4万kmなので、1秒で7.5周できる計算になる。",
+    "imageAsset": "assets/images/cards/card_sci_002.png",
+    "rarity": "normal",
+    "sourceNote": "国立天文台"
+  },
+  {
+    "id": "card_food_001",
+    "title": "塩",
+    "category": "food",
+    "shortText": "日本最古の調味料。",
+    "detailText": "塩は日本で最も古い調味料で、縄文時代には海水から作っていた。必須ミネラルの補給源としても重要だった。",
+    "imageAsset": "assets/images/cards/card_food_001.png",
+    "rarity": "normal",
+    "sourceNote": "国立歴史民俗博物館"
+  },
+  {
+    "id": "card_food_002",
+    "title": "中国のリンゴ",
+    "category": "food",
+    "shortText": "世界のリンゴの約半分は中国産。",
+    "detailText": "中国は世界最大のリンゴ生産国で、全世界の生産量の約半分を占める。日本で流通するリンゴの多くも中国産。",
+    "imageAsset": "assets/images/cards/card_food_002.png",
+    "rarity": "normal",
+    "sourceNote": "FAO統計"
+  },
+  {
+    "id": "card_lang_001",
+    "title": "ありがとうの語源",
+    "category": "language",
+    "shortText": "「有り難し」が変化した言葉。",
+    "detailText": "「ありがとう」の語源は「有り難し」。元々は「存在することが難しい→めったにない→貴重だ」という意味だった。",
+    "imageAsset": "assets/images/cards/card_lang_001.png",
+    "rarity": "normal",
+    "sourceNote": "日本国語大辞典"
+  },
+  {
+    "id": "card_lang_002",
+    "title": "一瞬",
+    "category": "language",
+    "shortText": "「瞬きする間」という意味。",
+    "detailText": "「一瞬」はサンスクリット語「ksana（刹那）」の訳語。まばたきするほんのわずかな時間を表す。",
+    "imageAsset": "assets/images/cards/card_lang_002.png",
+    "rarity": "normal",
+    "sourceNote": "岩波 仏教辞典"
+  },
+  {
+    "id": "card_life_001",
+    "title": "マンホールのふた",
+    "category": "daily_life",
+    "shortText": "丸い理由は落ちないから。",
+    "detailText": "丸いマンホールのふたは、どの向きにしても穴より大きいので落ちない。四角いふただと対角線が辺より長いため落ちる危険がある。",
+    "imageAsset": "assets/images/cards/card_life_001.png",
+    "rarity": "normal",
+    "sourceNote": "日本下水道協会"
+  },
+  {
+    "id": "card_life_002",
+    "title": "信号機の色",
+    "category": "daily_life",
+    "shortText": "遠くまで届く色が選ばれた。",
+    "detailText": "赤は波長が長く遠くまで届くため「止まれ」に採用された。青（実際は緑）はその中間。信号機の3色は光の性質に基づいて選ばれている。",
+    "imageAsset": "assets/images/cards/card_life_002.png",
+    "rarity": "normal",
+    "sourceNote": "警察庁 交通規制"
+  },
+  {
+    "id": "card_geo_003",
+    "title": "エベレスト",
+    "category": "nature_geography",
+    "shortText": "世界最高峰。標高8,848m。",
+    "detailText": "エベレストはヒマラヤ山脈にある世界最高峰。ネパールと中国（チベット）の国境に位置する。",
+    "imageAsset": "assets/images/cards/card_geo_003.png",
+    "rarity": "rare",
+    "sourceNote": "USGS"
+  },
+  {
+    "id": "card_bio_003",
+    "title": "タコの心臓",
+    "category": "living_things",
+    "shortText": "タコには心臓が3つある。",
+    "detailText": "タコは3つの心臓を持つ。全身用の心臓1つと、エラ用の心臓2つ。不思議な循環器系を持っている。",
+    "imageAsset": "assets/images/cards/card_bio_003.png",
+    "rarity": "rare",
+    "sourceNote": "National Geographic"
+  },
+  {
+    "id": "card_his_003",
+    "title": "紙幣の肖像",
+    "category": "history",
+    "shortText": "日本初の肖像画紙幣は1885年。",
+    "detailText": "日本で初めて肖像画が使われた紙幣は1885年発行の日本銀行券。神功皇后の肖像が描かれていた。",
+    "imageAsset": "assets/images/cards/card_his_003.png",
+    "rarity": "normal",
+    "sourceNote": "日本銀行 貨幣博物館"
+  },
+  {
+    "id": "card_sci_003",
+    "title": "絶対零度",
+    "category": "science",
+    "shortText": "理論上の最低温度。-273.15℃。",
+    "detailText": "絶対零度は-273.15℃。この温度では原子の動きが理論上停止する。これより低い温度は存在しないとされている。",
+    "imageAsset": "assets/images/cards/card_sci_003.png",
+    "rarity": "rare",
+    "sourceNote": "国立科学博物館"
+  },
+  {
+    "id": "card_food_003",
+    "title": "本わさび",
+    "category": "food",
+    "shortText": "山葵の根茎をすりおろしたもの。",
+    "detailText": "本わさびはアブラナ科の植物「山葵」の根茎から作られる。一般のチューブわさびは「西洋わさび」（ホースラディッシュ）が主原料。",
+    "imageAsset": "assets/images/cards/card_food_003.png",
+    "rarity": "normal",
+    "sourceNote": "農林水産省"
+  },
+  {
+    "id": "card_lang_003",
+    "title": "サンドイッチ伯爵",
+    "category": "language",
+    "shortText": "伯爵の名前が由来。",
+    "detailText": "サンドイッチは18世紀イギリスの第4代サンドイッチ伯爵が、トランプに夢中で食事を頼んだことが始まりと言われている。",
+    "imageAsset": "assets/images/cards/card_lang_003.png",
+    "rarity": "normal",
+    "sourceNote": "オックスフォード英語辞典"
+  },
+  {
+    "id": "card_life_003",
+    "title": "消しゴムの原理",
+    "category": "daily_life",
+    "shortText": "紙の表面を削って消している。",
+    "detailText": "消しゴムが鉛筆の字を消せるのは、摩擦で紙の表面ごと黒鉛を削り取っているから。消しかすは紙と黒鉛のカスなんだ。",
+    "imageAsset": "assets/images/cards/card_life_003.png",
+    "rarity": "normal",
+    "sourceNote": "文具メーカー資料"
+  },
+  {
+    "id": "card_geo_004",
+    "title": "アタカマ砂漠",
+    "category": "nature_geography",
+    "shortText": "世界で最も乾燥した場所。",
+    "detailText": "チリのアタカマ砂漠は、400年以上雨が降っていない地域がある世界一乾燥した砂漠。火星に似た環境としても有名。",
+    "imageAsset": "assets/images/cards/card_geo_004.png",
+    "rarity": "rare",
+    "sourceNote": "NASA Earth Observatory"
+  },
+  {
+    "id": "card_bio_004",
+    "title": "人間の骨",
+    "category": "living_things",
+    "shortText": "大人は約206本。赤ちゃんは約350本。",
+    "detailText": "人間の骨は大人で約206本。赤ちゃんの時は約350本あるが、成長とともに骨が癒合して減っていく。",
+    "imageAsset": "assets/images/cards/card_bio_004.png",
+    "rarity": "normal",
+    "sourceNote": "医学書"
+  },
+  {
+    "id": "card_his_004",
+    "title": "国宝の城",
+    "category": "history",
+    "shortText": "日本に5つの国宝天守がある。",
+    "detailText": "姫路城、松本城、犬山城、彦根城、松江城の5つが国宝に指定されている現存天守。いずれも江戸時代以前から残る貴重な建造物。",
+    "imageAsset": "assets/images/cards/card_his_004.png",
+    "rarity": "rare",
+    "sourceNote": "文化庁 国宝・重要文化財"
+  },
+  {
+    "id": "card_sci_004",
+    "title": "地球は水の惑星",
+    "category": "science",
+    "shortText": "表面の約70%が海。",
+    "detailText": "地球表面の約70%は海で覆われている。このため「水の惑星」とも呼ばれる。生命の存在が確認されている唯一の惑星。",
+    "imageAsset": "assets/images/cards/card_sci_004.png",
+    "rarity": "normal",
+    "sourceNote": "NASA"
+  },
+  {
+    "id": "card_food_004",
+    "title": "カレーの伝来",
+    "category": "food",
+    "shortText": "明治時代にイギリス経由で伝来。",
+    "detailText": "日本にカレーが伝わったのは明治時代。イギリス経由で「西洋料理」の一つとして紹介され、独自の進化を遂げた。",
+    "imageAsset": "assets/images/cards/card_food_004.png",
+    "rarity": "normal",
+    "sourceNote": "カレー博物館"
+  },
+  {
+    "id": "card_lang_004",
+    "title": "ら行の謎",
+    "category": "language",
+    "shortText": "日本語に「ら行」の語頭が少ない理由。",
+    "detailText": "上古日本語には語頭に「r」音（ら行）が来る言葉を避ける傾向があった。これは多くの言語に見られる傾向で、日本語の特徴の一つ。",
+    "imageAsset": "assets/images/cards/card_lang_004.png",
+    "rarity": "normal",
+    "sourceNote": "日本語学研究"
+  },
+  {
+    "id": "card_life_004",
+    "title": "エレベーターの閉ボタン",
+    "category": "daily_life",
+    "shortText": "実はすぐには閉まらない設計。",
+    "detailText": "多くのエレベーターは安全基準により、閉ボタンを押してもすぐには反応しない。自動ドアの開閉タイミングが優先されるよう設計されている。",
+    "imageAsset": "assets/images/cards/card_life_004.png",
+    "rarity": "normal",
+    "sourceNote": "日本エレベーター協会"
+  },
+  {
+    "id": "card_geo_005",
+    "title": "信濃川",
+    "category": "nature_geography",
+    "shortText": "日本最長の川。長さは約367km。",
+    "detailText": "信濃川は新潟県から長野県を流れる日本最長の川。長野県内では千曲川と呼ばれ、新潟県に入って信濃川と呼ばれる。",
+    "imageAsset": "assets/images/cards/card_geo_005.png",
+    "rarity": "normal",
+    "sourceNote": "国土交通省"
+  },
+  {
+    "id": "card_bio_005",
+    "title": "パンダと竹",
+    "category": "living_things",
+    "shortText": "食事の99%が竹。",
+    "detailText": "ジャイアントパンダは1日に12〜38kgもの竹を食べる。肉食動物の消化器官を持つが、99%は竹を食べる草食寄りの食生活。",
+    "imageAsset": "assets/images/cards/card_bio_005.png",
+    "rarity": "normal",
+    "sourceNote": "WWF"
+  }
+]
