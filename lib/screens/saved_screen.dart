@@ -41,7 +41,21 @@ class _SavedScreenState extends State<SavedScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('保存したへぇ')),
       body: savedCards.isEmpty
-          ? const Center(child: Text('保存したカードはありません'))
+          ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.bookmark_border_rounded, size: 64, color: Colors.grey[300]),
+                    const SizedBox(height: 16),
+                    Text('保存したカードはまだないよ', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.grey[500])),
+                    const SizedBox(height: 8),
+                    Text('気に入ったへぇを保存してみてね', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[400])),
+                  ],
+                ),
+              ),
+            )
           : ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8),
               itemCount: savedCards.length,
@@ -51,9 +65,7 @@ class _SavedScreenState extends State<SavedScreen> {
                   onTap: () async {
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => CardDetailScreen(card: savedCards[index]),
-                      ),
+                      MaterialPageRoute(builder: (context) => CardDetailScreen(card: savedCards[index])),
                     );
                     setState(() {});
                   },
