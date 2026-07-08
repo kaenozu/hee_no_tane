@@ -1,0 +1,42 @@
+[
+  {
+    "id": "card_geo_001",
+    "title": "バイカル湖",
+    "category": "nature_geography",
+    "shortText": "世界で最も深い湖として知られるロシアの湖。",
+    "detailText": "バイカル湖はロシアにある湖で、最大深度は約1,642m。深さだけでなく、透明度や固有種の多さでも知られている。",
+    "imageAsset": "assets/images/cards/card_geo_001.png",
+    "rarity": "normal",
+    "sourceNote": "https://en.wikipedia.org/wiki/Lake_Baikal"
+  },
+  {
+    "id": "card_space_001",
+    "title": "金星の長い1日",
+    "category": "science_space",
+    "shortText": "金星では1日が1年より長い。",
+    "detailText": "金星は自転が非常に遅く、約243地球日で1回転する。一方、太陽の周りを1周する公転周期は約225地球日。",
+    "imageAsset": "assets/images/cards/card_space_001.png",
+    "rarity": "normal",
+    "sourceNote": "https://spaceplace.nasa.gov/all-about-venus/"
+  },
+  {
+    "id": "card_bio_001",
+    "title": "卵を産む哺乳類",
+    "category": "animals",
+    "shortText": "カモノハシなど一部の哺乳類は卵を産む。",
+    "detailText": "カモノハシは単孔類に分類される珍しい哺乳類。サンプルデータのため本番投入前に出典確認が必要。",
+    "imageAsset": "assets/images/cards/card_bio_001.png",
+    "rarity": "normal",
+    "sourceNote": "Needs final verification before production. Sample only."
+  },
+  {
+    "id": "card_system_001",
+    "title": "検証済みの種",
+    "category": "system",
+    "shortText": "へぇの種は、確認済みの知識だけが発芽する。",
+    "detailText": "MVPでは、sourceNoteがあり、verifiedがtrueの問題だけを出題する。これは雑学アプリとしての信頼性を守るためのルール。",
+    "imageAsset": "assets/images/cards/card_system_001.png",
+    "rarity": "normal",
+    "sourceNote": "Product rule."
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "q_geo_001",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "世界でいちばん深い湖は？",
+    "choices": [
+      "バイカル湖",
+      "琵琶湖",
+      "カスピ海",
+      "スペリオル湖"
+    ],
+    "answerIndex": 0,
+    "explanation": "バイカル湖の最大深度は約1,642m。湖の中でいちばん深い湖として知られているよ。",
+    "relatedCardId": "card_geo_001",
+    "sourceNote": "https://en.wikipedia.org/wiki/Lake_Baikal",
+    "verified": true
+  },
+  {
+    "id": "q_space_001",
+    "category": "science_space",
+    "difficulty": "normal",
+    "question": "金星の1日は、金星の1年より長い？",
+    "choices": [
+      "長い",
+      "短い",
+      "同じ",
+      "季節によって変わる"
+    ],
+    "answerIndex": 0,
+    "explanation": "金星は自転がとても遅く、1回転に約243地球日かかる。一方、太陽を1周するのは約225地球日だよ。",
+    "relatedCardId": "card_space_001",
+    "sourceNote": "https://spaceplace.nasa.gov/all-about-venus/",
+    "verified": true
+  },
+  {
+    "id": "q_bio_001",
+    "category": "animals",
+    "difficulty": "easy",
+    "question": "カモノハシはどんな動物？",
+    "choices": [
+      "卵を産む哺乳類",
+      "空を飛ぶ魚",
+      "毒のない昆虫",
+      "海だけにすむ鳥"
+    ],
+    "answerIndex": 0,
+    "explanation": "カモノハシは単孔類というグループの哺乳類で、卵を産む珍しい哺乳類だよ。",
+    "relatedCardId": "card_bio_001",
+    "sourceNote": "Needs final verification before production. Sample only.",
+    "verified": false
+  },
+  {
+    "id": "q_food_001",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "サンプル問題: これは未検証問題です。出題されるべき？",
+    "choices": [
+      "出題しない",
+      "必ず出題する",
+      "ボスだけ出す",
+      "ランダムで出す"
+    ],
+    "answerIndex": 0,
+    "explanation": "verifiedがfalseの問題は、MVPでは出題対象外にする。",
+    "relatedCardId": "card_food_001",
+    "sourceNote": "Internal rule sample.",
+    "verified": false
+  },
+  {
+    "id": "q_game_001",
+    "category": "system",
+    "difficulty": "easy",
+    "question": "へぇダンジョンで、未検証の問題はどう扱う？",
+    "choices": [
+      "出題しない",
+      "広告後に出す",
+      "ボス戦だけ出す",
+      "図鑑だけ出す"
+    ],
+    "answerIndex": 0,
+    "explanation": "正確性を守るため、verifiedがtrueの問題だけを出題する設計だよ。",
+    "relatedCardId": "card_system_001",
+    "sourceNote": "Product rule.",
+    "verified": true
+  }
+]
