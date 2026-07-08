@@ -298,5 +298,735 @@
     "imageAsset": "assets/images/cards/card_bio_005.png",
     "rarity": "normal",
     "sourceNote": "WWF"
+  },
+  {
+    "id": "card_nature_geography_001",
+    "title": "富士山の県境",
+    "category": "nature_geography",
+    "shortText": "富士山が位置する2つの県について",
+    "detailText": "日本最高峰の富士山は、静岡県と山梨県の両方に属しています。山頂付近は富士山本宮浅間大社の土地とされ、県境未定地となっています。",
+    "imageAsset": "assets/images/cards/card_nature_geography_001.png",
+    "rarity": "normal",
+    "sourceNote": "静岡県および山梨県公式ホームページ"
+  },
+  {
+    "id": "card_living_things_001",
+    "title": "ラッコの睡眠術",
+    "category": "living_things",
+    "shortText": "流されないための賢い工夫",
+    "detailText": "プカプカと海に浮かんで眠るラッコ。海藻を命綱のように体に巻き付けることで、眠っている間に遠くへ流されるのを防いでいます。",
+    "imageAsset": "assets/images/cards/card_living_things_001.png",
+    "rarity": "normal",
+    "sourceNote": "サンシャイン水族館 飼育コラム"
+  },
+  {
+    "id": "card_history_001",
+    "title": "エッフェル塔の誕生",
+    "category": "history",
+    "shortText": "万博のために建てられた巨大な門",
+    "detailText": "当初は20年で解体される予定でしたが、無線通信のアンテナとして利用価値が認められたことで、現在まで保存されることになりました。",
+    "imageAsset": "assets/images/cards/card_history_001.png",
+    "rarity": "rare",
+    "sourceNote": "エッフェル塔公式サイト 歴史解説"
+  },
+  {
+    "id": "card_science_001",
+    "title": "ダイヤと鉛筆の意外な関係",
+    "category": "science",
+    "shortText": "同じ成分からなる正反対の物質",
+    "detailText": "最も硬いダイヤモンドと、紙にこすると削れるほど柔らかい黒鉛。構成元素はどちらも「炭素」ですが、結晶の構造が大きく異なります。",
+    "imageAsset": "assets/images/cards/card_science_001.png",
+    "rarity": "normal",
+    "sourceNote": "日本化学会 化学百科"
+  },
+  {
+    "id": "card_food_005",
+    "title": "イチゴのツブツブ",
+    "category": "food",
+    "shortText": "実はツブツブこそが本当の果実",
+    "detailText": "赤い部分は果実ではなく、花の一部が変化した「偽果」です。表面の粒の中に種が入っており、一粒一粒が植物学上の果実にあたります。",
+    "imageAsset": "assets/images/cards/card_food_005.png",
+    "rarity": "normal",
+    "sourceNote": "農林水産省 植物の雑学"
+  },
+  {
+    "id": "card_language_001",
+    "title": "サボるの語源",
+    "category": "language",
+    "shortText": "意外な履物が由来の言葉",
+    "detailText": "日本語の「サボる」もこの言葉が由来です。かつてフランスの労働者が木靴を使って抗議活動をした歴史から生まれた表現です。",
+    "imageAsset": "assets/images/cards/card_language_001.png",
+    "rarity": "rare",
+    "sourceNote": "語源由来辞典 サボる"
+  },
+  {
+    "id": "card_daily_life_001",
+    "title": "青色防犯灯の効果",
+    "category": "daily_life",
+    "shortText": "防犯のために導入された青い光",
+    "detailText": "イギリスで導入された際、犯罪率が低下したという報告があり、日本でも全国の自治体で街灯や鉄道駅のホームへの導入が進みました。",
+    "imageAsset": "assets/images/cards/card_daily_life_001.png",
+    "rarity": "normal",
+    "sourceNote": "警察庁 防犯環境設計指針"
+  },
+  {
+    "id": "card_nature_geography_002",
+    "title": "浮かぶ湖・死海",
+    "category": "nature_geography",
+    "shortText": "体が浮くほど塩分が濃い不思議な湖。",
+    "detailText": "ヨルダンとイスラエルの境に位置する死海は、非常に高い塩分濃度のせいで魚などの生物が住めないことからその名がつきました。観光客が新聞を読みながら浮かぶ光景が有名です。",
+    "imageAsset": "assets/images/cards/card_nature_geography_002.png",
+    "rarity": "normal",
+    "sourceNote": "イスラエル政府観光局 公式サイト"
+  },
+  {
+    "id": "card_living_things_002",
+    "title": "キリンの超短眠術",
+    "category": "living_things",
+    "shortText": "世界で最も睡眠時間が短いといわれる動物。",
+    "detailText": "キリンは立ったまま数分間の眠りを繰り返します。深い眠りにつくのは稀で、首を丸めて座って眠る姿は非常に珍しい光景です。厳しい自然界を生き抜くための究極の適応といえます。",
+    "imageAsset": "assets/images/cards/card_living_things_002.png",
+    "rarity": "rare",
+    "sourceNote": "ナショナルジオグラフィック 日本版"
+  },
+  {
+    "id": "card_history_002",
+    "title": "アロハに込められた息吹",
+    "category": "history",
+    "shortText": "「アロハ」という言葉に隠された深い意味。",
+    "detailText": "ハワイの挨拶Alohaは、愛、平和、慈しみなど多くの意味を持ちます。特に語尾の「Ha」は生命の源である「呼吸」を指し、命そのものを分かち合うという敬意が込められています。",
+    "imageAsset": "assets/images/cards/card_history_002.png",
+    "rarity": "normal",
+    "sourceNote": "ハワイ州観光局公式ポータルサイト"
+  },
+  {
+    "id": "card_science_002",
+    "title": "空が青い科学的な理由",
+    "category": "science",
+    "shortText": "光の散乱が空を青く染める仕組み。",
+    "detailText": "太陽の光には虹の七色が含まれていますが、そのうち青い光が空気の粒にぶつかって空全体に広がります。夕焼けが赤いのは、光の進む距離が長くなり、青い光が届かなくなるためです。",
+    "imageAsset": "assets/images/cards/card_science_002.png",
+    "rarity": "normal",
+    "sourceNote": "気象庁 はれるんライブラリー"
+  },
+  {
+    "id": "card_food_006",
+    "title": "伯爵のサンドイッチ",
+    "category": "food",
+    "shortText": "カード遊びから生まれた世界的な軽食。",
+    "detailText": "イギリスのサンドイッチ伯爵が、食事の時間さえ惜しんでトランプに熱中したために考案されたという逸話があります。現在では世界中で愛される合理的な食事の代名詞となりました。",
+    "imageAsset": "assets/images/cards/card_food_006.png",
+    "rarity": "normal",
+    "sourceNote": "英国政府観光庁（VisitBritain）"
+  },
+  {
+    "id": "card_language_002",
+    "title": "二足のわらじのルーツ",
+    "category": "language",
+    "shortText": "相反する二つの顔を持つ言葉の由来。",
+    "detailText": "現代では単に複数の仕事をこなす意味ですが、元々は「捕まえる側」と「捕まる側」の両方を一人が演じる奇妙な状況を指しました。江戸時代の闇と裏事情が透けて見える言葉です。",
+    "imageAsset": "assets/images/cards/card_language_002.png",
+    "rarity": "rare",
+    "sourceNote": "小学館 精選版 日本国語大辞典"
+  },
+  {
+    "id": "card_daily_life_002",
+    "title": "ペンキャップの小さな穴",
+    "category": "daily_life",
+    "shortText": "誤飲事故から命を守るための安全設計。",
+    "detailText": "何気なく付いているキャップの穴は、もしもの時に空気が通るよう計算されています。小さな文房具の一つひとつに、事故を防ぐためのメーカーの知恵と配慮が隠されているのです。",
+    "imageAsset": "assets/images/cards/card_daily_life_002.png",
+    "rarity": "normal",
+    "sourceNote": "一般社団法人 日本筆記具工業会"
+  },
+  {
+    "id": "card_nature_geography_006",
+    "title": "日本一小さな都道府県",
+    "category": "nature_geography",
+    "shortText": "一番面積が小さい都道府県の雑学",
+    "detailText": "1988年以降、日本で最も面積が小さい都道府県は香川県です。それまでは大阪府が最下位でしたが、埋め立てによる領土拡大で順位が逆転しました。",
+    "imageAsset": "assets/images/cards/card_nature_geography_006.png",
+    "rarity": "normal",
+    "sourceNote": "国土地理院「全国都道府県市区町村別面積調」"
+  },
+  {
+    "id": "card_living_things_006",
+    "title": "タコのトリプルハート",
+    "category": "living_things",
+    "shortText": "タコの体に隠された心臓の数の秘密",
+    "detailText": "海中で生き抜くタコには、主心臓のほかにエラへ血液を送る心臓が2つあり、合計3つの心臓で力強く血液を循環させています。",
+    "imageAsset": "assets/images/cards/card_living_things_006.png",
+    "rarity": "rare",
+    "sourceNote": "生物学事典「軟体動物の循環系」"
+  },
+  {
+    "id": "card_history_005",
+    "title": "ジャガイモ泥棒の心理戦",
+    "category": "history",
+    "shortText": "フランスでジャガイモが広まった奇策",
+    "detailText": "厳重に警備された畑ほど盗みたくなる人間の心理を利用し、あえて「泥棒」をさせることでジャガイモを大流行させた歴史的作戦です。",
+    "imageAsset": "assets/images/cards/card_history_005.png",
+    "rarity": "rare",
+    "sourceNote": "歴史書「世界の食文化史・フランス」"
+  },
+  {
+    "id": "card_science_005",
+    "title": "シャボン玉が丸い理由",
+    "category": "science",
+    "shortText": "泡が綺麗な球体になる科学の力",
+    "detailText": "液体の表面が縮まろうとする「表面張力」の影響で、シャボン玉は最も表面積が小さくて安定した形である「球体」へと変化します。",
+    "imageAsset": "assets/images/cards/card_science_005.png",
+    "rarity": "normal",
+    "sourceNote": "物理学基礎「界面動態と表面張力」"
+  },
+  {
+    "id": "card_food_007",
+    "title": "キャビアの正体",
+    "category": "food",
+    "shortText": "高級食材キャビアを産む魚の雑学",
+    "detailText": "世界三大珍味のキャビアはチョウザメの卵。チョウザメは名前に反してサメの仲間ではなく、ウロコがサメに似ているだけの古代魚です。",
+    "imageAsset": "assets/images/cards/card_food_007.png",
+    "rarity": "normal",
+    "sourceNote": "水産庁「世界の水産資源解説」"
+  },
+  {
+    "id": "card_language_005",
+    "title": "大詰の知られざる語源",
+    "category": "language",
+    "shortText": "物語の最終局面を表す言葉のルーツ",
+    "detailText": "将棋の「詰み」が連想されがちな「大詰」ですが、実は歌舞伎の最終幕を指す言葉がルーツで、物語の結末から転じた言葉です。",
+    "imageAsset": "assets/images/cards/card_language_005.png",
+    "rarity": "normal",
+    "sourceNote": "日本国語大辞典「大詰の項」"
+  },
+  {
+    "id": "card_daily_life_005",
+    "title": "賞味期限の意外なインク",
+    "category": "daily_life",
+    "shortText": "缶詰に印字された文字の安全な秘密",
+    "detailText": "食品の容器に印字される賞味期限には、誤って口に入っても無害な「イカ墨インク」が広く採用されており、生活の安全を支えています。",
+    "imageAsset": "assets/images/cards/card_daily_life_005.png",
+    "rarity": "rare",
+    "sourceNote": "日本缶詰びん詰レトルト食品協会資料"
+  },
+  {
+    "id": "card_nature_geography_007",
+    "title": "世界最多の国境を持つ国",
+    "category": "nature_geography",
+    "shortText": "陸続きで最も多くの国と隣り合う国",
+    "detailText": "広大な国土を持つ中国とロシアは、それぞれ14もの国々と陸の国境を接しており、世界で最も隣国が多い国となっています。",
+    "imageAsset": "assets/images/cards/card_nature_geography_007.png",
+    "rarity": "normal",
+    "sourceNote": "国連データ「世界の国境線長と隣接国」"
+  },
+  {
+    "id": "card_living_things_007",
+    "title": "ペンギンの凍らない足",
+    "category": "living_things",
+    "shortText": "極寒の氷上で立ち続けられる魔法の血管",
+    "detailText": "ペンギンの足元には、温かい血液と冷たい血液の間で熱を効率よく循環させる天然の床暖房のような血管網システムが備わっています。",
+    "imageAsset": "assets/images/cards/card_living_things_007.png",
+    "rarity": "rare",
+    "sourceNote": "動物生理学「鳥類の体温調節機構」"
+  },
+  {
+    "id": "card_history_006",
+    "title": "星を読んで暦を作った男たち",
+    "category": "history",
+    "shortText": "江戸時代のカレンダーを作った幕府の役職",
+    "detailText": "天体を観測して日本の正確な時間を支配した「天文方」。彼らの正確な計算によって、江戸時代の太陰暦カレンダーが作られていました。",
+    "imageAsset": "assets/images/cards/card_history_006.png",
+    "rarity": "normal",
+    "sourceNote": "日本史辞典「江戸幕府の職制」"
+  },
+  {
+    "id": "card_nature_geography_008",
+    "title": "標高ゼロの出発点",
+    "category": "nature_geography",
+    "shortText": "標高の基準は東京湾",
+    "detailText": "日本の地図や測量で使う高さは、東京湾平均海面を0mとする考え方を土台にしている。",
+    "imageAsset": "assets/images/cards/card_nature_geography_008.png",
+    "rarity": "normal",
+    "sourceNote": "国土地理院・日本水準原点資料"
+  },
+  {
+    "id": "card_nature_geography_009",
+    "title": "夏雷のピーク",
+    "category": "nature_geography",
+    "shortText": "午後の雷には理由がある",
+    "detailText": "夏は日射で地面近くの空気が暖まり、上昇して積乱雲が育つため雷が起こりやすい。",
+    "imageAsset": "assets/images/cards/card_nature_geography_009.png",
+    "rarity": "normal",
+    "sourceNote": "気象庁・雷検知数の季節解説"
+  },
+  {
+    "id": "card_living_things_008",
+    "title": "タコは三つの心臓",
+    "category": "living_things",
+    "shortText": "えら用と全身用が分担",
+    "detailText": "頭足類の心臓は役割分担型。二つがえらへ、一つが全身へ血液を送る。",
+    "imageAsset": "assets/images/cards/card_living_things_008.png",
+    "rarity": "normal",
+    "sourceNote": "スミソニアン海洋・頭足類解説"
+  },
+  {
+    "id": "card_living_things_009",
+    "title": "青い血のひみつ",
+    "category": "living_things",
+    "shortText": "タコの血は銅がカギ",
+    "detailText": "ヘモシアニンは銅を含む酸素運搬タンパク質で、鉄を含む人の血と色が違う。",
+    "imageAsset": "assets/images/cards/card_living_things_009.png",
+    "rarity": "rare",
+    "sourceNote": "英国自然史博物館・タコの血解説"
+  },
+  {
+    "id": "card_history_007",
+    "title": "二つあった日本時間",
+    "category": "history",
+    "shortText": "昔の日本には西部時間も",
+    "detailText": "かつて日本標準時とは別に西部標準時があり、台湾や沖縄の一部で使われた時期がある。",
+    "imageAsset": "assets/images/cards/card_history_007.png",
+    "rarity": "rare",
+    "sourceNote": "国立公文書館・標準時の歴史資料"
+  },
+  {
+    "id": "card_science_006",
+    "title": "雷は空の放電",
+    "category": "science",
+    "shortText": "音と光は放電のサイン",
+    "detailText": "雷は雲内や雲と地上の間で電荷が偏り、放電するときに光や音を生む現象。",
+    "imageAsset": "assets/images/cards/card_science_006.png",
+    "rarity": "normal",
+    "sourceNote": "気象庁・雷とはの基礎解説"
+  },
+  {
+    "id": "card_food_008",
+    "title": "だしの相乗効果",
+    "category": "food",
+    "shortText": "昆布とかつおでうま味増幅",
+    "detailText": "和食のだしは、昆布とかつお節の成分を合わせることで、単独より強くうま味を感じやすい。",
+    "imageAsset": "assets/images/cards/card_food_008.png",
+    "rarity": "normal",
+    "sourceNote": "農林水産省・だしうま味解説"
+  },
+  {
+    "id": "card_food_009",
+    "title": "涙を呼ぶタマネギ",
+    "category": "food",
+    "shortText": "切ると催涙物質が発生",
+    "detailText": "細胞が壊れることで酵素反応が進み、目を刺激する揮発性の物質が作られる。",
+    "imageAsset": "assets/images/cards/card_food_009.png",
+    "rarity": "normal",
+    "sourceNote": "Poison Control・タマネギ解説"
+  },
+  {
+    "id": "card_language_006",
+    "title": "カステラの名前",
+    "category": "language",
+    "shortText": "地名が菓子名になった説",
+    "detailText": "カステラはポルトガル経由で伝わったが、名はカスティーリャ地方に由来する説が有力。",
+    "imageAsset": "assets/images/cards/card_language_006.png",
+    "rarity": "rare",
+    "sourceNote": "国立国会図書館レファレンス事例"
+  },
+  {
+    "id": "card_daily_life_006",
+    "title": "PETマークの1",
+    "category": "daily_life",
+    "shortText": "分別マークの数字の由来",
+    "detailText": "PETボトルの識別表示にある数字は、素材を区別するコード体系に由来する。",
+    "imageAsset": "assets/images/cards/card_daily_life_006.png",
+    "rarity": "rare",
+    "sourceNote": "環境省・環境ラベルデータベース"
+  },
+  {
+    "id": "card_nature_geography_010",
+    "title": "アマゾン川にないもの",
+    "category": "nature_geography",
+    "shortText": "大自然を流れる巨流の不思議な事実",
+    "detailText": "長さ約6,400キロメートルにおよぶアマゾン川ですが、本流をまたぐ橋はゼロ。自然環境の過酷さと船社会の文化を象徴しています。",
+    "imageAsset": "assets/images/cards/card_nature_geography_010.png",
+    "rarity": "rare",
+    "sourceNote": "地理学講義「世界の河川とインフラ」"
+  },
+  {
+    "id": "card_living_things_010",
+    "title": "おろし金を持つカタツムリ",
+    "category": "living_things",
+    "shortText": "小さな体に隠された驚異の歯の数",
+    "detailText": "のんびり歩くカタツムリですが、口の中には1万本を超える微細な歯がぎっしり。コンクリートすら削る強靭な食事システムです。",
+    "imageAsset": "assets/images/cards/card_living_things_010.png",
+    "rarity": "rare",
+    "sourceNote": "軟体動物生態誌「歯舌の構造と進化」"
+  },
+  {
+    "id": "card_history_008",
+    "title": "騎士の鎧の本当の重さ",
+    "category": "history",
+    "shortText": "重すぎて動けない？甲冑の誤解",
+    "detailText": "動けないほど重いイメージのある西洋の鎧ですが、実際は約25kg程度。優れた設計により、戦場を自在に駆け回る機動性がありました。",
+    "imageAsset": "assets/images/cards/card_history_008.png",
+    "rarity": "normal",
+    "sourceNote": "軍事史博物館「西洋甲冑の歴史と構造」"
+  },
+  {
+    "id": "card_science_007",
+    "title": "消える最高の宝石",
+    "category": "science",
+    "shortText": "燃え盛る火の中で輝きが消える科学",
+    "detailText": "世界で最も硬い宝石のダイヤモンドですが、正体は炭素の塊。火をつければ二酸化炭素となって、跡形もなく空気中に消え去ります。",
+    "imageAsset": "assets/images/cards/card_science_007.png",
+    "rarity": "normal",
+    "sourceNote": "基礎化学「炭素同素体の燃焼実験」"
+  },
+  {
+    "id": "card_food_010",
+    "title": "世界を救う「Surimi」",
+    "category": "food",
+    "shortText": "カニの代用品として生まれた日本発の傑作",
+    "detailText": "人工カニ肉として開発されたカニカマは、今や世界中で大人気。海外のスーパーでもそのまま通じる、日本生まれのハイテク食品です。",
+    "imageAsset": "assets/images/cards/card_food_010.png",
+    "rarity": "normal",
+    "sourceNote": "日本水産加工業協同組合連合会史"
+  },
+  {
+    "id": "card_language_007",
+    "title": "うだつが上がらないの正体",
+    "category": "language",
+    "shortText": "出世の証とされた歴史的な建築物",
+    "detailText": "慣用句で使われる「うだつ」は、火災から家を守るための建築設備のこと。お金持ちしか建てられなかったことが語源です。",
+    "imageAsset": "assets/images/cards/card_language_007.png",
+    "rarity": "normal",
+    "sourceNote": "建築意匠辞典「うだつ・町家の装飾」"
+  },
+  {
+    "id": "card_daily_life_007",
+    "title": "トランプに隠された1年",
+    "category": "daily_life",
+    "shortText": "カードの枚数に秘められた暦の暗号",
+    "detailText": "何気なく遊んでいるトランプの枚数は、実はカレンダーの役割を持っています。52枚のカードは、1年の52週を完璧に表現しています。",
+    "imageAsset": "assets/images/cards/card_daily_life_007.png",
+    "rarity": "normal",
+    "sourceNote": "世界の室内ゲーム史「プレイングカードの暦」"
+  },
+  {
+    "id": "card_nature_geography_011",
+    "title": "妥協から生まれた首都",
+    "category": "nature_geography",
+    "shortText": "シドニーじゃない？オーストラリアの首都",
+    "detailText": "大都市同士の譲れないプライド論争を解決するため、何もない荒野に計画都市として建設されたのが、現在の首都キャンベラです。",
+    "imageAsset": "assets/images/cards/card_nature_geography_011.png",
+    "rarity": "normal",
+    "sourceNote": "オーストラリア政府公式ウェブサイト"
+  },
+  {
+    "id": "card_living_things_011",
+    "title": "肉球のじっとりした秘密",
+    "category": "living_things",
+    "shortText": "犬や猫が唯一汗をかくことができる場所",
+    "detailText": "もふもふの体を持つペットたち。彼らが唯一汗を流せるのがチャームポイントの肉球です。緊張すると足跡が湿ることもあります。",
+    "imageAsset": "assets/images/cards/card_living_things_011.png",
+    "rarity": "normal",
+    "sourceNote": "獣医解剖学「伴侶動物の皮膚生理」"
+  },
+  {
+    "id": "card_language_008",
+    "title": "サラダ記念日の真実",
+    "category": "language",
+    "shortText": "名作短歌の裏に隠されたおいしいメニュー",
+    "detailText": "文学史に残る名フレーズに隠されたまさかの事実。言葉の美しさを優先した結果、唐揚げがサラダへと大変身を遂げていました。",
+    "imageAsset": "assets/images/cards/card_language_008.png",
+    "rarity": "rare",
+    "sourceNote": "俵万智エッセイ集「サラダのそのあと」"
+  },
+  {
+    "id": "card_nature_geography_012",
+    "title": "赤道の氷河キリマンジャロ",
+    "category": "nature_geography",
+    "shortText": "熱帯の国に存在する溶けない氷の神秘",
+    "detailText": "アフリカの赤道直下でありながら、標高約6,000メートルの山頂には氷河が広がります。世紀を超えて登山家を魅了する大自然の奇跡です。",
+    "imageAsset": "assets/images/cards/card_nature_geography_012.png",
+    "rarity": "rare",
+    "sourceNote": "国連環境計画（UNEP）気候変動報告書"
+  },
+  {
+    "id": "card_living_things_012",
+    "title": "ウサギの知られざる食事法",
+    "category": "living_things",
+    "shortText": "生きるために欠かせない究極のリサイクル",
+    "detailText": "ウサギが食べるのは、普段見るコロコロした糞ではなく、栄養が詰まった特別な柔らかい糞。健康を維持するための本能的な行動です。",
+    "imageAsset": "assets/images/cards/card_living_things_012.png",
+    "rarity": "normal",
+    "sourceNote": "小動物臨床医学「草食哺乳類の消化生理」"
+  },
+  {
+    "id": "card_history_009",
+    "title": "歴史を変えた球根バブル",
+    "category": "history",
+    "shortText": "一輪の花が国家を揺るがした世界初のバブル",
+    "detailText": "たった1つの球根で家が買えたという歴史上の実話。チューリップへの熱狂が行き過ぎ、最後は突然の大暴落で多くの人が破産しました。",
+    "imageAsset": "assets/images/cards/card_history_009.png",
+    "rarity": "normal",
+    "sourceNote": "経済史「世界の大バブルと恐慌」"
+  },
+  {
+    "id": "card_science_008",
+    "title": "1円玉の価値とコスト",
+    "category": "science",
+    "shortText": "額面よりもお金がかかる1円玉の秘密",
+    "detailText": "私たちが普段使う1円玉ですが、金属の価格高騰などもあり、1円以上のコストをかけて丁寧に作られているプレミアムな硬貨です。",
+    "imageAsset": "assets/images/cards/card_science_008.png",
+    "rarity": "normal",
+    "sourceNote": "造幣局「貨幣製造コスト推計資料」"
+  },
+  {
+    "id": "card_food_011",
+    "title": "イチゴのツブツブの正体",
+    "category": "food",
+    "shortText": "種だと思っていた部分の意外な事実",
+    "detailText": "実は赤い部分は果物ではなく、ツブツブのほうが本物の「果実」。1粒のイチゴを食べることは、数百個の果実を一度に食べるのと同じです。",
+    "imageAsset": "assets/images/cards/card_food_011.png",
+    "rarity": "normal",
+    "sourceNote": "植物分類学「偽果と真果の構造」"
+  },
+  {
+    "id": "card_language_009",
+    "title": "サボるの意外な生まれ",
+    "category": "language",
+    "shortText": "日本語の動詞になったフランス語の雑学",
+    "detailText": "日常的に使う「サボる」ですが、もともとはフランスの労働運動がルーツ。立派な外来語と日本語がミックスされてできた言葉です。",
+    "imageAsset": "assets/images/cards/card_language_009.png",
+    "rarity": "normal",
+    "sourceNote": "新明解国語辞典「サボるの項」"
+  },
+  {
+    "id": "card_daily_life_008",
+    "title": "非常口が緑色である理由",
+    "category": "daily_life",
+    "shortText": "赤い炎のなかで命を救うカラーデザイン",
+    "detailText": "暗闇や煙、そして赤い炎に包まれた最悪の状況でも、パニックにならずに逃げ道を見つけられるよう、科学的根拠に基づいて緑色が選ばれました。",
+    "imageAsset": "assets/images/cards/card_daily_life_008.png",
+    "rarity": "normal",
+    "sourceNote": "消防庁「避難誘導表示の基準」"
+  },
+  {
+    "id": "card_nature_geography_013",
+    "title": "日本一人口の多い離島",
+    "category": "nature_geography",
+    "shortText": "本州と四国を結ぶ、活気あふれる巨大な島",
+    "detailText": "佐渡島や奄美大島を抑えて人口トップを誇る淡路島。玉ねぎの特産やテーマパークも多く、島でありながら大都市並みの活気があります。",
+    "imageAsset": "assets/images/cards/card_nature_geography_013.png",
+    "rarity": "normal",
+    "sourceNote": "総務省「国勢調査・離島振興解説」"
+  },
+  {
+    "id": "card_living_things_013",
+    "title": "バックできる唯一の鳥",
+    "category": "living_things",
+    "shortText": "ヘリコプターのように空を舞う小さな天才",
+    "detailText": "花の蜜を吸うために進化したハチドリの羽は、肩の関節が自由に回転する特殊な構造をしており、バックギアを入れたような後退飛行が可能です。",
+    "imageAsset": "assets/images/cards/card_living_things_013.png",
+    "rarity": "normal",
+    "sourceNote": "鳥類構造学「ハチドリの飛行メカニズム」"
+  },
+  {
+    "id": "card_history_010",
+    "title": "競技場に浮かぶ軍船",
+    "category": "history",
+    "shortText": "古代ローマで行われた桁外れの水上ショー",
+    "detailText": "闘技場を丸ごとプールに変えてしまうローマ人の圧倒的な土木技術。国家の威信をかけた、血湧き肉躍る驚天動地劇が開催されていました。",
+    "imageAsset": "assets/images/cards/card_history_010.png",
+    "rarity": "rare",
+    "sourceNote": "ローマ帝国史「コロッセオの構造と祝祭」"
+  },
+  {
+    "id": "card_nature_geography_014",
+    "title": "霧ともやの境目",
+    "category": "nature_geography",
+    "shortText": "違いは見通せる距離",
+    "detailText": "霧ともやは雰囲気ではなく、気象上は水平方向にどれだけ見通せるかで区別される。",
+    "imageAsset": "assets/images/cards/card_nature_geography_014.png",
+    "rarity": "normal",
+    "sourceNote": "気象庁・天気用語の霧ともや"
+  },
+  {
+    "id": "card_nature_geography_015",
+    "title": "津波の始まり",
+    "category": "nature_geography",
+    "shortText": "海底の動きが波を生む",
+    "detailText": "津波は普通の波と違い、海底の急な変形などで海水の柱全体が動かされることで広がっていく。",
+    "imageAsset": "assets/images/cards/card_nature_geography_015.png",
+    "rarity": "normal",
+    "sourceNote": "NOAA・津波発生の解説"
+  },
+  {
+    "id": "card_nature_geography_016",
+    "title": "赤い月の理由",
+    "category": "nature_geography",
+    "shortText": "地球の大気が色を変える",
+    "detailText": "月食中の赤い月は、月自身が光るのではなく、地球の大気を通過した太陽光の色が関係している。",
+    "imageAsset": "assets/images/cards/card_nature_geography_016.png",
+    "rarity": "rare",
+    "sourceNote": "NASA・月食と月の色の解説"
+  },
+  {
+    "id": "card_living_things_014",
+    "title": "音で見るコウモリ",
+    "category": "living_things",
+    "shortText": "反響で虫や障害物を知る",
+    "detailText": "反響定位は、暗闇でも周囲の形や獲物の位置を把握できる、コウモリの代表的な能力。",
+    "imageAsset": "assets/images/cards/card_living_things_014.png",
+    "rarity": "normal",
+    "sourceNote": "米国国立公園局・コウモリ解説"
+  },
+  {
+    "id": "card_living_things_015",
+    "title": "こぶの中身",
+    "category": "living_things",
+    "shortText": "水ではなく脂肪の貯蔵庫",
+    "detailText": "ラクダが砂漠で強いのは、こぶに水を持つからではなく、水分を節約する体の仕組みと脂肪の蓄えによる。",
+    "imageAsset": "assets/images/cards/card_living_things_015.png",
+    "rarity": "normal",
+    "sourceNote": "米国議会図書館・ラクダ解説"
+  },
+  {
+    "id": "card_living_things_016",
+    "title": "ホタルの光る酵素",
+    "category": "living_things",
+    "shortText": "光の鍵はルシフェラーゼ",
+    "detailText": "ホタルの発光は熱い炎ではなく、体内の化学反応で効率よく光を生み出す生物発光の一種。",
+    "imageAsset": "assets/images/cards/card_living_things_016.png",
+    "rarity": "rare",
+    "sourceNote": "JST・ホタル発光研究発表"
+  },
+  {
+    "id": "card_living_things_017",
+    "title": "サンゴ白化の正体",
+    "category": "living_things",
+    "shortText": "白さは共生藻の喪失",
+    "detailText": "白化したサンゴはすぐ死んだとは限らないが、共生藻を失って強いストレス状態に置かれている。",
+    "imageAsset": "assets/images/cards/card_living_things_017.png",
+    "rarity": "rare",
+    "sourceNote": "NOAA・サンゴ白化の基礎解説"
+  },
+  {
+    "id": "card_living_things_018",
+    "title": "産むオス",
+    "category": "living_things",
+    "shortText": "タツノオトシゴはオスが出産",
+    "detailText": "動物界でも珍しく、タツノオトシゴではメスが卵を渡し、オスが育児嚢で育てて出産する。",
+    "imageAsset": "assets/images/cards/card_living_things_018.png",
+    "rarity": "rare",
+    "sourceNote": "NOAA・タツノオトシゴ解説"
+  },
+  {
+    "id": "card_history_011",
+    "title": "世界初の切手",
+    "category": "history",
+    "shortText": "黒い一ペニー切手",
+    "detailText": "ペニー・ブラックは郵便料金を前払いする仕組みを広め、近代郵便制度の象徴的な存在になった。",
+    "imageAsset": "assets/images/cards/card_history_011.png",
+    "rarity": "normal",
+    "sourceNote": "英国郵便博物館・ペニー黒切手"
+  },
+  {
+    "id": "card_history_012",
+    "title": "近代製糸の出発点",
+    "category": "history",
+    "shortText": "明治日本の工場遺産",
+    "detailText": "富岡製糸場は、近代的な機械製糸を日本に導入した重要な施設で、世界遺産にも登録されている。",
+    "imageAsset": "assets/images/cards/card_history_012.png",
+    "rarity": "normal",
+    "sourceNote": "群馬県公式・富岡製糸場案内"
+  },
+  {
+    "id": "card_history_013",
+    "title": "メートル法への参加",
+    "category": "history",
+    "shortText": "日本は1885年に加盟",
+    "detailText": "メートル条約への加盟は、日本が長さや質量の国際基準を共有する近代的な計量制度へ進む一歩だった。",
+    "imageAsset": "assets/images/cards/card_history_013.png",
+    "rarity": "rare",
+    "sourceNote": "産総研NMIJ・メートル条約史"
+  },
+  {
+    "id": "card_science_009",
+    "title": "GPSの時計",
+    "category": "science",
+    "shortText": "位置測定は時刻が命",
+    "detailText": "スマホの現在地表示の裏側では、衛星からの信号が届く時間差を精密に測る仕組みが働いている。",
+    "imageAsset": "assets/images/cards/card_science_009.png",
+    "rarity": "normal",
+    "sourceNote": "NASA・原子時計とGPS解説"
+  },
+  {
+    "id": "card_science_010",
+    "title": "翼が支える力",
+    "category": "science",
+    "shortText": "空気の流れが力を作る",
+    "detailText": "飛行機の翼は単に上面が長いから飛ぶのではなく、空気の流れと圧力差を含む複数の要因で揚力を得る。",
+    "imageAsset": "assets/images/cards/card_science_010.png",
+    "rarity": "normal",
+    "sourceNote": "NASAグレン研究所・揚力解説"
+  },
+  {
+    "id": "card_science_011",
+    "title": "石けんの二面性",
+    "category": "science",
+    "shortText": "水と油をつなぐ分子",
+    "detailText": "油は水だけでは落ちにくいが、石けんは油側と水側の両方に働きかけ、汚れを浮かせやすくする。",
+    "imageAsset": "assets/images/cards/card_science_011.png",
+    "rarity": "normal",
+    "sourceNote": "イェール医学部・石けんの仕組み"
+  },
+  {
+    "id": "card_food_012",
+    "title": "消費期限と賞味期限",
+    "category": "food",
+    "shortText": "安全とおいしさは別",
+    "detailText": "消費期限は傷みやすい食品で特に重要。賞味期限と混同せず、表示の意味を分けて考える必要がある。",
+    "imageAsset": "assets/images/cards/card_food_012.png",
+    "rarity": "normal",
+    "sourceNote": "消費者庁・食品期限表示資料"
+  },
+  {
+    "id": "card_food_013",
+    "title": "芽の毒に注意",
+    "category": "food",
+    "shortText": "芽と緑色部分は取り除く",
+    "detailText": "家庭菜園や長期保存のジャガイモでは、芽や緑色の皮に天然毒素が増えることがある。",
+    "imageAsset": "assets/images/cards/card_food_013.png",
+    "rarity": "normal",
+    "sourceNote": "農林水産省・ジャガイモ毒素解説"
+  },
+  {
+    "id": "card_language_010",
+    "title": "パンは古い外来語",
+    "category": "language",
+    "shortText": "ポルトガル語由来の言葉",
+    "detailText": "パンは英語由来と思われがちだが、日本語としてはポルトガル語から入った古い外来語とされる。",
+    "imageAsset": "assets/images/cards/card_language_010.png",
+    "rarity": "normal",
+    "sourceNote": "国立国語研究所・外来語資料"
+  },
+  {
+    "id": "card_daily_life_009",
+    "title": "3Rの最初",
+    "category": "daily_life",
+    "shortText": "まず減らすのが基本",
+    "detailText": "リサイクルは大切だが、3Rではまず発生を抑えるReduce、次に繰り返し使うReuseが重視される。",
+    "imageAsset": "assets/images/cards/card_daily_life_009.png",
+    "rarity": "normal",
+    "sourceNote": "経済産業省・3R政策解説"
+  },
+  {
+    "id": "card_daily_life_010",
+    "title": "119番の由来",
+    "category": "daily_life",
+    "shortText": "昔は112番だった",
+    "detailText": "119番は最初から当然だったわけではなく、電話の仕組みや誤接続の問題を受けて選ばれた番号だった。",
+    "imageAsset": "assets/images/cards/card_daily_life_010.png",
+    "rarity": "rare",
+    "sourceNote": "日本大百科全書・緊急通報番号"
   }
 ]

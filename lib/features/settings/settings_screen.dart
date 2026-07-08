@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/audio_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 
@@ -32,6 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _loadSettings() async {
     final data = await widget.saveRepository.load();
+    if (!mounted) return;
     setState(() => _soundEnabled = data.settings.soundEnabled);
   }
 
@@ -65,6 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
     if (confirmed == true) {
       await widget.saveRepository.reset();
+      await widget.audioService.setEnabled(SaveData().settings.soundEnabled);
       widget.onDataReset();
       if (mounted) Navigator.pop(context);
     }

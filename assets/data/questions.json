@@ -4,7 +4,12 @@
     "category": "nature_geography",
     "difficulty": "easy",
     "question": "世界でいちばん深い湖は？",
-    "choices": ["バイカル湖", "琵琶湖", "カスピ海", "スペリオル湖"],
+    "choices": [
+      "バイカル湖",
+      "琵琶湖",
+      "カスピ海",
+      "スペリオル湖"
+    ],
     "answerIndex": 0,
     "explanation": "バイカル湖の最大深度は約1,642m。湖の中でいちばん深い湖として知られているよ。",
     "relatedCardId": "card_geo_001",
@@ -16,7 +21,12 @@
     "category": "nature_geography",
     "difficulty": "easy",
     "question": "日本でいちばん面積が大きい都道府県は？",
-    "choices": ["北海道", "岩手県", "福島県", "長野県"],
+    "choices": [
+      "北海道",
+      "岩手県",
+      "福島県",
+      "長野県"
+    ],
     "answerIndex": 0,
     "explanation": "北海道の面積は約8万3千km²。日本の都道府県で断トツの広さだよ。",
     "relatedCardId": "card_geo_002",
@@ -28,7 +38,12 @@
     "category": "living_things",
     "difficulty": "easy",
     "question": "カンガルーの赤ちゃんは何と呼ばれている？",
-    "choices": ["ジョーイ", "カーフ", "カブ", "パップ"],
+    "choices": [
+      "ジョーイ",
+      "カーフ",
+      "カブ",
+      "パップ"
+    ],
     "answerIndex": 0,
     "explanation": "カンガルーの赤ちゃんは「ジョーイ」と呼ばれているよ。生まれた時はわずか2cmほどなんだ。",
     "relatedCardId": "card_bio_001",
@@ -40,7 +55,12 @@
     "category": "living_things",
     "difficulty": "normal",
     "question": "シロナガスクジラの心臓の重さは約どれくらい？",
-    "choices": ["約10kg", "約180kg", "約500kg", "約1t"],
+    "choices": [
+      "約10kg",
+      "約180kg",
+      "約500kg",
+      "約1t"
+    ],
     "answerIndex": 1,
     "explanation": "シロナガスクジラの心臓は約180kgもある。小型車1台分くらいの重さなんだ。",
     "relatedCardId": "card_bio_002",
@@ -52,7 +72,12 @@
     "category": "history",
     "difficulty": "easy",
     "question": "江戸時代、庶民の間で流行った「世界一短い手紙」と呼ばれるものは？",
-    "choices": ["一行書簡", "矢立", "早桶", "五七五"],
+    "choices": [
+      "一行書簡",
+      "矢立",
+      "早桶",
+      "五七五"
+    ],
     "answerIndex": 3,
     "explanation": "俳句は「五・七・五」の17音で詠む世界一短い詩の形式。江戸時代に庶民文化として大きく広がったんだ。",
     "relatedCardId": "card_his_001",
@@ -64,7 +89,12 @@
     "category": "history",
     "difficulty": "normal",
     "question": "奈良の大仏を作るのに使われた主な材料は？",
-    "choices": ["金", "銅", "鉄", "木"],
+    "choices": [
+      "金",
+      "銅",
+      "鉄",
+      "木"
+    ],
     "answerIndex": 1,
     "explanation": "奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。",
     "relatedCardId": "card_his_002",
@@ -76,7 +106,12 @@
     "category": "science",
     "difficulty": "easy",
     "question": "空気の中でいちばん多い成分は？",
-    "choices": ["酸素", "二酸化炭素", "窒素", "アルゴン"],
+    "choices": [
+      "酸素",
+      "二酸化炭素",
+      "窒素",
+      "アルゴン"
+    ],
     "answerIndex": 2,
     "explanation": "空気の約78%は窒素。酸素は約21%で2番目。二酸化炭素は約0.04%しかないんだ。",
     "relatedCardId": "card_sci_001",
@@ -88,7 +123,12 @@
     "category": "science",
     "difficulty": "normal",
     "question": "光の速さは1秒間に地球を何周できる？",
-    "choices": ["約1周", "約7.5周", "約30周", "約100周"],
+    "choices": [
+      "約1周",
+      "約7.5周",
+      "約30周",
+      "約100周"
+    ],
     "answerIndex": 1,
     "explanation": "光は1秒間に約30万km進む。地球1周は約4万kmだから、1秒で約7.5周できる計算になるよ。",
     "relatedCardId": "card_sci_002",
@@ -100,7 +140,12 @@
     "category": "food",
     "difficulty": "easy",
     "question": "日本でいちばん古い調味料と言われているのは？",
-    "choices": ["醤油", "味噌", "塩", "酢"],
+    "choices": [
+      "醤油",
+      "味噌",
+      "塩",
+      "酢"
+    ],
     "answerIndex": 2,
     "explanation": "塩は日本で最も古くから使われている調味料。縄文時代には海水から作っていたことがわかっているよ。",
     "relatedCardId": "card_food_001",
@@ -112,7 +157,12 @@
     "category": "food",
     "difficulty": "normal",
     "question": "リンゴの生産量が世界一の国は？",
-    "choices": ["日本", "アメリカ", "中国", "イタリア"],
+    "choices": [
+      "日本",
+      "アメリカ",
+      "中国",
+      "イタリア"
+    ],
     "answerIndex": 2,
     "explanation": "世界のリンゴ生産量の約半分は中国。日本で食べられているリンゴの多くも中国産なんだ。",
     "relatedCardId": "card_food_002",
@@ -141,7 +191,12 @@
     "category": "language",
     "difficulty": "normal",
     "question": "「ほんのわずかな時間」を表す「瞬き」にまつわる言葉は？",
-    "choices": ["一瞬", "一目", "一息", "一汗"],
+    "choices": [
+      "一瞬",
+      "一目",
+      "一息",
+      "一汗"
+    ],
     "answerIndex": 0,
     "explanation": "「一瞬」は「瞬き（まばたき）する間」という意味。サンスクリット語の「ksana（刹那）」の訳語として作られた漢語だよ。",
     "relatedCardId": "card_lang_002",
@@ -187,7 +242,12 @@
     "category": "nature_geography",
     "difficulty": "normal",
     "question": "世界でいちばん標高が高い山は？",
-    "choices": ["K2", "エベレスト", "キリマンジャロ", "マッキンリー"],
+    "choices": [
+      "K2",
+      "エベレスト",
+      "キリマンジャロ",
+      "マッキンリー"
+    ],
     "answerIndex": 1,
     "explanation": "エベレストの標高は8,848m。世界で最も高い山で、ネパールと中国の国境にあるよ。",
     "relatedCardId": "card_geo_003",
@@ -199,7 +259,12 @@
     "category": "living_things",
     "difficulty": "hard",
     "question": "タコの心臓はいくつある？",
-    "choices": ["1つ", "2つ", "3つ", "4つ"],
+    "choices": [
+      "1つ",
+      "2つ",
+      "3つ",
+      "4つ"
+    ],
     "answerIndex": 2,
     "explanation": "タコには心臓が3つある。全身に血液を送る心臓が1つと、エラに血液を送る心臓が2つ。不思議な体の仕組みだね。",
     "relatedCardId": "card_bio_003",
@@ -211,7 +276,12 @@
     "category": "history",
     "difficulty": "normal",
     "question": "日本の紙幣に初めて肖像画が使われたのはいつ？",
-    "choices": ["明治時代", "大正時代", "昭和時代", "平成時代"],
+    "choices": [
+      "明治時代",
+      "大正時代",
+      "昭和時代",
+      "平成時代"
+    ],
     "answerIndex": 0,
     "explanation": "日本で初めて肖像画入りの紙幣は1885年（明治18年）発行の日本銀行券。神功皇后の肖像が使われていたんだ。",
     "relatedCardId": "card_his_003",
@@ -223,7 +293,12 @@
     "category": "science",
     "difficulty": "hard",
     "question": "絶対零度は何℃？",
-    "choices": ["-100℃", "-173℃", "-273℃", "-373℃"],
+    "choices": [
+      "-100℃",
+      "-173℃",
+      "-273℃",
+      "-373℃"
+    ],
     "answerIndex": 2,
     "explanation": "絶対零度は-273.15℃。これより低い温度は理論上存在しないとされているんだ。",
     "relatedCardId": "card_sci_003",
@@ -235,7 +310,12 @@
     "category": "food",
     "difficulty": "normal",
     "question": "ワサビの本来の原材料は何の植物？",
-    "choices": ["大根", "山葵", "西洋わさび", "からし菜"],
+    "choices": [
+      "大根",
+      "山葵",
+      "西洋わさび",
+      "からし菜"
+    ],
     "answerIndex": 1,
     "explanation": "本わさびは「山葵」という植物の根茎をすりおろしたもの。スーパーで売っているチューブわさびの多くは「西洋わさび」が主原料なんだ。",
     "relatedCardId": "card_food_003",
@@ -281,7 +361,12 @@
     "category": "nature_geography",
     "difficulty": "hard",
     "question": "地球上でいちばん乾燥した場所は？",
-    "choices": ["サハラ砂漠", "アタカマ砂漠", "ゴビ砂漠", "モハーベ砂漠"],
+    "choices": [
+      "サハラ砂漠",
+      "アタカマ砂漠",
+      "ゴビ砂漠",
+      "モハーベ砂漠"
+    ],
     "answerIndex": 1,
     "explanation": "チリのアタカマ砂漠は、過去400年以上雨が降っていない記録がある地域もある、世界で最も乾燥した場所なんだ。",
     "relatedCardId": "card_geo_004",
@@ -293,7 +378,12 @@
     "category": "living_things",
     "difficulty": "normal",
     "question": "人間の骨の数は大人で約何本？",
-    "choices": ["約106本", "約206本", "約306本", "約406本"],
+    "choices": [
+      "約106本",
+      "約206本",
+      "約306本",
+      "約406本"
+    ],
     "answerIndex": 1,
     "explanation": "大人の人間の骨は約206本。赤ちゃんの時はもっと多くて約350本あるんだけど、成長するにつれて骨がくっついて減っていくんだ。",
     "relatedCardId": "card_bio_004",
@@ -305,7 +395,12 @@
     "category": "history",
     "difficulty": "hard",
     "question": "国宝に指定されている日本の城（現存天守）はいくつ？",
-    "choices": ["1つ", "2つ", "3つ", "5つ"],
+    "choices": [
+      "1つ",
+      "2つ",
+      "3つ",
+      "5つ"
+    ],
     "answerIndex": 3,
     "explanation": "姫路城、松本城、犬山城、彦根城、松江城の5つが国宝に指定されている現存天守だ。いずれも江戸時代以前から残る貴重な建造物なんだ。",
     "relatedCardId": "card_his_004",
@@ -317,7 +412,12 @@
     "category": "science",
     "difficulty": "normal",
     "question": "地球の表面の約何%が海で覆われている？",
-    "choices": ["約50%", "約60%", "約70%", "約80%"],
+    "choices": [
+      "約50%",
+      "約60%",
+      "約70%",
+      "約80%"
+    ],
     "answerIndex": 2,
     "explanation": "地球表面の約70%は海。地球は「水の惑星」と呼ばれることもあるんだ。",
     "relatedCardId": "card_sci_004",
@@ -329,7 +429,12 @@
     "category": "food",
     "difficulty": "hard",
     "question": "カレーライスが日本で初めて紹介されたのは何時代？",
-    "choices": ["江戸時代", "明治時代", "大正時代", "昭和時代"],
+    "choices": [
+      "江戸時代",
+      "明治時代",
+      "大正時代",
+      "昭和時代"
+    ],
     "answerIndex": 1,
     "explanation": "日本にカレーが伝わったのは明治時代。イギリス経由で伝わり、当時の「西洋料理」の一つとして広まっていったんだ。",
     "relatedCardId": "card_food_004",
@@ -375,7 +480,12 @@
     "category": "nature_geography",
     "difficulty": "easy",
     "question": "日本でいちばん長い川は？",
-    "choices": ["信濃川", "利根川", "石狩川", "筑後川"],
+    "choices": [
+      "信濃川",
+      "利根川",
+      "石狩川",
+      "筑後川"
+    ],
     "answerIndex": 0,
     "explanation": "日本最長の川は信濃川。長さは約367kmで、新潟県から長野県を流れているよ。",
     "relatedCardId": "card_geo_005",
@@ -387,11 +497,1257 @@
     "category": "living_things",
     "difficulty": "easy",
     "question": "パンダの食べるもののほとんどは？",
-    "choices": ["果物", "竹", "肉", "魚"],
+    "choices": [
+      "果物",
+      "竹",
+      "肉",
+      "魚"
+    ],
     "answerIndex": 1,
     "explanation": "ジャイアントパンダの食事の99%は竹。1日に12〜38kgもの竹を食べるんだ。",
     "relatedCardId": "card_bio_005",
     "sourceNote": "WWF",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_001",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "日本で最も高い山、富士山がまたがっている2つの県はどこでしょうか？",
+    "choices": [
+      "静岡県と山梨県",
+      "長野県と静岡県",
+      "山梨県と長野県",
+      "神奈川県と静岡県"
+    ],
+    "answerIndex": 0,
+    "explanation": "富士山は静岡県と山梨県にまたがる独立峰です。実は山頂の大部分は私有地であり、境界線が明確に引かれていない場所も存在します。",
+    "relatedCardId": "card_nature_geography_001",
+    "sourceNote": "静岡県および山梨県公式ホームページ",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_001",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "ラッコが流されないように、寝るときに体に巻き付けるものは何でしょうか？",
+    "choices": [
+      "仲間の腕",
+      "サンゴ",
+      "海藻",
+      "大きな石"
+    ],
+    "answerIndex": 2,
+    "explanation": "野生のラッコは、睡眠中に海流で沖へ流されないように、コンブなどの長い海藻を体にぐるぐると巻き付けて固定する習性があります。",
+    "relatedCardId": "card_living_things_001",
+    "sourceNote": "サンシャイン水族館 飼育コラム",
+    "verified": true
+  },
+  {
+    "id": "q_history_001",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "1889年の完成当時、エッフェル塔は何のイベントのために建設されたでしょうか？",
+    "choices": [
+      "ナポレオン戴冠式",
+      "パリ万国博覧会",
+      "フランス革命100周年記念",
+      "普仏戦争の勝利記念"
+    ],
+    "answerIndex": 1,
+    "explanation": "エッフェル塔は、フランス革命100周年を記念して開催された1889年の第4回パリ万国博覧会の入場門として建設されました。",
+    "relatedCardId": "card_history_001",
+    "sourceNote": "エッフェル塔公式サイト 歴史解説",
+    "verified": true
+  },
+  {
+    "id": "q_science_001",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "宝石のダイヤモンドと同じ炭素のみでできている、身近な筆記用具の材料は何？",
+    "choices": [
+      "黒鉛（グラファイト）",
+      "石英",
+      "硫黄",
+      "粘土"
+    ],
+    "answerIndex": 0,
+    "explanation": "ダイヤモンドと鉛筆の芯の原料である黒鉛は、どちらも炭素原子からなる同素体です。原子の結びつき方が違うだけで成分は同じです。",
+    "relatedCardId": "card_science_001",
+    "sourceNote": "日本化学会 化学百科",
+    "verified": true
+  },
+  {
+    "id": "q_food_005",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "イチゴの表面にあるツブツブ。植物学的な分類では、このツブツブは何？",
+    "choices": [
+      "種子",
+      "果実",
+      "雄しべの跡",
+      "つぼみ"
+    ],
+    "answerIndex": 1,
+    "explanation": "イチゴの表面にある粒は一つ一つが「果実」です。赤い部分は「花托」という茎の先端が膨らんだもので、正確には果実ではありません。",
+    "relatedCardId": "card_food_005",
+    "sourceNote": "農林水産省 植物の雑学",
+    "verified": true
+  },
+  {
+    "id": "q_language_001",
+    "category": "language",
+    "difficulty": "hard",
+    "question": "仕事をわざと怠る「サボタージュ」の語源となった、フランスの履物は何？",
+    "choices": [
+      "木靴",
+      "サンダル",
+      "革靴",
+      "布の靴"
+    ],
+    "answerIndex": 0,
+    "explanation": "フランス語の「サボ（木靴）」が語源です。労働者がストライキの際、機械に木靴を投げ込んで壊したことが始まりと言われています。",
+    "relatedCardId": "card_language_001",
+    "sourceNote": "語源由来辞典 サボる",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_001",
+    "category": "daily_life",
+    "difficulty": "normal",
+    "question": "犯罪の抑止や心の落ち着きを目的として、駅や街頭で導入される照明の色は何色？",
+    "choices": [
+      "赤色",
+      "緑色",
+      "青色",
+      "白色"
+    ],
+    "answerIndex": 2,
+    "explanation": "青色光には人間の副交感神経を刺激してリラックスさせる効果があると考えられ、防犯対策や駅のホームでの事故防止に採用されています。",
+    "relatedCardId": "card_daily_life_001",
+    "sourceNote": "警察庁 防犯環境設計指針",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_002",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "死海は塩分濃度が高いため体が浮くことで有名ですが、主にどこの国にまたがって存在している？",
+    "choices": [
+      "ヨルダンとイスラエル",
+      "エジプトとリビア",
+      "サウジアラビア",
+      "ギリシャとトルコ"
+    ],
+    "answerIndex": 0,
+    "explanation": "死海はヨルダンとイスラエルの境界にある塩湖です。海水の約10倍近い塩分濃度があり、浮力が非常に大きいため人間が沈まずに浮くことができます。湖面の標高は海抜マイナス430メートルで、地表で最も低い場所としても知られています。",
+    "relatedCardId": "card_nature_geography_002",
+    "sourceNote": "イスラエル政府観光局 公式サイト",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_002",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "野生のキリンの1日の平均睡眠時間は、だいたいどれくらいの長さだと言われているでしょうか？",
+    "choices": [
+      "約20分",
+      "約4時間",
+      "約8時間",
+      "約12時間"
+    ],
+    "answerIndex": 0,
+    "explanation": "野生のキリンは肉食獣などの天敵から身を守るため、非常に短い睡眠をとります。1回数分程度の「うたた寝」を細切れに繰り返し、1日の合計睡眠時間はわずか20分程度と言われています。動物界でも屈指の短眠家として有名です。",
+    "relatedCardId": "card_living_things_002",
+    "sourceNote": "ナショナルジオグラフィック 日本版",
+    "verified": true
+  },
+  {
+    "id": "q_history_002",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "ハワイの挨拶「アロハ」の中に含まれている、ハワイ語で「息」を意味する単語はどれでしょう？",
+    "choices": [
+      "Ha（ハ）",
+      "Alo（アロ）",
+      "Oha（オハ）",
+      "Loa（ロア）"
+    ],
+    "answerIndex": 0,
+    "explanation": "「アロハ（Aloha）」の「Alo」は「〜の前に」を、「Ha」は「神聖な息吹（命）」を意味します。かつてハワイでは、お互いの鼻を近づけて息を交換する挨拶が行われており、相手の存在を尊ぶ精神がこの言葉に込められています。",
+    "relatedCardId": "card_history_002",
+    "sourceNote": "ハワイ州観光局公式ポータルサイト",
+    "verified": true
+  },
+  {
+    "id": "q_science_002",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "昼の空が青く見えるのは太陽光が空気中の粒子に当たり散乱するためですが、この現象の名前は何？",
+    "choices": [
+      "レイリー散乱",
+      "チンダル現象",
+      "ドップラー効果",
+      "光電効果"
+    ],
+    "answerIndex": 0,
+    "explanation": "太陽光が大気を通過する際、波長の短い青い光は窒素や酸素の分子にぶつかって四方に散乱しやすい性質を持っています。この現象を「レイリー散乱」と呼びます。散乱した青い光が私たちの目に届くため、空は青く見えています。",
+    "relatedCardId": "card_science_002",
+    "sourceNote": "気象庁 はれるんライブラリー",
+    "verified": true
+  },
+  {
+    "id": "q_food_006",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "軽食の定番「サンドイッチ」の名前の由来となった、18世紀のイギリスの人物が持つ爵位は何？",
+    "choices": [
+      "伯爵",
+      "公爵",
+      "男爵",
+      "子爵"
+    ],
+    "answerIndex": 0,
+    "explanation": "第4代サンドイッチ伯爵ジョン・モンタギューが名前の由来です。トランプのカード遊びに熱中していた彼が、食事中もゲームを続けられるように、パンに具材を挟んだものを作らせて食べたというエピソードが有名ですが、諸説あります。",
+    "relatedCardId": "card_food_006",
+    "sourceNote": "英国政府観光庁（VisitBritain）",
+    "verified": true
+  },
+  {
+    "id": "q_language_002",
+    "category": "language",
+    "difficulty": "hard",
+    "question": "慣用句「二足のわらじを履く」の由来となった、江戸時代の相反する職業の組み合わせはどれ？",
+    "choices": [
+      "博徒と捕吏",
+      "武士と商人",
+      "僧侶と農民",
+      "漁師と大工"
+    ],
+    "answerIndex": 0,
+    "explanation": "江戸時代、ギャンブルを商売にする「博徒」が、一方でそれを取り締まる警察役の「捕吏（おかっぴき）」を兼ねることを指しました。同じ人間が相反する二つの立場を使い分けることから、現代の「副業」のような意味で使われるようになりました。",
+    "relatedCardId": "card_language_002",
+    "sourceNote": "小学館 精選版 日本国語大辞典",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_002",
+    "category": "daily_life",
+    "difficulty": "normal",
+    "question": "ボールペンのキャップの先端に小さな穴が開いていることがありますが、これにはどんな理由がある？",
+    "choices": [
+      "窒息事故を防ぐため",
+      "インクを乾燥させるため",
+      "気圧を調整するため",
+      "笛として使うため"
+    ],
+    "answerIndex": 0,
+    "explanation": "子供が誤ってキャップを飲み込んでしまい、喉に詰まった際でも、穴が開いていれば最低限の空気の通り道を確保でき、窒息死を防ぐことができます。これは国際規格（ISO）でも推奨されている安全のための重要なデザインです。",
+    "relatedCardId": "card_daily_life_002",
+    "sourceNote": "一般社団法人 日本筆記具工業会",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_006",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "日本で一番面積が小さい都道府県はどこ？",
+    "choices": [
+      "東京都",
+      "大阪府",
+      "香川県",
+      "沖縄県"
+    ],
+    "answerIndex": 2,
+    "explanation": "日本の都道府県で最も面積が小さいのは香川県です。かつては大阪府が最下位でしたが、関西国際空港の開拓などにより面積が増加したため、1988年以降は香川県が日本で一番小さな都道府県となっています。",
+    "relatedCardId": "card_nature_geography_006",
+    "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_006",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "タコには心臓がいくつある？",
+    "choices": [
+      "1つ",
+      "2つ",
+      "3つ",
+      "4つ"
+    ],
+    "answerIndex": 2,
+    "explanation": "タコには3つの心臓があります。全身に血液を巡らせる主心臓が1つと、左右のエラにそれぞれ血液を送り込むための補助的な心臓（エラ心臓）が2つあります。これにより、酸素を効率よく全身に運ぶことができます。",
+    "relatedCardId": "card_living_things_006",
+    "sourceNote": "生物学事典「軟体動物の循環系」",
+    "verified": true
+  },
+  {
+    "id": "q_history_005",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "18世紀のフランスでジャガイモを普及させた方法は？",
+    "choices": [
+      "法律で義務づけた",
+      "あえて畑を厳重に警備した",
+      "王室の主食にした",
+      "無料の種を配った"
+    ],
+    "answerIndex": 1,
+    "explanation": "農学者パルマンティエは、当時不人気だったジャガイモの畑をあえて兵士に厳重に警備させ、「価値がある高級品」と思わせる心理作戦をとりました。夜間に警備を緩めると、狙い通り近隣の農民たちが種芋を盗み、フランス全土へ普及しました。",
+    "relatedCardId": "card_history_005",
+    "sourceNote": "歴史書「世界の食文化史・フランス」",
+    "verified": true
+  },
+  {
+    "id": "q_science_005",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "シャボンの泡が丸くなる理由に関係する物理現象は？",
+    "choices": [
+      "表面張力",
+      "毛細管現象",
+      "遠心力",
+      "静電気"
+    ],
+    "answerIndex": 0,
+    "explanation": "シャボン玉が丸くなるのは「表面張力」が働くためです。液体の表面はできるだけ面積を小さくしようと収縮します。体積が同じ場合、球体が最も表面積が小さくなるため、空気を含んだシャボン膜は自然と綺麗な丸い形になります。",
+    "relatedCardId": "card_science_005",
+    "sourceNote": "物理学基礎「界面動態と表面張力」",
+    "verified": true
+  },
+  {
+    "id": "q_food_007",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "高級食材の「キャビア」は、何という魚の卵？",
+    "choices": [
+      "サケ",
+      "タラ",
+      "チョウザメ",
+      "ニシン"
+    ],
+    "answerIndex": 2,
+    "explanation": "キャビアは「チョウザメ」の卵の塩漬けです。チョウザメはその名に「サメ」と付きますが、一般的なサメの仲間（軟骨魚類）ではなく、シーラカンスなどと同じ古代魚の生き残り（硬骨魚類）に分類されます。",
+    "relatedCardId": "card_food_007",
+    "sourceNote": "水産庁「世界の水産資源解説」",
+    "verified": true
+  },
+  {
+    "id": "q_language_005",
+    "category": "language",
+    "difficulty": "normal",
+    "question": "慣用句「大詰（おおづめ）」の語源となったジャンルは？",
+    "choices": [
+      "チェスや将棋",
+      "歌舞伎などの演劇",
+      "お米の収穫作業",
+      "江戸時代の裁判"
+    ],
+    "answerIndex": 1,
+    "explanation": "物事の最終局面を意味する「大詰」は、歌舞伎の専門用語が語源です。江戸時代の歌舞伎の多幕物において、一番最後の幕のことを「大詰」と呼んでおり、そこからストーリーの最終的な大結末を指す言葉として一般に広がりました。",
+    "relatedCardId": "card_language_005",
+    "sourceNote": "日本国語大辞典「大詰の項」",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_005",
+    "category": "daily_life",
+    "difficulty": "hard",
+    "question": "缶詰の「賞味期限」の印字に主に使われているインクは？",
+    "choices": [
+      "イカ墨インク",
+      "消せるインク",
+      "水性インク",
+      "油性マジック"
+    ],
+    "answerIndex": 0,
+    "explanation": "多くの缶詰やペットボトルの賞味期限印字には、天然の「イカ墨」を原料としたインクが使われています。万が一、製造ラインや開封時に口に入っても安全性が高く、金属やプラスチックへの定着性が良いという優れた特性を持っています。",
+    "relatedCardId": "card_daily_life_005",
+    "sourceNote": "日本缶詰びん詰レトルト食品協会資料",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_007",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "世界で一番多くの国と国境を接している国はどこ？",
+    "choices": [
+      "ロシア",
+      "中国",
+      "ブラジル",
+      "ドイツ"
+    ],
+    "answerIndex": 1,
+    "explanation": "世界で最も多くの国と陸上で国境を接しているのは「中国」です。ロシア、モンゴル、北朝鮮、インド、ベトナムなど、合計14カ国と国境を接しています。なお、ロシアも同じく14カ国と接しており、両国が世界最多タイです。",
+    "relatedCardId": "card_nature_geography_007",
+    "sourceNote": "国連データ「世界の国境線長と隣接国」",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_007",
+    "category": "living_things",
+    "difficulty": "hard",
+    "question": "ペンギンが冷たい氷の上でも足が凍らない理由は？",
+    "choices": [
+      "体脂肪が非常に厚い",
+      "特殊な血管の熱交換システム",
+      "常に足を動かしている",
+      "足の裏から油が出る"
+    ],
+    "answerIndex": 1,
+    "explanation": "ペンギンの足には「ワンダーネット（奇驚網）」という特殊な熱交換血管システムがあります。心臓からの温かい動脈血が、足先からの冷たい静脈血をあらかじめ温めることで、足の冷たさが体幹に伝わるのを防ぎ、同時に足先が凍結するのを防いでいます。",
+    "relatedCardId": "card_living_things_007",
+    "sourceNote": "動物生理学「鳥類の体温調節機構」",
+    "verified": true
+  },
+  {
+    "id": "q_history_006",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "江戸時代に実在した、1年の長さを決める暦の役職は？",
+    "choices": [
+      "時をかける守",
+      "天文方（てんもんかた）",
+      "カレンダー奉行",
+      "陰陽師長官"
+    ],
+    "answerIndex": 1,
+    "explanation": "江戸幕府が設置した、天体観測や暦の作成（改暦）を行う専門の役職を「天文方」と呼びます。初代天文方には映画の題材にもなった渋川春海が任命され、それまで使われていた中国の暦から、日本独自の「貞享暦」を完成させました。",
+    "relatedCardId": "card_history_006",
+    "sourceNote": "日本史辞典「江戸幕府の職制」",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_008",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "地図で使う日本の標高0メートルの基準はどこ？",
+    "choices": [
+      "東京湾の平均海面",
+      "大阪湾の満潮面",
+      "富士山頂の標石",
+      "太平洋の最低潮位"
+    ],
+    "answerIndex": 0,
+    "explanation": "日本の標高は、測量法上、東京湾の平均海面を0mとする。実際の測量では東京・三宅坂の日本水準原点も高さの基準として使われる。",
+    "relatedCardId": "card_nature_geography_008",
+    "sourceNote": "国土地理院・日本水準原点資料",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_009",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "夏に午後から夕方へ雷が増えやすい主因は？",
+    "choices": [
+      "強い日射で上昇気流が起きる",
+      "海水温が夜に急上昇する",
+      "月の引力が雲を集める",
+      "黄砂が電気を吸い取る"
+    ],
+    "answerIndex": 0,
+    "explanation": "夏の雷は、強い日射で暖められた地面近くの空気が上昇し、背の高い積乱雲になることで発生しやすい。",
+    "relatedCardId": "card_nature_geography_009",
+    "sourceNote": "気象庁・雷検知数の季節解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_008",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "海のタコの心臓は、一般にいくつある？",
+    "choices": [
+      "3つ",
+      "1つ",
+      "2つ",
+      "8つ"
+    ],
+    "answerIndex": 0,
+    "explanation": "タコなど頭足類には心臓が3つある。2つはえらへ血液を送り、残る1つが酸素を受け取った血液を全身へ送る。",
+    "relatedCardId": "card_living_things_008",
+    "sourceNote": "スミソニアン海洋・頭足類解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_009",
+    "category": "living_things",
+    "difficulty": "hard",
+    "question": "タコの血が青く見える主な理由は何？",
+    "choices": [
+      "銅を含むヘモシアニンで酸素を運ぶ",
+      "海水を血液に混ぜている",
+      "青い色素を食べ物から取る",
+      "体内で光を反射している"
+    ],
+    "answerIndex": 0,
+    "explanation": "タコの血は鉄を含むヘモグロビンではなく、銅を含むヘモシアニンで酸素を運ぶため、青く見える。",
+    "relatedCardId": "card_living_things_009",
+    "sourceNote": "英国自然史博物館・タコの血解説",
+    "verified": true
+  },
+  {
+    "id": "q_history_007",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "日本にかつてあった西部標準時の地域は？",
+    "choices": [
+      "北海道と樺太",
+      "九州と四国",
+      "台湾と八重山・宮古地方",
+      "小笠原諸島と伊豆諸島"
+    ],
+    "answerIndex": 2,
+    "explanation": "日本では1896年から1937年まで、西部標準時が置かれた時期があった。対象は台湾のほか、沖縄県の八重山・宮古地方だった。",
+    "relatedCardId": "card_history_007",
+    "sourceNote": "国立公文書館・標準時の歴史資料",
+    "verified": true
+  },
+  {
+    "id": "q_science_006",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "雷そのものの正体として最も近いものは？",
+    "choices": [
+      "雲がこすれて出る火花",
+      "大気中で起きる放電現象",
+      "太陽風が地面に当たる現象",
+      "雨粒が爆発する現象"
+    ],
+    "answerIndex": 1,
+    "explanation": "気象庁は、雷を大気中で電荷分離が起こり放電する現象と説明している。音が雷鳴、光が電光である。",
+    "relatedCardId": "card_science_006",
+    "sourceNote": "気象庁・雷とはの基礎解説",
+    "verified": true
+  },
+  {
+    "id": "q_food_008",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "昆布とかつお節を合わせると何が起きる？",
+    "choices": [
+      "酸味が強くなる",
+      "塩味が消える",
+      "色が透明になる",
+      "うま味の相乗効果が起きる"
+    ],
+    "answerIndex": 3,
+    "explanation": "昆布のグルタミン酸と、かつお節のイノシン酸を組み合わせると、うま味の相乗効果が起きる。",
+    "relatedCardId": "card_food_008",
+    "sourceNote": "農林水産省・だしうま味解説",
+    "verified": true
+  },
+  {
+    "id": "q_food_009",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "タマネギを切ると涙が出る主な原因は？",
+    "choices": [
+      "糖が急に発酵する",
+      "水分が蒸発する",
+      "硫黄を含む催涙性物質ができる",
+      "皮の色素が目に入る"
+    ],
+    "answerIndex": 2,
+    "explanation": "タマネギの細胞が切られると、酵素反応で硫黄を含む催涙性物質ができ、目を刺激して涙が出る。",
+    "relatedCardId": "card_food_009",
+    "sourceNote": "Poison Control・タマネギ解説",
+    "verified": true
+  },
+  {
+    "id": "q_language_006",
+    "category": "language",
+    "difficulty": "hard",
+    "question": "『カステラ』の名の有力な由来はどれ？",
+    "choices": [
+      "オランダの城の名前",
+      "スペインのカスティーリャ地名",
+      "卵を意味するラテン語",
+      "砂糖商人の名字"
+    ],
+    "answerIndex": 1,
+    "explanation": "カステラの名は、スペインのカスティーリャ地方名に由来するという説が有力。ポルトガル経由で長崎に伝わった。",
+    "relatedCardId": "card_language_006",
+    "sourceNote": "国立国会図書館レファレンス事例",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_006",
+    "category": "daily_life",
+    "difficulty": "hard",
+    "question": "PETボトル識別マークの『1』の由来は？",
+    "choices": [
+      "米国のSPIコード",
+      "日本の郵便番号制度",
+      "容器の製造年月",
+      "洗いやすさの等級"
+    ],
+    "answerIndex": 0,
+    "explanation": "PETボトルの識別表示にある「1」は、米国プラスチック産業協会のSPIコードに由来する。分別ではこのマーク確認が確実とされる。",
+    "relatedCardId": "card_daily_life_006",
+    "sourceNote": "環境省・環境ラベルデータベース",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_010",
+    "category": "nature_geography",
+    "difficulty": "hard",
+    "question": "世界で最も長い川「アマゾン川」に一つもない建造物は？",
+    "choices": [
+      "港",
+      "橋",
+      "ダム",
+      "観測所"
+    ],
+    "answerIndex": 1,
+    "explanation": "流域面積世界一、長さも世界トップクラスのアマゾン川の本流には、一般の乗り物が渡れる「橋」が一つもありません。周辺が深いジャングルで道路網が発達していないことや、雨季に川幅が数十キロメートルにも広がることが理由です。移動は主に船が使われます。",
+    "relatedCardId": "card_nature_geography_010",
+    "sourceNote": "地理学講義「世界の河川とインフラ」",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_010",
+    "category": "living_things",
+    "difficulty": "hard",
+    "question": "カタツムリの歯の数は、およそいくつある？",
+    "choices": [
+      "約20本",
+      "約200本",
+      "約2000本",
+      "約2万本"
+    ],
+    "answerIndex": 3,
+    "explanation": "カタツムリには「歯舌（しぜつ）」と呼ばれるおろし金のような器官があり、そこには約1万〜2万本以上の小さな歯が並んでいます。このおろし状の歯を使って、コンクリートや植物の葉を削り取るようにして食べています。歯の数では地球上で最も多い生き物の一種です。",
+    "relatedCardId": "card_living_things_010",
+    "sourceNote": "軟体動物生態誌「歯舌の構造と進化」",
+    "verified": true
+  },
+  {
+    "id": "q_history_008",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "中世ヨーロッパの「騎士」の鎧の重さは平均どれくらい？",
+    "choices": [
+      "約5kg",
+      "約25kg",
+      "約60kg",
+      "約100kg"
+    ],
+    "answerIndex": 1,
+    "explanation": "中世の戦場で使われたフルプレートアーマー（全身板金鎧）の重さは、平均して約20〜30キログラム（現代の兵士の装備や消防士の防護服と同等）です。重量が全身に分散するように設計されていたため、騎士は鎧を着たままでも走ったり馬に乗ったりできました。",
+    "relatedCardId": "card_history_008",
+    "sourceNote": "軍事史博物館「西洋甲冑の歴史と構造」",
+    "verified": true
+  },
+  {
+    "id": "q_science_007",
+    "category": "science",
+    "difficulty": "normal",
+    "question": "ダイヤモンドを燃やすと、最終的に何に変わる？",
+    "choices": [
+      "煙（二酸化炭素）",
+      "灰（炭素の粉）",
+      "より硬い結晶",
+      "液体ダイヤモンド"
+    ],
+    "answerIndex": 0,
+    "explanation": "ダイヤモンドは純粋な「炭素」の結晶であるため、酸素が十分にある環境で約800℃以上に加熱して燃やすと、すべて酸素と結びついて「二酸化炭素（気体）」になり、灰すら残さず完全に消えてなくなります。",
+    "relatedCardId": "card_science_007",
+    "sourceNote": "基礎化学「炭素同素体の燃焼実験」",
+    "verified": true
+  },
+  {
+    "id": "q_food_010",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "カニのすり身で作る「カニカマ」を世界で初めて開発した国は？",
+    "choices": [
+      "アメリカ",
+      "日本",
+      "タイ",
+      "中国"
+    ],
+    "answerIndex": 1,
+    "explanation": "カニカマ（風味かまぼこ）は、1970年代に日本の食品メーカー（石川県の「スギヨ」や広島県の「大崎水産」など）が開発した日本発祥の食材です。現在では「Surimi」として世界中で愛される大ヒット食品となっています。",
+    "relatedCardId": "card_food_010",
+    "sourceNote": "日本水産加工業協同組合連合会史",
+    "verified": true
+  },
+  {
+    "id": "q_language_007",
+    "category": "language",
+    "difficulty": "normal",
+    "question": "「うだつが上がらない」の「うだつ（卯建）」の正体は？",
+    "choices": [
+      "神社の鳥居の飾り",
+      "町家の屋根にある防火壁",
+      "江戸時代の給料袋",
+      "相撲の土俵の柱"
+    ],
+    "answerIndex": 1,
+    "explanation": "「うだつ」とは、日本のおもに町家で隣家との境に設置された「防火壁（小さな屋根付きの壁）」のことです。これを作るには多額の費用がかかったため、うだつがある家は出世した裕福な家とされ、そこから「地位が上がらない、冴えない」状態を指す慣用句になりました。",
+    "relatedCardId": "card_language_007",
+    "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_007",
+    "category": "daily_life",
+    "difficulty": "normal",
+    "question": "トランプのカードが「52枚」ある理由に関係するものは？",
+    "choices": [
+      "1年の週の数",
+      "月の満ち欠けの周期",
+      "星座の数",
+      "人間の骨の数"
+    ],
+    "answerIndex": 0,
+    "explanation": "トランプのジョーカーを除く52枚という数は、1年の「52週」を表しています。また、1つのマーク（13枚）は四季の各季節の週数を表し、カードの数字をすべて足してジョーカー（1）を加えると「365（1年の日数）」になるなど、暦と深い関係があります。",
+    "relatedCardId": "card_daily_life_007",
+    "sourceNote": "世界の室内ゲーム史「プレイングカードの暦」",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_011",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "オーストラリアの首都はどこ？",
+    "choices": [
+      "シドニー",
+      "メルボルン",
+      "キャンベラ",
+      "ブリスベン"
+    ],
+    "answerIndex": 2,
+    "explanation": "オーストラリアの首都は「キャンベラ」です。2大都市であるシドニーとメルボルンが首都の座を巡って激しく争ったため、1908年に両都市のほぼ中間地点に位置するキャンベラを新首都として建設し、妥協案として決定した歴史があります。",
+    "relatedCardId": "card_nature_geography_011",
+    "sourceNote": "オーストラリア政府公式ウェブサイト",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_011",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "イヌの肉球にしかない、体の中で唯一の機能は？",
+    "choices": [
+      "体温を感知するセンサー",
+      "汗をかく汗腺",
+      "衝撃を吸収する油の分泌腺",
+      "音の振動を感じる細胞"
+    ],
+    "answerIndex": 1,
+    "explanation": "イヌやネコは全身に汗腺を持たず、基本的にハアハアという呼吸（パンティング）で体温調節をしますが、唯一「肉球」の間にだけ、汗をかく「エクリン汗腺」があります。ここから汗をかくことで、滑り止めや足裏の乾燥を防ぐ役割を果たしています。",
+    "relatedCardId": "card_living_things_011",
+    "sourceNote": "獣医解剖学「伴侶動物の皮膚生理」",
+    "verified": true
+  },
+  {
+    "id": "q_language_008",
+    "category": "language",
+    "difficulty": "hard",
+    "question": "「サラダ記念日」で有名な歌人、俵万智が実際に食べた料理は？",
+    "choices": [
+      "シーザーサラダ",
+      "鶏の唐揚げ",
+      "ポテトサラダ",
+      "ゴーヤチャンプルー"
+    ],
+    "answerIndex": 1,
+    "explanation": "「この味がいいねと君が言ったから七月六日はサラダ記念日」の短歌で知られる料理のモデルは、実はサラダではなく「鶏の唐揚げ」でした。調理した唐揚げを当時の恋人に褒められた際、「唐揚げ記念日」では短歌の言葉の響きが良くないため「サラダ」に変更されました。",
+    "relatedCardId": "card_language_008",
+    "sourceNote": "俵万智エッセイ集「サラダのそのあと」",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_012",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "アフリカ大陸の最高峰「キリマンジャロ」の山頂にある珍しい自然現象は？",
+    "choices": [
+      "活動中の巨大溶岩湖",
+      "熱帯地方の氷河",
+      "1年中咲き続ける桜",
+      "底が見えない酸性の池"
+    ],
+    "answerIndex": 1,
+    "explanation": "赤道に近いタンザニアに位置するキリマンジャロ（標高5,895メートル）ですが、その山頂付近には「氷河（万年雪）」が存在します。熱帯地域にありながら山頂が常に白く輝く神秘的な光景として知られますが、近年は地球温暖化などの影響で急速に縮小しています。",
+    "relatedCardId": "card_nature_geography_012",
+    "sourceNote": "国連環境計画（UNEP）気候変動報告書",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_012",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "ウサギが自分の「うんち」を食べる理由は？",
+    "choices": [
+      "お腹の調子を整えるため",
+      "栄養をもう一度吸収するため",
+      "敵に居場所を隠すため",
+      "エサが足りない時の非常食"
+    ],
+    "answerIndex": 1,
+    "explanation": "ウサギは一度の消化では植物の栄養を十分に吸収できないため、「盲腸糞（もうちょうふん）」と呼ばれる、ビタミンやタンパク質が豊富に含まれた柔らかい糞を出します。これを直接口をつけて再び食べる（食糞）ことで、大切な栄養を効率よく体に摂取しています。",
+    "relatedCardId": "card_living_things_012",
+    "sourceNote": "小動物臨床医学「草食哺乳類の消化生理」",
+    "verified": true
+  },
+  {
+    "id": "q_history_009",
+    "category": "history",
+    "difficulty": "easy",
+    "question": "17世紀のオランダで、家が1軒買えるほどのバブルを起こした植物は？",
+    "choices": [
+      "バラ",
+      "チューリップ",
+      "ヒマワリ",
+      "サボテン"
+    ],
+    "answerIndex": 1,
+    "explanation": "1630年代のオランダで起きた世界最古の経済バブルが「チューリップ・バブル」です。珍しい斑点模様の球根に異常な高値がつき、たった1個の球根と引き換えに、高級住宅1軒や職人の年収の数倍の資産が取引されるという狂乱事態にまで発展しました。",
+    "relatedCardId": "card_history_009",
+    "sourceNote": "経済史「世界の大バブルと恐慌」",
+    "verified": true
+  },
+  {
+    "id": "q_science_008",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "1円玉の製造コスト（1枚あたり）は、およそいくら？",
+    "choices": [
+      "約0.5円",
+      "約1円",
+      "約3円",
+      "約10円"
+    ],
+    "answerIndex": 2,
+    "explanation": "1円玉の材料であるアルミニウムの地金価格や人件費、製造工程のコストを合わせると、1枚作るのに「約2円〜3円」かかるとされています。そのため、作れば作るほど政府としては赤字になりますが、通貨の流通維持のために造幣局で製造されています。",
+    "relatedCardId": "card_science_008",
+    "sourceNote": "造幣局「貨幣製造コスト推計資料」",
+    "verified": true
+  },
+  {
+    "id": "q_food_011",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "イチゴの表面にあるツブツブの、植物学上の正体は？",
+    "choices": [
+      "イチゴの種",
+      "イチゴの果実",
+      "イチゴの胞子",
+      "ただの産毛の跡"
+    ],
+    "answerIndex": 1,
+    "explanation": "イチゴの表面にある小さなツブツブは、種ではなく1つひとつが独立した「果実（痩果）」です。それぞれのツブの中に本当の種が入っています。私たちが普段食べている赤い甘い部分は、果実ではなく、茎の先端が膨らんだ「花托（かたく）」という部分です。",
+    "relatedCardId": "card_food_011",
+    "sourceNote": "植物分類学「偽果と真果の構造」",
+    "verified": true
+  },
+  {
+    "id": "q_language_009",
+    "category": "language",
+    "difficulty": "easy",
+    "question": "「サボる」という言葉の語源となったフランス語は？",
+    "choices": [
+      "サボタージュ",
+      "サボン",
+      "サボア",
+      "サボール"
+    ],
+    "answerIndex": 0,
+    "explanation": "「サボる」は、フランス語で労働争議の手段（怠業）を意味する「sabotage（サボタージュ）」に、日本語の動詞化の接尾辞「る」を組み合わせた言葉です。大正時代に労働者が仕事の手を抜く運動を起こしたことから、若者や一般の間で流行語として定着しました。",
+    "relatedCardId": "card_language_009",
+    "sourceNote": "新明解国語辞典「サボるの項」",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_008",
+    "category": "daily_life",
+    "difficulty": "easy",
+    "question": "非常口のサインの人が「緑色」で描かれている理由は？",
+    "choices": [
+      "緑が一番オシャレだから",
+      "火災の赤い炎の中で最も目立つから",
+      "低コストで印刷できるから",
+      "法律で定められたラッキーカラーだから"
+    ],
+    "answerIndex": 1,
+    "explanation": "非常口のマークが緑色なのは、火災の際に燃え盛る「赤い炎」の中で、赤の補色（反対色）である「緑色」が最も人間の目に際立って見え、視認性が高いからです。この視覚効果を利用した日本のデザインは、現在国際標準（ISO）としても採用されています。",
+    "relatedCardId": "card_daily_life_008",
+    "sourceNote": "消防庁「避難誘導表示の基準」",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_013",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "日本に約400ある有人離島の中で、最も人口が多い島はどこ？",
+    "choices": [
+      "淡路島（兵庫県）",
+      "佐渡島（新潟県）",
+      "奄美大島（鹿児島県）",
+      "対馬（長崎県）"
+    ],
+    "answerIndex": 0,
+    "explanation": "沖縄本島などを除く、日本のいわゆる「離島（本土5島以外の有人島）」の中で最も人口が多いのは「淡路島」です。約12万人の人口を擁し、神戸や徳島と大きな橋で結ばれているため交通の便も良く、独自の産業や観光地として大きく栄えています。",
+    "relatedCardId": "card_nature_geography_013",
+    "sourceNote": "総務省「国勢調査・離島振興解説」",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_013",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "鳥類の中で唯一、前だけでなく「後ろ」にも飛べる鳥は？",
+    "choices": [
+      "ハチドリ",
+      "カワセミ",
+      "ツバメ",
+      "ウグイス"
+    ],
+    "answerIndex": 0,
+    "explanation": "世界最小の鳥の仲間である「ハチドリ」は、1秒間に数十回という高速で羽ばたきながら、空中の一点にとどまるホバリングができるだけでなく、鳥類で唯一、そのまま「後ろ向き」や「上下逆さま」に飛行する高度なテクニックを持っています。",
+    "relatedCardId": "card_living_things_013",
+    "sourceNote": "鳥類構造学「ハチドリの飛行メカニズム」",
+    "verified": true
+  },
+  {
+    "id": "q_history_010",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "古代ローマのコロッセオ（円形闘技場）に水を張って行われた見せ物は？",
+    "choices": [
+      "水泳大会",
+      "模擬海戦（もぎかいせん）",
+      "巨大魚の捕獲ショー",
+      "雨乞いの儀式"
+    ],
+    "answerIndex": 1,
+    "explanation": "古代ローマのコロッセオでは、競技場全体に配水管を使って水を張り、本物の軍船を浮かべて戦わせる「模擬海戦」という大規模なショーが行われていました。剣闘士たちが船に乗り込み、当時の有名な海上戦を観客の前で再現する超過激なエンターテインメントでした。",
+    "relatedCardId": "card_history_010",
+    "sourceNote": "ローマ帝国史「コロッセオの構造と祝祭」",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_014",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "日本で霧ともやを分ける気象上の目安は何？",
+    "choices": [
+      "風速",
+      "気温",
+      "視程",
+      "湿度"
+    ],
+    "answerIndex": 2,
+    "explanation": "気象庁では、霧は微小な水滴で視程が1km未満の状態、もやは視程が1km以上10km未満の状態として区別している。",
+    "relatedCardId": "card_nature_geography_014",
+    "sourceNote": "気象庁・天気用語の霧ともや",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_015",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "津波が生まれる主なきっかけとして多いのは？",
+    "choices": [
+      "海底近くの大地震",
+      "満月の強い光",
+      "台風の中心気圧",
+      "海水の塩分変化"
+    ],
+    "answerIndex": 0,
+    "explanation": "津波は海水全体が急に動かされることで起こる。多くは海底や海の近くで起きる大地震により、海底が変形することで発生する。",
+    "relatedCardId": "card_nature_geography_015",
+    "sourceNote": "NOAA・津波発生の解説",
+    "verified": true
+  },
+  {
+    "id": "q_nature_geography_016",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "皆既月食の月が赤っぽく見える主な理由は？",
+    "choices": [
+      "月面が熱で赤くなる",
+      "地球の大気を通った光が届く",
+      "月が火山活動を起こす",
+      "太陽が一時的に赤くなる"
+    ],
+    "answerIndex": 1,
+    "explanation": "皆既月食では、地球の大気を通った太陽光が曲げられて月に届く。大気中で青い光が散乱され、赤い光が目立つ。",
+    "relatedCardId": "card_nature_geography_016",
+    "sourceNote": "NASA・月食と月の色の解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_014",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "コウモリが暗闇で虫を探す主な方法は？",
+    "choices": [
+      "体温を光らせる",
+      "超音波の反響を使う",
+      "磁石のように引き寄せる",
+      "羽で匂いを集める"
+    ],
+    "answerIndex": 1,
+    "explanation": "多くのコウモリは、人間には聞こえにくい高い音を出し、物体に当たって返る反響を聞いて位置や距離を知る。",
+    "relatedCardId": "card_living_things_014",
+    "sourceNote": "米国国立公園局・コウモリ解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_015",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "ラクダのこぶに主に蓄えられているものは？",
+    "choices": [
+      "水",
+      "空気",
+      "脂肪",
+      "砂"
+    ],
+    "answerIndex": 2,
+    "explanation": "ラクダのこぶは水袋ではなく、主に脂肪を蓄える場所。食べ物が少ない時、その脂肪をエネルギーとして利用する。",
+    "relatedCardId": "card_living_things_015",
+    "sourceNote": "米国議会図書館・ラクダ解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_016",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "ホタルが光る生物発光で主に働く酵素は何？",
+    "choices": [
+      "アミラーゼ",
+      "ルシフェラーゼ",
+      "カタラーゼ",
+      "ペプシン"
+    ],
+    "answerIndex": 1,
+    "explanation": "ホタルの光は、発光物質ルシフェリンがルシフェラーゼという酵素の働きで反応し、光を出す仕組みによる。",
+    "relatedCardId": "card_living_things_016",
+    "sourceNote": "JST・ホタル発光研究発表",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_017",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "サンゴの白化で体内から失われやすいものは？",
+    "choices": [
+      "共生藻",
+      "骨のカルシウム",
+      "海水の塩分",
+      "砂の粒"
+    ],
+    "answerIndex": 0,
+    "explanation": "水温が高すぎるなどのストレスで、サンゴは体内に共生する藻類を放出することがある。これにより白く見える。",
+    "relatedCardId": "card_living_things_017",
+    "sourceNote": "NOAA・サンゴ白化の基礎解説",
+    "verified": true
+  },
+  {
+    "id": "q_living_things_018",
+    "category": "living_things",
+    "difficulty": "normal",
+    "question": "タツノオトシゴで妊娠し子を産むのはどちら？",
+    "choices": [
+      "メス",
+      "オス",
+      "両方同時",
+      "子は卵から直接出るだけ"
+    ],
+    "answerIndex": 1,
+    "explanation": "タツノオトシゴや近縁のシードラゴンでは、オスが育児嚢で卵を受け取り、妊娠して子を産む珍しい繁殖を行う。",
+    "relatedCardId": "card_living_things_018",
+    "sourceNote": "NOAA・タツノオトシゴ解説",
+    "verified": true
+  },
+  {
+    "id": "q_history_011",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "世界初の粘着式郵便切手として有名なのは？",
+    "choices": [
+      "竜文切手",
+      "ペニー・ブラック",
+      "ブルー・モーリシャス",
+      "桜切手"
+    ],
+    "answerIndex": 1,
+    "explanation": "1840年にイギリスで発行されたペニー・ブラックは、世界初の粘着式郵便切手として知られる。ビクトリア女王の横顔が描かれた。",
+    "relatedCardId": "card_history_011",
+    "sourceNote": "英国郵便博物館・ペニー黒切手",
+    "verified": true
+  },
+  {
+    "id": "q_history_012",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "富岡製糸場が操業を始めた年として正しいのは？",
+    "choices": [
+      "1603年",
+      "1776年",
+      "1872年",
+      "1945年"
+    ],
+    "answerIndex": 2,
+    "explanation": "富岡製糸場は1872年に設立された、日本初期の本格的な器械製糸工場。明治の近代化と生糸輸出を支えた。",
+    "relatedCardId": "card_history_012",
+    "sourceNote": "群馬県公式・富岡製糸場案内",
+    "verified": true
+  },
+  {
+    "id": "q_history_013",
+    "category": "history",
+    "difficulty": "hard",
+    "question": "日本がメートル条約に正式加盟した年は？",
+    "choices": [
+      "1868年",
+      "1885年",
+      "1905年",
+      "1949年"
+    ],
+    "answerIndex": 1,
+    "explanation": "日本は1885年にメートル条約へ正式加盟し、国際的な計量の枠組みに加わった。のちの度量衡整備にもつながる。",
+    "relatedCardId": "card_history_013",
+    "sourceNote": "産総研NMIJ・メートル条約史",
+    "verified": true
+  },
+  {
+    "id": "q_science_009",
+    "category": "science",
+    "difficulty": "normal",
+    "question": "GPS衛星の位置測定で重要な装置はどれ？",
+    "choices": [
+      "原子時計",
+      "気圧計",
+      "温度計",
+      "方位磁石"
+    ],
+    "answerIndex": 0,
+    "explanation": "GPSは衛星から届く信号の時刻差を使って位置を求める。衛星には非常に精密な原子時計が搭載されている。",
+    "relatedCardId": "card_science_009",
+    "sourceNote": "NASA・原子時計とGPS解説",
+    "verified": true
+  },
+  {
+    "id": "q_science_010",
+    "category": "science",
+    "difficulty": "normal",
+    "question": "飛行機の翼が揚力を生む要因に含まれるのは？",
+    "choices": [
+      "翼の上下の圧力差",
+      "機内の照明の強さ",
+      "窓の数",
+      "客席の温度"
+    ],
+    "answerIndex": 0,
+    "explanation": "翼まわりの空気の流れによって圧力差が生まれ、それが揚力に関係する。迎え角や空気の向きの変化も重要な要素である。",
+    "relatedCardId": "card_science_010",
+    "sourceNote": "NASAグレン研究所・揚力解説",
+    "verified": true
+  },
+  {
+    "id": "q_science_011",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "石けんが油汚れを落としやすい主な理由は？",
+    "choices": [
+      "水と油になじむ部分を持つ",
+      "油をすべて蒸発させる",
+      "金属に変える",
+      "水を凍らせる"
+    ],
+    "answerIndex": 0,
+    "explanation": "石けん分子には水になじむ部分と油になじむ部分がある。油汚れを包み込み、水で洗い流しやすくする。",
+    "relatedCardId": "card_science_011",
+    "sourceNote": "イェール医学部・石けんの仕組み",
+    "verified": true
+  },
+  {
+    "id": "q_food_012",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "食品の消費期限に最も近い意味はどれ？",
+    "choices": [
+      "おいしさの目安",
+      "安全に食べられる期限",
+      "値引きが始まる日",
+      "製造者の休日"
+    ],
+    "answerIndex": 1,
+    "explanation": "消費期限は安全に食べられる期限の目安。賞味期限はおいしく食べられる期限なので、意味が異なる。",
+    "relatedCardId": "card_food_012",
+    "sourceNote": "消費者庁・食品期限表示資料",
+    "verified": true
+  },
+  {
+    "id": "q_food_013",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "ジャガイモの芽に多い天然毒素はどれ？",
+    "choices": [
+      "カフェイン",
+      "ソラニンやチャコニン",
+      "グルテン",
+      "リコピン"
+    ],
+    "answerIndex": 1,
+    "explanation": "ジャガイモの芽や緑色になった部分には、ソラニンやチャコニンが多く含まれる。食中毒予防には十分に取り除くことが大切。",
+    "relatedCardId": "card_food_013",
+    "sourceNote": "農林水産省・ジャガイモ毒素解説",
+    "verified": true
+  },
+  {
+    "id": "q_language_010",
+    "category": "language",
+    "difficulty": "normal",
+    "question": "日本語の『パン』の語源として有力なのは？",
+    "choices": [
+      "ポルトガル語のpão",
+      "英語のpan",
+      "中国語の飯",
+      "ギリシャ語の神名"
+    ],
+    "answerIndex": 0,
+    "explanation": "日本語のパンは、戦国期以降に伝わったポルトガル語pãoに由来するとされる。古くから日本語に定着した外来語の一つ。",
+    "relatedCardId": "card_language_010",
+    "sourceNote": "国立国語研究所・外来語資料",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_009",
+    "category": "daily_life",
+    "difficulty": "easy",
+    "question": "3Rで最初に取り組むとされるRはどれ？",
+    "choices": [
+      "Recycle",
+      "Reuse",
+      "Reduce",
+      "Restart"
+    ],
+    "answerIndex": 2,
+    "explanation": "3RはReduce、Reuse、Recycleの順番で取り組むことが求められる。まずはごみや資源消費を発生段階で減らす考え方。",
+    "relatedCardId": "card_daily_life_009",
+    "sourceNote": "経済産業省・3R政策解説",
+    "verified": true
+  },
+  {
+    "id": "q_daily_life_010",
+    "category": "daily_life",
+    "difficulty": "hard",
+    "question": "日本の火災通報番号が119番になった理由は？",
+    "choices": [
+      "112番の誤接続が多かったため",
+      "消防車の台数が119台だったため",
+      "明治119年に決まったため",
+      "水の化学式に合わせたため"
+    ],
+    "answerIndex": 0,
+    "explanation": "日本の火災通報は当初112番だったが、かけ間違いが多く、1927年から119番に変更されたとされる。",
+    "relatedCardId": "card_daily_life_010",
+    "sourceNote": "日本大百科全書・緊急通報番号",
     "verified": true
   }
 ]

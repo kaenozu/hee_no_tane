@@ -20,110 +20,119 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: DungeonPalette.dungeonBottom,
-      body: DungeonBackground(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(22),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 720),
-              child: Column(
-                children: [
-                  RibbonTitle(
-                    text: isClear ? 'ダンジョンクリア！' : 'たびのしっぱい...',
-                    icon: isClear
-                        ? Icons.emoji_events
-                        : Icons.sentiment_dissatisfied,
-                  ),
-                  const SizedBox(height: 18),
-                  ParchmentPanel(
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _statBadge(
-                              Icons.check_circle_outline,
-                              '正解数',
-                              '$correctCount / 5問',
-                            ),
-                            const SizedBox(width: 10),
-                            _statBadge(Icons.favorite, '残りHP', '$remainingHp'),
-                            const SizedBox(width: 10),
-                            _statBadge(
-                              Icons.map_outlined,
-                              '到達',
-                              '${finalFloor}F',
-                            ),
-                          ],
-                        ),
-                        if (isClear && obtainedCard != null) ...[
-                          const SizedBox(height: 22),
-                          const Text(
-                            'へぇカードをゲット！',
-                            style: TextStyle(
-                              color: DungeonPalette.ink,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                            ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: DungeonPalette.dungeonBottom,
+        body: DungeonBackground(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(22),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: Column(
+                  children: [
+                    RibbonTitle(
+                      text: isClear ? 'ダンジョンクリア！' : 'たびのしっぱい...',
+                      icon: isClear
+                          ? Icons.emoji_events
+                          : Icons.sentiment_dissatisfied,
+                    ),
+                    const SizedBox(height: 18),
+                    ParchmentPanel(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _statBadge(
+                                Icons.check_circle_outline,
+                                '正解数',
+                                '$correctCount / 5問',
+                              ),
+                              const SizedBox(width: 10),
+                              _statBadge(
+                                Icons.favorite,
+                                '残りHP',
+                                '$remainingHp',
+                              ),
+                              const SizedBox(width: 10),
+                              _statBadge(
+                                Icons.map_outlined,
+                                '到達',
+                                '${finalFloor}F',
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 14),
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              final narrow = constraints.maxWidth < 420;
-                              final detail = _rewardDetail();
-                              if (narrow) {
-                                return Column(
+                          if (isClear && obtainedCard != null) ...[
+                            const SizedBox(height: 22),
+                            const Text(
+                              'へぇカードをゲット！',
+                              style: TextStyle(
+                                color: DungeonPalette.ink,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            const SizedBox(height: 14),
+                            LayoutBuilder(
+                              builder: (context, constraints) {
+                                final narrow = constraints.maxWidth < 420;
+                                final detail = _rewardDetail();
+                                if (narrow) {
+                                  return Column(
+                                    children: [
+                                      _rewardCard(),
+                                      const SizedBox(height: 14),
+                                      detail,
+                                    ],
+                                  );
+                                }
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     _rewardCard(),
-                                    const SizedBox(height: 14),
-                                    detail,
+                                    const SizedBox(width: 18),
+                                    Expanded(child: detail),
                                   ],
                                 );
-                              }
-                              return Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  _rewardCard(),
-                                  const SizedBox(width: 18),
-                                  Expanded(child: detail),
-                                ],
-                              );
-                            },
-                          ),
+                              },
+                            ),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 22),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () =>
-                          Navigator.popUntil(context, (route) => route.isFirst),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: DungeonPalette.gold,
-                        foregroundColor: DungeonPalette.ink,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: const BorderSide(
-                            color: DungeonPalette.ink,
-                            width: 2,
+                    const SizedBox(height: 22),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.popUntil(
+                          context,
+                          (route) => route.isFirst,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: DungeonPalette.gold,
+                          foregroundColor: DungeonPalette.ink,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(
+                              color: DungeonPalette.ink,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        child: const Text(
+                          'ホームに戻る',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
-                      child: const Text(
-                        'ホームに戻る',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

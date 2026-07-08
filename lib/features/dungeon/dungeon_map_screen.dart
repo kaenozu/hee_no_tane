@@ -36,10 +36,9 @@ class DungeonMapScreen extends StatelessWidget {
       body: DungeonBackground(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
             child: Column(
               children: [
-                const SizedBox(height: 8),
                 const RibbonTitle(text: '今日のダンジョン', icon: Icons.explore),
                 const SizedBox(height: 10),
                 const Text(
@@ -50,125 +49,55 @@ class DungeonMapScreen extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                const SizedBox(height: 18),
-                ParchmentPanel(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 18,
-                  ),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final compact = constraints.maxWidth < 560;
-                      return compact ? _compactFloorList() : _wideFloorRoute();
-                    },
-                  ),
-                ),
-                const SizedBox(height: 18),
                 Expanded(
-                  child: ParchmentPanel(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.auto_stories,
-                              color: DungeonPalette.teal,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              '今日の報酬',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
-                                color: DungeonPalette.ink,
-                              ),
-                            ),
-                            const Spacer(),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 5,
-                              ),
-                              decoration: BoxDecoration(
-                                color: DungeonPalette.ember,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Text(
-                                'New!',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ),
-                          ],
+                  child: ListView(
+                    padding: const EdgeInsets.only(top: 18, bottom: 16),
+                    children: [
+                      ParchmentPanel(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 18,
                         ),
-                        const SizedBox(height: 12),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 110,
-                                decoration: BoxDecoration(
-                                  color: DungeonPalette.teal,
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(
-                                    color: DungeonPalette.ink,
-                                    width: 3,
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.landscape,
-                                    color: Colors.white,
-                                    size: 54,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 14),
-                              Expanded(
-                                child: Text(
-                                  'へぇカードをゲット！\nクリアすると知識カードが1枚発芽します。',
-                                  style: TextStyle(
-                                    color: DungeonPalette.ink.withValues(
-                                      alpha: 0.86,
-                                    ),
-                                    fontSize: 15,
-                                    height: 1.55,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final compact = constraints.maxWidth < 560;
+                            return compact
+                                ? _compactFloorList()
+                                : _wideFloorRoute();
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 18),
+                      _rewardPanel(),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 16),
                 SizedBox(
+                  key: const ValueKey('enter-dungeon-cta'),
                   width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () => _enterDungeon(context),
-                    icon: const Icon(Icons.shield),
-                    label: const Text(
-                      'ダンジョンに入る',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w900,
+                  child: Semantics(
+                    button: true,
+                    label: 'ダンジョンに入る',
+                    child: ElevatedButton.icon(
+                      onPressed: () => _enterDungeon(context),
+                      icon: const Icon(Icons.shield),
+                      label: const Text(
+                        'ダンジョンに入る',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: DungeonPalette.gold,
-                      foregroundColor: DungeonPalette.ink,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        side: const BorderSide(
-                          color: DungeonPalette.ink,
-                          width: 2,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: DungeonPalette.gold,
+                        foregroundColor: DungeonPalette.ink,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(
+                            color: DungeonPalette.ink,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -178,6 +107,77 @@ class DungeonMapScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _rewardPanel() {
+    return ParchmentPanel(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.auto_stories, color: DungeonPalette.teal),
+              const SizedBox(width: 8),
+              const Text(
+                '今日の報酬',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: DungeonPalette.ink,
+                ),
+              ),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                decoration: BoxDecoration(
+                  color: DungeonPalette.ember,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'New!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Container(
+                width: 104,
+                height: 88,
+                decoration: BoxDecoration(
+                  color: DungeonPalette.teal,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: DungeonPalette.ink, width: 3),
+                ),
+                child: const Center(
+                  child: Icon(Icons.landscape, color: Colors.white, size: 48),
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Text(
+                  'へぇカードをゲット！\nクリアすると知識カードが1枚発芽します。',
+                  style: TextStyle(
+                    color: DungeonPalette.ink.withValues(alpha: 0.86),
+                    fontSize: 15,
+                    height: 1.55,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

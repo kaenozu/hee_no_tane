@@ -37,7 +37,10 @@ android {
                 storeFile = rootProject.file("app/" + keystoreProps.getProperty("storeFile"))
                 storePassword = keystoreProps.getProperty("storePassword")
                 keyAlias = keystoreProps.getProperty("keyAlias")
-                keyPassword = keystoreProps.getProperty("storePassword")
+                keyPassword = keystoreProps.getProperty(
+                    "keyPassword",
+                    keystoreProps.getProperty("storePassword")
+                )
             }
         }
     }

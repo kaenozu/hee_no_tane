@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/enemy.dart';
@@ -86,6 +87,15 @@ class _HomeScreenState extends State<HomeScreen> {
     final normalEnemies = widget.allEnemies
         .where((e) => e.type == 'normal')
         .toList();
+    if (widget.allEnemies.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('敵データが不足しています')));
+      }
+      return;
+    }
+
     final bossEnemy = widget.allEnemies.firstWhere(
       (e) => e.type == 'boss',
       orElse: () => widget.allEnemies.first,
@@ -104,6 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       return;
     }
+
+    unawaited(widget.audioService.playBgm());
 
     final result = await Navigator.push<bool>(
       context,
@@ -145,7 +157,11 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
 
-    _saveData = widget.rewardService.updatePlayStats(_saveData, dateStr, isClear);
+    _saveData = widget.rewardService.updatePlayStats(
+      _saveData,
+      dateStr,
+      isClear,
+    );
     await widget.saveRepository.save(_saveData);
     setState(() {});
 
