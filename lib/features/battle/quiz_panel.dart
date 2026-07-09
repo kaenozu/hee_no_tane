@@ -152,7 +152,8 @@ class QuizPanel extends StatelessWidget {
   }
 
   Widget _explanationPanel() {
-    final result = lastResult!;
+    final result = lastResult;
+    if (result == null) return const SizedBox.shrink();
     final correctAnswer =
         result.question.choices[result.question.answerIndex];
     final isTerminal = phase == BattleUiPhase.dungeonClear ||

@@ -124,7 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
     DailyDungeonService dungeonService,
     String dateStr,
   ) async {
-    final finalState = _lastBattleState!;
+    final finalState = _lastBattleState;
+    if (finalState == null) return;
     final isClear = finalState.floor == 5 && finalState.enemyHp <= 0;
 
     HeeCard? obtainedCard;
@@ -147,9 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
       isClear,
     );
     await widget.saveRepository.save(_saveData);
-    setState(() {});
-
     if (!mounted) return;
+    setState(() {});
 
     await Navigator.push(
       context,

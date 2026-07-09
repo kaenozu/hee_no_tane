@@ -282,8 +282,15 @@ class BattleStage extends StatelessWidget {
       return SizedBox(
         height: size,
         width: size,
-        child:
-            Image.asset(enemy.imageAsset, fit: BoxFit.contain),
+        child: Image.asset(
+          enemy.imageAsset,
+          fit: BoxFit.contain,
+          errorBuilder: (_, _, _) => const Icon(
+            Icons.local_fire_department,
+            size: 64,
+            color: Colors.red,
+          ),
+        ),
       );
     }
     return SizedBox(

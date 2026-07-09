@@ -241,7 +241,14 @@ class DungeonMapScreen extends StatelessWidget {
         color: DungeonPalette.ink,
       );
     }
-    return Image.asset(enemy.imageAsset, fit: BoxFit.contain);
+    return Image.asset(
+      enemy.imageAsset,
+      fit: BoxFit.contain,
+      errorBuilder: (_, _, _) => Icon(
+        floor == 5 ? Icons.menu_book : Icons.question_mark,
+        color: DungeonPalette.ink,
+      ),
+    );
   }
 
   void _enterDungeon(BuildContext context) {
