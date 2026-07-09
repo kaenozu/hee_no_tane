@@ -39,8 +39,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _toggleSound(bool value) async {
     final data = await widget.saveRepository.load();
-    data.settings.soundEnabled = value;
-    await widget.saveRepository.save(data);
+    final updated = data.copyWith(
+      settings: data.settings.copyWith(soundEnabled: value),
+    );
+    await widget.saveRepository.save(updated);
     await widget.audioService.setEnabled(value);
     setState(() => _soundEnabled = value);
   }

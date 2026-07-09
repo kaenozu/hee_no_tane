@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/data/user_repository.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/enemy.dart';
@@ -39,7 +38,6 @@ class HeeNoTaneApp extends StatefulWidget {
 }
 
 class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
-  final _userRepo = UserRepository();
   late final GameAudioService _audioService;
 
   @override
@@ -48,18 +46,11 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
     _audioService = GameAudioService(
       enabled: widget.saveData.settings.soundEnabled,
     );
-    _loadThemeMode();
-    _loadSoundSettingAndStartBgm();
+    themeModeNotifier.value = widget.saveData.settings.themeMode;
+    _startBgm();
   }
 
-  Future<void> _loadThemeMode() async {
-    final mode = await _userRepo.getThemeMode();
-    themeModeNotifier.value = mode;
-  }
-
-  Future<void> _loadSoundSettingAndStartBgm() async {
-    final data = await widget.saveRepository.load();
-    await _audioService.setEnabled(data.settings.soundEnabled);
+  Future<void> _startBgm() async {
     await _audioService.playBgm();
   }
 

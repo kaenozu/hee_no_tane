@@ -1,34 +1,63 @@
-class GameSettings {
-  bool soundEnabled;
-  bool bgmEnabled;
+import 'package:flutter/material.dart';
 
-  GameSettings({
+class GameSettings {
+  final bool soundEnabled;
+  final bool bgmEnabled;
+  final ThemeMode themeMode;
+
+  const GameSettings({
     this.soundEnabled = true,
     this.bgmEnabled = true,
+    this.themeMode = ThemeMode.system,
   });
 
   factory GameSettings.fromJson(Map<String, dynamic> json) {
     return GameSettings(
       soundEnabled: json['soundEnabled'] as bool? ?? true,
       bgmEnabled: json['bgmEnabled'] as bool? ?? true,
+      themeMode: _parseThemeMode(json['themeMode'] as String?),
     );
   }
 
   Map<String, dynamic> toJson() => {
         'soundEnabled': soundEnabled,
         'bgmEnabled': bgmEnabled,
+        'themeMode': themeMode.name,
       };
+
+  GameSettings copyWith({
+    bool? soundEnabled,
+    bool? bgmEnabled,
+    ThemeMode? themeMode,
+  }) {
+    return GameSettings(
+      soundEnabled: soundEnabled ?? this.soundEnabled,
+      bgmEnabled: bgmEnabled ?? this.bgmEnabled,
+      themeMode: themeMode ?? this.themeMode,
+    );
+  }
+
+  static ThemeMode _parseThemeMode(String? value) {
+    switch (value) {
+      case 'light':
+        return ThemeMode.light;
+      case 'dark':
+        return ThemeMode.dark;
+      default:
+        return ThemeMode.system;
+    }
+  }
 }
 
 class SaveData {
   final int version;
-  int totalPlayCount;
-  int totalClearCount;
-  int streakDays;
-  String lastPlayedDate;
-  String lastRewardDate;
-  List<String> ownedCardIds;
-  GameSettings settings;
+  final int totalPlayCount;
+  final int totalClearCount;
+  final int streakDays;
+  final String lastPlayedDate;
+  final String lastRewardDate;
+  final List<String> ownedCardIds;
+  final GameSettings settings;
 
   SaveData({
     this.version = 1,
@@ -40,7 +69,7 @@ class SaveData {
     List<String>? ownedCardIds,
     GameSettings? settings,
   })  : ownedCardIds = ownedCardIds ?? [],
-        settings = settings ?? GameSettings();
+        settings = settings ?? const GameSettings();
 
   factory SaveData.fromJson(Map<String, dynamic> json) {
     return SaveData(
@@ -53,7 +82,7 @@ class SaveData {
       ownedCardIds: List<String>.from(json['ownedCardIds'] as List? ?? []),
       settings: json['settings'] != null
           ? GameSettings.fromJson(json['settings'] as Map<String, dynamic>)
-          : GameSettings(),
+          : const GameSettings(),
     );
   }
 

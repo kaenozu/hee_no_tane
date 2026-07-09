@@ -58,7 +58,7 @@ void main() {
           dungeonService: DailyDungeonService([enemy], boss),
           audioService: GameAudioService(enabled: false),
           onDungeonComplete: () {},
-          battleStateNotifier: ValueNotifier<BattleState>(state),
+          onStateChanged: (_) {},
         ),
       ),
     );
