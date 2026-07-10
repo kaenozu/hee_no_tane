@@ -41,11 +41,8 @@ class CardDetailScreen extends StatefulWidget {
 }
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
-  bool _justUnlocked = false;
   int? _selectedChoice;
   bool _answered = false;
-
-  bool get _showRealContent => _justUnlocked || widget.isOwned;
 
   @override
   void initState() {
@@ -54,16 +51,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<void> _checkFirstView() async {
-    if (widget.isOwned) return;
+    if (!widget.isOwned) return;
     final today = DateTime.now();
     final dateStr =
         '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
-    var data = widget.saveData;
-    data = widget.rewardService.applyReward(data, widget.card);
-    data = widget.rewardService.updatePlayStats(data, dateStr);
+    final data = widget.rewardService.updatePlayStats(widget.saveData, dateStr);
     await widget.saveRepository.save(data);
     if (!mounted) return;
-    setState(() => _justUnlocked = true);
   }
 
   @override
@@ -73,62 +67,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryLabel(widget.card.category)),
-        actions: [
-          if (_justUnlocked)
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.check_circle, size: 18, color: cs.primary),
-                  const SizedBox(width: 4),
-                  Text(
-                    '図鑑に追加',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: cs.primary,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
+        actions: const [],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (_justUnlocked)
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: cs.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.auto_stories, size: 18, color: cs.primary),
-                      const SizedBox(width: 8),
-                      Text(
-                        '新しい知識を収集しました',
-                        style: TextStyle(
-                          color: cs.primary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             Center(
               child: Container(
                 width: 64,
@@ -148,14 +93,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             const SizedBox(height: 16),
             Center(
               child: Text(
-                _showRealContent ? widget.card.title : '???',
+                widget.isOwned ? widget.card.title : '???',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            if (widget.card.rarity == 'rare' && _showRealContent)
+            if (widget.card.rarity == 'rare' && widget.isOwned)
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -178,7 +123,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 ),
               ),
             const SizedBox(height: 24),
-            if (_showRealContent) ...[
+            if (widget.isOwned) ...[
               _sectionTitle('へぇポイント'),
               const SizedBox(height: 8),
               Text(
@@ -231,7 +176,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  'このカードはまだ获得していません',
+                  'このカードはまだ発見されていません。今日のダンジョンをクリアして発見しよう。',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: cs.onSurface.withValues(alpha: 0.5),
                   ),
@@ -240,7 +185,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ),
             ],
             const SizedBox(height: 32),
-            if (widget.relatedQuestion != null && _showRealContent) ...[
+            if (widget.relatedQuestion != null && widget.isOwned) ...[
               _quizSection(widget.relatedQuestion!, cs),
             ],
             const SizedBox(height: 32),

@@ -30,9 +30,7 @@ void main() {
     expect(find.text('出典: test source'), findsOneWidget);
   });
 
-  testWidgets('locked card detail reveals knowledge after viewing', (
-    tester,
-  ) async {
+  testWidgets('unowned card hides all content permanently', (tester) async {
     SharedPreferences.setMockInitialValues({});
 
     await tester.pumpWidget(
@@ -46,36 +44,16 @@ void main() {
         ),
       ),
     );
-    await tester.pump();
-    await tester.pump();
+    await tester.pumpAndSettle();
 
-    expect(find.text('新しい知識を収集しました'), findsOneWidget);
-    expect(find.text('へぇポイント'), findsOneWidget);
-    expect(find.text('短い知識'), findsOneWidget);
-    expect(find.text('くわしい知識'), findsOneWidget);
-    expect(find.text('詳しい本文'), findsOneWidget);
-  });
-
-  testWidgets('unowned card hides content before unlock', (tester) async {
-    SharedPreferences.setMockInitialValues({});
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: CardDetailScreen(
-          card: _card,
-          isOwned: false,
-          rewardService: RewardService(),
-          saveRepository: SaveRepository(),
-          saveData: SaveData(),
-        ),
-      ),
-    );
-    // Initial frame: _justUnlocked is false, content should be hidden
-    // (auto-unlock completes after first async frame)
     expect(find.text('???'), findsOneWidget);
+    expect(find.text('このカードはまだ発見されていません。今日のダンジョンをクリアして発見しよう。'), findsOneWidget);
+    expect(find.text('テストカード'), findsNothing);
     expect(find.text('短い知識'), findsNothing);
     expect(find.text('くわしい知識'), findsNothing);
+    expect(find.text('詳しい本文'), findsNothing);
     expect(find.text('出典: test source'), findsNothing);
+    expect(find.text('覚えてた？'), findsNothing);
   });
 }
 
