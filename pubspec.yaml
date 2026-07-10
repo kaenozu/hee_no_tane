@@ -35,8 +35,6 @@ dependencies:
   intl: ^0.20.0
   url_launcher: ^6.3.0
   share_plus: ^10.0.0
-  audioplayers: ^6.1.0
-  web: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,15 +62,7 @@ flutter:
   assets:
     - assets/data/questions.json
     - assets/data/cards.json
-    - assets/data/enemies.json
-    - assets/images/
-    - assets/images/characters/
-    - assets/images/enemies/
-
-    - assets/images/backgrounds/
-    - assets/images/ui/
-    - assets/images/effects/
-    - assets/audio/
+    - assets/images/cards/
 
   fonts:
     - family: NotoSansJP

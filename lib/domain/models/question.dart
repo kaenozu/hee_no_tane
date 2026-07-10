@@ -24,13 +24,24 @@ class Question {
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
+    final choices = List<String>.from(json['choices'] as List);
+    final answerIndex = json['answerIndex'] as int;
+    if (choices.isEmpty) {
+      throw const FormatException('Question choices must not be empty.');
+    }
+    if (answerIndex < 0 || answerIndex >= choices.length) {
+      throw FormatException(
+        'Question answerIndex $answerIndex is outside choices range.',
+      );
+    }
+
     return Question(
       id: json['id'] as String,
       category: json['category'] as String,
       difficulty: json['difficulty'] as String,
       question: json['question'] as String,
-      choices: List<String>.from(json['choices'] as List),
-      answerIndex: json['answerIndex'] as int,
+      choices: choices,
+      answerIndex: answerIndex,
       explanation: json['explanation'] as String,
       relatedCardId: json['relatedCardId'] as String,
       sourceNote: json['sourceNote'] as String,

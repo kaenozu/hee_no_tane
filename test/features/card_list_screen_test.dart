@@ -8,19 +8,34 @@ import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 void main() {
   final cards = [
     HeeCard(
-      id: 'card_a', title: '山の名前', category: 'nature_geography',
-      shortText: 'short', detailText: 'detail', imageAsset: '',
-      rarity: 'normal', sourceNote: 'test',
+      id: 'card_a',
+      title: '山の名前',
+      category: 'nature_geography',
+      shortText: 'short',
+      detailText: 'detail',
+      imageAsset: '',
+      rarity: 'normal',
+      sourceNote: 'test',
     ),
     HeeCard(
-      id: 'card_b', title: '星の話', category: 'science',
-      shortText: 'short', detailText: 'detail', imageAsset: '',
-      rarity: 'rare', sourceNote: 'test',
+      id: 'card_b',
+      title: '星の話',
+      category: 'science',
+      shortText: 'short',
+      detailText: 'detail',
+      imageAsset: '',
+      rarity: 'rare',
+      sourceNote: 'test',
     ),
     HeeCard(
-      id: 'card_c', title: '忍者', category: 'history',
-      shortText: 'short', detailText: 'detail', imageAsset: '',
-      rarity: 'normal', sourceNote: 'test',
+      id: 'card_c',
+      title: '忍者',
+      category: 'history',
+      shortText: 'short',
+      detailText: 'detail',
+      imageAsset: '',
+      rarity: 'normal',
+      sourceNote: 'test',
     ),
   ];
 
@@ -29,7 +44,9 @@ void main() {
       final saveData = SaveData(ownedCardIds: ['card_b']);
 
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: saveData, allCards: cards)),
+        MaterialApp(
+          home: CardListScreen(saveData: saveData, allCards: cards),
+        ),
       );
 
       expect(find.byType(CardListScreen), findsOneWidget);
@@ -41,7 +58,9 @@ void main() {
       final saveData = SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']);
 
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: saveData, allCards: cards)),
+        MaterialApp(
+          home: CardListScreen(saveData: saveData, allCards: cards),
+        ),
       );
 
       expect(find.text('山の名前'), findsOneWidget);
@@ -60,7 +79,9 @@ void main() {
       final saveData = SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']);
 
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: saveData, allCards: cards)),
+        MaterialApp(
+          home: CardListScreen(saveData: saveData, allCards: cards),
+        ),
       );
 
       await tester.tap(find.text('科学'));
@@ -77,7 +98,9 @@ void main() {
 
     testWidgets('shows empty message when no cards', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: SaveData(), allCards: const [])),
+        MaterialApp(
+          home: CardListScreen(saveData: SaveData(), allCards: const []),
+        ),
       );
 
       expect(find.text('カードがありません'), findsOneWidget);
@@ -87,7 +110,9 @@ void main() {
       final saveData = SaveData(ownedCardIds: ['card_a']);
 
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: saveData, allCards: cards)),
+        MaterialApp(
+          home: CardListScreen(saveData: saveData, allCards: cards),
+        ),
       );
 
       expect(find.text('へぇ図鑑 (1/3)'), findsOneWidget);
@@ -97,7 +122,9 @@ void main() {
       final saveData = SaveData(ownedCardIds: ['card_a']);
 
       await tester.pumpWidget(
-        MaterialApp(home: CardListScreen(saveData: saveData, allCards: cards)),
+        MaterialApp(
+          home: CardListScreen(saveData: saveData, allCards: cards),
+        ),
       );
 
       await tester.tap(find.text('山の名前'));

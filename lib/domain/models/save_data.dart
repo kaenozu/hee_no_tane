@@ -1,38 +1,37 @@
+/// lib/domain/models/save_data.dart
+///
+/// 永続化データモデル。
+library;
+/// カード収集・ストリーク・プレイ統計・設定を保持する。
+///
+/// 関連:
+///   - ../services/reward_service.dart
+///   - ../../data/repositories/save_repository.dart
+///   - hee_card.dart
+
 import 'package:flutter/material.dart';
 
 class GameSettings {
-  final bool soundEnabled;
-  final bool bgmEnabled;
   final ThemeMode themeMode;
 
   const GameSettings({
-    this.soundEnabled = true,
-    this.bgmEnabled = true,
     this.themeMode = ThemeMode.system,
   });
 
   factory GameSettings.fromJson(Map<String, dynamic> json) {
     return GameSettings(
-      soundEnabled: json['soundEnabled'] as bool? ?? true,
-      bgmEnabled: json['bgmEnabled'] as bool? ?? true,
       themeMode: _parseThemeMode(json['themeMode'] as String?),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'soundEnabled': soundEnabled,
-        'bgmEnabled': bgmEnabled,
-        'themeMode': themeMode.name,
-      };
+    'themeMode': themeMode.name,
+  };
 
   GameSettings copyWith({
-    bool? soundEnabled,
-    bool? bgmEnabled,
     ThemeMode? themeMode,
   }) {
     return GameSettings(
-      soundEnabled: soundEnabled ?? this.soundEnabled,
-      bgmEnabled: bgmEnabled ?? this.bgmEnabled,
       themeMode: themeMode ?? this.themeMode,
     );
   }
@@ -51,31 +50,32 @@ class GameSettings {
 
 class SaveData {
   final int version;
-  final int totalPlayCount;
-  final int totalClearCount;
+  final int totalBrowseCount;
+  final int totalPlayCount; // kept for backward compat
   final int streakDays;
   final String lastPlayedDate;
-  final String lastRewardDate;
+  final String lastRewardDate; // kept for backward compat
   final List<String> ownedCardIds;
   final GameSettings settings;
 
   SaveData({
-    this.version = 1,
+    this.version = 2,
+    this.totalBrowseCount = 0,
     this.totalPlayCount = 0,
-    this.totalClearCount = 0,
     this.streakDays = 0,
     this.lastPlayedDate = '',
     this.lastRewardDate = '',
     List<String>? ownedCardIds,
     GameSettings? settings,
-  })  : ownedCardIds = ownedCardIds ?? [],
-        settings = settings ?? const GameSettings();
+  }) : ownedCardIds = ownedCardIds ?? [],
+       settings = settings ?? const GameSettings();
 
   factory SaveData.fromJson(Map<String, dynamic> json) {
     return SaveData(
-      version: json['version'] as int? ?? 1,
+      version: json['version'] as int? ?? 2,
+      totalBrowseCount: json['totalBrowseCount'] as int? ??
+          (json['totalPlayCount'] as int? ?? 0),
       totalPlayCount: json['totalPlayCount'] as int? ?? 0,
-      totalClearCount: json['totalClearCount'] as int? ?? 0,
       streakDays: json['streakDays'] as int? ?? 0,
       lastPlayedDate: json['lastPlayedDate'] as String? ?? '',
       lastRewardDate: json['lastRewardDate'] as String? ?? '',
@@ -87,19 +87,19 @@ class SaveData {
   }
 
   Map<String, dynamic> toJson() => {
-        'version': version,
-        'totalPlayCount': totalPlayCount,
-        'totalClearCount': totalClearCount,
-        'streakDays': streakDays,
-        'lastPlayedDate': lastPlayedDate,
-        'lastRewardDate': lastRewardDate,
-        'ownedCardIds': ownedCardIds,
-        'settings': settings.toJson(),
-      };
+    'version': version,
+    'totalBrowseCount': totalBrowseCount,
+    'totalPlayCount': totalPlayCount,
+    'streakDays': streakDays,
+    'lastPlayedDate': lastPlayedDate,
+    'lastRewardDate': lastRewardDate,
+    'ownedCardIds': ownedCardIds,
+    'settings': settings.toJson(),
+  };
 
   SaveData copyWith({
+    int? totalBrowseCount,
     int? totalPlayCount,
-    int? totalClearCount,
     int? streakDays,
     String? lastPlayedDate,
     String? lastRewardDate,
@@ -108,8 +108,8 @@ class SaveData {
   }) {
     return SaveData(
       version: version,
+      totalBrowseCount: totalBrowseCount ?? this.totalBrowseCount,
       totalPlayCount: totalPlayCount ?? this.totalPlayCount,
-      totalClearCount: totalClearCount ?? this.totalClearCount,
       streakDays: streakDays ?? this.streakDays,
       lastPlayedDate: lastPlayedDate ?? this.lastPlayedDate,
       lastRewardDate: lastRewardDate ?? this.lastRewardDate,

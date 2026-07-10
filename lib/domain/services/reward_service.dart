@@ -1,10 +1,19 @@
+/// lib/domain/services/reward_service.dart
+///
+/// カード収集報酬ロジック。
+library;
+/// 今日の問題に関連する未所有カードを特定し、コレクションに追加する。
+///
+/// 関連:
+///   - ../models/question.dart
+///   - ../models/hee_card.dart
+///   - ../models/save_data.dart
+
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 
 class RewardService {
-  /// `today` に既に報酬を取得済みなら null を返す。
-  /// 未取得の場合は todayQuestions から未所有カードを探して返す。
   HeeCard? determineReward({
     required List<Question> todayQuestions,
     required List<String> ownedCardIds,
@@ -27,15 +36,11 @@ class RewardService {
 
   SaveData applyReward(SaveData saveData, HeeCard card) {
     if (saveData.ownedCardIds.contains(card.id)) return saveData;
-    return saveData.copyWith(
-      ownedCardIds: [...saveData.ownedCardIds, card.id],
-    );
+    return saveData.copyWith(ownedCardIds: [...saveData.ownedCardIds, card.id]);
   }
 
-  SaveData updatePlayStats(SaveData saveData, String today, bool isClear) {
-    final newPlayCount = saveData.totalPlayCount + 1;
-    final newClearCount =
-        isClear ? saveData.totalClearCount + 1 : saveData.totalClearCount;
+  SaveData updatePlayStats(SaveData saveData, String today) {
+    final newPlayCount = saveData.totalBrowseCount + 1;
 
     int newStreak;
     if (saveData.lastPlayedDate == today) {
@@ -54,11 +59,9 @@ class RewardService {
     }
 
     return saveData.copyWith(
-      totalPlayCount: newPlayCount,
-      totalClearCount: newClearCount,
+      totalBrowseCount: newPlayCount,
       streakDays: newStreak,
       lastPlayedDate: today,
-      lastRewardDate: isClear ? today : null,
     );
   }
 }

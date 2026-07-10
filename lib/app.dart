@@ -1,10 +1,18 @@
+/// lib/app.dart
+///
+/// アプリのルートウィジェット。
+library;
+/// Material 3 テーマ定義（暖色系・紙/木/植物モチーフ）、画面遷移の起点。
+///
+/// 関連:
+///   - main.dart
+///   - features/home/home_screen.dart
+///   - domain/models/save_data.dart
+
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/enemy.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
-import 'package:hee_no_tane_app/domain/services/battle_service.dart';
-import 'package:hee_no_tane_app/domain/services/audio_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/home/home_screen.dart';
@@ -16,20 +24,16 @@ final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
 class HeeNoTaneApp extends StatefulWidget {
   final List<Question> allQuestions;
   final List<HeeCard> allCards;
-  final List<Enemy> allEnemies;
   final SaveData saveData;
   final SaveRepository saveRepository;
-  final BattleService battleService;
   final RewardService rewardService;
 
   const HeeNoTaneApp({
     super.key,
     required this.allQuestions,
     required this.allCards,
-    required this.allEnemies,
     required this.saveData,
     required this.saveRepository,
-    required this.battleService,
     required this.rewardService,
   });
 
@@ -38,26 +42,10 @@ class HeeNoTaneApp extends StatefulWidget {
 }
 
 class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
-  late final GameAudioService _audioService;
-
   @override
   void initState() {
     super.initState();
-    _audioService = GameAudioService(
-      enabled: widget.saveData.settings.soundEnabled,
-    );
     themeModeNotifier.value = widget.saveData.settings.themeMode;
-    _startBgm();
-  }
-
-  Future<void> _startBgm() async {
-    await _audioService.playBgm();
-  }
-
-  @override
-  void dispose() {
-    _audioService.dispose();
-    super.dispose();
   }
 
   @override
@@ -67,7 +55,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
       builder: (context, _) {
         final mode = themeModeNotifier.value;
         return MaterialApp(
-          title: 'へぇダンジョン',
+          title: 'へぇのタネ',
           debugShowCheckedModeBanner: false,
           theme: _buildLightTheme(),
           darkTheme: _buildDarkTheme(),
@@ -75,11 +63,8 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
           home: HomeScreen(
             allQuestions: widget.allQuestions,
             allCards: widget.allCards,
-            allEnemies: widget.allEnemies,
             saveRepository: widget.saveRepository,
-            battleService: widget.battleService,
             rewardService: widget.rewardService,
-            audioService: _audioService,
           ),
         );
       },
@@ -87,9 +72,9 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
   }
 
   ThemeData _buildLightTheme() =>
-      _baseTheme(Brightness.light, const Color(0xFFFBF8F3));
+      _baseTheme(Brightness.light, const Color(0xFFFBF6ED));
   ThemeData _buildDarkTheme() =>
-      _baseTheme(Brightness.dark, const Color(0xFF121212));
+      _baseTheme(Brightness.dark, const Color(0xFF1A1A1A));
 
   ThemeData _baseTheme(Brightness brightness, Color surface) {
     final isDark = brightness == Brightness.dark;
@@ -97,19 +82,19 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
       useMaterial3: true,
       colorScheme: ColorScheme(
         brightness: brightness,
-        primary: const Color(0xFF1A6B5A),
+        primary: const Color(0xFF5B8A5B),
         onPrimary: Colors.white,
-        secondary: const Color(0xFFE8A87C),
+        secondary: const Color(0xFFD4A373),
         onSecondary: Colors.white,
-        tertiary: const Color(0xFF5C6BC0),
+        tertiary: const Color(0xFF8B7E74),
         onTertiary: Colors.white,
         surface: surface,
-        onSurface: isDark ? const Color(0xFFE0E0E0) : const Color(0xFF1A1A2E),
+        onSurface: isDark ? const Color(0xFFE8E0D8) : const Color(0xFF2C2416),
         error: const Color(0xFFBA1A1A),
         onError: Colors.white,
         surfaceContainerHighest: isDark
             ? const Color(0xFF2C2C2C)
-            : const Color(0xFFEDE7DD),
+            : const Color(0xFFE8E0D5),
         outline: isDark ? const Color(0xFF9E9E9E) : const Color(0xFF8C8178),
         outlineVariant: isDark
             ? const Color(0xFF616161)
@@ -121,20 +106,25 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         clipBehavior: Clip.antiAlias,
-        color: isDark ? const Color(0xFF1E1E1E) : null,
+        color: isDark ? const Color(0xFF2C2416) : const Color(0xFFFFF8F0),
       ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0.5,
-        backgroundColor: isDark ? const Color(0xFF1E1E1E) : null,
+        backgroundColor: isDark
+            ? const Color(0xFF2C2416)
+            : const Color(0xFFFBF6ED).withValues(alpha: 0.9),
       ),
-      scaffoldBackgroundColor: isDark ? const Color(0xFF121212) : null,
+      scaffoldBackgroundColor: isDark ? const Color(0xFF1A1A1A) : null,
+      dividerTheme: DividerThemeData(
+        color: isDark ? const Color(0xFF3D3A36) : const Color(0xFFDCD4C8),
+      ),
     );
   }
 
   TextTheme _textTheme(bool isDark) {
-    final c = isDark ? const Color(0xFFE0E0E0) : const Color(0xFF1A1A2E);
+    final c = isDark ? const Color(0xFFE8E0D8) : const Color(0xFF2C2416);
     return TextTheme(
       headlineLarge: TextStyle(
         fontSize: 28,
@@ -170,13 +160,13 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
       bodyLarge: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
-        height: 1.6,
+        height: 1.7,
         color: c,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        height: 1.5,
+        height: 1.6,
         color: c,
       ),
       bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: c),

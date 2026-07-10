@@ -1,53 +1,29 @@
+/// lib/features/settings/settings_screen.dart
+///
+/// 設定画面。データリセット・アプリ情報を表示。
+library;
+///
+/// 関連:
+///   - ../../data/repositories/save_repository.dart
+///   - ../../domain/services/reward_service.dart
+
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
-import 'package:hee_no_tane_app/domain/services/audio_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends StatelessWidget {
   final SaveRepository saveRepository;
   final RewardService rewardService;
-  final GameAudioService audioService;
   final VoidCallback onDataReset;
 
   const SettingsScreen({
     super.key,
     required this.saveRepository,
     required this.rewardService,
-    required this.audioService,
     required this.onDataReset,
   });
 
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _soundEnabled = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSettings();
-  }
-
-  Future<void> _loadSettings() async {
-    final data = await widget.saveRepository.load();
-    if (!mounted) return;
-    setState(() => _soundEnabled = data.settings.soundEnabled);
-  }
-
-  Future<void> _toggleSound(bool value) async {
-    final data = await widget.saveRepository.load();
-    final updated = data.copyWith(
-      settings: data.settings.copyWith(soundEnabled: value),
-    );
-    await widget.saveRepository.save(updated);
-    await widget.audioService.setEnabled(value);
-    setState(() => _soundEnabled = value);
-  }
-
-  Future<void> _confirmReset() async {
+  Future<void> _confirmReset(BuildContext context) async {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -67,11 +43,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
-    if (confirmed == true) {
-      await widget.saveRepository.reset();
-      await widget.audioService.setEnabled(SaveData().settings.soundEnabled);
-      widget.onDataReset();
-      if (mounted) Navigator.pop(context);
+    if (confirmed == true && context.mounted) {
+      await saveRepository.reset();
+      onDataReset();
+      if (context.mounted) Navigator.pop(context);
     }
   }
 
@@ -83,25 +58,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          SwitchListTile(
-            secondary: Icon(Icons.volume_up_outlined, color: cs.primary),
-            title: const Text('サウンド'),
-            subtitle: const Text('BGMと効果音のON/OFF'),
-            value: _soundEnabled,
-            onChanged: _toggleSound,
-          ),
-          const Divider(),
           ListTile(
             leading: Icon(Icons.delete_outline, color: Colors.red[300]),
             title: const Text('データリセット'),
             subtitle: const Text('すべてのデータを初期状態に戻す'),
-            onTap: _confirmReset,
+            onTap: () => _confirmReset(context),
           ),
           const Divider(),
           ListTile(
             leading: Icon(Icons.info_outline, color: cs.primary),
             title: const Text('アプリ情報'),
-            subtitle: const Text('へぇダンジョン v1.0.0'),
+            subtitle: const Text('へぇのタネ v1.0.0'),
           ),
         ],
       ),

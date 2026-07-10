@@ -1,6 +1,18 @@
+/// lib/features/collection/card_list_screen.dart
+///
+/// 図鑑画面。カード一覧をグリッド表示し、カテゴリでフィルタリング可能。
+library;
+///
+/// 関連:
+///   - card_detail_screen.dart
+///   - category_util.dart
+///   - ../../domain/models/save_data.dart
+
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
+import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 
@@ -8,7 +20,11 @@ class CardListScreen extends StatefulWidget {
   final SaveData saveData;
   final List<HeeCard> allCards;
 
-  const CardListScreen({super.key, required this.saveData, required this.allCards});
+  const CardListScreen({
+    super.key,
+    required this.saveData,
+    required this.allCards,
+  });
 
   @override
   State<CardListScreen> createState() => _CardListScreenState();
@@ -20,7 +36,9 @@ class _CardListScreenState extends State<CardListScreen> {
   List<HeeCard> get _displayCards {
     final filtered = _selectedCategory.isEmpty
         ? List<HeeCard>.from(widget.allCards)
-        : widget.allCards.where((c) => c.category == _selectedCategory).toList();
+        : widget.allCards
+              .where((c) => c.category == _selectedCategory)
+              .toList();
     filtered.sort((a, b) {
       final aOwned = widget.saveData.ownedCardIds.contains(a.id);
       final bOwned = widget.saveData.ownedCardIds.contains(b.id);
@@ -31,8 +49,7 @@ class _CardListScreenState extends State<CardListScreen> {
     return filtered;
   }
 
-  Set<String> get _categories =>
-      widget.allCards.map((c) => c.category).toSet();
+  Set<String> get _categories => widget.allCards.map((c) => c.category).toSet();
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +77,16 @@ class _CardListScreenState extends State<CardListScreen> {
                 ? const Center(child: Text('カードがありません'))
                 : GridView.builder(
                     padding: const EdgeInsets.all(12),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       childAspectRatio: 0.75,
                     ),
                     itemCount: _displayCards.length,
-                    itemBuilder: (context, index) => _cardTile(_displayCards[index], cs),
+                    itemBuilder: (context, index) =>
+                        _cardTile(_displayCards[index], cs),
                   ),
           ),
         ],
@@ -81,7 +100,8 @@ class _CardListScreenState extends State<CardListScreen> {
       padding: const EdgeInsets.only(right: 6),
       child: FilterChip(
         selected: selected,
-        onSelected: (_) => setState(() => _selectedCategory = selected ? '' : value),
+        onSelected: (_) =>
+            setState(() => _selectedCategory = selected ? '' : value),
         label: Text(label, style: const TextStyle(fontSize: 12)),
         visualDensity: VisualDensity.compact,
         selectedColor: cs.primary.withValues(alpha: 0.15),
@@ -97,21 +117,38 @@ class _CardListScreenState extends State<CardListScreen> {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => CardDetailScreen(card: card, isOwned: isOwned)),
+        MaterialPageRoute(
+          builder: (_) => CardDetailScreen(
+            card: card,
+            isOwned: isOwned,
+            rewardService: RewardService(),
+            saveRepository: SaveRepository(),
+            saveData: widget.saveData,
+          ),
+        ),
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: isOwned ? cs.surfaceContainerHighest.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.08),
+          color: isOwned
+              ? cs.surfaceContainerHighest.withValues(alpha: 0.3)
+              : Colors.grey.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isOwned ? catColor.withValues(alpha: 0.3) : Colors.grey.withValues(alpha: 0.15)),
+          border: Border.all(
+            color: isOwned
+                ? catColor.withValues(alpha: 0.3)
+                : Colors.grey.withValues(alpha: 0.15),
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 48, height: 48,
+              width: 48,
+              height: 48,
               decoration: BoxDecoration(
-                color: isOwned ? catColor.withValues(alpha: 0.15) : Colors.grey.withValues(alpha: 0.1),
+                color: isOwned
+                    ? catColor.withValues(alpha: 0.15)
+                    : Colors.grey.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -127,8 +164,14 @@ class _CardListScreenState extends State<CardListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(
                 isOwned ? card.title : '???',
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: isOwned ? cs.onSurface : Colors.grey[400]),
-                maxLines: 2, textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: isOwned ? cs.onSurface : Colors.grey[400],
+                ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             if (isOwned)

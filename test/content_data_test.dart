@@ -8,7 +8,8 @@ void main() {
     final questions = _readJsonList('assets/data/questions.json');
     final cards = _readJsonList('assets/data/cards.json');
     final cardCategories = {
-      for (final card in cards) card['id'] as String: card['category'] as String,
+      for (final card in cards)
+        card['id'] as String: card['category'] as String,
     };
 
     final missing = <String>[];
@@ -44,17 +45,6 @@ void main() {
     }
 
     expect(invalid, isEmpty);
-  });
-
-  test('enemy data includes normal enemies and a boss', () {
-    final enemies = _readJsonList('assets/data/enemies.json');
-    final normalCount = enemies
-        .where((enemy) => enemy['type'] == 'normal')
-        .length;
-    final bossCount = enemies.where((enemy) => enemy['type'] == 'boss').length;
-
-    expect(normalCount, greaterThanOrEqualTo(4));
-    expect(bossCount, greaterThanOrEqualTo(1));
   });
 }
 

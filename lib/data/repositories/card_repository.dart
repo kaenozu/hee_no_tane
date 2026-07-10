@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 
@@ -7,8 +8,12 @@ class CardRepository {
     try {
       final jsonString = await rootBundle.loadString('assets/data/cards.json');
       final list = json.decode(jsonString) as List<dynamic>;
-      return list.map((e) => HeeCard.fromJson(e as Map<String, dynamic>)).toList();
-    } catch (e) {
+      return list
+          .map((e) => HeeCard.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (e, stackTrace) {
+      debugPrint('Failed to load cards: $e');
+      debugPrintStack(stackTrace: stackTrace);
       return [];
     }
   }

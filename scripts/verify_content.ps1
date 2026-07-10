@@ -167,10 +167,10 @@ foreach ($enemy in $enemies) {
     $enemyIds[$enemy.id] = $true
     Test-RequiredString $enemy "name" "enemy $($enemy.id)"
     Test-RequiredString $enemy "type" "enemy $($enemy.id)"
-    if ($enemy.maxHp -le 0) {
+    if ($null -eq $enemy.maxHp -or $enemy.maxHp -le 0) {
         throw "Enemy $($enemy.id) has invalid maxHp $($enemy.maxHp)."
     }
-    if ($enemy.attack -le 0) {
+    if ($null -eq $enemy.attack -or $enemy.attack -le 0) {
         throw "Enemy $($enemy.id) has invalid attack $($enemy.attack)."
     }
     if ($enemy.imageAsset -and -not (Test-Path -LiteralPath $enemy.imageAsset)) {
