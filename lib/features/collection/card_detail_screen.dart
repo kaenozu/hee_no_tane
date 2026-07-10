@@ -45,6 +45,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   int? _selectedChoice;
   bool _answered = false;
 
+  bool get _showRealContent => _justUnlocked || widget.isOwned;
+
   @override
   void initState() {
     super.initState();
@@ -146,14 +148,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             const SizedBox(height: 16),
             Center(
               child: Text(
-                widget.card.title,
+                _showRealContent ? widget.card.title : '???',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            if (widget.card.rarity == 'rare')
+            if (widget.card.rarity == 'rare' && _showRealContent)
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -176,50 +178,69 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 ),
               ),
             const SizedBox(height: 24),
-            _sectionTitle('へぇポイント'),
-            const SizedBox(height: 8),
-            Text(
-              widget.card.shortText,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-                color: cs.onSurface.withValues(alpha: 0.85),
-              ),
-            ),
-            const SizedBox(height: 24),
-            _sectionTitle('くわしい知識'),
-            const SizedBox(height: 8),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: cs.surfaceContainerHighest.withValues(alpha: 0.3),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                widget.card.detailText,
+            if (_showRealContent) ...[
+              _sectionTitle('へぇポイント'),
+              const SizedBox(height: 8),
+              Text(
+                widget.card.shortText,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  height: 1.7,
-                  color: cs.onSurface.withValues(alpha: 0.8),
+                  fontWeight: FontWeight.w500,
+                  color: cs.onSurface.withValues(alpha: 0.85),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Icon(Icons.source_outlined,
-                    size: 14, color: cs.onSurface.withValues(alpha: 0.4)),
-                const SizedBox(width: 6),
-                Text(
-                  '出典: ${widget.card.sourceNote}',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: cs.onSurface.withValues(alpha: 0.4),
+              const SizedBox(height: 24),
+              _sectionTitle('くわしい知識'),
+              const SizedBox(height: 8),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: cs.surfaceContainerHighest.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  widget.card.detailText,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    height: 1.7,
+                    color: cs.onSurface.withValues(alpha: 0.8),
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Icon(Icons.source_outlined,
+                      size: 14, color: cs.onSurface.withValues(alpha: 0.4)),
+                  const SizedBox(width: 6),
+                  Text(
+                    '出典: ${widget.card.sourceNote}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: cs.onSurface.withValues(alpha: 0.4),
+                    ),
+                  ),
+                ],
+              ),
+            ] else ...[
+              const SizedBox(height: 8),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: cs.surfaceContainerHighest.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  'このカードはまだ获得していません',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: cs.onSurface.withValues(alpha: 0.5),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
             const SizedBox(height: 32),
-            if (widget.relatedQuestion != null) ...[
+            if (widget.relatedQuestion != null && _showRealContent) ...[
               _quizSection(widget.relatedQuestion!, cs),
             ],
             const SizedBox(height: 32),

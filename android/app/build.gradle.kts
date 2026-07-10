@@ -52,11 +52,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = if (keystoreProps.containsKey("storeFile")) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
+            if (!keystoreProps.containsKey("storeFile")) {
+                throw GradleException(
+                    "Release signing requires app/keystore.properties with storeFile. " +
+                    "See README for setup instructions."
+                )
             }
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

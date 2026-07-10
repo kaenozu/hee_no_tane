@@ -55,6 +55,28 @@ void main() {
     expect(find.text('くわしい知識'), findsOneWidget);
     expect(find.text('詳しい本文'), findsOneWidget);
   });
+
+  testWidgets('unowned card hides content before unlock', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CardDetailScreen(
+          card: _card,
+          isOwned: false,
+          rewardService: RewardService(),
+          saveRepository: SaveRepository(),
+          saveData: SaveData(),
+        ),
+      ),
+    );
+    // Initial frame: _justUnlocked is false, content should be hidden
+    // (auto-unlock completes after first async frame)
+    expect(find.text('???'), findsOneWidget);
+    expect(find.text('短い知識'), findsNothing);
+    expect(find.text('くわしい知識'), findsNothing);
+    expect(find.text('出典: test source'), findsNothing);
+  });
 }
 
 const _card = HeeCard(

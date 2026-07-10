@@ -11,7 +11,7 @@ scripts/generate_cards.py — Gemini API で知識カードを一括生成
 環境変数 GEMINI_API_KEY か --api-key でAPIキーを指定する
 """
 
-import argparse, json, os, random, re, sys, uuid
+import argparse, hashlib, json, os, random, re, sys, uuid
 from datetime import date
 from typing import Any
 
@@ -76,13 +76,13 @@ def _existing_card_ids() -> set[str]:
     return {f.removesuffix(".json") for f in os.listdir(CARDS_DIR) if f.endswith(".json")}
 
 
-def _next_id(category: str) -> str:
+def _next_id(category: str, used_ids: set[str]) -> str:
     """既存カードから次の連番を振る（ID重複回避）"""
-    used = _existing_card_ids()
     n = 1
     while True:
         cid = f"card_{category}_{n:03d}"
-        if cid not in used:
+        if cid not in used_ids:
+            used_ids.add(cid)
             return cid
         n += 1
 
@@ -161,6 +161,7 @@ def generate_cards(client: genai.Client, category: str, count: int, batch_size: 
     """Gemini APIでカードを生成する"""
     all_cards: list[dict] = []
     existing_titles = _existing_titles()
+    used_ids: set[str] = _existing_card_ids()
 
     remaining = count
     retries = 0
@@ -202,7 +203,7 @@ def generate_cards(client: genai.Client, category: str, count: int, batch_size: 
                     print(f"  [SKIP] validation failed: {err}", file=sys.stderr)
                     continue
 
-                cid = _next_id(c["category"])
+                cid = _next_id(c["category"], used_ids)
                 c["id"] = cid
                 c["related_card_ids"] = []
                 all_cards.append(c)
@@ -255,7 +256,7 @@ def generate_daily_deck(card_count: int = 3):
         return
 
     today = date.today().isoformat()
-    seed = today.hashCode() if hasattr(today, "hashCode") else hash(today)
+    seed = int(hashlib.sha256(today.encode()).hexdigest(), 16) % (2**32)
     rng = random.Random(seed)
 
     selected = rng.sample(ids, card_count)
