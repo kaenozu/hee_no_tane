@@ -44,16 +44,39 @@ class _HomeScreenState extends State<HomeScreen> {
   List<HeeCard> _todayCards = [];
   List<Question> _todayQuestions = [];
   bool _loading = true;
+  final Set<String> _completedQuizIds = {};
+  HeeCard? _rewardCard;
 
   @override
   void initState() {
     super.initState();
+    _resetProgress();
     _load();
+  }
+
+  void _resetProgress() {
+    _completedQuizIds.clear();
+    _rewardCard = null;
   }
 
   Future<void> _load() async {
     final data = await widget.saveRepository.load();
     if (!mounted) return;
+
+    var updated = data;
+    if (updated.ownedCardIds.isEmpty && widget.allCards.isNotEmpty) {
+      final rng = DateTime.now().millisecondsSinceEpoch;
+      final start = rng % widget.allCards.length;
+      final end = (start + 3).clamp(0, widget.allCards.length);
+      final starter = widget.allCards.sublist(start, end);
+      final dateStr = _todayDateStr();
+      updated = widget.rewardService.updatePlayStats(updated, dateStr);
+      for (final card in starter) {
+        updated = widget.rewardService.applyReward(updated, card);
+      }
+      await widget.saveRepository.save(updated);
+    }
+
     final today = DateTime.now();
     final dateStr =
         '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
@@ -64,12 +87,21 @@ class _HomeScreenState extends State<HomeScreen> {
       count: 3,
     );
     final cards = _resolveCards(questions);
+    final finalData = updated.ownedCardIds.isEmpty
+        ? await widget.saveRepository.load()
+        : updated;
+    if (!mounted) return;
     setState(() {
-      _saveData = data;
+      _saveData = finalData;
       _todayQuestions = questions;
       _todayCards = cards;
       _loading = false;
     });
+  }
+
+  String _todayDateStr() {
+    final today = DateTime.now();
+    return '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
   }
 
   List<HeeCard> _resolveCards(List<Question> questions) {
@@ -89,13 +121,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _openCard(HeeCard card, Question? relatedQuestion) async {
     final isOwned = _saveData.ownedCardIds.contains(card.id);
-    final result = await Navigator.push<bool>(
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => CardDetailScreen(
           card: card,
           isOwned: isOwned,
           relatedQuestion: relatedQuestion,
+          onQuizAnswered: () {
+            if (relatedQuestion != null && mounted) {
+              setState(() {
+                _completedQuizIds.add(relatedQuestion.id);
+              });
+              _checkDungeonClear();
+            }
+          },
           rewardService: widget.rewardService,
           saveRepository: widget.saveRepository,
           saveData: _saveData,
@@ -103,7 +143,219 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     if (!mounted) return;
-    if (result == true) await _load();
+    final refreshed = await widget.saveRepository.load();
+    if (!mounted) return;
+    setState(() {
+      _saveData = refreshed;
+    });
+  }
+
+  void _checkDungeonClear() {
+    final uniqueQuestionIds = _todayQuestions.map((q) => q.id).toSet();
+    if (_completedQuizIds.length >= uniqueQuestionIds.length &&
+        _rewardCard == null) {
+      final today = DateTime.now();
+      final dateStr =
+          '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+      final reward = widget.rewardService.determineReward(
+        todayQuestions: _todayQuestions,
+        ownedCardIds: _saveData.ownedCardIds,
+        allCards: widget.allCards,
+        today: dateStr,
+        lastRewardDate: _saveData.lastRewardDate,
+      );
+      if (reward != null) {
+        setState(() {
+          _rewardCard = reward;
+        });
+        _showRewardModal();
+      }
+    }
+  }
+
+  void _showRewardModal() {
+    if (_rewardCard == null) return;
+    final card = _rewardCard!;
+    final isNew = !_saveData.ownedCardIds.contains(card.id);
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        title: Row(
+          children: [
+            Icon(Icons.auto_stories_rounded,
+                color: Theme.of(context).colorScheme.primary),
+            const SizedBox(width: 8),
+            Text('知識カードを発見！'),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primary
+                      .withValues(alpha: 0.2),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _categoryColor(card.category)
+                              .withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          _categoryLabel(card.category),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: _categoryColor(card.category),
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      if (card.rarity == 'rare')
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.auto_awesome,
+                                  size: 12,
+                                  color: Theme.of(context).colorScheme.secondary),
+                              const SizedBox(width: 4),
+                              Text('レア',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      if (isNew)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text('NEW',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w800,
+                                color: Theme.of(context).colorScheme.primary,
+                              )),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    card.title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    card.shortText,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withValues(alpha: 0.7),
+                          height: 1.5,
+                        ),
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              setState(() {
+                _rewardCard = null;
+              });
+            },
+            child: Text('ホームへ戻る'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              Navigator.pop(ctx);
+              final updated = widget.rewardService.applyReward(
+                _saveData,
+                card,
+              );
+              await widget.saveRepository.save(updated);
+              setState(() {
+                _saveData = updated;
+                _rewardCard = null;
+              });
+              if (!mounted) return;
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => CardDetailScreen(
+                    card: card,
+                    isOwned: true,
+                    rewardService: widget.rewardService,
+                    saveRepository: widget.saveRepository,
+                    saveData: _saveData,
+                  ),
+                ),
+              );
+              await _load();
+            },
+            child: Text('詳しく見る'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -174,7 +426,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_) => SettingsScreen(
                     saveRepository: widget.saveRepository,
                     rewardService: widget.rewardService,
-                    onDataReset: () => _load(),
+                    onDataReset: () {
+                      _resetProgress();
+                      _load();
+                    },
                   ),
                 ),
               ).then((_) => _load());

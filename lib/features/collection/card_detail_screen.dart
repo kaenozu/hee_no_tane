@@ -22,6 +22,7 @@ class CardDetailScreen extends StatefulWidget {
   final HeeCard card;
   final bool isOwned;
   final Question? relatedQuestion;
+  final VoidCallback? onQuizAnswered;
   final RewardService rewardService;
   final SaveRepository saveRepository;
   final SaveData saveData;
@@ -31,6 +32,7 @@ class CardDetailScreen extends StatefulWidget {
     required this.card,
     required this.isOwned,
     this.relatedQuestion,
+    this.onQuizAnswered,
     required this.rewardService,
     required this.saveRepository,
     required this.saveData,
@@ -267,12 +269,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: GestureDetector(
-                  onTap: _answered
-                      ? null
-                      : () => setState(() {
-                            _selectedChoice = index;
-                            _answered = true;
-                          }),
+                      onTap: _answered
+                          ? null
+                          : () {
+                              setState(() {
+                                _selectedChoice = index;
+                                _answered = true;
+                              });
+                              widget.onQuizAnswered?.call();
+                            },
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
