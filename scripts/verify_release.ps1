@@ -17,7 +17,8 @@ function Invoke-Step {
 
     Write-Host ""
     Write-Host "==> $Name" -ForegroundColor Cyan
-    $cmd, $cmdArgs = $Command
+    $cmd = $Command[0]
+    $cmdArgs = $Command[1..($Command.Count - 1)]
     & $cmd @cmdArgs
     if ($LASTEXITCODE -ne 0) {
         throw "$Name failed with exit code $LASTEXITCODE"
