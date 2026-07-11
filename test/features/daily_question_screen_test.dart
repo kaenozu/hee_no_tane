@@ -828,17 +828,13 @@ void main() {
       fakeRepo.completeSave();
       await tester.pumpAndSettle();
 
-      // AppBarの戻るボタン（root routeではIcons.arrow_backが出ないので、
-      // ホームへ戻るFilledButtonをタップ）
-      await tester.drag(
-        find.byType(SingleChildScrollView),
-        const Offset(0, -300),
-      );
-      await tester.pumpAndSettle();
-      await tester.tap(find.widgetWithText(FilledButton, 'ホームへ戻る'));
+      // AppBarの戻るボタンをタップ（保存成功後は _canLeave == true で表示される）
+      final backButton = find.byIcon(Icons.arrow_back);
+      await tester.tap(backButton);
       await tester.pumpAndSettle();
 
       // ホームが再読込され、回答済み状態が表示される
+      expect(find.byType(DailyQuestionScreen), findsNothing);
       expect(find.text('今日の1問を始める'), findsNothing);
       expect(find.text('今日の1問は完了しました'), findsOneWidget);
     });
@@ -864,6 +860,38 @@ void main() {
       // ホームが再読込され、未回答状態が維持される
       expect(find.text('今日の1問を始める'), findsOneWidget);
       expect(find.text('今日の1問は完了しました'), findsNothing);
+    });
+
+    testWidgets('E4. home button after save success refreshes home', (
+      tester,
+    ) async {
+      fakeRepo.setLoadedData(SaveData());
+
+      await tester.pumpWidget(buildHomePushingToQuiz());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('今日の1問を始める'));
+      await tester.pumpAndSettle();
+
+      fakeRepo.holdNextSave();
+      await tester.tap(find.text('A'));
+      await tester.pump();
+
+      fakeRepo.completeSave();
+      await tester.pumpAndSettle();
+
+      // 画面下部の「ホームへ戻る」ボタンをタップ
+      await tester.drag(
+        find.byType(SingleChildScrollView),
+        const Offset(0, -300),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'ホームへ戻る'));
+      await tester.pumpAndSettle();
+
+      // ホームが再読込され、回答済み状態が表示される
+      expect(find.text('今日の1問を始める'), findsNothing);
+      expect(find.text('今日の1問は完了しました'), findsOneWidget);
     });
   });
 
