@@ -258,40 +258,49 @@ void main() {
     expect(find.byType(CardDetailScreen), findsOneWidget);
   });
 
-  testWidgets('R6. answered state persists after app restart', (tester) async {
-    await tester.pumpWidget(
-      buildDailyQuestionScreen(
-        question: questions[0],
-        relatedCard: cards[0],
-        saveRepository: fakeRepo,
-        rewardService: rewardService,
-      ),
-    );
-    await tester.pumpAndSettle();
+  testWidgets(
+    'R6. answer persists through SaveRepository and survives app restart',
+    (tester) async {
+      // 実SaveRepository + SharedPreferences mockで永続化を検証する。
+      final realRepo = SaveRepository();
 
-    await tester.tap(find.text('A'));
-    await tester.pumpAndSettle();
+      await tester.pumpWidget(
+        buildDailyQuestionScreen(
+          question: questions[0],
+          relatedCard: cards[0],
+          saveRepository: realRepo,
+          rewardService: rewardService,
+        ),
+      );
+      await tester.pumpAndSettle();
 
-    expect(fakeRepo.saveCallCount, 1);
-    final saved = fakeRepo.lastSavedData!;
-    expect(saved.lastDailyQuestionDate, isNotEmpty);
-    expect(saved.ownedCardIds, contains('card_0'));
+      await tester.tap(find.text('A'));
+      await tester.pumpAndSettle();
 
-    // アプリ再起動: 新しいHomeScreen
-    fakeRepo.setLoadedData(saved);
-    await tester.pumpWidget(
-      buildHomeScreen(
-        allQuestions: questions,
-        allCards: cards,
-        saveRepository: fakeRepo,
-        rewardService: rewardService,
-      ),
-    );
-    await tester.pumpAndSettle();
+      // 新しいSaveRepositoryインスタンスで保存データを読み込む
+      final freshRepo = SaveRepository();
+      final saved = await freshRepo.load();
+      final todayStr = _todayDateString();
+      expect(saved.lastDailyQuestionDate, todayStr);
+      expect(saved.ownedCardIds, contains('card_0'));
+      expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
 
-    expect(find.text('今日の1問は完了しました'), findsOneWidget);
-    expect(find.text('カードを読む'), findsOneWidget);
-  });
+      // 新しいHomeScreenを構築して再起動後の状態を確認
+      await tester.pumpWidget(
+        buildHomeScreen(
+          allQuestions: questions,
+          allCards: cards,
+          saveRepository: freshRepo,
+          rewardService: rewardService,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('今日の1問を始める'), findsNothing);
+      expect(find.text('今日の1問は完了しました'), findsOneWidget);
+      expect(find.text('カードを読む'), findsOneWidget);
+    },
+  );
 
   testWidgets('R7. unowned card content stays hidden', (tester) async {
     final unownedCard = HeeCard(
@@ -593,9 +602,14 @@ void main() {
       fakeRepo.completeSave();
       await tester.pumpAndSettle();
 
-      // 1回目と2回目で渡されたSaveDataが同値（二重加算なし）
+      // 1回目と2回目で渡されたSaveDataが同値（二重加算なし）かつ独立したインスタンス
       expect(fakeRepo.saveCallCount, 2);
       final secondCallData = fakeRepo.savedDataHistory[1];
+      expect(identical(firstCallData, secondCallData), isFalse);
+      expect(
+        identical(firstCallData.ownedCardIds, secondCallData.ownedCardIds),
+        isFalse,
+      );
       expect(secondCallData.ownedCardIds, firstCallData.ownedCardIds);
       expect(secondCallData.totalBrowseCount, firstCallData.totalBrowseCount);
       expect(secondCallData.streakDays, firstCallData.streakDays);

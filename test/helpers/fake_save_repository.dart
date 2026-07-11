@@ -58,8 +58,10 @@ class FakeSaveRepository extends SaveRepository {
   @override
   Future<void> save(SaveData data) async {
     saveCallCount++;
-    lastSavedData = data;
-    savedDataHistory.add(data);
+    // 保存呼び出し時点のスナップショットを記録する（後からdataが変更されても影響しない）。
+    final snapshot = SaveData.fromJson(data.toJson());
+    lastSavedData = snapshot;
+    savedDataHistory.add(snapshot);
     if (_completer != null) {
       await _completer!.future;
     }
