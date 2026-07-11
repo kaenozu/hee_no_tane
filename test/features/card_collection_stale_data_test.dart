@@ -70,7 +70,6 @@ void main() {
   late HeeCard cardB;
 
   setUp(() {
-    SharedPreferences.setMockInitialValues({});
     repository = FakeSaveRepository();
     rewardService = RewardService();
     cardA = _card('card_a', 'カードA');
@@ -377,6 +376,7 @@ void main() {
 
   group('D. SaveRepository strict load contract', () {
     test('D1. missing data is a valid empty save', () async {
+      SharedPreferences.setMockInitialValues({});
       final realRepository = SaveRepository();
       final loaded = await realRepository.loadOrThrow();
       expect(loaded.ownedCardIds, isEmpty);
