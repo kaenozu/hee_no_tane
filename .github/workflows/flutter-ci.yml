@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   apply-issue-11:
-    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates'
+    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates' && github.event.pull_request.head.sha != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout implementation branch
@@ -17,10 +17,10 @@ jobs:
           ref: agent/serialize-save-updates
           fetch-depth: 0
 
-      - name: Execute one-shot implementation script
+      - name: Execute one-shot implementation script with diagnostics
         shell: bash
         run: |
-          set -euo pipefail
+          set -u
           python3 - <<'PY'
           from pathlib import Path
 
@@ -44,4 +44,18 @@ jobs:
           )
           Path('/tmp/apply_issue_11.sh').write_text(script)
           PY
-          bash /tmp/apply_issue_11.sh
+
+          set +e
+          bash /tmp/apply_issue_11.sh > /tmp/issue11-output.txt 2>&1
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            cp /tmp/issue11-output.txt .github/issue11-apply-error.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .github/issue11-apply-error.txt
+            git commit -m "Record Issue 11 apply failure"
+            git push origin HEAD:agent/serialize-save-updates
+            cat /tmp/issue11-output.txt
+            exit "$status"
+          fi
