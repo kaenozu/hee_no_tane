@@ -36,6 +36,9 @@ class SaveException implements Exception {
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
 
+  /// update() calls are chained so load-transform-save runs one at a time.
+  Future<void> _updateTail = Future<void>.value();
+
   /// 既存画面向けのベストエフォート読込。
   ///
   /// 読込に失敗した場合は従来どおり空のSaveDataを返す。
@@ -59,10 +62,7 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to load save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveLoadException(
-        'データの読み込みに失敗しました。もう一度お試しください。',
-        cause: e,
-      );
+      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: e);
     }
   }
 
@@ -71,20 +71,34 @@ class SaveRepository {
       final prefs = await SharedPreferences.getInstance();
       final succeeded = await prefs.setString(_key, json.encode(data.toJson()));
       if (!succeeded) {
-        throw const SaveException(
-          'データの保存に失敗しました。もう一度お試しください。',
-        );
+        throw const SaveException('データの保存に失敗しました。もう一度お試しください。');
       }
     } on SaveException {
       rethrow;
     } catch (e, stackTrace) {
       debugPrint('Failed to save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveException(
-        'データの保存に失敗しました。もう一度お試しください。',
-        cause: e,
-      );
+      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
     }
+  }
+
+  /// Atomically applies [updater] to the latest save data.
+  ///
+  /// Calls on the same repository instance run in FIFO order. A failed update
+  /// is reported to its caller but does not block later updates.
+  Future<SaveData> update(SaveData Function(SaveData current) updater) {
+    final operation = _updateTail.then((_) async {
+      final current = await loadOrThrow();
+      final updated = updater(current);
+      await save(updated);
+      return updated;
+    });
+
+    _updateTail = operation.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace __) {},
+    );
+    return operation;
   }
 
   Future<void> reset() async {
