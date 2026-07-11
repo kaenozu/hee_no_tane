@@ -1,6 +1,7 @@
 /// test/helpers/fake_save_repository.dart
 ///
 /// SaveRepositoryのFake実装。Completerで保存Futureを制御する。
+/// Issue #7とIssue #9の非同期保存・最新読込テストで使用する。
 library;
 
 import 'dart:async';
