@@ -2,6 +2,7 @@
 ///
 /// セーブデータの永続化（SharedPreferences）。
 library;
+
 ///
 /// 関連:
 ///   - ../../domain/models/save_data.dart
@@ -11,6 +12,16 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
+
+/// セーブデータ保存時の例外。
+class SaveException implements Exception {
+  final String message;
+  final Object? cause;
+  const SaveException(this.message, {this.cause});
+
+  @override
+  String toString() => 'SaveException: $message (cause: $cause)';
+}
 
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
@@ -35,6 +46,7 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to save data: $e');
       debugPrintStack(stackTrace: stackTrace);
+      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
     }
   }
 

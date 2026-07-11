@@ -2,6 +2,7 @@
 ///
 /// カード詳細画面。読書に特化したUI。
 library;
+
 /// タイトル → 概要 → 詳細 → 出典 → 関連カード → クイズ のフロー。
 /// 初回閲覧時に自動で図鑑に追加される。
 ///
@@ -56,7 +57,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final dateStr =
         '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
     final data = widget.rewardService.updatePlayStats(widget.saveData, dateStr);
-    await widget.saveRepository.save(data);
+    try {
+      await widget.saveRepository.save(data);
+    } on SaveException catch (e, stackTrace) {
+      debugPrint('Failed to save card view stats: $e');
+      debugPrintStack(stackTrace: stackTrace);
+    }
     if (!mounted) return;
   }
 
@@ -79,8 +85,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 width: 64,
                 height: 64,
                 decoration: BoxDecoration(
-                  color: categoryColor(widget.card.category)
-                      .withValues(alpha: 0.12),
+                  color: categoryColor(
+                    widget.card.category,
+                  ).withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Icon(
@@ -107,8 +114,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.auto_awesome,
-                          size: 14, color: cs.secondary),
+                      Icon(Icons.auto_awesome, size: 14, color: cs.secondary),
                       const SizedBox(width: 4),
                       Text(
                         'レア',
@@ -154,8 +160,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  Icon(Icons.source_outlined,
-                      size: 14, color: cs.onSurface.withValues(alpha: 0.4)),
+                  Icon(
+                    Icons.source_outlined,
+                    size: 14,
+                    color: cs.onSurface.withValues(alpha: 0.4),
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     '出典: ${widget.card.sourceNote}',
@@ -211,9 +220,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       decoration: BoxDecoration(
         color: cs.surfaceContainerHighest.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: cs.outlineVariant.withValues(alpha: 0.3),
-        ),
+        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.3)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -222,8 +229,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           children: [
             Row(
               children: [
-                Icon(Icons.lightbulb_outline,
-                    size: 18, color: cs.primary),
+                Icon(Icons.lightbulb_outline, size: 18, color: cs.primary),
                 const SizedBox(width: 8),
                 Text(
                   '覚えてた？',
@@ -236,9 +242,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             const SizedBox(height: 12),
             Text(
               question.question,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 14),
             ...List.generate(question.choices.length, (index) {
@@ -270,9 +276,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   onTap: _answered
                       ? null
                       : () => setState(() {
-                            _selectedChoice = index;
-                            _answered = true;
-                          }),
+                          _selectedChoice = index;
+                          _answered = true;
+                        }),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
@@ -283,7 +289,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                       color: bgColor ?? cs.surface,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: borderColor ??
+                        color:
+                            borderColor ??
                             (isSelected
                                 ? cs.primary
                                 : cs.outlineVariant.withValues(alpha: 0.5)),
@@ -297,8 +304,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                             choice,
                             style: TextStyle(
                               color: textColor ?? cs.onSurface,
-                              fontWeight:
-                                  isSelected ? FontWeight.w600 : FontWeight.w400,
+                              fontWeight: isSelected
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
                             ),
                           ),
                         ),
@@ -331,8 +339,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.info_outline,
-                            size: 16, color: cs.primary),
+                        Icon(Icons.info_outline, size: 16, color: cs.primary),
                         const SizedBox(width: 6),
                         Text(
                           '解説',

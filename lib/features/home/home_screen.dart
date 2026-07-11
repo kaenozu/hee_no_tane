@@ -2,6 +2,7 @@
 ///
 /// ホーム画面。毎日1問のクイズに答え、知識カードを収集する。
 library;
+
 /// ストリーク・収集数・閲覧数を表示し、今日の1問を開始する。
 ///
 /// 関連:
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// 今日の1問を開始する。
   Future<void> _startDailyQuestion() async {
     if (_todayQuestion == null) return;
-    final result = await Navigator.push<bool>(
+    await Navigator.push<bool>(
       context,
       MaterialPageRoute(
         builder: (_) => DailyQuestionScreen(
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     if (!mounted) return;
-    if (result == true) await _load();
+    await _load();
   }
 
   /// カード詳細画面へ遷移する。
@@ -124,9 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return Scaffold(
-        body: const Center(child: CircularProgressIndicator()),
-      );
+      return Scaffold(body: const Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -152,7 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
@@ -164,9 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 12),
           Text(
             'へぇのタネ',
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w800),
           ),
           const Spacer(),
           IconButton(
@@ -315,7 +316,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     vertical: 3,
                   ),
                   decoration: BoxDecoration(
-                    color: _categoryColor(question.category).withValues(alpha: 0.12),
+                    color: _categoryColor(
+                      question.category,
+                    ).withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
@@ -335,9 +338,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             Text(
               '今日の1問',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 4),
             Text(
@@ -392,6 +395,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
+                ),
+              ),
+            ] else if (answered && card == null) ...[
+              // 回答済みだがカードなし
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: cs.primary.withValues(alpha: 0.06),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '今日の1問は完了しました',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: cs.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'カード情報を読み込めませんでした',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: cs.onSurface.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ] else ...[
