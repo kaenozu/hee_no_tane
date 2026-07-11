@@ -124,14 +124,15 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
       });
     } catch (e) {
       if (!mounted) return;
+      final message = e is SaveException
+          ? e.message
+          : e is SaveLoadException
+          ? e.message
+          : '回答の保存に失敗しました。もう一度お試しください。';
       setState(() {
         _saving = false;
         _saveSucceeded = false;
-        _saveError = switch (e) {
-          SaveException() => e.message,
-          SaveLoadException() => e.message,
-          _ => '回答の保存に失敗しました。もう一度お試しください。',
-        };
+        _saveError = message;
       });
     }
   }
