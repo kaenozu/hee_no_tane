@@ -13,6 +13,16 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 
+/// セーブデータ読込時の例外。
+class SaveLoadException implements Exception {
+  final String message;
+  final Object? cause;
+  const SaveLoadException(this.message, {this.cause});
+
+  @override
+  String toString() => 'SaveLoadException: $message (cause: $cause)';
+}
+
 /// セーブデータ保存時の例外。
 class SaveException implements Exception {
   final String message;
@@ -26,7 +36,21 @@ class SaveException implements Exception {
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
 
+  /// 既存画面向けのベストエフォート読込。
+  ///
+  /// 読込に失敗した場合は従来どおり空のSaveDataを返す。
   Future<SaveData> load() async {
+    try {
+      return await loadOrThrow();
+    } on SaveLoadException {
+      return SaveData();
+    }
+  }
+
+  /// 読込失敗を呼び出し側へ通知する厳格な読込。
+  ///
+  /// 保存データが存在しない場合は正常な初期状態として空のSaveDataを返す。
+  Future<SaveData> loadOrThrow() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_key);
@@ -35,18 +59,31 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to load save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      return SaveData();
+      throw SaveLoadException(
+        'データの読み込みに失敗しました。もう一度お試しください。',
+        cause: e,
+      );
     }
   }
 
   Future<void> save(SaveData data) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_key, json.encode(data.toJson()));
+      final succeeded = await prefs.setString(_key, json.encode(data.toJson()));
+      if (!succeeded) {
+        throw const SaveException(
+          'データの保存に失敗しました。もう一度お試しください。',
+        );
+      }
+    } on SaveException {
+      rethrow;
     } catch (e, stackTrace) {
       debugPrint('Failed to save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
+      throw SaveException(
+        'データの保存に失敗しました。もう一度お試しください。',
+        cause: e,
+      );
     }
   }
 

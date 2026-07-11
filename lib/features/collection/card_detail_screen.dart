@@ -4,19 +4,21 @@
 library;
 
 /// タイトル → 概要 → 詳細 → 出典 → 関連カード → クイズ のフロー。
-/// 初回閲覧時に自動で図鑑に追加される。
+/// 所有済みカードの閲覧時に統計を更新する。
 ///
 /// 関連:
 ///   - ../collection/category_util.dart
+///   - ../../core/date_utils.dart
 ///   - ../../domain/services/reward_service.dart
 ///   - ../../data/repositories/save_repository.dart
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/core/date_utils.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
 class CardDetailScreen extends StatefulWidget {
@@ -25,7 +27,6 @@ class CardDetailScreen extends StatefulWidget {
   final Question? relatedQuestion;
   final RewardService rewardService;
   final SaveRepository saveRepository;
-  final SaveData saveData;
 
   const CardDetailScreen({
     super.key,
@@ -34,7 +35,7 @@ class CardDetailScreen extends StatefulWidget {
     this.relatedQuestion,
     required this.rewardService,
     required this.saveRepository,
-    required this.saveData,
+    SaveData? saveData,
   });
 
   @override
@@ -48,22 +49,26 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   @override
   void initState() {
     super.initState();
-    _checkFirstView();
+    _recordOwnedCardView();
   }
 
-  Future<void> _checkFirstView() async {
+  Future<void> _recordOwnedCardView() async {
     if (!widget.isOwned) return;
-    final today = DateTime.now();
-    final dateStr =
-        '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
-    final data = widget.rewardService.updatePlayStats(widget.saveData, dateStr);
+
     try {
-      await widget.saveRepository.save(data);
+      final current = await widget.saveRepository.loadOrThrow();
+      final updated = widget.rewardService.updatePlayStats(
+        current,
+        todayDateString(),
+      );
+      await widget.saveRepository.save(updated);
+    } on SaveLoadException catch (e, stackTrace) {
+      debugPrint('Failed to load current save data for card view: $e');
+      debugPrintStack(stackTrace: stackTrace);
     } on SaveException catch (e, stackTrace) {
       debugPrint('Failed to save card view stats: $e');
       debugPrintStack(stackTrace: stackTrace);
     }
-    if (!mounted) return;
   }
 
   @override
@@ -166,11 +171,13 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                     color: cs.onSurface.withValues(alpha: 0.4),
                   ),
                   const SizedBox(width: 6),
-                  Text(
-                    '出典: ${widget.card.sourceNote}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: cs.onSurface.withValues(alpha: 0.4),
+                  Expanded(
+                    child: Text(
+                      '出典: ${widget.card.sourceNote}',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: cs.onSurface.withValues(alpha: 0.4),
+                      ),
                     ),
                   ),
                 ],
@@ -194,9 +201,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ),
             ],
             const SizedBox(height: 32),
-            if (widget.relatedQuestion != null && widget.isOwned) ...[
+            if (widget.relatedQuestion != null && widget.isOwned)
               _quizSection(widget.relatedQuestion!, cs),
-            ],
             const SizedBox(height: 32),
           ],
         ),

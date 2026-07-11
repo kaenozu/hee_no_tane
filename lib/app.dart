@@ -10,6 +10,7 @@ library;
 ///   - domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/core/save_dependencies.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
@@ -50,24 +51,28 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: themeModeNotifier,
-      builder: (context, _) {
-        final mode = themeModeNotifier.value;
-        return MaterialApp(
-          title: 'へぇのタネ',
-          debugShowCheckedModeBanner: false,
-          theme: _buildLightTheme(),
-          darkTheme: _buildDarkTheme(),
-          themeMode: mode,
-          home: HomeScreen(
-            allQuestions: widget.allQuestions,
-            allCards: widget.allCards,
-            saveRepository: widget.saveRepository,
-            rewardService: widget.rewardService,
-          ),
-        );
-      },
+    return SaveDependencies(
+      saveRepository: widget.saveRepository,
+      rewardService: widget.rewardService,
+      child: ListenableBuilder(
+        listenable: themeModeNotifier,
+        builder: (context, _) {
+          final mode = themeModeNotifier.value;
+          return MaterialApp(
+            title: 'へぇのタネ',
+            debugShowCheckedModeBanner: false,
+            theme: _buildLightTheme(),
+            darkTheme: _buildDarkTheme(),
+            themeMode: mode,
+            home: HomeScreen(
+              allQuestions: widget.allQuestions,
+              allCards: widget.allCards,
+              saveRepository: widget.saveRepository,
+              rewardService: widget.rewardService,
+            ),
+          );
+        },
+      ),
     );
   }
 

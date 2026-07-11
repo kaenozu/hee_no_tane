@@ -2,28 +2,34 @@
 ///
 /// 図鑑画面。カード一覧をグリッド表示し、カテゴリでフィルタリング可能。
 library;
+
 ///
 /// 関連:
 ///   - card_detail_screen.dart
 ///   - category_util.dart
+///   - ../../core/save_dependencies.dart
 ///   - ../../domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/core/save_dependencies.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/features/collection/category_util.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
+import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
 class CardListScreen extends StatefulWidget {
-  final SaveData saveData;
   final List<HeeCard> allCards;
+  final SaveRepository? saveRepository;
+  final RewardService? rewardService;
 
   const CardListScreen({
     super.key,
-    required this.saveData,
     required this.allCards,
+    this.saveRepository,
+    this.rewardService,
+    SaveData? saveData,
   });
 
   @override
@@ -32,16 +38,72 @@ class CardListScreen extends StatefulWidget {
 
 class _CardListScreenState extends State<CardListScreen> {
   String _selectedCategory = '';
+  SaveData? _saveData;
+  bool _loading = true;
+  String? _loadError;
+  bool _dependenciesResolved = false;
+  late SaveRepository _saveRepository;
+  late RewardService _rewardService;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_dependenciesResolved) return;
+
+    final inherited = SaveDependencies.maybeOf(context);
+    _saveRepository =
+        widget.saveRepository ??
+        inherited?.saveRepository ??
+        (throw FlutterError(
+          'CardListScreen requires a SaveRepository. Pass it explicitly or '
+          'wrap the app with SaveDependencies.',
+        ));
+    _rewardService =
+        widget.rewardService ??
+        inherited?.rewardService ??
+        (throw FlutterError(
+          'CardListScreen requires a RewardService. Pass it explicitly or '
+          'wrap the app with SaveDependencies.',
+        ));
+    _dependenciesResolved = true;
+    _load(initial: true);
+  }
+
+  Future<void> _load({bool initial = false}) async {
+    if (!initial && mounted) {
+      setState(() {
+        _loading = true;
+        _loadError = null;
+      });
+    }
+
+    try {
+      final data = await _saveRepository.loadOrThrow();
+      if (!mounted) return;
+      setState(() {
+        _saveData = data;
+        _loading = false;
+        _loadError = null;
+      });
+    } on SaveLoadException catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _loadError = e.message;
+      });
+    }
+  }
 
   List<HeeCard> get _displayCards {
+    final saveData = _saveData ?? SaveData();
     final filtered = _selectedCategory.isEmpty
         ? List<HeeCard>.from(widget.allCards)
         : widget.allCards
-              .where((c) => c.category == _selectedCategory)
+              .where((card) => card.category == _selectedCategory)
               .toList();
     filtered.sort((a, b) {
-      final aOwned = widget.saveData.ownedCardIds.contains(a.id);
-      final bOwned = widget.saveData.ownedCardIds.contains(b.id);
+      final aOwned = saveData.ownedCardIds.contains(a.id);
+      final bOwned = saveData.ownedCardIds.contains(b.id);
       if (aOwned && !bOwned) return -1;
       if (!aOwned && bOwned) return 1;
       return a.id.compareTo(b.id);
@@ -51,10 +113,72 @@ class _CardListScreenState extends State<CardListScreen> {
 
   Set<String> get _categories => widget.allCards.map((c) => c.category).toSet();
 
+  Future<void> _openCard(HeeCard card) async {
+    final saveData = _saveData;
+    if (saveData == null) return;
+    final isOwned = saveData.ownedCardIds.contains(card.id);
+
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CardDetailScreen(
+          card: card,
+          isOwned: isOwned,
+          rewardService: _rewardService,
+          saveRepository: _saveRepository,
+        ),
+      ),
+    );
+    if (!mounted) return;
+    await _load();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_loading) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('へぇ図鑑')),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_loadError != null) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('へぇ図鑑')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.error_outline, size: 36),
+                const SizedBox(height: 12),
+                const Text(
+                  '図鑑データを読み込めませんでした',
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  _loadError!,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 16),
+                FilledButton.icon(
+                  onPressed: _load,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('再試行'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    final saveData = _saveData ?? SaveData();
     final cs = Theme.of(context).colorScheme;
-    final owned = widget.saveData.ownedCardIds.length;
+    final owned = saveData.ownedCardIds.length;
     final total = widget.allCards.length;
 
     return Scaffold(
@@ -79,14 +203,14 @@ class _CardListScreenState extends State<CardListScreen> {
                     padding: const EdgeInsets.all(12),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.75,
-                    ),
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.75,
+                        ),
                     itemCount: _displayCards.length,
                     itemBuilder: (context, index) =>
-                        _cardTile(_displayCards[index], cs),
+                        _cardTile(_displayCards[index], saveData, cs),
                   ),
           ),
         ],
@@ -110,23 +234,13 @@ class _CardListScreenState extends State<CardListScreen> {
     );
   }
 
-  Widget _cardTile(HeeCard card, ColorScheme cs) {
-    final isOwned = widget.saveData.ownedCardIds.contains(card.id);
+  Widget _cardTile(HeeCard card, SaveData saveData, ColorScheme cs) {
+    final isOwned = saveData.ownedCardIds.contains(card.id);
     final catColor = categoryColor(card.category);
 
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => CardDetailScreen(
-            card: card,
-            isOwned: isOwned,
-            rewardService: RewardService(),
-            saveRepository: SaveRepository(),
-            saveData: widget.saveData,
-          ),
-        ),
-      ),
+      key: ValueKey('card-tile-${card.id}'),
+      onTap: () => _openCard(card),
       child: Container(
         decoration: BoxDecoration(
           color: isOwned
