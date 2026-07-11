@@ -26,7 +26,7 @@ void main() {
     expect(find.text('へぇのタネ'), findsOneWidget);
   });
 
-  testWidgets('App home shows today cards section', (
+  testWidgets('App home shows daily question section', (
     WidgetTester tester,
   ) async {
     SharedPreferences.setMockInitialValues({});
@@ -69,11 +69,13 @@ void main() {
         rewardService: RewardService(),
       ),
     );
-    for (var i = 0; i < 20 && find.text('今日の3枚').evaluate().isEmpty; i++) {
+    for (var i = 0; i < 20 && find.text('今日の1問').evaluate().isEmpty; i++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
 
-    expect(find.text('今日の3枚'), findsOneWidget);
+    expect(find.text('今日の1問'), findsOneWidget);
+    expect(find.text('約30秒'), findsOneWidget);
+    expect(find.text('今日の1問を始める'), findsOneWidget);
     expect(find.text('連続'), findsOneWidget);
     expect(find.text('図鑑'), findsOneWidget);
     expect(find.text('閲覧'), findsOneWidget);
