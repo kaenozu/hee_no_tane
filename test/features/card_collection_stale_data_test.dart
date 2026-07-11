@@ -34,7 +34,6 @@ Widget _detailApp({
   required bool isOwned,
   required FakeSaveRepository repository,
   required RewardService rewardService,
-  SaveData? staleData,
 }) {
   return MaterialApp(
     home: CardDetailScreen(
@@ -42,7 +41,6 @@ Widget _detailApp({
       isOwned: isOwned,
       saveRepository: repository,
       rewardService: rewardService,
-      saveData: staleData,
     ),
   );
 }
@@ -51,14 +49,12 @@ Widget _listApp({
   required List<HeeCard> cards,
   required FakeSaveRepository repository,
   required RewardService rewardService,
-  SaveData? staleData,
 }) {
   return MaterialApp(
     home: CardListScreen(
       allCards: cards,
       saveRepository: repository,
       rewardService: rewardService,
-      saveData: staleData,
     ),
   );
 }
@@ -91,19 +87,12 @@ void main() {
       );
       repository.setLoadedData(latest);
 
-      final stale = SaveData(
-        totalBrowseCount: 1,
-        streakDays: 1,
-        ownedCardIds: [cardA.id],
-      );
-
       await tester.pumpWidget(
         _detailApp(
           card: cardA,
           isOwned: true,
           repository: repository,
           rewardService: rewardService,
-          staleData: stale,
         ),
       );
       await tester.pumpAndSettle();
@@ -203,7 +192,6 @@ void main() {
           cards: [cardA, cardB],
           repository: repository,
           rewardService: rewardService,
-          staleData: SaveData(),
         ),
       );
       await tester.pumpAndSettle();
@@ -297,7 +285,7 @@ void main() {
       expect(repository.loadCallCount, greaterThanOrEqualTo(3));
     });
 
-    testWidgets('B4. app-level dependencies open CardList without new repos', (
+    testWidgets('B4. Home injects the app repository into CardList', (
       tester,
     ) async {
       repository.setLoadedData(SaveData(ownedCardIds: [cardA.id]));
