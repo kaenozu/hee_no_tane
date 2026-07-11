@@ -17,7 +17,6 @@ import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
@@ -35,7 +34,6 @@ class CardDetailScreen extends StatefulWidget {
     this.relatedQuestion,
     required this.rewardService,
     required this.saveRepository,
-    SaveData? saveData,
   });
 
   @override

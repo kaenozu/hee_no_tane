@@ -927,7 +927,6 @@ void main() {
             isOwned: true,
             rewardService: rewardService,
             saveRepository: failingRepo,
-            saveData: SaveData(ownedCardIds: [ownedCard.id]),
           ),
         ),
       );
@@ -956,7 +955,6 @@ void main() {
             isOwned: true,
             rewardService: rewardService,
             saveRepository: failingRepo,
-            saveData: SaveData(ownedCardIds: [ownedCard.id]),
           ),
         ),
       );

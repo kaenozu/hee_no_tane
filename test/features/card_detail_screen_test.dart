@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
@@ -18,7 +17,6 @@ void main() {
           isOwned: true,
           rewardService: RewardService(),
           saveRepository: SaveRepository(),
-          saveData: SaveData(ownedCardIds: [_card.id]),
         ),
       ),
     );
@@ -40,7 +38,6 @@ void main() {
           isOwned: false,
           rewardService: RewardService(),
           saveRepository: SaveRepository(),
-          saveData: SaveData(),
         ),
       ),
     );

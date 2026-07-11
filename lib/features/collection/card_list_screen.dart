@@ -7,11 +7,9 @@ library;
 /// 関連:
 ///   - card_detail_screen.dart
 ///   - category_util.dart
-///   - ../../core/save_dependencies.dart
 ///   - ../../domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/core/save_dependencies.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
@@ -21,16 +19,14 @@ import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
 class CardListScreen extends StatefulWidget {
   final List<HeeCard> allCards;
-  final SaveRepository? saveRepository;
-  final RewardService? rewardService;
-  final SaveData? saveData;
+  final SaveRepository saveRepository;
+  final RewardService rewardService;
 
   const CardListScreen({
     super.key,
     required this.allCards,
-    this.saveRepository,
-    this.rewardService,
-    this.saveData,
+    required this.saveRepository,
+    required this.rewardService,
   });
 
   @override
@@ -42,39 +38,11 @@ class _CardListScreenState extends State<CardListScreen> {
   SaveData? _saveData;
   bool _loading = true;
   String? _loadError;
-  bool _isFirstLoad = true;
-  late SaveRepository _saveRepository;
-  late RewardService _rewardService;
 
   @override
   void initState() {
     super.initState();
-    _saveData = widget.saveData;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    final inherited = SaveDependencies.maybeOf(context);
-    _saveRepository =
-        widget.saveRepository ??
-        inherited?.saveRepository ??
-        (throw FlutterError(
-          'CardListScreen requires a SaveRepository. Pass it explicitly or '
-          'wrap the app with SaveDependencies.',
-        ));
-    _rewardService =
-        widget.rewardService ??
-        inherited?.rewardService ??
-        (throw FlutterError(
-          'CardListScreen requires a RewardService. Pass it explicitly or '
-          'wrap the app with SaveDependencies.',
-        ));
-    if (_isFirstLoad) {
-      _isFirstLoad = false;
-      _load(initial: true);
-    }
+    _load(initial: true);
   }
 
   Future<void> _load({bool initial = false}) async {
@@ -86,7 +54,7 @@ class _CardListScreenState extends State<CardListScreen> {
     }
 
     try {
-      final data = await _saveRepository.loadOrThrow();
+      final data = await widget.saveRepository.loadOrThrow();
       if (!mounted) return;
       setState(() {
         _saveData = data;
@@ -132,8 +100,8 @@ class _CardListScreenState extends State<CardListScreen> {
         builder: (_) => CardDetailScreen(
           card: card,
           isOwned: isOwned,
-          rewardService: _rewardService,
-          saveRepository: _saveRepository,
+          rewardService: widget.rewardService,
+          saveRepository: widget.saveRepository,
         ),
       ),
     );
