@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
-import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
+import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
+import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
+
+import '../helpers/fake_save_repository.dart';
 
 void main() {
   final cards = [
@@ -39,15 +42,34 @@ void main() {
     ),
   ];
 
+  late FakeSaveRepository repository;
+  late RewardService rewardService;
+
+  Widget buildScreen({
+    required SaveData saveData,
+    List<HeeCard>? allCards,
+  }) {
+    repository.setLoadedData(saveData);
+    return MaterialApp(
+      home: CardListScreen(
+        allCards: allCards ?? cards,
+        saveRepository: repository,
+        rewardService: rewardService,
+      ),
+    );
+  }
+
+  setUp(() {
+    repository = FakeSaveRepository();
+    rewardService = RewardService();
+  });
+
   group('CardListScreen', () {
     testWidgets('shows owned card title and unowned as ???', (tester) async {
-      final saveData = SaveData(ownedCardIds: ['card_b']);
-
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: saveData, allCards: cards),
-        ),
+        buildScreen(saveData: SaveData(ownedCardIds: ['card_b'])),
       );
+      await tester.pumpAndSettle();
 
       expect(find.byType(CardListScreen), findsOneWidget);
       expect(find.text('星の話'), findsOneWidget);
@@ -55,13 +77,12 @@ void main() {
     });
 
     testWidgets('category filter shows matching cards', (tester) async {
-      final saveData = SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']);
-
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: saveData, allCards: cards),
+        buildScreen(
+          saveData: SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']),
         ),
       );
+      await tester.pumpAndSettle();
 
       expect(find.text('山の名前'), findsOneWidget);
       expect(find.text('星の話'), findsOneWidget);
@@ -76,13 +97,12 @@ void main() {
     });
 
     testWidgets('selecting all brings back all cards', (tester) async {
-      final saveData = SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']);
-
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: saveData, allCards: cards),
+        buildScreen(
+          saveData: SaveData(ownedCardIds: ['card_a', 'card_b', 'card_c']),
         ),
       );
+      await tester.pumpAndSettle();
 
       await tester.tap(find.text('科学'));
       await tester.pumpAndSettle();
@@ -98,39 +118,34 @@ void main() {
 
     testWidgets('shows empty message when no cards', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: SaveData(), allCards: const []),
-        ),
+        buildScreen(saveData: SaveData(), allCards: const []),
       );
+      await tester.pumpAndSettle();
 
       expect(find.text('カードがありません'), findsOneWidget);
     });
 
     testWidgets('app bar shows owned count', (tester) async {
-      final saveData = SaveData(ownedCardIds: ['card_a']);
-
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: saveData, allCards: cards),
-        ),
+        buildScreen(saveData: SaveData(ownedCardIds: ['card_a'])),
       );
+      await tester.pumpAndSettle();
 
       expect(find.text('へぇ図鑑 (1/3)'), findsOneWidget);
     });
 
     testWidgets('tapping card navigates to detail screen', (tester) async {
-      final saveData = SaveData(ownedCardIds: ['card_a']);
-
       await tester.pumpWidget(
-        MaterialApp(
-          home: CardListScreen(saveData: saveData, allCards: cards),
-        ),
+        buildScreen(saveData: SaveData(ownedCardIds: ['card_a'])),
       );
+      await tester.pumpAndSettle();
 
       await tester.tap(find.text('山の名前'));
       await tester.pumpAndSettle();
 
       expect(find.byType(CardDetailScreen), findsOneWidget);
+      expect(repository.loadCallCount, greaterThanOrEqualTo(2));
+      expect(repository.saveCallCount, 1);
     });
   });
 }
