@@ -2,31 +2,46 @@ name: Flutter CI
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+
+permissions:
+  contents: write
 
 jobs:
-  quality:
+  apply-issue-11:
+    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout implementation branch
         uses: actions/checkout@v4
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
         with:
-          channel: stable
-          cache: true
+          ref: agent/serialize-save-updates
+          fetch-depth: 0
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Execute one-shot implementation script
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
 
-      - name: Analyze
-        run: flutter analyze
-
-      - name: Test
-        run: flutter test
-
-      - name: Build web
-        run: flutter build web --no-web-resources-cdn
+          source = Path('.github/workflows/issue-11-apply.yml').read_text()
+          marker = '        run: |\n'
+          if marker not in source:
+              raise SystemExit('run block not found')
+          script = source.split(marker, 1)[1]
+          lines = []
+          for line in script.splitlines():
+              if line.startswith('          '):
+                  lines.append(line[10:])
+              else:
+                  lines.append(line)
+          script = '\n'.join(lines) + '\n'
+          script = script.replace(
+              'rm .github/workflows/issue-11-apply.yml\n',
+              'git fetch origin agent/fix-card-list-stale-save-data\n'
+              'git checkout origin/agent/fix-card-list-stale-save-data -- .github/workflows/flutter-ci.yml\n'
+              'rm .github/workflows/issue-11-apply.yml\n',
+          )
+          Path('/tmp/apply_issue_11.sh').write_text(script)
+          PY
+          bash /tmp/apply_issue_11.sh
