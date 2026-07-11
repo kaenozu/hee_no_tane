@@ -26,7 +26,7 @@ jobs:
         run: flutter analyze
 
       - name: Test
-        run: flutter test
+        run: flutter test --concurrency=1
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
