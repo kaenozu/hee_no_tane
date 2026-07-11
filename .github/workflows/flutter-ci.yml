@@ -25,17 +25,8 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-      - name: Test collection regressions
-        run: flutter test test/features/card_collection_stale_data_test.dart --reporter expanded
-
-      - name: Test daily question regressions
-        run: flutter test test/features/daily_question_screen_test.dart --reporter expanded
-
-      - name: Test fake repository
-        run: flutter test test/helpers/fake_save_repository_test.dart --reporter expanded
-
-      - name: Test app widgets
-        run: flutter test test/widget_test.dart --reporter expanded
+      - name: Test
+        run: flutter test
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
