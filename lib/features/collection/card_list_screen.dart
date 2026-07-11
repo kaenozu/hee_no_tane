@@ -129,10 +129,7 @@ class _CardListScreenState extends State<CardListScreen> {
               children: [
                 const Icon(Icons.error_outline, size: 36),
                 const SizedBox(height: 12),
-                const Text(
-                  '図鑑データを読み込めませんでした',
-                  textAlign: TextAlign.center,
-                ),
+                const Text('図鑑データを読み込めませんでした', textAlign: TextAlign.center),
                 const SizedBox(height: 6),
                 Text(
                   _loadError!,

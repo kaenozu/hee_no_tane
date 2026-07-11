@@ -61,7 +61,6 @@ void main() {
             relatedCard: card,
             saveRepository: repository,
             rewardService: RewardService(),
-            saveData: SaveData(),
           ),
         ),
       );

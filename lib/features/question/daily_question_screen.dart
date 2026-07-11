@@ -16,7 +16,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/core/date_utils.dart';
@@ -28,13 +27,11 @@ import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 /// [relatedCard] 問題に関連するカード。
 /// [saveRepository] セーブデータ永続化。
 /// [rewardService] カード獲得ロジック。
-/// [saveData] 現在のセーブデータ。
 class DailyQuestionScreen extends StatefulWidget {
   final Question question;
   final HeeCard? relatedCard;
   final SaveRepository saveRepository;
   final RewardService rewardService;
-  final SaveData saveData;
 
   const DailyQuestionScreen({
     super.key,
@@ -42,7 +39,6 @@ class DailyQuestionScreen extends StatefulWidget {
     this.relatedCard,
     required this.saveRepository,
     required this.rewardService,
-    required this.saveData,
   });
 
   @override

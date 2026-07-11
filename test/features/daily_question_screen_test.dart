@@ -32,7 +32,6 @@ Widget buildDailyQuestionScreen({
       relatedCard: relatedCard,
       saveRepository: saveRepository,
       rewardService: rewardService,
-      saveData: saveData ?? SaveData(),
     ),
   );
 }
@@ -80,7 +79,6 @@ Future<void> pushDailyQuestionScreen(
                   relatedCard: relatedCard,
                   saveRepository: saveRepository,
                   rewardService: rewardService,
-                  saveData: saveData ?? SaveData(),
                 ),
               ),
             );
@@ -173,7 +171,6 @@ void main() {
         relatedCard: cards[0],
         saveRepository: fakeRepo,
         rewardService: rewardService,
-        saveData: saveData,
       ),
     );
     await tester.pumpAndSettle();
