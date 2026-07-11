@@ -25,8 +25,17 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-      - name: Test
-        run: flutter test --concurrency=1
+      - name: Test collection with daily question
+        run: flutter test --concurrency=1 test/features/card_collection_stale_data_test.dart test/features/daily_question_screen_test.dart
+
+      - name: Test collection with fake repository
+        run: flutter test --concurrency=1 test/features/card_collection_stale_data_test.dart test/helpers/fake_save_repository_test.dart
+
+      - name: Test collection with app widgets
+        run: flutter test --concurrency=1 test/features/card_collection_stale_data_test.dart test/widget_test.dart
+
+      - name: Test existing suites together
+        run: flutter test --concurrency=1 test/features/daily_question_screen_test.dart test/helpers/fake_save_repository_test.dart test/widget_test.dart
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
