@@ -2,7 +2,6 @@
 ///
 /// 設定画面。データリセット・アプリ情報を表示。
 library;
-
 ///
 /// 関連:
 ///   - ../../data/repositories/save_repository.dart

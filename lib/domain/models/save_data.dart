@@ -2,7 +2,6 @@
 ///
 /// 永続化データモデル。
 library;
-
 /// カード収集・ストリーク・プレイ統計・設定を保持する。
 ///
 /// 関連:
@@ -15,7 +14,9 @@ import 'package:flutter/material.dart';
 class GameSettings {
   final ThemeMode themeMode;
 
-  const GameSettings({this.themeMode = ThemeMode.system});
+  const GameSettings({
+    this.themeMode = ThemeMode.system,
+  });
 
   factory GameSettings.fromJson(Map<String, dynamic> json) {
     return GameSettings(
@@ -23,10 +24,16 @@ class GameSettings {
     );
   }
 
-  Map<String, dynamic> toJson() => {'themeMode': themeMode.name};
+  Map<String, dynamic> toJson() => {
+    'themeMode': themeMode.name,
+  };
 
-  GameSettings copyWith({ThemeMode? themeMode}) {
-    return GameSettings(themeMode: themeMode ?? this.themeMode);
+  GameSettings copyWith({
+    ThemeMode? themeMode,
+  }) {
+    return GameSettings(
+      themeMode: themeMode ?? this.themeMode,
+    );
   }
 
   static ThemeMode _parseThemeMode(String? value) {
@@ -68,14 +75,14 @@ class SaveData {
   factory SaveData.fromJson(Map<String, dynamic> json) {
     return SaveData(
       version: json['version'] as int? ?? 2,
-      totalBrowseCount:
-          json['totalBrowseCount'] as int? ??
+      totalBrowseCount: json['totalBrowseCount'] as int? ??
           (json['totalPlayCount'] as int? ?? 0),
       totalPlayCount: json['totalPlayCount'] as int? ?? 0,
       streakDays: json['streakDays'] as int? ?? 0,
       lastPlayedDate: json['lastPlayedDate'] as String? ?? '',
       lastRewardDate: json['lastRewardDate'] as String? ?? '',
-      lastDailyQuestionDate: json['lastDailyQuestionDate'] as String? ?? '',
+      lastDailyQuestionDate:
+          json['lastDailyQuestionDate'] as String? ?? '',
       ownedCardIds: List<String>.from(json['ownedCardIds'] as List? ?? []),
       settings: json['settings'] != null
           ? GameSettings.fromJson(json['settings'] as Map<String, dynamic>)
