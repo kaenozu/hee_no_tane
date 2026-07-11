@@ -96,7 +96,7 @@ class SaveRepository {
 
     _updateTail = operation.then<void>(
       (_) {},
-      onError: (Object _, StackTrace __) {},
+      onError: (Object _, StackTrace _) {},
     );
     return operation;
   }
