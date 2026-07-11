@@ -23,13 +23,14 @@ class CardListScreen extends StatefulWidget {
   final List<HeeCard> allCards;
   final SaveRepository? saveRepository;
   final RewardService? rewardService;
+  final SaveData? saveData;
 
   const CardListScreen({
     super.key,
     required this.allCards,
     this.saveRepository,
     this.rewardService,
-    SaveData? saveData,
+    this.saveData,
   });
 
   @override
@@ -41,14 +42,19 @@ class _CardListScreenState extends State<CardListScreen> {
   SaveData? _saveData;
   bool _loading = true;
   String? _loadError;
-  bool _dependenciesResolved = false;
+  bool _isFirstLoad = true;
   late SaveRepository _saveRepository;
   late RewardService _rewardService;
 
   @override
+  void initState() {
+    super.initState();
+    _saveData = widget.saveData;
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_dependenciesResolved) return;
 
     final inherited = SaveDependencies.maybeOf(context);
     _saveRepository =
@@ -65,8 +71,10 @@ class _CardListScreenState extends State<CardListScreen> {
           'CardListScreen requires a RewardService. Pass it explicitly or '
           'wrap the app with SaveDependencies.',
         ));
-    _dependenciesResolved = true;
-    _load(initial: true);
+    if (_isFirstLoad) {
+      _isFirstLoad = false;
+      _load(initial: true);
+    }
   }
 
   Future<void> _load({bool initial = false}) async {
