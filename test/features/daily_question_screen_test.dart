@@ -171,6 +171,7 @@ void main() {
         relatedCard: cards[0],
         saveRepository: fakeRepo,
         rewardService: rewardService,
+        saveData: saveData,
       ),
     );
     await tester.pumpAndSettle();
