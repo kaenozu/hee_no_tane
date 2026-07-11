@@ -2,20 +2,16 @@ name: Flutter CI
 
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  capture-analyze:
-    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout implementation branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: agent/serialize-save-updates
-          fetch-depth: 0
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -23,20 +19,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Capture analyze output
-        shell: bash
-        run: |
-          set -euo pipefail
-          flutter pub get
-          set +e
-          flutter analyze > .github/issue11-analyze-output.txt 2>&1
-          status=$?
-          set -e
-          git fetch origin agent/fix-card-list-stale-save-data
-          git checkout origin/agent/fix-card-list-stale-save-data -- .github/workflows/flutter-ci.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/issue11-analyze-output.txt .github/workflows/flutter-ci.yml
-          git commit -m "Record Issue 11 analyze output"
-          git push origin HEAD:agent/serialize-save-updates
-          exit "$status"
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
