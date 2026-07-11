@@ -62,8 +62,15 @@ class FakeSaveRepository extends SaveRepository {
     final snapshot = SaveData.fromJson(data.toJson());
     lastSavedData = snapshot;
     savedDataHistory.add(snapshot);
-    if (_completer != null) {
-      await _completer!.future;
+
+    final pendingCompleter = _completer;
+    if (pendingCompleter != null) {
+      await pendingCompleter.future;
+      // 保存成功後のみ _loadedData を更新する。
+      _loadedData = snapshot;
+    } else {
+      // Completerなしの即時保存
+      _loadedData = snapshot;
     }
   }
 }

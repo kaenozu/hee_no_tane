@@ -764,4 +764,186 @@ void main() {
       expect(find.text('DummyHome'), findsOneWidget);
     });
   });
+
+  // ──────────────────────────────────────────────
+  // E. ホーム画面の再読込
+  // ──────────────────────────────────────────────
+
+  group('E. home refresh after quiz', () {
+    /// DailyQuestionScreen を push する前の HomeScreen を表示する。
+    Widget buildHomePushingToQuiz() {
+      return MaterialApp(
+        home: HomeScreen(
+          allQuestions: questions,
+          allCards: cards,
+          saveRepository: fakeRepo,
+          rewardService: rewardService,
+        ),
+      );
+    }
+
+    testWidgets('E1. system back after save success refreshes home', (
+      tester,
+    ) async {
+      fakeRepo.setLoadedData(SaveData());
+
+      await tester.pumpWidget(buildHomePushingToQuiz());
+      await tester.pumpAndSettle();
+
+      // 今日の1問を開始
+      await tester.tap(find.text('今日の1問を始める'));
+      await tester.pumpAndSettle();
+
+      fakeRepo.holdNextSave();
+      await tester.tap(find.text('A'));
+      await tester.pump();
+
+      fakeRepo.completeSave();
+      await tester.pumpAndSettle();
+
+      // システム戻る
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      // ホームが再読込され、回答済み状態が表示される
+      expect(find.text('今日の1問を始める'), findsNothing);
+      expect(find.text('今日の1問は完了しました'), findsOneWidget);
+    });
+
+    testWidgets('E2. AppBar back after save success refreshes home', (
+      tester,
+    ) async {
+      fakeRepo.setLoadedData(SaveData());
+
+      await tester.pumpWidget(buildHomePushingToQuiz());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('今日の1問を始める'));
+      await tester.pumpAndSettle();
+
+      fakeRepo.holdNextSave();
+      await tester.tap(find.text('A'));
+      await tester.pump();
+
+      fakeRepo.completeSave();
+      await tester.pumpAndSettle();
+
+      // AppBarの戻るボタン（root routeではIcons.arrow_backが出ないので、
+      // ホームへ戻るFilledButtonをタップ）
+      await tester.drag(
+        find.byType(SingleChildScrollView),
+        const Offset(0, -300),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'ホームへ戻る'));
+      await tester.pumpAndSettle();
+
+      // ホームが再読込され、回答済み状態が表示される
+      expect(find.text('今日の1問を始める'), findsNothing);
+      expect(find.text('今日の1問は完了しました'), findsOneWidget);
+    });
+
+    testWidgets('E3. back before answering keeps unanswered state', (
+      tester,
+    ) async {
+      fakeRepo.setLoadedData(SaveData());
+
+      await tester.pumpWidget(buildHomePushingToQuiz());
+      await tester.pumpAndSettle();
+
+      expect(find.text('今日の1問を始める'), findsOneWidget);
+
+      // 今日の1問を開始
+      await tester.tap(find.text('今日の1問を始める'));
+      await tester.pumpAndSettle();
+
+      // 回答せずに戻る
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+
+      // ホームが再読込され、未回答状態が維持される
+      expect(find.text('今日の1問を始める'), findsOneWidget);
+      expect(find.text('今日の1問は完了しました'), findsNothing);
+    });
+  });
+
+  // ──────────────────────────────────────────────
+  // F. カード詳細の保存失敗
+  // ──────────────────────────────────────────────
+
+  group('F. card detail save failure', () {
+    late FakeSaveRepository failingRepo;
+    late HeeCard ownedCard;
+
+    setUp(() {
+      failingRepo = FakeSaveRepository();
+      ownedCard = HeeCard(
+        id: 'card_viewed',
+        title: '閲覧テストカード',
+        category: 'science',
+        shortText: '短い説明',
+        detailText: '詳細な説明文',
+        imageAsset: '',
+        rarity: 'normal',
+        sourceNote: 'テスト出典',
+      );
+    });
+
+    testWidgets('F1. save failure does not crash card detail', (tester) async {
+      failingRepo.holdNextSave();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: CardDetailScreen(
+            card: ownedCard,
+            isOwned: true,
+            rewardService: rewardService,
+            saveRepository: failingRepo,
+            saveData: SaveData(ownedCardIds: [ownedCard.id]),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      failingRepo.failSave();
+      await tester.pumpAndSettle();
+
+      // 未処理例外がない
+      expect(tester.takeException(), isNull);
+
+      // 画面が表示されている
+      expect(find.byType(CardDetailScreen), findsOneWidget);
+      expect(find.text(ownedCard.title), findsOneWidget);
+      expect(find.text(ownedCard.detailText), findsOneWidget);
+      expect(failingRepo.saveCallCount, 1);
+    });
+
+    testWidgets('F2. save success on card detail works normally', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: CardDetailScreen(
+            card: ownedCard,
+            isOwned: true,
+            rewardService: rewardService,
+            saveRepository: failingRepo,
+            saveData: SaveData(ownedCardIds: [ownedCard.id]),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      // 保存が1回呼ばれている
+      expect(failingRepo.saveCallCount, 1);
+
+      // 更新されたSaveDataが渡されている（totalBrowseCount >= 1）
+      final saved = failingRepo.lastSavedData!;
+      expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
+
+      // 画面が正常に表示されている
+      expect(find.text(ownedCard.title), findsOneWidget);
+      expect(find.text(ownedCard.detailText), findsOneWidget);
+    });
+  });
 }

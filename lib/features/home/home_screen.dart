@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// 今日の1問を開始する。
   Future<void> _startDailyQuestion() async {
     if (_todayQuestion == null) return;
-    final result = await Navigator.push<bool>(
+    await Navigator.push<bool>(
       context,
       MaterialPageRoute(
         builder: (_) => DailyQuestionScreen(
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
     if (!mounted) return;
-    if (result == true) await _load();
+    await _load();
   }
 
   /// カード詳細画面へ遷移する。
