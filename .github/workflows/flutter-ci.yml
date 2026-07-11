@@ -17,10 +17,17 @@ jobs:
           ref: agent/serialize-save-updates
           fetch-depth: 0
 
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
       - name: Execute one-shot implementation script with diagnostics
         shell: bash
         run: |
           set -u
+          rm -f .github/issue11-apply-error.txt
           python3 - <<'PY'
           from pathlib import Path
 
