@@ -1,0 +1,75 @@
+te() {
+     super.initState();
+-    _saveData = widget.saveData;
+-  }
+-
+-  @override
+-  void didChangeDependencies() {
+-    super.didChangeDependencies();
+-
+-    final inherited = SaveDependencies.maybeOf(context);
+-    _saveRepository =
+-        widget.saveRepository ??
+-        inherited?.saveRepository ??
+-        (throw FlutterError(
+-          'CardListScreen requires a SaveRepository. Pass it explicitly or '
+-          'wrap the app with SaveDependencies.',
+-        ));
+-    _rewardService =
+-        widget.rewardService ??
+-        inherited?.rewardService ??
+-        (throw FlutterError(
+-          'CardListScreen requires a RewardService. Pass it explicitly or '
+-          'wrap the app with SaveDependencies.',
+-        ));
+-    if (_isFirstLoad) {
+-      _isFirstLoad = false;
+-      _load(initial: true);
+-    }
++    _load(initial: true);
+   }
+ 
+   Future<void> _load({bool initial = false}) async {
+@@ -86,7 +54,7 @@
+     }
+ 
+     try {
+-      final data = await _saveRepository.loadOrThrow();
++      final data = await widget.saveRepository.loadOrThrow();
+       if (!mounted) return;
+       setState(() {
+         _saveData = data;
+@@ -132,8 +100,8 @@
+         builder: (_) => CardDetailScreen(
+           card: card,
+           isOwned: isOwned,
+-          rewardService: _rewardService,
+-          saveRepository: _saveRepository,
++          rewardService: widget.rewardService,
++          saveRepository: widget.saveRepository,
+         ),
+       ),
+     );
+diff -ruN a/lib/features/home/home_screen.dart b/lib/features/home/home_screen.dart
+--- a/lib/features/home/home_screen.dart	2026-07-11 13:05:30.969458859 +0000
++++ b/lib/features/home/home_screen.dart	2026-07-11 13:05:31.031405574 +0000
+@@ -116,7 +116,6 @@
+           relatedQuestion: _todayQuestion,
+           rewardService: widget.rewardService,
+           saveRepository: widget.saveRepository,
+-          saveData: _saveData,
+         ),
+       ),
+     );
+@@ -466,8 +465,9 @@
+                   context,
+                   MaterialPageRoute(
+                     builder: (_) => CardListScreen(
+-                      saveData: _saveData,
+                       allCards: widget.allCards,
++                      saveRepository: widget.saveRepository,
++                      rewardService: widget.rewardService,
+                     ),
+                   ),
+                 ).then((_) => _load());
+diff -ruN a
