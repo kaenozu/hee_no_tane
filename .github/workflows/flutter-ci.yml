@@ -13,6 +13,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Upload edit sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-9-edit-sources
+          path: |
+            lib/features/home/home_screen.dart
+            lib/features/question/daily_question_screen.dart
+            lib/features/collection/card_list_screen.dart
+            lib/features/collection/card_detail_screen.dart
+            test/features/daily_question_screen_test.dart
+            test/features/card_detail_screen_test.dart
+          if-no-files-found: error
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
