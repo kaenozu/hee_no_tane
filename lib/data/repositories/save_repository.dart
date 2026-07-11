@@ -36,8 +36,8 @@ class SaveException implements Exception {
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
 
-  /// update() calls are chained so load-transform-save runs one at a time.
-  Future<void> _updateTail = Future<void>.value();
+  /// Pending serialized update. Null when no update is running or queued.
+  Future<void>? _updateTail;
 
   /// 既存画面向けのベストエフォート読込。
   ///
@@ -87,18 +87,31 @@ class SaveRepository {
   /// Calls on the same repository instance run in FIFO order. A failed update
   /// is reported to its caller but does not block later updates.
   Future<SaveData> update(SaveData Function(SaveData current) updater) {
-    final operation = _updateTail.then((_) async {
-      final current = await loadOrThrow();
-      final updated = updater(current);
-      await save(updated);
-      return updated;
-    });
+    final previous = _updateTail;
+    final operation = previous == null
+        ? _runUpdate(updater)
+        : previous.then((_) => _runUpdate(updater));
 
-    _updateTail = operation.then<void>(
+    final tail = operation.then<void>(
       (_) {},
       onError: (Object _, StackTrace _) {},
     );
+    _updateTail = tail;
+    tail.whenComplete(() {
+      if (identical(_updateTail, tail)) {
+        _updateTail = null;
+      }
+    });
     return operation;
+  }
+
+  Future<SaveData> _runUpdate(
+    SaveData Function(SaveData current) updater,
+  ) async {
+    final current = await loadOrThrow();
+    final updated = updater(current);
+    await save(updated);
+    return updated;
   }
 
   Future<void> reset() async {
