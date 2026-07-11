@@ -1,0 +1,321 @@
+name: Apply Issue 11 implementation
+
+on:
+  push:
+    branches:
+      - agent/serialize-save-updates
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.event.head_commit.message != 'Implement serialized save updates'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout implementation branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/serialize-save-updates
+          fetch-depth: 0
+
+      - name: Apply implementation and tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = Path(path)
+              text = p.read_text()
+              if old not in text:
+                  raise SystemExit(f'Expected block not found in {path}: {old[:100]!r}')
+              p.write_text(text.replace(old, new, 1))
+
+          replace_once(
+              'lib/data/repositories/save_repository.dart',
+              "class SaveRepository {\n  static const _key = 'hee_no_tane_save_data';\n",
+              "class SaveRepository {\n  static const _key = 'hee_no_tane_save_data';\n\n  /// update() calls are chained so load-transform-save runs one at a time.\n  Future<void> _updateTail = Future<void>.value();\n",
+          )
+
+          replace_once(
+              'lib/data/repositories/save_repository.dart',
+              "  Future<void> reset() async {\n",
+              "  /// Atomically applies [updater] to the latest save data.\n  ///\n  /// Calls on the same repository instance run in FIFO order. A failed update\n  /// is reported to its caller but does not block later updates.\n  Future<SaveData> update(\n    SaveData Function(SaveData current) updater,\n  ) {\n    final operation = _updateTail.then((_) async {\n      final current = await loadOrThrow();\n      final updated = updater(current);\n      await save(updated);\n      return updated;\n    });\n\n    _updateTail = operation.then<void>(\n      (_) {},\n      onError: (Object _, StackTrace __) {},\n    );\n    return operation;\n  }\n\n  Future<void> reset() async {\n",
+          )
+
+          replace_once(
+              'lib/features/collection/card_detail_screen.dart',
+              """    try {\n      final current = await widget.saveRepository.loadOrThrow();\n      final updated = widget.rewardService.updatePlayStats(\n        current,\n        todayDateString(),\n      );\n      await widget.saveRepository.save(updated);\n    } on SaveLoadException catch (e, stackTrace) {\n""",
+              """    try {\n      await widget.saveRepository.update(\n        (current) => widget.rewardService.updatePlayStats(\n          current,\n          todayDateString(),\n        ),\n      );\n    } on SaveLoadException catch (e, stackTrace) {\n""",
+          )
+
+          replace_once(
+              'lib/features/question/daily_question_screen.dart',
+              """  /// 回答時に一度だけ作成される保存予定データ。再試行時に再利用。\n  SaveData? _pendingSaveData;\n\n  /// 関連カードがすでに所有されていたか。\n  bool _cardWasOwned = false;\n\n  @override\n  void initState() {\n    super.initState();\n    _cardWasOwned =\n        widget.relatedCard != null &&\n        widget.saveData.ownedCardIds.contains(widget.relatedCard!.id);\n  }\n""",
+              """  /// 回答日。保存失敗後の再試行でも同じ日付を使用する。\n  String? _answerDate;\n\n  /// 回答処理開始時点で関連カードを所有していたか。\n  bool? _cardWasOwnedBeforeAnswer;\n""",
+          )
+
+          replace_once(
+              'lib/features/question/daily_question_screen.dart',
+              """  /// 解答を処理し、保存予定データを作成して永続化を開始する。\n  Future<void> _answer(int index) async {\n    if (!_canAnswer) return;\n\n    final dateStr = todayDateString();\n    final card = widget.relatedCard;\n\n    // 一度だけSaveDataを作成する。\n    var pending = widget.rewardService.updatePlayStats(\n      widget.saveData,\n      dateStr,\n    );\n    pending = pending.copyWith(lastDailyQuestionDate: dateStr);\n\n    if (card != null && !_cardWasOwned) {\n      pending = widget.rewardService.applyReward(pending, card);\n    }\n\n    setState(() {\n      _selectedAnswerIndex = index;\n      _saving = true;\n      _saveError = null;\n      _pendingSaveData = pending;\n    });\n\n    await _doSave(pending);\n  }\n\n  /// 保存を実行する。（初回回答・再試行の共通処理）\n  Future<void> _doSave(SaveData data) async {\n    try {\n      await widget.saveRepository.save(data);\n      if (!mounted) return;\n      setState(() {\n        _saving = false;\n        _saveSucceeded = true;\n        _saveError = null;\n      });\n    } catch (e) {\n      if (!mounted) return;\n      setState(() {\n        _saving = false;\n        _saveSucceeded = false;\n        _saveError = e is SaveException\n            ? e.message\n            : '回答の保存に失敗しました。もう一度お試しください。';\n      });\n    }\n  }\n\n  /// 保存を再試行する。_pendingSaveDataを再利用するため二重加算は発生しない。\n  Future<void> _retrySave() async {\n    if (_saveSucceeded || _saving || _pendingSaveData == null) return;\n    setState(() {\n      _saving = true;\n      _saveError = null;\n    });\n    await _doSave(_pendingSaveData!);\n  }\n""",
+              """  /// 解答を処理し、Repository上の最新データへ回答差分を適用する。\n  Future<void> _answer(int index) async {\n    if (!_canAnswer) return;\n\n    setState(() {\n      _selectedAnswerIndex = index;\n      _saving = true;\n      _saveError = null;\n      _answerDate = todayDateString();\n    });\n\n    await _doSave();\n  }\n\n  /// 保存を実行する。（初回回答・再試行の共通処理）\n  Future<void> _doSave() async {\n    final dateStr = _answerDate;\n    if (dateStr == null) return;\n\n    try {\n      await widget.saveRepository.update((current) {\n        final card = widget.relatedCard;\n\n        // 保存成功後に応答を受け取れなかった場合の再試行を冪等化する。\n        if (current.lastDailyQuestionDate == dateStr) {\n          _cardWasOwnedBeforeAnswer ??= true;\n          return current;\n        }\n\n        if (card != null) {\n          _cardWasOwnedBeforeAnswer ??= current.ownedCardIds.contains(card.id);\n        }\n\n        var updated = widget.rewardService.updatePlayStats(current, dateStr);\n        updated = updated.copyWith(lastDailyQuestionDate: dateStr);\n\n        if (card != null && !current.ownedCardIds.contains(card.id)) {\n          updated = widget.rewardService.applyReward(updated, card);\n        }\n        return updated;\n      });\n\n      if (!mounted) return;\n      setState(() {\n        _saving = false;\n        _saveSucceeded = true;\n        _saveError = null;\n      });\n    } catch (e) {\n      if (!mounted) return;\n      setState(() {\n        _saving = false;\n        _saveSucceeded = false;\n        _saveError = switch (e) {\n          SaveException() => e.message,\n          SaveLoadException() => e.message,\n          _ => '回答の保存に失敗しました。もう一度お試しください。',\n        };\n      });\n    }\n  }\n\n  /// 同じ回答日でupdateを再実行し、保存済みなら差分を適用しない。\n  Future<void> _retrySave() async {\n    if (_saveSucceeded || _saving || _answerDate == null) return;\n    setState(() {\n      _saving = true;\n      _saveError = null;\n    });\n    await _doSave();\n  }\n""",
+          )
+
+          replace_once(
+              'lib/features/question/daily_question_screen.dart',
+              "    final isNew = !_cardWasOwned;\n",
+              "    final isNew = !(_cardWasOwnedBeforeAnswer ?? true);\n",
+          )
+
+          replace_once(
+              'test/features/daily_question_screen_test.dart',
+              """}) {\n  return MaterialApp(\n    home: DailyQuestionScreen(\n""",
+              """}) {\n  if (saveRepository is FakeSaveRepository && saveData != null) {\n    saveRepository.setLoadedData(saveData);\n  }\n  return MaterialApp(\n    home: DailyQuestionScreen(\n""",
+          )
+
+          replace_once(
+              'test/features/daily_question_screen_test.dart',
+              """}) async {\n  await tester.pumpWidget(\n    MaterialApp(\n""",
+              """}) async {\n  if (saveRepository is FakeSaveRepository && saveData != null) {\n    saveRepository.setLoadedData(saveData);\n  }\n  await tester.pumpWidget(\n    MaterialApp(\n""",
+          )
+          PY
+
+          mkdir -p test/data
+          cat > test/data/save_repository_update_test.dart <<'DART'
+          import 'package:flutter/material.dart';
+          import 'package:flutter_test/flutter_test.dart';
+          import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+          import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+          import 'package:hee_no_tane_app/domain/models/save_data.dart';
+          import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+
+          import '../helpers/fake_save_repository.dart';
+
+          void main() {
+            group('SaveRepository.update', () {
+              late FakeSaveRepository repository;
+
+              setUp(() {
+                repository = FakeSaveRepository();
+                repository.setLoadedData(SaveData());
+              });
+
+              test('U1. concurrent updates run FIFO and preserve both changes', () async {
+                repository.holdNextSave();
+
+                final first = repository.update(
+                  (current) => current.copyWith(
+                    totalBrowseCount: current.totalBrowseCount + 1,
+                  ),
+                );
+                await pumpEventQueue();
+                expect(repository.loadCallCount, 1);
+                expect(repository.saveCallCount, 1);
+
+                final second = repository.update(
+                  (current) => current.copyWith(
+                    ownedCardIds: [...current.ownedCardIds, 'card_a'],
+                  ),
+                );
+                await pumpEventQueue();
+
+                expect(repository.loadCallCount, 1);
+                repository.completeSave();
+
+                await first;
+                final result = await second;
+                expect(result.totalBrowseCount, 1);
+                expect(result.ownedCardIds, ['card_a']);
+                expect(repository.loadCallCount, 2);
+                expect(repository.saveCallCount, 2);
+              });
+
+              test('U2. card view and daily answer updates both survive', () async {
+                const today = '2026-07-12';
+                final rewardService = RewardService();
+                final card = HeeCard(
+                  id: 'card_daily',
+                  title: '競合テストカード',
+                  category: 'science',
+                  shortText: '短文',
+                  detailText: '詳細',
+                  imageAsset: '',
+                  rarity: 'normal',
+                  sourceNote: '出典',
+                );
+                repository.setLoadedData(
+                  SaveData(settings: const GameSettings(themeMode: ThemeMode.dark)),
+                );
+                repository.holdNextSave();
+
+                final cardView = repository.update(
+                  (current) => rewardService.updatePlayStats(current, today),
+                );
+                await pumpEventQueue();
+
+                final dailyAnswer = repository.update((current) {
+                  if (current.lastDailyQuestionDate == today) return current;
+                  var updated = rewardService.updatePlayStats(current, today);
+                  updated = updated.copyWith(lastDailyQuestionDate: today);
+                  return rewardService.applyReward(updated, card);
+                });
+
+                repository.completeSave();
+                await cardView;
+                final result = await dailyAnswer;
+
+                expect(result.totalBrowseCount, 2);
+                expect(result.lastDailyQuestionDate, today);
+                expect(result.ownedCardIds, [card.id]);
+                expect(result.settings.themeMode, ThemeMode.dark);
+              });
+
+              test('U3. load failure skips save', () async {
+                repository.failLoads();
+
+                await expectLater(
+                  repository.update((current) => current),
+                  throwsA(isA<SaveLoadException>()),
+                );
+                expect(repository.saveCallCount, 0);
+              });
+
+              test('U4. updater failure skips save', () async {
+                await expectLater(
+                  repository.update((_) => throw StateError('updater failed')),
+                  throwsA(isA<StateError>()),
+                );
+                expect(repository.saveCallCount, 0);
+              });
+
+              test('U5. save failure does not block a later update', () async {
+                repository.holdNextSave();
+                final failedUpdate = repository.update(
+                  (current) => current.copyWith(totalBrowseCount: 1),
+                );
+                await pumpEventQueue();
+
+                final failureExpectation = expectLater(
+                  failedUpdate,
+                  throwsA(isA<SaveException>()),
+                );
+                repository.failSave();
+                await failureExpectation;
+
+                final result = await repository.update(
+                  (current) => current.copyWith(ownedCardIds: ['card_after']),
+                );
+                expect(result.totalBrowseCount, 0);
+                expect(result.ownedCardIds, ['card_after']);
+                expect(repository.saveCallCount, 2);
+              });
+            });
+          }
+          DART
+
+          cat > test/features/daily_question_update_idempotency_test.dart <<'DART'
+          import 'package:flutter/material.dart';
+          import 'package:flutter_test/flutter_test.dart';
+          import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+          import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+          import 'package:hee_no_tane_app/domain/models/question.dart';
+          import 'package:hee_no_tane_app/domain/models/save_data.dart';
+          import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+          import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
+
+          class CommitThenThrowRepository extends SaveRepository {
+            SaveData data = SaveData();
+            int saveCallCount = 0;
+            bool _throwAfterFirstWrite = true;
+
+            @override
+            Future<SaveData> loadOrThrow() async => SaveData.fromJson(data.toJson());
+
+            @override
+            Future<void> save(SaveData next) async {
+              saveCallCount++;
+              data = SaveData.fromJson(next.toJson());
+              if (_throwAfterFirstWrite) {
+                _throwAfterFirstWrite = false;
+                throw const SaveException('保存結果を確認できませんでした');
+              }
+            }
+          }
+
+          void main() {
+            testWidgets(
+              'U6. retry after committed-but-reported-failed save is idempotent',
+              (tester) async {
+                final repository = CommitThenThrowRepository();
+                final card = HeeCard(
+                  id: 'card_retry',
+                  title: '再試行カード',
+                  category: 'science',
+                  shortText: '短文',
+                  detailText: '詳細',
+                  imageAsset: '',
+                  rarity: 'normal',
+                  sourceNote: '出典',
+                );
+                final question = Question(
+                  id: 'question_retry',
+                  category: 'science',
+                  difficulty: 'easy',
+                  question: '再試行しても二重加算されない？',
+                  choices: const ['A', 'B', 'C'],
+                  answerIndex: 0,
+                  explanation: '同日回答済みなら更新はno-opです。',
+                  relatedCardId: card.id,
+                  sourceNote: '出典',
+                  verified: true,
+                );
+
+                await tester.pumpWidget(
+                  MaterialApp(
+                    home: DailyQuestionScreen(
+                      question: question,
+                      relatedCard: card,
+                      saveRepository: repository,
+                      rewardService: RewardService(),
+                      saveData: SaveData(),
+                    ),
+                  ),
+                );
+
+                await tester.tap(find.text('A'));
+                await tester.pumpAndSettle();
+                expect(find.text('保存エラー'), findsOneWidget);
+                expect(repository.data.totalBrowseCount, 1);
+                expect(repository.data.ownedCardIds, [card.id]);
+
+                await tester.tap(find.text('再試行'));
+                await tester.pumpAndSettle();
+
+                expect(find.text('保存エラー'), findsNothing);
+                expect(find.text('新しい知識カードを発見'), findsOneWidget);
+                expect(repository.data.totalBrowseCount, 1);
+                expect(repository.data.ownedCardIds.where((id) => id == card.id), hasLength(1));
+                expect(repository.data.lastDailyQuestionDate, isNotEmpty);
+                expect(repository.saveCallCount, 2);
+              },
+            );
+          }
+          DART
+
+          dart format \
+            lib/data/repositories/save_repository.dart \
+            lib/features/collection/card_detail_screen.dart \
+            lib/features/question/daily_question_screen.dart \
+            test/features/daily_question_screen_test.dart \
+            test/data/save_repository_update_test.dart \
+            test/features/daily_question_update_idempotency_test.dart
+
+          rm .github/workflows/issue-11-apply.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Implement serialized save updates"
+          git push origin HEAD:agent/serialize-save-updates
