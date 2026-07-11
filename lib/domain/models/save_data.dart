@@ -55,6 +55,7 @@ class SaveData {
   final int streakDays;
   final String lastPlayedDate;
   final String lastRewardDate; // kept for backward compat
+  final String lastDailyQuestionDate;
   final List<String> ownedCardIds;
   final GameSettings settings;
 
@@ -65,6 +66,7 @@ class SaveData {
     this.streakDays = 0,
     this.lastPlayedDate = '',
     this.lastRewardDate = '',
+    this.lastDailyQuestionDate = '',
     List<String>? ownedCardIds,
     GameSettings? settings,
   }) : ownedCardIds = ownedCardIds ?? [],
@@ -79,6 +81,8 @@ class SaveData {
       streakDays: json['streakDays'] as int? ?? 0,
       lastPlayedDate: json['lastPlayedDate'] as String? ?? '',
       lastRewardDate: json['lastRewardDate'] as String? ?? '',
+      lastDailyQuestionDate:
+          json['lastDailyQuestionDate'] as String? ?? '',
       ownedCardIds: List<String>.from(json['ownedCardIds'] as List? ?? []),
       settings: json['settings'] != null
           ? GameSettings.fromJson(json['settings'] as Map<String, dynamic>)
@@ -93,6 +97,7 @@ class SaveData {
     'streakDays': streakDays,
     'lastPlayedDate': lastPlayedDate,
     'lastRewardDate': lastRewardDate,
+    'lastDailyQuestionDate': lastDailyQuestionDate,
     'ownedCardIds': ownedCardIds,
     'settings': settings.toJson(),
   };
@@ -103,6 +108,7 @@ class SaveData {
     int? streakDays,
     String? lastPlayedDate,
     String? lastRewardDate,
+    String? lastDailyQuestionDate,
     List<String>? ownedCardIds,
     GameSettings? settings,
   }) {
@@ -113,6 +119,8 @@ class SaveData {
       streakDays: streakDays ?? this.streakDays,
       lastPlayedDate: lastPlayedDate ?? this.lastPlayedDate,
       lastRewardDate: lastRewardDate ?? this.lastRewardDate,
+      lastDailyQuestionDate:
+          lastDailyQuestionDate ?? this.lastDailyQuestionDate,
       ownedCardIds: ownedCardIds ?? List.from(this.ownedCardIds),
       settings: settings ?? this.settings,
     );
