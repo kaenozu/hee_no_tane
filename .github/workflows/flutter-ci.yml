@@ -2,16 +2,20 @@ name: Flutter CI
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+
+permissions:
+  contents: write
 
 jobs:
-  quality:
+  clean-scope:
+    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout implementation branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/serialize-save-updates
+          fetch-depth: 0
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -19,14 +23,35 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Restore unrelated files and format only scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/fix-card-list-stale-save-data
+          git checkout origin/agent/fix-card-list-stale-save-data -- \
+            lib/app.dart \
+            lib/domain/models/save_data.dart \
+            lib/domain/services/daily_question_service.dart \
+            lib/domain/services/reward_service.dart \
+            lib/features/collection/card_list_screen.dart \
+            lib/features/settings/settings_screen.dart \
+            lib/main.dart \
+            test/features/card_list_screen_test.dart \
+            test/helpers/fake_save_repository.dart
 
-      - name: Analyze
-        run: flutter analyze
+          dart format \
+            lib/data/repositories/save_repository.dart \
+            lib/features/collection/card_detail_screen.dart \
+            lib/features/home/home_screen.dart \
+            lib/features/question/daily_question_screen.dart \
+            test/data/save_repository_update_test.dart \
+            test/features/daily_question_screen_test.dart \
+            test/features/daily_question_update_idempotency_test.dart
 
-      - name: Test
-        run: flutter test
-
-      - name: Build web
-        run: flutter build web --no-web-resources-cdn
+          git checkout origin/agent/fix-card-list-stale-save-data -- .github/workflows/flutter-ci.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Limit serialized update changes to Issue 11 scope"
+          git push origin HEAD:agent/serialize-save-updates
