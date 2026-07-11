@@ -6,11 +6,12 @@ library;
 ///
 /// 関連:
 ///   - ../../domain/services/daily_question_service.dart
+///   - ../../core/date_utils.dart
 ///   - ../question/daily_question_screen.dart
+///   - ../collection/card_detail_screen.dart
 ///   - ../collection/card_list_screen.dart
 ///   - ../settings/settings_screen.dart
 
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
@@ -18,7 +19,9 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
+import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
 import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 
@@ -55,9 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _load() async {
     final data = await widget.saveRepository.load();
     if (!mounted) return;
-    final today = DateTime.now();
-    final dateStr =
-        '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+    final dateStr = todayDateString();
     final service = DailyQuestionService();
     final questions = service.generateQuestions(
       dateStr,
@@ -80,12 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   bool get _isTodayAnswered {
-    return _saveData.lastDailyQuestionDate == _todayDateString;
-  }
-
-  String get _todayDateString {
-    final today = DateTime.now();
-    return '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+    return _saveData.lastDailyQuestionDate == todayDateString();
   }
 
   /// 今日の1問を開始する。
@@ -97,7 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (_) => DailyQuestionScreen(
           question: _todayQuestion!,
           relatedCard: _todayCard,
-          allCards: widget.allCards,
           saveRepository: widget.saveRepository,
           rewardService: widget.rewardService,
           saveData: _saveData,
@@ -114,12 +109,12 @@ class _HomeScreenState extends State<HomeScreen> {
     await Navigator.push<bool>(
       context,
       MaterialPageRoute(
-        builder: (_) => DailyQuestionScreen(
-          question: _todayQuestion!,
-          relatedCard: _todayCard,
-          allCards: widget.allCards,
-          saveRepository: widget.saveRepository,
+        builder: (_) => CardDetailScreen(
+          card: _todayCard!,
+          isOwned: true,
+          relatedQuestion: _todayQuestion,
           rewardService: widget.rewardService,
+          saveRepository: widget.saveRepository,
           saveData: _saveData,
         ),
       ),

@@ -18,20 +18,19 @@ import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 
 /// 毎日の1問クイズ画面。
 ///
 /// [question] 今日の問題。
 /// [relatedCard] 問題に関連するカード。
-/// [allCards] 全カードリスト（関連カード検索用）。
 /// [saveRepository] セーブデータ永続化。
 /// [rewardService] カード獲得ロジック。
 /// [saveData] 現在のセーブデータ。
 class DailyQuestionScreen extends StatefulWidget {
   final Question question;
   final HeeCard? relatedCard;
-  final List<HeeCard> allCards;
   final SaveRepository saveRepository;
   final RewardService rewardService;
   final SaveData saveData;
@@ -40,7 +39,6 @@ class DailyQuestionScreen extends StatefulWidget {
     super.key,
     required this.question,
     this.relatedCard,
-    required this.allCards,
     required this.saveRepository,
     required this.rewardService,
     required this.saveData,
@@ -69,19 +67,18 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   void _answer(int index) {
     if (_answered) return;
 
-    // カード獲得を同期的に適用し、非同期で永続化する。
+    // 常に統計と回答日を更新し、永続化する。
+    final dateStr = todayDateString();
+    var newData = widget.rewardService.updatePlayStats(_currentSaveData, dateStr);
+    newData = newData.copyWith(lastDailyQuestionDate: dateStr);
+
+    // カード獲得は所有していない場合のみ。
     final card = widget.relatedCard;
-    SaveData newData = _currentSaveData;
     bool newCardOwned = _cardOwned;
     bool newRewardApplied = false;
 
     if (card != null && !_cardOwned) {
       newData = widget.rewardService.applyReward(newData, card);
-      final today = DateTime.now();
-      final dateStr =
-          '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
-      newData = widget.rewardService.updatePlayStats(newData, dateStr);
-      newData = newData.copyWith(lastDailyQuestionDate: dateStr);
       newCardOwned = true;
       newRewardApplied = true;
     }
