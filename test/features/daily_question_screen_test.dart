@@ -23,13 +23,15 @@ Widget buildDailyQuestionScreen({
   required RewardService rewardService,
   SaveData? saveData,
 }) {
+  if (saveRepository is FakeSaveRepository && saveData != null) {
+    saveRepository.setLoadedData(saveData);
+  }
   return MaterialApp(
     home: DailyQuestionScreen(
       question: question,
       relatedCard: relatedCard,
       saveRepository: saveRepository,
       rewardService: rewardService,
-      saveData: saveData ?? SaveData(),
     ),
   );
 }
@@ -61,6 +63,9 @@ Future<void> pushDailyQuestionScreen(
   required RewardService rewardService,
   SaveData? saveData,
 }) async {
+  if (saveRepository is FakeSaveRepository && saveData != null) {
+    saveRepository.setLoadedData(saveData);
+  }
   await tester.pumpWidget(
     MaterialApp(
       home: Builder(
@@ -74,7 +79,6 @@ Future<void> pushDailyQuestionScreen(
                   relatedCard: relatedCard,
                   saveRepository: saveRepository,
                   rewardService: rewardService,
-                  saveData: saveData ?? SaveData(),
                 ),
               ),
             );

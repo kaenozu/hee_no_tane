@@ -54,12 +54,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (!widget.isOwned) return;
 
     try {
-      final current = await widget.saveRepository.loadOrThrow();
-      final updated = widget.rewardService.updatePlayStats(
-        current,
-        todayDateString(),
+      await widget.saveRepository.update(
+        (current) =>
+            widget.rewardService.updatePlayStats(current, todayDateString()),
       );
-      await widget.saveRepository.save(updated);
     } on SaveLoadException catch (e, stackTrace) {
       debugPrint('Failed to load current save data for card view: $e');
       debugPrintStack(stackTrace: stackTrace);
