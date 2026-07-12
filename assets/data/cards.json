@@ -899,7 +899,15 @@
     "detailText": "月食中の赤い月は、月自身が光るのではなく、地球の大気を通過した太陽光の色が関係している。",
     "imageAsset": "assets/images/cards/card_nature_geography_016.png",
     "rarity": "rare",
-    "sourceNote": "NASA・月食と月の色の解説"
+    "sourceNote": "NASA・月食と月の色の解説",
+    "source": {
+      "title": "The Moon & Eclipses",
+      "publisher": "NASA",
+      "url": "https://science.nasa.gov/moon/eclipses/",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_living_things_014",
@@ -939,7 +947,15 @@
     "detailText": "白化したサンゴはすぐ死んだとは限らないが、共生藻を失って強いストレス状態に置かれている。",
     "imageAsset": "assets/images/cards/card_living_things_017.png",
     "rarity": "rare",
-    "sourceNote": "NOAA・サンゴ白化の基礎解説"
+    "sourceNote": "NOAA・サンゴ白化の基礎解説",
+    "source": {
+      "title": "What is coral bleaching?",
+      "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_living_things_018",
@@ -1045,7 +1061,15 @@
     "detailText": "家庭菜園や長期保存のジャガイモでは、芽や緑色の皮に天然毒素が増えることがある。",
     "imageAsset": "assets/images/cards/card_food_013.png",
     "rarity": "normal",
-    "sourceNote": "農林水産省・ジャガイモ毒素解説"
+    "sourceNote": "農林水産省・ジャガイモ毒素解説",
+    "source": {
+      "title": "じゃがいもに含まれる天然毒素「ソラニン」や「チャコニン」に関するQ&A",
+      "publisher": "農林水産省",
+      "url": "https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_language_010",
@@ -1065,7 +1089,15 @@
     "detailText": "リサイクルは大切だが、3Rではまず発生を抑えるReduce、次に繰り返し使うReuseが重視される。",
     "imageAsset": "assets/images/cards/card_daily_life_009.png",
     "rarity": "normal",
-    "sourceNote": "経済産業省・3R政策解説"
+    "sourceNote": "経済産業省・3R政策解説",
+    "source": {
+      "title": "The 3R Initiative",
+      "publisher": "Ministry of the Environment, Japan",
+      "url": "https://www.env.go.jp/recycle/3r/en/outline.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_daily_life_010",

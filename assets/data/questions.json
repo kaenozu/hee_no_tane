@@ -1508,7 +1508,15 @@
     "explanation": "皆既月食では、地球の大気を通った太陽光が曲げられて月に届く。大気中で青い光が散乱され、赤い光が目立つ。",
     "relatedCardId": "card_nature_geography_016",
     "sourceNote": "NASA・月食と月の色の解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "The Moon & Eclipses",
+      "publisher": "NASA",
+      "url": "https://science.nasa.gov/moon/eclipses/",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_living_things_014",
@@ -1576,7 +1584,15 @@
     "explanation": "水温が高すぎるなどのストレスで、サンゴは体内に共生する藻類を放出することがある。これにより白く見える。",
     "relatedCardId": "card_living_things_017",
     "sourceNote": "NOAA・サンゴ白化の基礎解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "What is coral bleaching?",
+      "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_living_things_018",
@@ -1745,7 +1761,15 @@
     "explanation": "ジャガイモの芽や緑色になった部分には、ソラニンやチャコニンが多く含まれる。食中毒予防には十分に取り除くことが大切。",
     "relatedCardId": "card_food_013",
     "sourceNote": "農林水産省・ジャガイモ毒素解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "じゃがいもに含まれる天然毒素「ソラニン」や「チャコニン」に関するQ&A",
+      "publisher": "農林水産省",
+      "url": "https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_language_010",
@@ -1779,7 +1803,15 @@
     "explanation": "3RはReduce、Reuse、Recycleの順番で取り組むことが求められる。まずはごみや資源消費を発生段階で減らす考え方。",
     "relatedCardId": "card_daily_life_009",
     "sourceNote": "経済産業省・3R政策解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "The 3R Initiative",
+      "publisher": "Ministry of the Environment, Japan",
+      "url": "https://www.env.go.jp/recycle/3r/en/outline.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_daily_life_010",
