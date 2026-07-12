@@ -95,7 +95,9 @@ Map<String, dynamic> _question({Map<String, dynamic>? source}) {
     'relatedCardId': 'card_001',
     'sourceNote': '気象庁',
     'verified': true,
-    if (source != null) 'source': source,
+    ...(source == null
+        ? const <String, dynamic>{}
+        : <String, dynamic>{'source': source}),
   };
 }
 
@@ -109,6 +111,8 @@ Map<String, dynamic> _card({Map<String, dynamic>? source}) {
     'imageAsset': '',
     'rarity': 'normal',
     'sourceNote': '気象庁',
-    if (source != null) 'source': source,
+    ...(source == null
+        ? const <String, dynamic>{}
+        : <String, dynamic>{'source': source}),
   };
 }
