@@ -2,6 +2,7 @@
 ///
 /// アプリのエントリポイント。
 library;
+
 /// JSONデータ（問題・カード）とセーブデータを読み込み、依存関係を注入する。
 ///
 /// 関連:
@@ -53,6 +54,16 @@ Future<void> main() async {
   } catch (error, stackTrace) {
     debugPrint('Failed to initialize app: $error');
     debugPrintStack(stackTrace: stackTrace);
-    runApp(const StartupErrorApp());
+    runApp(StartupErrorApp(details: _safeStartupErrorDetails(error)));
   }
+}
+
+String _safeStartupErrorDetails(Object error) {
+  if (error is SaveLoadException) {
+    return error.message;
+  }
+  if (error is SaveException) {
+    return error.message;
+  }
+  return 'アプリ内データの読み込み中に予期しない問題が発生しました。';
 }
