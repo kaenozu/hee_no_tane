@@ -80,7 +80,23 @@ jobs:
           test -f build/web/support.html
 
       - name: Build Android debug APK
-        run: flutter build apk --debug
+        id: android-build
+        shell: bash
+        run: |
+          set +e
+          flutter build apk --debug > android-build-output.txt 2>&1
+          status=$?
+          cat android-build-output.txt
+          exit "$status"
+
+      - name: Upload Android build diagnostics
+        if: failure() && steps.android-build.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-android-build-output
+          path: android-build-output.txt
+          if-no-files-found: error
+          retention-days: 1
 
   ios-smoke:
     runs-on: macos-latest
