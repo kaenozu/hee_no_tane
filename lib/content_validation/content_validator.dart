@@ -75,10 +75,7 @@ class ContentValidator {
       decoded = jsonDecode(source);
     } on FormatException catch (error) {
       issues.add(
-        ContentValidationIssue(
-          label,
-          'invalid JSON: ${error.message}',
-        ),
+        ContentValidationIssue(label, 'invalid JSON: ${error.message}'),
       );
       return null;
     }
@@ -144,8 +141,7 @@ class ContentValidator {
           ),
         );
       }
-      if (difficulty != null &&
-          !allowedDifficulties.contains(difficulty)) {
+      if (difficulty != null && !allowedDifficulties.contains(difficulty)) {
         issues.add(
           ContentValidationIssue(
             '$path.difficulty',
@@ -159,9 +155,7 @@ class ContentValidator {
 
       final verified = item['verified'];
       if (verified is! bool) {
-        issues.add(
-          ContentValidationIssue('$path.verified', 'must be a boolean'),
-        );
+        issues.add(ContentValidationIssue('$path.verified', 'must be a boolean'));
       } else if (!verified) {
         issues.add(
           ContentValidationIssue(
@@ -174,7 +168,6 @@ class ContentValidator {
       records.add(
         _QuestionRecord(
           index: index,
-          id: id,
           category: category,
           relatedCardId: relatedCardId,
         ),
@@ -249,9 +242,7 @@ class ContentValidator {
           ),
         );
       }
-      if (imageAsset != null &&
-          imageAsset.isNotEmpty &&
-          !assetExists(imageAsset)) {
+      if (imageAsset != null && imageAsset.isNotEmpty && !assetExists(imageAsset)) {
         issues.add(
           ContentValidationIssue(
             '$path.imageAsset',
@@ -260,9 +251,7 @@ class ContentValidator {
         );
       }
 
-      records.add(
-        _CardRecord(index: index, id: id, category: category),
-      );
+      records.add(_CardRecord(index: index, id: id, category: category));
     }
 
     return records;
@@ -442,13 +431,11 @@ class ContentValidator {
 
 class _QuestionRecord {
   final int index;
-  final String? id;
   final String? category;
   final String? relatedCardId;
 
   const _QuestionRecord({
     required this.index,
-    required this.id,
     required this.category,
     required this.relatedCardId,
   });
