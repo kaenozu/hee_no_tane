@@ -55,7 +55,7 @@ class SourceMetadata {
     if (!allowedReviewStatuses.contains(reviewStatus)) {
       throw FormatException('Unknown source reviewStatus: $reviewStatus');
     }
-    if (url != null && sourceUri == null) {
+    if (url != null && tryParseSourceUri(url) == null) {
       throw FormatException('Source URL must use http or https: $url');
     }
     if (verifiedAt != null && !isIsoDate(verifiedAt)) {
@@ -74,11 +74,7 @@ class SourceMetadata {
 
   Uri? get sourceUri {
     final value = url;
-    if (value == null) return null;
-    final uri = Uri.tryParse(value);
-    if (uri == null || !uri.hasAuthority) return null;
-    if (uri.scheme != 'https' && uri.scheme != 'http') return null;
-    return uri;
+    return value == null ? null : tryParseSourceUri(value);
   }
 
   bool get isApproved {
@@ -96,6 +92,13 @@ class SourceMetadata {
   String get displayLabel {
     if (publisher.isEmpty || publisher == title) return title;
     return '$publisher「$title」';
+  }
+
+  static Uri? tryParseSourceUri(String value) {
+    final uri = Uri.tryParse(value);
+    if (uri == null || !uri.hasAuthority) return null;
+    if (uri.scheme != 'https' && uri.scheme != 'http') return null;
+    return uri;
   }
 
   static bool isIsoDate(String value) {
