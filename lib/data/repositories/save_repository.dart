@@ -3,15 +3,11 @@
 /// セーブデータの永続化（SharedPreferences）。
 library;
 
-///
-/// 関連:
-///   - ../../domain/models/save_data.dart
-///   - ../../domain/services/reward_service.dart
-
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// セーブデータ読込時の例外。
 class SaveLoadException implements Exception {
@@ -23,7 +19,7 @@ class SaveLoadException implements Exception {
   String toString() => 'SaveLoadException: $message (cause: $cause)';
 }
 
-/// セーブデータ保存時の例外。
+/// セーブデータ保存・削除時の例外。
 class SaveException implements Exception {
   final String message;
   final Object? cause;
@@ -36,12 +32,13 @@ class SaveException implements Exception {
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
 
-  /// Pending serialized update. Null when no update is running or queued.
-  Future<void>? _updateTail;
+  /// Pending serialized operation. Null when no operation is running or queued.
+  Future<void>? _operationTail;
 
   /// 既存画面向けのベストエフォート読込。
   ///
-  /// 読込に失敗した場合は従来どおり空のSaveDataを返す。
+  /// 読込に失敗した場合は空のSaveDataを返す。書き込み前や重要な画面では
+  /// [loadOrThrow]を使用し、破損データを空データで上書きしないこと。
   Future<SaveData> load() async {
     try {
       return await loadOrThrow();
@@ -62,7 +59,10 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to load save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: e);
+      throw SaveLoadException(
+        'データの読み込みに失敗しました。もう一度お試しください。',
+        cause: e,
+      );
     }
   }
 
@@ -78,31 +78,19 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
+      throw SaveException(
+        'データの保存に失敗しました。もう一度お試しください。',
+        cause: e,
+      );
     }
   }
 
   /// Atomically applies [updater] to the latest save data.
   ///
   /// Calls on the same repository instance run in FIFO order. A failed update
-  /// is reported to its caller but does not block later updates.
+  /// is reported to its caller but does not block later operations.
   Future<SaveData> update(SaveData Function(SaveData current) updater) {
-    final previous = _updateTail;
-    final operation = previous == null
-        ? _runUpdate(updater)
-        : previous.then((_) => _runUpdate(updater));
-
-    final tail = operation.then<void>(
-      (_) {},
-      onError: (Object _, StackTrace _) {},
-    );
-    _updateTail = tail;
-    tail.whenComplete(() {
-      if (identical(_updateTail, tail)) {
-        _updateTail = null;
-      }
-    });
-    return operation;
+    return _enqueue(() => _runUpdate(updater));
   }
 
   Future<SaveData> _runUpdate(
@@ -114,13 +102,50 @@ class SaveRepository {
     return updated;
   }
 
-  Future<void> reset() async {
+  /// セーブデータを削除する。
+  ///
+  /// 進行中の更新がある場合は完了を待ち、その後の更新も削除完了後に実行する。
+  /// 削除に失敗した場合は[SaveException]を通知する。
+  Future<void> reset() {
+    return _enqueue(_runReset);
+  }
+
+  Future<void> _runReset() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_key);
+      final hadData = prefs.containsKey(_key);
+      final succeeded = await prefs.remove(_key);
+      if (hadData && !succeeded) {
+        throw const SaveException('データの初期化に失敗しました。もう一度お試しください。');
+      }
+    } on SaveException {
+      rethrow;
     } catch (e, stackTrace) {
       debugPrint('Failed to reset save data: $e');
       debugPrintStack(stackTrace: stackTrace);
+      throw SaveException(
+        'データの初期化に失敗しました。もう一度お試しください。',
+        cause: e,
+      );
     }
+  }
+
+  Future<T> _enqueue<T>(Future<T> Function() operation) {
+    final previous = _operationTail;
+    final result = previous == null
+        ? operation()
+        : previous.then((_) => operation());
+
+    final tail = result.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    _operationTail = tail;
+    tail.whenComplete(() {
+      if (identical(_operationTail, tail)) {
+        _operationTail = null;
+      }
+    });
+    return result;
   }
 }
