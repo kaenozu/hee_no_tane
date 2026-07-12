@@ -62,6 +62,16 @@ class _FakeCardShareImageRenderer implements CardShareImageRenderer {
   int callCount = 0;
   Object? error;
   Uint8List bytes = Uint8List.fromList([137, 80, 78, 71, 13, 10, 26, 10]);
+  Completer<Uint8List>? completer;
+
+  void hold() {
+    completer = Completer<Uint8List>();
+  }
+
+  void complete() {
+    completer?.complete(bytes);
+    completer = null;
+  }
 
   @override
   Future<Uint8List> render(
@@ -73,6 +83,8 @@ class _FakeCardShareImageRenderer implements CardShareImageRenderer {
     expect(pixelRatio, 3.0);
     final currentError = error;
     if (currentError != null) throw currentError;
+    final pending = completer;
+    if (pending != null) return pending.future;
     return bytes;
   }
 }
@@ -309,5 +321,29 @@ void main() {
     expect(bytes, isNotNull);
     expect(bytes!.length, greaterThan(8));
     expect(bytes.sublist(0, 8), [137, 80, 78, 71, 13, 10, 26, 10]);
+  });
+
+  testWidgets('S9. disposal during rendering stops before platform sharing', (
+    tester,
+  ) async {
+    final renderer = _FakeCardShareImageRenderer()..hold();
+    final gateway = _FakeCardShareGateway();
+    await _pumpShareDialog(
+      tester,
+      card: _card,
+      gateway: gateway,
+      renderer: renderer,
+    );
+
+    await tester.tap(find.widgetWithText(FilledButton, '共有する'));
+    await tester.pump();
+    expect(renderer.callCount, 1);
+
+    await tester.pumpWidget(const MaterialApp(home: SizedBox.shrink()));
+    renderer.complete();
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    expect(gateway.callCount, 0);
   });
 }
