@@ -2,20 +2,13 @@
 ///
 /// アプリのルートウィジェット。
 library;
-/// Material 3 テーマ定義（暖色系・紙/木/植物モチーフ）、画面遷移の起点。
-///
-/// 関連:
-///   - main.dart
-///   - features/home/home_screen.dart
-///   - features/onboarding/onboarding_screen.dart
-///   - domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/domain/models/question.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/home/home_screen.dart';
 import 'package:hee_no_tane_app/features/onboarding/onboarding_screen.dart';
 
@@ -61,6 +54,12 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
     setState(() => _onboardingCompleted = true);
   }
 
+  void _handleDataReset() {
+    themeModeNotifier.value = ThemeMode.system;
+    if (!mounted) return;
+    setState(() => _onboardingCompleted = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
@@ -79,6 +78,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
                   allCards: widget.allCards,
                   saveRepository: widget.saveRepository,
                   rewardService: widget.rewardService,
+                  onDataReset: _handleDataReset,
                 )
               : OnboardingScreen(onComplete: _completeOnboarding),
         );
