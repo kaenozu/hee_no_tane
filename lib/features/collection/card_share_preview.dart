@@ -124,8 +124,8 @@ class CardSharePreview extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 18),
-                  SizedBox(
-                    height: 78,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 78),
                     child: Center(
                       child: Text(
                         card.title,
@@ -281,6 +281,7 @@ class _CardShareDialogState extends State<CardShareDialog> {
         _boundaryKey,
         pixelRatio: 3.0,
       );
+      if (!mounted) return;
 
       final buttonContext = _shareButtonKey.currentContext;
       final renderObject = buttonContext?.findRenderObject();
