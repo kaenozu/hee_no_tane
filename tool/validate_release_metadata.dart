@@ -64,6 +64,34 @@ void main() {
     issues,
   );
 
+  final privacyPage = _read('web/privacy.html', issues);
+  _requireContains(
+    privacyPage,
+    '<title>プライバシーポリシー | $_productName</title>',
+    'web/privacy.html title is missing or incorrect',
+    issues,
+  );
+  _requireContains(
+    privacyPage,
+    'href="support.html"',
+    'web/privacy.html must link to support.html',
+    issues,
+  );
+
+  final supportPage = _read('web/support.html', issues);
+  _requireContains(
+    supportPage,
+    '<title>サポート | $_productName</title>',
+    'web/support.html title is missing or incorrect',
+    issues,
+  );
+  _requireContains(
+    supportPage,
+    'href="privacy.html"',
+    'web/support.html must link to privacy.html',
+    issues,
+  );
+
   final pubspec = _read('pubspec.yaml', issues);
   _requireContains(
     pubspec,
@@ -71,8 +99,10 @@ void main() {
     'pubspec description is out of date',
     issues,
   );
-  if (!RegExp(r'^version:\s+\d+\.\d+\.\d+\+\d+', multiLine: true)
-      .hasMatch(pubspec)) {
+  if (!RegExp(
+    r'^version:\s+\d+\.\d+\.\d+\+\d+',
+    multiLine: true,
+  ).hasMatch(pubspec)) {
     issues.add('pubspec version must include a numeric build number');
   }
   _requireContains(
@@ -123,6 +153,8 @@ void main() {
     'docs/11_ストア掲載文案.md',
     'docs/12_実機検証結果テンプレート.md',
     'docs/13_リリース判定.md',
+    'web/privacy.html',
+    'web/support.html',
   ]) {
     if (!File(requiredPath).existsSync()) {
       issues.add('required release document is missing: $requiredPath');
@@ -134,6 +166,8 @@ void main() {
     'ios/Runner/Info.plist': iosInfo,
     'web/manifest.json': webManifestRaw,
     'web/index.html': webIndex,
+    'web/privacy.html': privacyPage,
+    'web/support.html': supportPage,
     'pubspec.yaml': pubspec,
   }.entries) {
     if (entry.value.contains('へぇダンジョン')) {
