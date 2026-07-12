@@ -1533,7 +1533,15 @@
     "explanation": "多くのコウモリは、人間には聞こえにくい高い音を出し、物体に当たって返る反響を聞いて位置や距離を知る。",
     "relatedCardId": "card_living_things_014",
     "sourceNote": "米国国立公園局・コウモリ解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Echolocation",
+      "publisher": "U.S. National Park Service",
+      "url": "https://www.nps.gov/subjects/bats/echolocation.htm",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_living_things_015",
@@ -1609,7 +1617,15 @@
     "explanation": "タツノオトシゴや近縁のシードラゴンでは、オスが育児嚢で卵を受け取り、妊娠して子を産む珍しい繁殖を行う。",
     "relatedCardId": "card_living_things_018",
     "sourceNote": "NOAA・タツノオトシゴ解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "How do seahorses differ from all other animals?",
+      "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://oceanservice.noaa.gov/facts/seahorse.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_history_011",

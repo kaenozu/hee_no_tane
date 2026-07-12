@@ -917,7 +917,15 @@
     "detailText": "反響定位は、暗闇でも周囲の形や獲物の位置を把握できる、コウモリの代表的な能力。",
     "imageAsset": "assets/images/cards/card_living_things_014.png",
     "rarity": "normal",
-    "sourceNote": "米国国立公園局・コウモリ解説"
+    "sourceNote": "米国国立公園局・コウモリ解説",
+    "source": {
+      "title": "Echolocation",
+      "publisher": "U.S. National Park Service",
+      "url": "https://www.nps.gov/subjects/bats/echolocation.htm",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_living_things_015",
@@ -965,7 +973,15 @@
     "detailText": "動物界でも珍しく、タツノオトシゴではメスが卵を渡し、オスが育児嚢で育てて出産する。",
     "imageAsset": "assets/images/cards/card_living_things_018.png",
     "rarity": "rare",
-    "sourceNote": "NOAA・タツノオトシゴ解説"
+    "sourceNote": "NOAA・タツノオトシゴ解説",
+    "source": {
+      "title": "How do seahorses differ from all other animals?",
+      "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://oceanservice.noaa.gov/facts/seahorse.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_history_011",
