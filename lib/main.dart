@@ -37,7 +37,7 @@ Future<void> main() async {
 
     final questions = await questionRepo.loadAll();
     final cards = await cardRepo.loadAll();
-    final saveData = await saveRepo.load();
+    final saveData = await saveRepo.loadOrThrow();
 
     runApp(
       HeeNoTaneApp(
