@@ -1,0 +1,136 @@
+name: Apply content approval batch 3
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout approval branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-approval-batch-3
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Regenerate review CSV and apply verified rows
+        shell: bash
+        run: |
+          dart run tool/content_review.dart export \
+            --output review/content_review_batch_3.csv
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          path = Path('review/content_review_batch_3.csv')
+          updates = {
+              'q_living_things_014': {
+                  'sourceTitle': 'Echolocation',
+                  'sourcePublisher': 'U.S. National Park Service',
+                  'sourceUrl': 'https://www.nps.gov/subjects/bats/echolocation.htm',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': '米国国立公園局の解説で、コウモリが人間の可聴域を超える超音波を出し、物体から返る音を聞いて移動し、昆虫の位置を特定して捕食することを確認。',
+              },
+              'q_living_things_018': {
+                  'sourceTitle': 'How do seahorses differ from all other animals?',
+                  'sourcePublisher': 'National Oceanic and Atmospheric Administration (NOAA)',
+                  'sourceUrl': 'https://oceanservice.noaa.gov/facts/seahorse.html',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': 'NOAAの解説で、メスが成熟した卵をオスの育児嚢へ渡し、オスが妊娠期間を経て筋収縮により子を産むことを確認。',
+              },
+          }
+
+          with path.open(encoding='utf-8', newline='') as source:
+              reader = csv.DictReader(source)
+              fieldnames = reader.fieldnames
+              rows = list(reader)
+
+          if fieldnames is None:
+              raise SystemExit('Review CSV has no header')
+          if len(rows) != 103:
+              raise SystemExit(f'Expected 103 review rows, found {len(rows)}')
+
+          seen = set()
+          for row in rows:
+              question_id = row['questionId']
+              if question_id in updates:
+                  if row['reviewStatus'] == 'approved':
+                      raise SystemExit(f'Approval target is already approved: {question_id}')
+                  row.update(updates[question_id])
+                  seen.add(question_id)
+
+          missing = sorted(set(updates) - seen)
+          if missing:
+              raise SystemExit(f'Missing approval targets: {missing}')
+          if len(seen) != 2:
+              raise SystemExit(f'Expected 2 approval targets, found {len(seen)}')
+
+          with path.open('w', encoding='utf-8', newline='') as target:
+              writer = csv.DictWriter(target, fieldnames=fieldnames, lineterminator='\n')
+              writer.writeheader()
+              writer.writerows(rows)
+          PY
+
+      - name: Validate approval CSV without writing
+        run: dart run tool/content_review.dart import --input review/content_review_batch_3.csv
+
+      - name: Apply approval CSV
+        run: dart run tool/content_review.dart import --input review/content_review_batch_3.csv --write
+
+      - name: Validate content
+        run: dart run tool/validate_content.dart
+
+      - name: Audit content sources
+        run: dart run tool/audit_content_sources.dart
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Commit generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            review/content_review_batch_3.csv \
+            assets/data/questions.json \
+            assets/data/cards.json
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "Apply verified content approval batch 3"
+          git push origin HEAD:agent/content-approval-batch-3
