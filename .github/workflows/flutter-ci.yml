@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   quality:
@@ -12,6 +12,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -25,11 +33,77 @@ jobs:
       - name: Validate content
         run: dart run tool/validate_content.dart
 
+      - name: Audit content sources
+        run: dart run tool/audit_content_sources.dart
+
+      - name: Upload content source audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-source-audit
+          path: build/reports/content_source_audit.md
+          if-no-files-found: error
+
+      - name: Validate release metadata
+        run: dart run tool/validate_release_metadata.dart
+
+      - name: Check whitespace
+        id: whitespace
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            base="${{ github.event.pull_request.base.sha }}"
+            head="${{ github.event.pull_request.head.sha }}"
+          else
+            base="${{ github.event.before }}"
+            head="${{ github.sha }}"
+            if [[ "$base" =~ ^0+$ ]]; then
+              base="${head}^"
+            fi
+          fi
+          git diff --check "$base...$head" 2>&1 | tee build/reports/whitespace.log
+
+      - name: Upload whitespace diagnostics
+        if: steps.whitespace.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: whitespace-diagnostics
+          path: build/reports/whitespace.log
+          if-no-files-found: error
+
+      - name: Fail on whitespace errors
+        if: steps.whitespace.outcome == 'failure'
+        run: exit 1
+
       - name: Analyze
-        run: flutter analyze
+        id: analyze
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -o pipefail
+          flutter analyze 2>&1 | tee build/reports/flutter_analyze.log
+
+      - name: Upload analyzer diagnostics
+        if: steps.analyze.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-analyze-diagnostics
+          path: build/reports/flutter_analyze.log
+          if-no-files-found: error
+
+      - name: Fail on analyzer errors
+        if: steps.analyze.outcome == 'failure'
+        run: exit 1
 
       - name: Test
         run: flutter test
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
+
+      - name: Build Android debug APK
+        run: flutter build apk --debug

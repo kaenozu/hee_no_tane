@@ -1,11 +1,11 @@
 {
-    "name": "hee_no_tane_app",
-    "short_name": "hee_no_tane_app",
+    "name": "へぇのタネ",
+    "short_name": "へぇのタネ",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "毎日3枚の知識カードで知的暇つぶし",
+    "background_color": "#FBF6ED",
+    "theme_color": "#5B8A5B",
+    "description": "1日1問の雑学クイズで、知識カードを少しずつ集めるアプリ",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

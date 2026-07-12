@@ -6,16 +6,21 @@ import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  testWidgets('reset data clears all saved data', (tester) async {
+  testWidgets('reset data clears all saved data and refreshes parent', (
+    tester,
+  ) async {
     SharedPreferences.setMockInitialValues({});
     final repository = SaveRepository();
+    var refreshed = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: SettingsScreen(
           saveRepository: repository,
           rewardService: RewardService(),
-          onDataReset: () {},
+          onDataReset: () async {
+            refreshed = true;
+          },
         ),
       ),
     );
@@ -27,5 +32,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect((await repository.load()).ownedCardIds, isEmpty);
+    expect(refreshed, isTrue);
   });
 }

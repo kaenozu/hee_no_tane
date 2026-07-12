@@ -6,11 +6,48 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Load keystore properties (for release builds)
+// Load keystore properties for release builds. The real file is ignored by Git.
 val keystorePropsFile = rootProject.file("app/keystore.properties")
 val keystoreProps = Properties()
 if (keystorePropsFile.exists()) {
     keystoreProps.load(FileInputStream(keystorePropsFile))
+}
+
+val releaseTaskRequested = gradle.startParameter.taskNames.any {
+    it.contains("release", ignoreCase = true)
+}
+val requiredSigningKeys = listOf(
+    "storeFile",
+    "storePassword",
+    "keyAlias",
+    "keyPassword",
+)
+val missingSigningKeys = requiredSigningKeys.filter {
+    keystoreProps.getProperty(it).isNullOrBlank()
+}
+val releaseStoreFile = keystoreProps.getProperty("storeFile")
+    ?.takeIf { it.isNotBlank() }
+    ?.let { rootProject.file("app/$it") }
+val hasCompleteReleaseSigning =
+    missingSigningKeys.isEmpty() && releaseStoreFile?.exists() == true
+
+if (releaseTaskRequested) {
+    if (!keystorePropsFile.exists()) {
+        throw GradleException(
+            "Release signing requires android/app/keystore.properties. " +
+                "Copy keystore.properties.example and provide local secrets."
+        )
+    }
+    if (missingSigningKeys.isNotEmpty()) {
+        throw GradleException(
+            "Release signing properties are missing: ${missingSigningKeys.joinToString()}."
+        )
+    }
+    if (releaseStoreFile?.exists() != true) {
+        throw GradleException(
+            "Release keystore does not exist: ${releaseStoreFile?.path ?: "unknown"}."
+        )
+    }
 }
 
 android {
@@ -33,14 +70,11 @@ android {
 
     signingConfigs {
         create("release") {
-            if (keystoreProps.containsKey("storeFile")) {
-                storeFile = rootProject.file("app/" + keystoreProps.getProperty("storeFile"))
+            if (hasCompleteReleaseSigning) {
+                storeFile = releaseStoreFile
                 storePassword = keystoreProps.getProperty("storePassword")
                 keyAlias = keystoreProps.getProperty("keyAlias")
-                keyPassword = keystoreProps.getProperty(
-                    "keyPassword",
-                    keystoreProps.getProperty("storePassword")
-                )
+                keyPassword = keystoreProps.getProperty("keyPassword")
             }
         }
     }
@@ -52,13 +86,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (!keystoreProps.containsKey("storeFile")) {
-                throw GradleException(
-                    "Release signing requires app/keystore.properties with storeFile. " +
-                    "See README for setup instructions."
-                )
+            if (hasCompleteReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
             }
-            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

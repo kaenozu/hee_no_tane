@@ -1,3 +1,5 @@
+import 'package:hee_no_tane_app/domain/models/source_metadata.dart';
+
 class Question {
   final String id;
   final String category;
@@ -7,8 +9,9 @@ class Question {
   final int answerIndex;
   final String explanation;
   final String relatedCardId;
-  final String sourceNote;
+  final String legacySourceNote;
   final bool verified;
+  final SourceMetadata? sourceMetadata;
 
   const Question({
     required this.id,
@@ -19,9 +22,22 @@ class Question {
     required this.answerIndex,
     required this.explanation,
     required this.relatedCardId,
-    required this.sourceNote,
+    required String sourceNote,
     required this.verified,
-  });
+    this.sourceMetadata,
+  }) : legacySourceNote = sourceNote;
+
+  SourceMetadata get effectiveSource {
+    return sourceMetadata ?? SourceMetadata.legacy(legacySourceNote);
+  }
+
+  String get sourceNote {
+    final source = sourceMetadata;
+    if (source == null) return legacySourceNote;
+    final verifiedAt = source.verifiedAt;
+    if (verifiedAt == null) return source.displayLabel;
+    return '${source.displayLabel}（確認日: $verifiedAt）';
+  }
 
   factory Question.fromJson(Map<String, dynamic> json) {
     final choices = List<String>.from(json['choices'] as List);
@@ -46,6 +62,7 @@ class Question {
       relatedCardId: json['relatedCardId'] as String,
       sourceNote: json['sourceNote'] as String,
       verified: json['verified'] as bool,
+      sourceMetadata: SourceMetadata.tryFromJson(json['source']),
     );
   }
 }
