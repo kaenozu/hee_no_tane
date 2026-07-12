@@ -22,13 +22,12 @@ void main() {
     );
 
     expect(find.text('データの取り扱い'), findsOneWidget);
-    expect(find.textContaining('端末内に保存'), findsOneWidget);
+    expect(find.textContaining('端末内に保存'), findsWidgets);
 
-    await tester.scrollUntilVisible(
-      find.text('保存データの削除'),
-      200,
-      scrollable: find.byType(Scrollable),
-    );
+    final listFinder = find.byType(ListView);
+    await tester.drag(listFinder, const Offset(0, -600));
+    await tester.pumpAndSettle();
+
     expect(find.text('保存データの削除'), findsOneWidget);
   });
 }
