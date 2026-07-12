@@ -105,6 +105,26 @@ class ContentRiskEntry {
   });
 }
 
+class _ExportSource {
+  final String title;
+  final String publisher;
+  final String url;
+  final String verifiedAt;
+  final String verificationLevel;
+  final String reviewStatus;
+  final String reviewNote;
+
+  const _ExportSource({
+    required this.title,
+    required this.publisher,
+    required this.url,
+    required this.verifiedAt,
+    required this.verificationLevel,
+    required this.reviewStatus,
+    required this.reviewNote,
+  });
+}
+
 class ContentReviewWorkflow {
   const ContentReviewWorkflow();
 
@@ -141,13 +161,11 @@ class ContentReviewWorkflow {
         _requiredString(question, 'explanation', questionId),
         source.title,
         source.publisher,
-        source.url ?? '',
-        source.verifiedAt ?? '',
+        source.url,
+        source.verifiedAt,
         source.verificationLevel,
-        source.reviewStatus == 'legacy' ? 'pending' : source.reviewStatus,
-        _sourceDiffers(question, card)
-            ? 'QUESTION_CARD_SOURCE_METADATA_DIFF'
-            : '',
+        source.reviewStatus,
+        source.reviewNote,
       ]);
     }
 
@@ -235,12 +253,22 @@ class ContentReviewWorkflow {
         questionId: questionId,
       );
 
-      final oldSource = _canonicalSource(question['source']);
+      final currentQuestionSource = _trySource(question['source']);
+      final currentCardSource = _trySource(card['source']);
+      if (currentQuestionSource?.isApproved == true &&
+          currentCardSource?.isApproved == true &&
+          currentQuestionSource!.url != currentCardSource!.url) {
+        throw ContentReviewException(
+          '$questionId and $cardId already have different approved source URLs',
+        );
+      }
+
+      final oldQuestionSource = _canonicalSource(question['source']);
+      final oldCardSource = _canonicalSource(card['source']);
       final previousStatus = _statusOf(question['source']);
       final nextSource = _sourceFromRow(row, questionId);
       final nextCanonical = _canonicalSource(nextSource);
-      if (oldSource != nextCanonical ||
-          _canonicalSource(card['source']) != nextCanonical) {
+      if (oldQuestionSource != nextCanonical || oldCardSource != nextCanonical) {
         changes.add(
           ContentReviewChange(
             questionId: questionId,
@@ -264,6 +292,12 @@ class ContentReviewWorkflow {
         !seenQuestions.containsAll(questionsById.keys)) {
       throw const ContentReviewException(
         'CSV question IDs do not match the bundled question IDs',
+      );
+    }
+    if (seenCards.length != cardsById.length ||
+        !seenCards.containsAll(cardsById.keys)) {
+      throw const ContentReviewException(
+        'CSV card IDs do not match the bundled card IDs',
       );
     }
 
@@ -470,18 +504,23 @@ class ContentReviewWorkflow {
       );
     }
 
+    final isLegacyCandidate =
+        reviewStatus == 'pending' &&
+        verificationLevel == 'unverified' &&
+        publisher.isEmpty &&
+        url.isEmpty &&
+        verifiedAt.isEmpty;
+    if (isLegacyCandidate) return null;
+
     final hasAnySourceField =
         title.isNotEmpty ||
         publisher.isNotEmpty ||
         url.isNotEmpty ||
         verifiedAt.isNotEmpty;
     if (!hasAnySourceField) {
-      if (reviewStatus != 'pending' || verificationLevel != 'unverified') {
-        throw ContentReviewException(
-          '$questionId without source details must remain pending/unverified',
-        );
-      }
-      return null;
+      throw ContentReviewException(
+        '$questionId without source details must remain pending/unverified',
+      );
     }
     if (title.isEmpty || publisher.isEmpty) {
       throw ContentReviewException(
@@ -545,7 +584,8 @@ class ContentReviewWorkflow {
     final nonce = '${DateTime.now().microsecondsSinceEpoch}-$pid';
     final tempFiles = <File, File>{};
     final backupFiles = <File, File>{};
-    final installed = <File>{};
+    final installedTargets = <File>{};
+    var succeeded = false;
 
     try {
       for (final entry in replacements.entries) {
@@ -561,28 +601,39 @@ class ContentReviewWorkflow {
       }
       for (final target in replacements.keys) {
         await tempFiles[target]!.rename(target.path);
-        installed.add(target);
+        installedTargets.add(target);
       }
-      for (final backup in backupFiles.values) {
-        if (await backup.exists()) await backup.delete();
-      }
+      succeeded = true;
     } catch (error) {
+      final restoreErrors = <Object>[];
       for (final target in replacements.keys.toList().reversed) {
         final backup = backupFiles[target];
-        if (installed.contains(target) && await target.exists()) {
-          await target.delete();
+        try {
+          if (installedTargets.contains(target) && await target.exists()) {
+            await target.delete();
+          }
+          if (backup != null && await backup.exists()) {
+            await backup.rename(target.path);
+          }
+        } catch (restoreError) {
+          restoreErrors.add(restoreError);
         }
-        if (backup != null && await backup.exists()) {
-          await backup.rename(target.path);
-        }
+      }
+      if (restoreErrors.isNotEmpty) {
+        throw ContentReviewException(
+          'failed to replace JSON and restore originals: $error; '
+          'restore errors: ${restoreErrors.join('; ')}; backup files preserved',
+        );
       }
       throw ContentReviewException('failed to replace JSON atomically: $error');
     } finally {
       for (final temp in tempFiles.values) {
         if (await temp.exists()) await temp.delete();
       }
-      for (final backup in backupFiles.values) {
-        if (await backup.exists()) await backup.delete();
+      if (succeeded) {
+        for (final backup in backupFiles.values) {
+          if (await backup.exists()) await backup.delete();
+        }
       }
     }
   }
@@ -623,17 +674,43 @@ class ContentReviewWorkflow {
     return result;
   }
 
-  SourceMetadata _sourceForExport(
+  _ExportSource _sourceForExport(
     Map<String, dynamic> question,
     Map<String, dynamic> card,
   ) {
     final questionSource = _trySource(question['source']);
     final cardSource = _trySource(card['source']);
-    return questionSource ??
-        cardSource ??
-        SourceMetadata.legacy(
-          _requiredString(question, 'sourceNote', question['id'].toString()),
-        );
+    final source = questionSource ?? cardSource;
+    final differs = _canonicalSource(question['source']) !=
+        _canonicalSource(card['source']);
+    if (source == null) {
+      return _ExportSource(
+        title: _requiredString(
+          question,
+          'sourceNote',
+          question['id'].toString(),
+        ),
+        publisher: '',
+        url: '',
+        verifiedAt: '',
+        verificationLevel: 'unverified',
+        reviewStatus: 'pending',
+        reviewNote: differs
+            ? 'QUESTION_CARD_SOURCE_METADATA_DIFF'
+            : 'LEGACY_SOURCE_NOTE_ONLY',
+      );
+    }
+    return _ExportSource(
+      title: source.title,
+      publisher: source.publisher,
+      url: source.url ?? '',
+      verifiedAt: source.verifiedAt ?? '',
+      verificationLevel: source.verificationLevel,
+      reviewStatus: source.reviewStatus == 'legacy'
+          ? 'pending'
+          : source.reviewStatus,
+      reviewNote: differs ? 'QUESTION_CARD_SOURCE_METADATA_DIFF' : '',
+    );
   }
 
   bool _pairIsApproved(
@@ -645,14 +722,6 @@ class ContentReviewWorkflow {
     return questionSource?.isApproved == true &&
         cardSource?.isApproved == true &&
         questionSource!.url == cardSource!.url;
-  }
-
-  bool _sourceDiffers(
-    Map<String, dynamic> question,
-    Map<String, dynamic> card,
-  ) {
-    return _canonicalSource(question['source']) !=
-        _canonicalSource(card['source']);
   }
 
   SourceMetadata? _trySource(Object? source) {
@@ -717,16 +786,22 @@ class ContentReviewWorkflow {
 
   List<String> _riskReasons(String text) {
     final reasons = <String>[];
-    if (RegExp(r'[0-9０-９]|[%％]|約\s*[一二三四五六七八九十百千万億兆]').hasMatch(text)) {
+    if (RegExp(
+      r'[0-9０-９]|[%％]|約\s*[一二三四五六七八九十百千万億兆]',
+    ).hasMatch(text)) {
       reasons.add('numeric');
     }
-    if (RegExp(r'最も|いちばん|一番|世界一|日本一|最大|最小|最多|最少|ランキング|第[0-9０-９]+位').hasMatch(text)) {
+    if (RegExp(
+      r'最も|いちばん|一番|世界一|日本一|最大|最小|最多|最少|ランキング|第[0-9０-９]+位',
+    ).hasMatch(text)) {
       reasons.add('ranking');
     }
     if (RegExp(r'現在|現職|首相|大統領|知事|市長|社長|CEO|会長').hasMatch(text)) {
       reasons.add('current_role');
     }
-    if (RegExp(r'病気|医療|治療|薬|症状|健康|死亡|寿命|心臓|血液|脳|がん|癌|感染|ウイルス|細菌|栄養').hasMatch(text)) {
+    if (RegExp(
+      r'病気|医療|治療|薬|症状|健康|死亡|寿命|心臓|血液|脳|がん|癌|感染|ウイルス|細菌|栄養',
+    ).hasMatch(text)) {
       reasons.add('medical');
     }
     if (RegExp(r'法律|法令|違法|罰金|刑罰|権利|義務|裁判|契約|税制|税金').hasMatch(text)) {
