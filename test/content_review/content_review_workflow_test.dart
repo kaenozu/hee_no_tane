@@ -9,7 +9,7 @@ void main() {
 
   test('export pairs questions with cards and quotes CSV safely', () {
     final questions = _questionsJson(
-      question: '空気で、最も多い成分は？',
+      question: '空気で,最も多い成分は？',
       explanation: '答えは窒素。\n約78%です。',
     );
 
@@ -20,7 +20,7 @@ void main() {
 
     expect(csv.split('\r\n').first, contentReviewColumns.join(','));
     expect(csv, contains('q_001,card_001,science'));
-    expect(csv, contains('"空気で、最も多い成分は？"'));
+    expect(csv, contains('"空気で,最も多い成分は？"'));
     expect(csv, contains('窒素'));
     expect(csv, contains('"答えは窒素。\n約78%です。"'));
   });
