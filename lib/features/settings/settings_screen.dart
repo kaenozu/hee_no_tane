@@ -54,6 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     try {
       await widget.saveRepository.reset();
       if (!mounted) return;
+      setState(() => _resetting = false);
       widget.onDataReset();
       if (mounted && Navigator.of(context).canPop()) {
         Navigator.of(context).pop();
