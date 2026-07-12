@@ -1,3 +1,5 @@
+import 'package:hee_no_tane_app/domain/models/source_metadata.dart';
+
 class HeeCard {
   final String id;
   final String title;
@@ -7,6 +9,7 @@ class HeeCard {
   final String imageAsset;
   final String rarity;
   final String sourceNote;
+  final SourceMetadata? sourceMetadata;
 
   const HeeCard({
     required this.id,
@@ -17,9 +20,19 @@ class HeeCard {
     required this.imageAsset,
     required this.rarity,
     required this.sourceNote,
+    this.sourceMetadata,
   });
 
+  SourceMetadata get effectiveSource {
+    return sourceMetadata ?? SourceMetadata.legacy(sourceNote);
+  }
+
   factory HeeCard.fromJson(Map<String, dynamic> json) {
+    final sourceJson = json['source'];
+    if (sourceJson != null && sourceJson is! Map<String, dynamic>) {
+      throw const FormatException('Card source must be an object.');
+    }
+
     return HeeCard(
       id: json['id'] as String,
       title: json['title'] as String,
@@ -29,6 +42,9 @@ class HeeCard {
       imageAsset: (json['imageAsset'] as String?) ?? '',
       rarity: json['rarity'] as String,
       sourceNote: json['sourceNote'] as String,
+      sourceMetadata: sourceJson == null
+          ? null
+          : SourceMetadata.fromJson(sourceJson),
     );
   }
 }
