@@ -359,13 +359,21 @@
   },
   {
     "id": "card_language_001",
-    "title": "サボるの語源",
+    "title": "サボタージュと木靴",
     "category": "language",
-    "shortText": "意外な履物が由来の言葉",
-    "detailText": "日本語の「サボる」もこの言葉が由来です。かつてフランスの労働者が木靴を使って抗議活動をした歴史から生まれた表現です。",
+    "shortText": "語源のsabotは木靴",
+    "detailText": "フランス語saboterには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。sabotageはこの動詞から派生した語。",
     "imageAsset": "assets/images/cards/card_language_001.png",
     "rarity": "rare",
-    "sourceNote": "語源由来辞典 サボる"
+    "sourceNote": "CNRTL「SABOTER」の語義・語源",
+    "source": {
+      "title": "SABOTER : Définition de SABOTER",
+      "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+      "url": "https://www.cnrtl.fr/definition/saboter",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_daily_life_001",

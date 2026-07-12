@@ -606,7 +606,7 @@
     "id": "q_language_001",
     "category": "language",
     "difficulty": "hard",
-    "question": "仕事をわざと怠る「サボタージュ」の語源となった、フランスの履物は何？",
+    "question": "フランス語の「sabotage（サボタージュ）」と語源的につながる履物「sabot」は何？",
     "choices": [
       "木靴",
       "サンダル",
@@ -614,10 +614,18 @@
       "布の靴"
     ],
     "answerIndex": 0,
-    "explanation": "フランス語の「サボ（木靴）」が語源です。労働者がストライキの際、機械に木靴を投げ込んで壊したことが始まりと言われています。",
+    "explanation": "「sabotage」はフランス語の動詞saboterから派生し、saboterは木靴を表すsabotに由来する。CNRTLには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。",
     "relatedCardId": "card_language_001",
-    "sourceNote": "語源由来辞典 サボる",
-    "verified": true
+    "sourceNote": "CNRTL「SABOTER」の語義・語源",
+    "verified": true,
+    "source": {
+      "title": "SABOTER : Définition de SABOTER",
+      "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+      "url": "https://www.cnrtl.fr/definition/saboter",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_daily_life_001",
