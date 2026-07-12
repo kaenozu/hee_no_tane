@@ -51,11 +51,6 @@ class Question {
       );
     }
 
-    final sourceJson = json['source'];
-    if (sourceJson != null && sourceJson is! Map<String, dynamic>) {
-      throw const FormatException('Question source must be an object.');
-    }
-
     return Question(
       id: json['id'] as String,
       category: json['category'] as String,
@@ -67,9 +62,7 @@ class Question {
       relatedCardId: json['relatedCardId'] as String,
       sourceNote: json['sourceNote'] as String,
       verified: json['verified'] as bool,
-      sourceMetadata: sourceJson == null
-          ? null
-          : SourceMetadata.fromJson(sourceJson),
+      sourceMetadata: SourceMetadata.tryFromJson(json['source']),
     );
   }
 }
