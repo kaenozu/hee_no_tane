@@ -29,18 +29,7 @@ jobs:
         run: flutter analyze
 
       - name: Test
-        shell: bash
-        run: |
-          set -o pipefail
-          flutter test --reporter expanded 2>&1 | tee test-output.log
-
-      - name: Upload test log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: flutter-test-output
-          path: test-output.log
-          if-no-files-found: error
+        run: flutter test
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
