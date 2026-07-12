@@ -287,7 +287,15 @@
     "detailText": "信濃川は新潟県から長野県を流れる日本最長の川。長野県内では千曲川と呼ばれ、新潟県に入って信濃川と呼ばれる。",
     "imageAsset": "assets/images/cards/card_geo_005.png",
     "rarity": "normal",
-    "sourceNote": "国土交通省"
+    "sourceNote": "国土交通省",
+    "source": {
+      "title": "日本の川 - 北陸 - 信濃川",
+      "publisher": "国土交通省 水管理・国土保全局",
+      "url": "https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_bio_005",
@@ -547,7 +555,15 @@
     "detailText": "日本の地図や測量で使う高さは、東京湾平均海面を0mとする考え方を土台にしている。",
     "imageAsset": "assets/images/cards/card_nature_geography_008.png",
     "rarity": "normal",
-    "sourceNote": "国土地理院・日本水準原点資料"
+    "sourceNote": "国土地理院・日本水準原点資料",
+    "source": {
+      "title": "日本水準原点",
+      "publisher": "国土地理院",
+      "url": "https://www.gsi.go.jp/sokuchikijun/suijun-genten.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_009",
@@ -597,7 +613,15 @@
     "detailText": "雷は雲内や雲と地上の間で電荷が偏り、放電するときに光や音を生む現象。",
     "imageAsset": "assets/images/cards/card_science_006.png",
     "rarity": "normal",
-    "sourceNote": "気象庁・雷とはの基礎解説"
+    "sourceNote": "気象庁・雷とはの基礎解説",
+    "source": {
+      "title": "雷とは？",
+      "publisher": "気象庁",
+      "url": "https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_food_008",
@@ -847,7 +871,15 @@
     "detailText": "霧ともやは雰囲気ではなく、気象上は水平方向にどれだけ見通せるかで区別される。",
     "imageAsset": "assets/images/cards/card_nature_geography_014.png",
     "rarity": "normal",
-    "sourceNote": "気象庁・天気用語の霧ともや"
+    "sourceNote": "気象庁・天気用語の霧ともや",
+    "source": {
+      "title": "氷、霜、霧、雷、日照時間",
+      "publisher": "気象庁",
+      "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_015",
@@ -937,7 +969,15 @@
     "detailText": "富岡製糸場は、近代的な機械製糸を日本に導入した重要な施設で、世界遺産にも登録されている。",
     "imageAsset": "assets/images/cards/card_history_012.png",
     "rarity": "normal",
-    "sourceNote": "群馬県公式・富岡製糸場案内"
+    "sourceNote": "群馬県公式・富岡製糸場案内",
+    "source": {
+      "title": "富岡製糸場を知る",
+      "publisher": "富岡市観光協会",
+      "url": "https://www.tomioka-silk.jp/_tomioka-silk-mill/about/",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_history_013",
@@ -947,7 +987,15 @@
     "detailText": "メートル条約への加盟は、日本が長さや質量の国際基準を共有する近代的な計量制度へ進む一歩だった。",
     "imageAsset": "assets/images/cards/card_history_013.png",
     "rarity": "rare",
-    "sourceNote": "産総研NMIJ・メートル条約史"
+    "sourceNote": "産総研NMIJ・メートル条約史",
+    "source": {
+      "title": "Member State: Japan",
+      "publisher": "International Bureau of Weights and Measures (BIPM)",
+      "url": "https://www.bipm.org/en/countries/jp",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_science_009",
