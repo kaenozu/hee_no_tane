@@ -58,6 +58,7 @@ class SaveData {
   final String lastDailyQuestionDate;
   final List<String> ownedCardIds;
   final GameSettings settings;
+  final bool onboardingCompleted;
 
   SaveData({
     this.version = 2,
@@ -69,6 +70,7 @@ class SaveData {
     this.lastDailyQuestionDate = '',
     List<String>? ownedCardIds,
     GameSettings? settings,
+    this.onboardingCompleted = false,
   }) : ownedCardIds = ownedCardIds ?? [],
        settings = settings ?? const GameSettings();
 
@@ -87,6 +89,7 @@ class SaveData {
       settings: json['settings'] != null
           ? GameSettings.fromJson(json['settings'] as Map<String, dynamic>)
           : const GameSettings(),
+      onboardingCompleted: _parseOnboardingCompleted(json),
     );
   }
 
@@ -100,6 +103,7 @@ class SaveData {
     'lastDailyQuestionDate': lastDailyQuestionDate,
     'ownedCardIds': ownedCardIds,
     'settings': settings.toJson(),
+    'onboardingCompleted': onboardingCompleted,
   };
 
   SaveData copyWith({
@@ -111,6 +115,7 @@ class SaveData {
     String? lastDailyQuestionDate,
     List<String>? ownedCardIds,
     GameSettings? settings,
+    bool? onboardingCompleted,
   }) {
     return SaveData(
       version: version,
@@ -123,6 +128,23 @@ class SaveData {
           lastDailyQuestionDate ?? this.lastDailyQuestionDate,
       ownedCardIds: ownedCardIds ?? List.from(this.ownedCardIds),
       settings: settings ?? this.settings,
+      onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
     );
+  }
+
+  static bool _parseOnboardingCompleted(Map<String, dynamic> json) {
+    final stored = json['onboardingCompleted'];
+    if (stored is bool) return stored;
+
+    final ownedCardIds = json['ownedCardIds'];
+    final hasOwnedCards = ownedCardIds is List && ownedCardIds.isNotEmpty;
+    final hasCounters = (json['totalBrowseCount'] as int? ?? 0) > 0 ||
+        (json['totalPlayCount'] as int? ?? 0) > 0 ||
+        (json['streakDays'] as int? ?? 0) > 0;
+    final hasDates = (json['lastPlayedDate'] as String? ?? '').isNotEmpty ||
+        (json['lastRewardDate'] as String? ?? '').isNotEmpty ||
+        (json['lastDailyQuestionDate'] as String? ?? '').isNotEmpty;
+
+    return hasOwnedCards || hasCounters || hasDates;
   }
 }

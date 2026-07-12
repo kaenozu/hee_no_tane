@@ -64,7 +64,7 @@ void main() {
       HeeNoTaneApp(
         allQuestions: questions,
         allCards: cards,
-        saveData: SaveData(),
+        saveData: SaveData(onboardingCompleted: true),
         saveRepository: SaveRepository(),
         rewardService: RewardService(),
       ),

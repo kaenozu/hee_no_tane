@@ -294,7 +294,7 @@ void main() {
         HeeNoTaneApp(
           allQuestions: const [],
           allCards: [cardA, cardB],
-          saveData: SaveData(),
+          saveData: SaveData(onboardingCompleted: true),
           saveRepository: repository,
           rewardService: rewardService,
         ),

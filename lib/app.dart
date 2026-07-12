@@ -7,6 +7,7 @@ library;
 /// 関連:
 ///   - main.dart
 ///   - features/home/home_screen.dart
+///   - features/onboarding/onboarding_screen.dart
 ///   - domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/home/home_screen.dart';
+import 'package:hee_no_tane_app/features/onboarding/onboarding_screen.dart';
 
 final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
   ThemeMode.system,
@@ -42,10 +44,21 @@ class HeeNoTaneApp extends StatefulWidget {
 }
 
 class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
+  late bool _onboardingCompleted;
+
   @override
   void initState() {
     super.initState();
     themeModeNotifier.value = widget.saveData.settings.themeMode;
+    _onboardingCompleted = widget.saveData.onboardingCompleted;
+  }
+
+  Future<void> _completeOnboarding() async {
+    await widget.saveRepository.update(
+      (current) => current.copyWith(onboardingCompleted: true),
+    );
+    if (!mounted) return;
+    setState(() => _onboardingCompleted = true);
   }
 
   @override
@@ -60,12 +73,14 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
           theme: _buildLightTheme(),
           darkTheme: _buildDarkTheme(),
           themeMode: mode,
-          home: HomeScreen(
-            allQuestions: widget.allQuestions,
-            allCards: widget.allCards,
-            saveRepository: widget.saveRepository,
-            rewardService: widget.rewardService,
-          ),
+          home: _onboardingCompleted
+              ? HomeScreen(
+                  allQuestions: widget.allQuestions,
+                  allCards: widget.allCards,
+                  saveRepository: widget.saveRepository,
+                  rewardService: widget.rewardService,
+                )
+              : OnboardingScreen(onComplete: _completeOnboarding),
         );
       },
     );
