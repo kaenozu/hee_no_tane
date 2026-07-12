@@ -25,6 +25,7 @@ void main() {
     tester,
   ) async {
     var attempts = 0;
+    final repository = _RecoverableRepository(failing: false);
 
     await tester.pumpWidget(
       AppBootstrap(
@@ -34,7 +35,7 @@ void main() {
           return const [];
         },
         loadCards: () async => const [],
-        loadSaveData: () async => SaveData(onboardingCompleted: true),
+        saveRepository: repository,
       ),
     );
     await tester.pumpAndSettle();
