@@ -31,6 +31,17 @@ jobs:
       - name: Validate content
         run: dart run tool/validate_content.dart
 
+      - name: Audit content sources
+        run: dart run tool/audit_content_sources.dart
+
+      - name: Upload content source audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-source-audit
+          path: build/reports/content_source_audit.md
+          if-no-files-found: error
+
       - name: Validate release metadata
         run: dart run tool/validate_release_metadata.dart
 
