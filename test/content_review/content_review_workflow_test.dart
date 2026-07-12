@@ -182,10 +182,13 @@ void main() {
 
     expect(risks, hasLength(1));
     expect(risks.single.reasons, containsAll(['numeric', 'medical']));
-    expect(workflow.riskCsv(
-      questionsJson: _questionsJson(),
-      cardsJson: _cardsJson(),
-    ), contains('q_001,card_001,science'));
+    expect(
+      workflow.riskCsv(
+        questionsJson: _questionsJson(),
+        cardsJson: _cardsJson(),
+      ),
+      contains('q_001,card_001,science'),
+    );
   });
 }
 
@@ -194,37 +197,35 @@ String _questionsJson({
   String explanation = '空気の約78%は窒素です。',
   Map<String, dynamic>? source,
 }) {
-  return '${const JsonEncoder.withIndent('  ').convert([
-    {
-      'id': 'q_001',
-      'category': 'science',
-      'difficulty': 'easy',
-      'question': question,
-      'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
-      'answerIndex': 1,
-      'explanation': explanation,
-      'relatedCardId': 'card_001',
-      'sourceNote': '気象庁',
-      'verified': true,
-      if (source != null) 'source': source,
-    },
-  ])}\n';
+  final item = <String, dynamic>{
+    'id': 'q_001',
+    'category': 'science',
+    'difficulty': 'easy',
+    'question': question,
+    'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+    'answerIndex': 1,
+    'explanation': explanation,
+    'relatedCardId': 'card_001',
+    'sourceNote': '気象庁',
+    'verified': true,
+  };
+  if (source != null) item['source'] = source;
+  return '${const JsonEncoder.withIndent('  ').convert([item])}\n';
 }
 
 String _cardsJson({Map<String, dynamic>? source}) {
-  return '${const JsonEncoder.withIndent('  ').convert([
-    {
-      'id': 'card_001',
-      'title': '大気の成分',
-      'category': 'science',
-      'shortText': '空気の約78%は窒素。',
-      'detailText': '心臓や血液にも必要な空気は窒素を最も多く含む。',
-      'imageAsset': '',
-      'rarity': 'normal',
-      'sourceNote': '気象庁',
-      if (source != null) 'source': source,
-    },
-  ])}\n';
+  final item = <String, dynamic>{
+    'id': 'card_001',
+    'title': '大気の成分',
+    'category': 'science',
+    'shortText': '空気の約78%は窒素。',
+    'detailText': '心臓や血液にも必要な空気は窒素を最も多く含む。',
+    'imageAsset': '',
+    'rarity': 'normal',
+    'sourceNote': '気象庁',
+  };
+  if (source != null) item['source'] = source;
+  return '${const JsonEncoder.withIndent('  ').convert([item])}\n';
 }
 
 String _reviewCsv({
