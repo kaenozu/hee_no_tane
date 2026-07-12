@@ -5,3 +5,4 @@
 - [Store listing draft](./11_ストア掲載文案.md)
 - [Device verification template](./12_実機検証結果テンプレート.md)
 - [Current release decision](./13_リリース判定.md)
+- [Content source and fact-check workflow](./14_コンテンツ出典運用.md)
