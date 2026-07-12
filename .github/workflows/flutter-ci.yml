@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  repair-content-validation:
+  apply-content-cleanup:
     if: github.event.pull_request.head.ref == 'feature/content-validation'
     runs-on: ubuntu-latest
     steps:
@@ -15,22 +15,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: feature/content-validation
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-
-      - name: Repair and format
+      - name: Apply targeted cleanup
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          path = Path('test/content_validation/content_validator_test.dart')
-          text = path.read_text()
+
+          test_path = Path('test/content_validation/content_validator_test.dart')
+          text = test_path.read_text()
           replacements = {
               "'q' * 101": "List.filled(101, 'q').join()",
               "'e' * 241": "List.filled(241, 'e').join()",
@@ -43,18 +38,61 @@ jobs:
               if old not in text:
                   raise SystemExit(f'Expected test expression not found: {old}')
               text = text.replace(old, new, 1)
-          path.write_text(text)
+          test_path.write_text(text)
+
+          validator_path = Path('lib/content_validation/content_validator.dart')
+          validator = validator_path.read_text()
+          old_record = """        _QuestionRecord(\n          index: index,\n          id: id,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
+          new_record = """        _QuestionRecord(\n          index: index,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
+          if old_record not in validator:
+              raise SystemExit('Question record construction block not found')
+          validator = validator.replace(old_record, new_record, 1)
+          validator = validator.replace('  final String? id;\n', '', 1)
+          validator = validator.replace('    required this.id,\n', '', 1)
+          validator_path.write_text(validator)
           PY
 
-          dart format \
-            lib/content_validation/content_validator.dart \
-            tool/validate_content.dart \
-            test/content_validation/content_validator_test.dart
+          cat > .github/workflows/flutter-ci.yml <<'YAML'
+          name: Flutter CI
 
-          git show HEAD^:.github/workflows/flutter-ci.yml > .github/workflows/flutter-ci.yml
+          on:
+            pull_request:
+            push:
+              branches:
+                - main
+
+          jobs:
+            quality:
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout
+                  uses: actions/checkout@v4
+
+                - name: Set up Flutter
+                  uses: subosito/flutter-action@v2
+                  with:
+                    channel: stable
+                    cache: true
+
+                - name: Install dependencies
+                  run: flutter pub get
+
+                - name: Validate content
+                  run: dart run tool/validate_content.dart
+
+                - name: Analyze
+                  run: flutter analyze
+
+                - name: Test
+                  run: flutter test
+
+                - name: Build web
+                  run: flutter build web --no-web-resources-cdn
+          YAML
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
-          git commit -m "Format content validation implementation"
+          git commit -m "Clean up content validation implementation"
           git push origin HEAD:feature/content-validation
