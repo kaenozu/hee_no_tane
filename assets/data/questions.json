@@ -490,7 +490,15 @@
     "explanation": "日本最長の川は信濃川。長さは約367kmで、新潟県から長野県を流れているよ。",
     "relatedCardId": "card_geo_005",
     "sourceNote": "国土交通省",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "日本の川 - 北陸 - 信濃川",
+      "publisher": "国土交通省 水管理・国土保全局",
+      "url": "https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_bio_005",
@@ -932,7 +940,15 @@
     "explanation": "日本の標高は、測量法上、東京湾の平均海面を0mとする。実際の測量では東京・三宅坂の日本水準原点も高さの基準として使われる。",
     "relatedCardId": "card_nature_geography_008",
     "sourceNote": "国土地理院・日本水準原点資料",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "日本水準原点",
+      "publisher": "国土地理院",
+      "url": "https://www.gsi.go.jp/sokuchikijun/suijun-genten.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_009",
@@ -1017,7 +1033,15 @@
     "explanation": "気象庁は、雷を大気中で電荷分離が起こり放電する現象と説明している。音が雷鳴、光が電光である。",
     "relatedCardId": "card_science_006",
     "sourceNote": "気象庁・雷とはの基礎解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "雷とは？",
+      "publisher": "気象庁",
+      "url": "https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_food_008",
@@ -1442,7 +1466,15 @@
     "explanation": "気象庁では、霧は微小な水滴で視程が1km未満の状態、もやは視程が1km以上10km未満の状態として区別している。",
     "relatedCardId": "card_nature_geography_014",
     "sourceNote": "気象庁・天気用語の霧ともや",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "氷、霜、霧、雷、日照時間",
+      "publisher": "気象庁",
+      "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_015",
@@ -1595,7 +1627,15 @@
     "explanation": "富岡製糸場は1872年に設立された、日本初期の本格的な器械製糸工場。明治の近代化と生糸輸出を支えた。",
     "relatedCardId": "card_history_012",
     "sourceNote": "群馬県公式・富岡製糸場案内",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "富岡製糸場を知る",
+      "publisher": "富岡市観光協会",
+      "url": "https://www.tomioka-silk.jp/_tomioka-silk-mill/about/",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_history_013",
@@ -1612,7 +1652,15 @@
     "explanation": "日本は1885年にメートル条約へ正式加盟し、国際的な計量の枠組みに加わった。のちの度量衡整備にもつながる。",
     "relatedCardId": "card_history_013",
     "sourceNote": "産総研NMIJ・メートル条約史",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Member State: Japan",
+      "publisher": "International Bureau of Weights and Measures (BIPM)",
+      "url": "https://www.bipm.org/en/countries/jp",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_science_009",
