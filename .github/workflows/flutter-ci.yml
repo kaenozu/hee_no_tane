@@ -125,7 +125,25 @@ jobs:
         run: exit 1
 
       - name: Test
-        run: flutter test
+        id: test
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -o pipefail
+          flutter test 2>&1 | tee build/reports/flutter_test.log
+
+      - name: Upload test diagnostics
+        if: steps.test.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-test-diagnostics
+          path: build/reports/flutter_test.log
+          if-no-files-found: error
+
+      - name: Fail on test errors
+        if: steps.test.outcome == 'failure'
+        run: exit 1
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
