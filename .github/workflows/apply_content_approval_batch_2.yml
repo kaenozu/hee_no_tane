@@ -1,0 +1,174 @@
+name: Apply content approval batch 2
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout approval branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-approval-batch-2
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Regenerate review CSV and apply verified rows
+        shell: bash
+        run: |
+          dart run tool/content_review.dart export \
+            --output review/content_review_batch_2.csv
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          path = Path('review/content_review_batch_2.csv')
+          updates = {
+              'q_food_013': {
+                  'sourceTitle': 'じゃがいもに含まれる天然毒素「ソラニン」や「チャコニン」に関するQ&A',
+                  'sourcePublisher': '農林水産省',
+                  'sourceUrl': 'https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': '農林水産省Q&Aで、じゃがいものグリコアルカロイドが主にソラニンとチャコニンであり、芽や皮で増えやすく、芽と緑色部分を十分に除く必要があることを確認。',
+              },
+              'q_daily_life_009': {
+                  'sourceTitle': 'The 3R Initiative',
+                  'sourcePublisher': 'Ministry of the Environment, Japan',
+                  'sourceUrl': 'https://www.env.go.jp/recycle/3r/en/outline.html',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': '環境省の3R解説で、Reduce、Reuse、Recycleの順に優先し、最初にReduceへ重点を置くことを確認。',
+              },
+              'q_nature_geography_016': {
+                  'sourceTitle': 'The Moon & Eclipses',
+                  'sourcePublisher': 'NASA',
+                  'sourceUrl': 'https://science.nasa.gov/moon/eclipses/',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': 'NASAの月食解説で、地球大気を通過した太陽光のうち青い光が散乱し、赤やオレンジの光が月面に届くため赤く見えることを確認。',
+              },
+              'q_living_things_017': {
+                  'sourceTitle': 'What is coral bleaching?',
+                  'sourcePublisher': 'National Oceanic and Atmospheric Administration (NOAA)',
+                  'sourceUrl': 'https://oceanservice.noaa.gov/facts/coral_bleach.html',
+                  'verifiedAt': '2026-07-12',
+                  'verificationLevel': 'primary',
+                  'reviewStatus': 'approved',
+                  'reviewNote': 'NOAAの解説で、水温などのストレスによりサンゴが共生藻を放出して白化し、白化直後は死亡したとは限らないが強いストレス状態になることを確認。',
+              },
+          }
+
+          with path.open(encoding='utf-8', newline='') as source:
+              reader = csv.DictReader(source)
+              fieldnames = reader.fieldnames
+              rows = list(reader)
+
+          if fieldnames is None:
+              raise SystemExit('Review CSV has no header')
+          if len(rows) != 103:
+              raise SystemExit(f'Expected 103 review rows, found {len(rows)}')
+
+          seen = set()
+          for row in rows:
+              question_id = row['questionId']
+              if question_id in updates:
+                  if row['reviewStatus'] == 'approved':
+                      raise SystemExit(f'Approval target is already approved: {question_id}')
+                  row.update(updates[question_id])
+                  seen.add(question_id)
+
+          missing = sorted(set(updates) - seen)
+          if missing:
+              raise SystemExit(f'Missing approval targets: {missing}')
+          if len(seen) != 4:
+              raise SystemExit(f'Expected 4 approval targets, found {len(seen)}')
+
+          with path.open('w', encoding='utf-8', newline='') as target:
+              writer = csv.DictWriter(target, fieldnames=fieldnames, lineterminator='\n')
+              writer.writeheader()
+              writer.writerows(rows)
+          PY
+
+      - name: Validate approval CSV without writing
+        id: review_dry_run
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -o pipefail
+          dart run tool/content_review.dart import \
+            --input review/content_review_batch_2.csv \
+            2>&1 | tee build/reports/content_review_import.log
+
+      - name: Upload approval import diagnostics
+        if: steps.review_dry_run.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-review-import-diagnostics
+          path: build/reports/content_review_import.log
+          if-no-files-found: error
+
+      - name: Fail on invalid approval CSV
+        if: steps.review_dry_run.outcome == 'failure'
+        run: exit 1
+
+      - name: Apply approval CSV
+        run: dart run tool/content_review.dart import --input review/content_review_batch_2.csv --write
+
+      - name: Validate content
+        run: dart run tool/validate_content.dart
+
+      - name: Audit content sources
+        run: dart run tool/audit_content_sources.dart
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Commit generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            review/content_review_batch_2.csv \
+            assets/data/questions.json \
+            assets/data/cards.json
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "Apply verified content approval batch 2"
+          git push origin HEAD:agent/content-approval-batch-2
