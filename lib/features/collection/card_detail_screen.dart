@@ -89,8 +89,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Future<void> _openSource() async {
     final source = widget.card.effectiveSource;
-    final uri = source.sourceUri;
-    if (!widget.isOwned || !source.isApproved || uri == null) return;
+    if (!widget.isOwned || !source.isApproved) return;
+    final uri = source.sourceUri!;
 
     try {
       final launcher = widget.sourceLauncher;
@@ -231,7 +231,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   ),
                 ],
               ),
-              if (source.isApproved && source.sourceUri != null) ...[
+              if (source.isApproved) ...[
                 const SizedBox(height: 4),
                 TextButton.icon(
                   key: const ValueKey('card-source-open-action'),
