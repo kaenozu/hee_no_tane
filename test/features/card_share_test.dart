@@ -339,7 +339,7 @@ void main() {
     await tester.pump();
     expect(renderer.callCount, 1);
 
-    await tester.pumpWidget(const MaterialApp(home: SizedBox.shrink()));
+    await tester.pumpWidget(const SizedBox.shrink());
     renderer.complete();
     await tester.pump();
 
