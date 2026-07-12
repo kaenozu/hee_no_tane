@@ -27,7 +27,9 @@ Future<void> main() async {
   PlatformDispatcher.instance.onError = (error, stackTrace) {
     debugPrint('Uncaught platform error: $error');
     debugPrintStack(stackTrace: stackTrace);
-    return true;
+    // Returning false keeps the error observable by the host platform instead
+    // of claiming it was fully handled by debug-only logging.
+    return false;
   };
 
   try {
