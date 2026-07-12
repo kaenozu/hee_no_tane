@@ -153,6 +153,7 @@ void main() {
     'docs/11_ストア掲載文案.md',
     'docs/12_実機検証結果テンプレート.md',
     'docs/13_リリース判定.md',
+    'docs/14_コンテンツ出典運用.md',
     'web/privacy.html',
     'web/support.html',
   ]) {
