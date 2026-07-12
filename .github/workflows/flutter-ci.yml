@@ -1,6 +1,9 @@
 name: Flutter CI
 
 on:
+  push:
+    branches:
+      - agent/serialize-save-updates-clean
   pull_request:
 
 permissions:
@@ -8,7 +11,7 @@ permissions:
 
 jobs:
   apply-review-cleanup:
-    if: github.event.pull_request.head.ref == 'agent/serialize-save-updates-clean'
+    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'agent/serialize-save-updates-clean'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout implementation branch
