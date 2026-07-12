@@ -4,7 +4,14 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - master
+
+concurrency:
+  group: flutter-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   quality:
@@ -25,6 +32,9 @@ jobs:
       - name: Validate content
         run: dart run tool/validate_content.dart
 
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test tool
+
       - name: Analyze
         run: flutter analyze
 
@@ -33,3 +43,24 @@ jobs:
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
+
+      - name: Build Android debug APK
+        run: flutter build apk --debug
+
+  ios-smoke:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS without signing
+        run: flutter build ios --release --no-codesign
