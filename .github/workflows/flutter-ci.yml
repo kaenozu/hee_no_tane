@@ -1,86 +1,35 @@
 name: Flutter CI
 
-# Trigger the one-time branch repair workflow from a non-Actions commit.
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  update-onboarding-test:
-    if: github.event.pull_request.head.ref == 'agent/first-run-onboarding'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          ref: agent/first-run-onboarding
-          fetch-depth: 0
+          channel: stable
+          cache: true
 
-      - name: Update existing Home test and restore CI
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
+      - name: Install dependencies
+        run: flutter pub get
 
-          path = Path('test/features/card_collection_stale_data_test.dart')
-          text = path.read_text()
-          old = """          allCards: [cardA, cardB],
-          saveData: SaveData(),
-          saveRepository: repository,
-"""
-          new = """          allCards: [cardA, cardB],
-          saveData: SaveData(onboardingCompleted: true),
-          saveRepository: repository,
-"""
-          if text.count(old) != 1:
-              raise SystemExit(f'Expected one Home test block, found {text.count(old)}')
-          path.write_text(text.replace(old, new, 1))
-          PY
+      - name: Validate content
+        run: dart run tool/validate_content.dart
 
-          cat > .github/workflows/flutter-ci.yml <<'YAML'
-          name: Flutter CI
+      - name: Analyze
+        run: flutter analyze
 
-          on:
-            pull_request:
-            push:
-              branches:
-                - main
+      - name: Test
+        run: flutter test
 
-          jobs:
-            quality:
-              runs-on: ubuntu-latest
-              steps:
-                - name: Checkout
-                  uses: actions/checkout@v4
-
-                - name: Set up Flutter
-                  uses: subosito/flutter-action@v2
-                  with:
-                    channel: stable
-                    cache: true
-
-                - name: Install dependencies
-                  run: flutter pub get
-
-                - name: Validate content
-                  run: dart run tool/validate_content.dart
-
-                - name: Analyze
-                  run: flutter analyze
-
-                - name: Test
-                  run: flutter test
-
-                - name: Build web
-                  run: flutter build web --no-web-resources-cdn
-          YAML
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add test/features/card_collection_stale_data_test.dart .github/workflows/flutter-ci.yml
-          git diff --cached --check
-          git commit -m "Update Home test for onboarding"
-          git push origin HEAD:agent/first-run-onboarding
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
