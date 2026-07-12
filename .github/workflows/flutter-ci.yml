@@ -2,20 +2,16 @@ name: Flutter CI
 
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  capture-tests:
-    if: github.event.pull_request.head.ref == 'feature/card-share-image'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: feature/card-share-image
-          fetch-depth: 0
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -23,20 +19,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Capture test output
-        shell: bash
-        run: |
-          set -euo pipefail
-          flutter pub get
-          set +e
-          flutter test --reporter expanded > .github/card-share-test-output.txt 2>&1
-          status=$?
-          set -e
-          git fetch origin master
-          git checkout origin/master -- .github/workflows/flutter-ci.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/card-share-test-output.txt .github/workflows/flutter-ci.yml
-          git commit -m "Record card share test output"
-          git push origin HEAD:feature/card-share-image
-          exit "$status"
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
