@@ -1,0 +1,117 @@
+questionId,cardId,category,question,answer,explanation,sourceTitle,sourcePublisher,sourceUrl,verifiedAt,verificationLevel,reviewStatus,reviewNote
+q_geo_001,card_geo_001,nature_geography,世界でいちばん深い湖は？,バイカル湖,"バイカル湖の最大深度は約1,642m。湖の中でいちばん深い湖として知られているよ。",Wikipedia: Lake Baikal,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_geo_002,card_geo_002,nature_geography,日本でいちばん面積が大きい都道府県は？,北海道,日本の都道府県でいちばん面積が大きいのは北海道。面積は約8万3千km²で、日本の国土の約22%を占める。,国土地理院,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_bio_001,card_bio_001,living_things,カンガルーの赤ちゃんは何と呼ばれている？,ジョーイ,カンガルーの赤ちゃんは「ジョーイ」と呼ばれているよ。生まれた時はわずか2cmほどなんだ。,Australian Museum,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_bio_002,card_bio_002,living_things,シロナガスクジラの心臓の重さは約どれくらい？,約180kg,シロナガスクジラの心臓は約180kgもある。小型車1台分くらいの重さなんだ。,National Geographic,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_his_001,card_his_001,history,江戸時代、庶民の間で流行った「世界一短い手紙」と呼ばれるものは？,五七五,俳句は「五・七・五」の17音で詠む世界一短い詩の形式。江戸時代に庶民文化として大きく広がったんだ。,文化庁 日本文化紹介,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_his_002,card_his_002,history,奈良の大仏を作るのに使われた主な材料は？,銅,奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。,東大寺公式サイト,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_sci_001,card_sci_001,science,空気の中でいちばん多い成分は？,窒素,空気の約78%は窒素。酸素は約21%で2番目。二酸化炭素は約0.04%しかないんだ。,気象庁 大気成分,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_sci_002,card_sci_002,science,光の速さは1秒間に地球を何周できる？,約7.5周,光は1秒間に約30万km進む。地球1周は約4万kmだから、1秒で約7.5周できる計算になるよ。,国立天文台,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_001,card_food_001,food,日本でいちばん古い調味料と言われているのは？,塩,塩は日本で最も古くから使われている調味料。縄文時代には海水から作っていたことがわかっているよ。,国立歴史民俗博物館,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_002,card_food_002,food,リンゴの生産量が世界一の国は？,中国,世界のリンゴ生産量の約半分は中国。日本で食べられているリンゴの多くも中国産なんだ。,FAO統計,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_lang_001,card_lang_001,language,「ありがとう」の語源として有力な説は？,「有り難し」が変化した,「ありがとう」は「有り難し（存在することが難しい→めったにない→貴重だ）」という意味の古語が変化したものと言われているよ。,日本国語大辞典,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_lang_002,card_lang_002,language,「ほんのわずかな時間」を表す「瞬き」にまつわる言葉は？,一瞬,「一瞬」は「瞬き（まばたき）する間」という意味。サンスクリット語の「ksana（刹那）」の訳語として作られた漢語だよ。,岩波 仏教辞典,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_life_001,card_life_001,daily_life,マンホールのふたが丸い理由として正しいのは？,落ちないから,丸いふたは斜めにしても穴に落ちないから。四角いふただと対角線が辺より長いため、落ちる可能性があるんだ。,日本下水道協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_life_002,card_life_002,daily_life,信号機の色が赤・黄・青の3色なのはなぜ？,光の波長で最も遠くまで届く色だから,赤は波長が長く遠くまで届くため「止まれ」に使われる。青（実際は緑）はその中間。黄色は注意を促す色として選ばれたんだ。,警察庁 交通規制,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_geo_003,card_geo_003,nature_geography,世界でいちばん標高が高い山は？,エベレスト,エベレストの標高は8,848m。世界で最も高い山で、ネパールと中国の国境にあるよ。,USGS,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_bio_003,card_bio_003,living_things,タコの心臓はいくつある？,3つ,タコには心臓が3つある。全身に血液を送る心臓が1つと、エラに血液を送る心臓が2つ。不思議な体の仕組みだね。,National Geographic,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_his_003,card_his_003,history,日本で初めて肖像画が使われた紙幣が発行された年は？,1885年,日本で初めて肖像画が使われた紙幣は1885年発行の日本銀行券。神功皇后の肖像が描かれていたよ。,日本銀行 貨幣博物館,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_sci_003,card_sci_003,science,絶対零度は何度？,-273.15℃,絶対零度は-273.15℃。この温度では原子の動きが理論上停止するとされているんだ。,国立科学博物館,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_003,card_food_003,food,本わさびの原料は何？,ワサビの根茎,本わさびはアブラナ科の植物「山葵」の根茎をすりおろしたもの。チューブわさびには西洋わさびが使われることが多いよ。,農林水産省,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_lang_003,card_lang_003,language,「サンドイッチ」の名前の由来は？,イギリスの伯爵の名前,サンドイッチは18世紀イギリスの第4代サンドイッチ伯爵に由来すると言われているよ。,オックスフォード英語辞典,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_life_003,card_life_003,daily_life,消しゴムが鉛筆の字を消せる理由は？,紙の表面ごと黒鉛を削り取るから,消しゴムは摩擦で紙の表面ごと黒鉛を削り取る。消しかすは紙と黒鉛のカスなんだ。,文具メーカー資料,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_geo_004,card_geo_004,nature_geography,世界でいちばん乾燥している砂漠は？,アタカマ砂漠,チリのアタカマ砂漠には400年以上雨が降っていない地域がある。火星に似た環境としても研究されているよ。,NASA Earth Observatory,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_bio_004,card_bio_004,living_things,大人の人間の骨は約何本？,約206本,大人の人間の骨は約206本。赤ちゃんの時は約350本あるが、成長とともに骨が癒合して減っていくよ。,医学書,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_his_004,card_his_004,history,日本にある国宝の現存天守はいくつ？,5つ,姫路城、松本城、犬山城、彦根城、松江城の5つが国宝に指定されている現存天守だよ。,文化庁 国宝・重要文化財,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_sci_004,card_sci_004,science,地球表面のうち海が占める割合は約何%？,約70%,地球表面の約70%は海で覆われている。このため地球は「水の惑星」と呼ばれるんだ。,NASA,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_004,card_food_004,food,日本にカレーが伝わったのはいつ頃？,明治時代,日本にカレーが伝わったのは明治時代。イギリス経由で西洋料理として紹介され、日本独自の進化を遂げたよ。,カレー博物館,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_lang_004,card_lang_004,language,日本語で語頭に「ら行」が少ない理由は？,上古日本語では語頭のr音を避ける傾向があったから,上古日本語には語頭に「r」音を避ける傾向があった。これは日本語の特徴の一つだよ。,日本語学研究,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_life_004,card_life_004,daily_life,エレベーターの「閉」ボタンを押してもすぐ閉まらないことがある理由は？,安全基準で一定時間開ける必要があるから,多くのエレベーターは安全基準により、閉ボタンを押してもすぐには反応しない設計になっているよ。,日本エレベーター協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_geo_005,card_geo_005,nature_geography,日本でいちばん長い川は？,信濃川,日本最長の川は信濃川。長さは約367kmで、新潟県から長野県を流れているよ。,日本の川 - 北陸 - 信濃川,国土交通省 水管理・国土保全局,https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html,2026-07-12,primary,approved,国土交通省の河川概要で、信濃川水系の幹川流路延長367km、日本最長、長野県内の千曲川から県境で信濃川へ名称が変わることを確認。
+q_bio_005,card_bio_005,living_things,ジャイアントパンダの食事の約何%が竹？,約99%,ジャイアントパンダは1日に12〜38kgもの竹を食べる。肉食動物の消化器官を持つが、食事の99%は竹なんだ。,WWF,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_001,card_nature_geography_001,nature_geography,富士山がまたがる都道府県は？,静岡県と山梨県,日本最高峰の富士山は静岡県と山梨県にまたがる。山頂付近は県境未定地とされているよ。,静岡県および山梨県公式ホームページ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_001,card_living_things_001,living_things,ラッコが寝る時に海藻を体に巻き付ける理由は？,流されないようにするため,ラッコは海に浮かんで眠る時、海藻を体に巻き付けて流されるのを防ぐことがあるよ。,サンシャイン水族館 飼育コラム,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_001,card_history_001,history,エッフェル塔が当初建てられた目的は？,万国博覧会のため,エッフェル塔は1889年のパリ万国博覧会のために建設された。当初は20年で解体予定だったが、無線通信に役立ったため残されたよ。,エッフェル塔公式サイト 歴史解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_001,card_science_001,science,ダイヤモンドと鉛筆の芯に共通する主な元素は？,炭素,ダイヤモンドと黒鉛はどちらも炭素からできている。結晶構造の違いで硬さが大きく変わるよ。,日本化学会 化学百科,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_005,card_food_005,food,イチゴの表面のツブツブは何？,果実,イチゴの赤い部分は花の一部が変化した偽果。表面のツブツブ一粒一粒が植物学上の果実だよ。,農林水産省 植物の雑学,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_001,card_language_001,language,「サボる」の語源は？,フランス語の「sabotage」,「サボる」はフランス語の「sabotage」が日本語化した言葉。労働運動に由来すると言われているよ。,語源由来辞典 サボる,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_001,card_daily_life_001,daily_life,青色の街灯が防犯に使われる理由は？,犯罪抑止効果があると報告されたから,イギリスで青色街灯を導入した際に犯罪率低下が報告され、日本の自治体でも導入が進んだよ。,警察庁 防犯環境設計指針,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_002,card_nature_geography_002,nature_geography,死海で人の体が浮きやすい理由は？,塩分濃度が高いから,死海は塩分濃度が非常に高く、水の密度が大きいため人の体が浮きやすいよ。,イスラエル政府観光局 公式サイト,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_002,card_living_things_002,living_things,キリンの睡眠時間が短い主な理由は？,天敵から身を守るため,キリンは短い睡眠を何度もとり、立ったまま眠ることもある。自然界で天敵から身を守るための適応と考えられているよ。,動物行動学研究「哺乳類の睡眠時間」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_002,card_history_002,history,古代ローマの水道橋の主な目的は？,都市に水を運ぶため,ローマの水道橋は遠くの水源から都市へ水を運ぶために作られた。重力を利用した精巧な設計だったよ。,古代ローマ史料「ローマ水道橋の建築」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_002,card_science_002,science,宇宙空間で音が聞こえない理由は？,音を伝える物質がほとんどないから,音は空気などの物質の振動で伝わる。宇宙空間はほぼ真空なので音が伝わらないよ。,JAXA 宇宙環境解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_006,card_food_006,food,チョコレートの主な原料は？,カカオ豆,チョコレートはカカオの種子（カカオ豆）を発酵・焙煎して作られるよ。,国際カカオ機関 ICCO,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_002,card_language_002,language,「OK」の由来として有力な説は？,「all correct」の誤綴り,「OK」は1830年代のアメリカで流行した意図的な誤綴り「oll korrect（all correct）」が由来とされているよ。,Oxford English Dictionary「OK」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_002,card_daily_life_002,daily_life,電子レンジが食品を温める仕組みは？,水分子を振動させる,電子レンジはマイクロ波で食品中の水分子などを振動させ、その運動エネルギーで食品を温めるよ。,総務省 電波利用ホームページ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_003,card_nature_geography_003,nature_geography,世界で最も長い山脈は？,アンデス山脈,陸上で最も長い山脈はアンデス山脈。南米大陸の西側を約7,000kmにわたって延びているよ。,National Geographic Andes,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_003,card_living_things_003,living_things,ハチドリが後ろ向きに飛べる理由は？,肩関節が自由に回転するから,ハチドリは肩関節を大きく回転させ、羽を8の字に動かすことで後退飛行できるよ。,Smithsonian's National Zoo,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_003,card_history_003,history,世界初の近代オリンピックが開催された都市は？,アテネ,1896年にギリシャのアテネで第1回近代オリンピックが開催されたよ。,国際オリンピック委員会 IOC,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_003,card_science_003,science,水が最も密度が高くなる温度は？,約4℃,水は約4℃で最も密度が高くなる。この性質により冬の湖でも底まで凍りにくいよ。,国立科学博物館 水の性質,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_007,card_food_007,food,バナナの黒い斑点は何と呼ばれる？,シュガースポット,バナナの黒い斑点はシュガースポットと呼ばれ、熟して甘くなった目安だよ。,日本バナナ輸入組合,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_003,card_language_003,language,「こんにちは」の「は」を「わ」と読む理由は？,助詞の「は」だから,「こんにちは」は「今日はご機嫌いかがですか」などの挨拶の一部が独立した表現。助詞の「は」なので「わ」と読むよ。,文化庁 国語施策,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_003,card_daily_life_003,daily_life,非常口のマークが緑色の理由は？,赤い炎の中で目立つから,緑は赤の補色で、火災時の赤い炎や煙の中でも見つけやすい色として採用されているよ。,消防庁 避難誘導表示基準,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_004,card_nature_geography_004,nature_geography,日本で最も標高が高い湖は？,中禅寺湖,中禅寺湖は標高約1,269mにあり、日本で最も標高が高い場所にある湖とされているよ。,日光市観光協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_004,card_living_things_004,living_things,ペンギンの足が凍りにくい理由は？,血管で熱交換するから,ペンギンの足には動脈と静脈が近接し、熱を交換する仕組みがある。これで体温を保ちながら足の凍傷を防いでいるよ。,動物生理学「鳥類の体温調節」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_004,card_history_004,history,日本で最初の鉄道が開通した区間は？,新橋〜横浜,1872年に新橋（汐留）と横浜（桜木町）の間で日本初の鉄道が開業したよ。,国土交通省 鉄道の歴史,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_004,card_science_004,science,人間の体で最も硬い部分は？,歯のエナメル質,歯のエナメル質は人体で最も硬い組織。主成分はハイドロキシアパタイトだよ。,日本歯科医師会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_008,card_food_008,food,昆布とかつお節を合わせるとうま味が強くなる理由は？,うま味の相乗効果,昆布のグルタミン酸とかつお節のイノシン酸を組み合わせると、うま味を強く感じる相乗効果が起きるよ。,農林水産省 だしとうま味,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_004,card_language_004,language,「大詰め」の語源は？,歌舞伎の最後の幕,「大詰め」は歌舞伎で一日の興行の最後の幕を指す言葉から、物事の最終段階を表すようになったよ。,日本国語大辞典「大詰」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_004,card_daily_life_004,daily_life,缶詰の賞味期限印字に使われることがあるインクは？,イカ墨インク,缶詰の賞味期限印字には、誤って口に入っても安全なイカ墨由来のインクが使われることがあるよ。,日本缶詰びん詰レトルト食品協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_005,card_nature_geography_005,nature_geography,陸上で最も多くの国と国境を接する国は？,中国とロシア,中国とロシアはそれぞれ14か国と陸上国境を接し、世界最多とされているよ。,国連データ「国境線と隣接国」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_005,card_living_things_005,living_things,カタツムリの歯はおよそ何本？,1万本以上,カタツムリには歯舌と呼ばれる器官に1万本以上の微細な歯が並んでいることがあるよ。,軟体動物生態誌「歯舌」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_005,card_history_005,history,中世ヨーロッパの騎士の鎧の重さはおよそ？,約25kg,騎士の鎧は一般に約20〜30kg。重さは全身に分散され、動けないほどではなかったよ。,軍事史博物館 西洋甲冑資料,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_005,card_science_005,science,ダイヤモンドを燃やすと主に何になる？,二酸化炭素,ダイヤモンドは炭素でできているため、十分な酸素中で燃やすと二酸化炭素になるよ。,基礎化学 炭素同素体の燃焼,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_009,card_food_009,food,カニカマが海外で呼ばれる名前は？,Surimi,カニカマは海外で「Surimi」と呼ばれ、世界中で食べられている日本発の食品だよ。,日本水産練製品協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_005,card_language_005,language,英語の「salary」の語源として有力なものは？,塩に関係する言葉,「salary」はラテン語の「salarium」に由来し、塩や塩を買うための手当と関係があるとされているよ。,Oxford English Dictionary「salary」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_005,card_daily_life_005,daily_life,非常口のピクトグラムをデザインした日本人は？,太田幸夫,非常口の「走る人」のピクトグラムは日本人デザイナー太田幸夫らの案が国際規格に採用されたよ。,日本サインデザイン協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_006,card_nature_geography_006,nature_geography,世界で最も面積が大きい湖は？,カスピ海,カスピ海は世界最大の湖で、面積は約37万km²。塩分を含む内陸湖だよ。,Encyclopaedia Britannica Caspian Sea,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_006,card_living_things_006,living_things,ウサギが食べたものを再び食べる行動を何と呼ぶ？,食糞,ウサギは盲腸便を食べ直して栄養を効率よく吸収する。この行動を食糞と呼ぶよ。,小動物臨床医学「ウサギの消化」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_006,card_history_006,history,江戸幕府で暦を作った役職は？,天文方,天文方は天体観測や暦の作成を担当した江戸幕府の役職だよ。,日本史辞典「江戸幕府の職制」,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_007,card_nature_geography_007,nature_geography,日本の標高0メートルの基準はどこ？,東京湾の平均海面,日本の標高は東京湾の平均海面を0mとして測られているよ。,国土地理院 日本水準原点,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_007,card_living_things_007,living_things,タコの心臓はいくつ？,3つ,タコには全身に血液を送る心臓が1つと、エラに送る心臓が2つあるよ。,Smithsonian Ocean,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_007,card_history_007,history,かつて日本に存在した標準時は？,西部標準時,日本にはかつて日本標準時とは別に西部標準時があり、台湾や沖縄の一部で使われた時期があるよ。,国立公文書館 標準時の歴史,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_008,card_nature_geography_008,nature_geography,地図で使う日本の標高0メートルの基準はどこ？,東京湾の平均海面,日本の標高は、測量法上、東京湾の平均海面を0mとする。実際の測量では東京・三宅坂の日本水準原点も高さの基準として使われる。,日本水準原点,国土地理院,https://www.gsi.go.jp/sokuchikijun/suijun-genten.html,2026-07-12,primary,approved,国土地理院の解説で、測量法上の標高0mが東京湾平均海面で、日本水準原点が実質的な標高原点として使われることを確認。
+q_nature_geography_009,card_nature_geography_009,nature_geography,日本の夏に雷が多い時間帯は？,午後,夏は日射で地面付近が暖まり、上昇気流で積乱雲が発達する午後に雷が多くなるよ。,気象庁 雷の統計,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_008,card_living_things_008,living_things,タコの心臓はいくつ？,3つ,タコにはエラに血液を送る心臓が2つと、全身に送る心臓が1つある。,スミソニアン海洋 頭足類解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_009,card_living_things_009,living_things,タコの血が青く見える主な理由は？,ヘモシアニンに銅が含まれるから,タコの血には銅を含むヘモシアニンがあり、酸素と結びつくと青く見える。,英国自然史博物館 タコの血,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_006,card_science_006,science,雷そのものの正体として最も近いものは？,大気中で起きる放電現象,気象庁は、雷を大気中で電荷分離が起こり放電する現象と説明している。音が雷鳴、光が電光である。,雷とは？,気象庁,https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html,2026-07-12,primary,approved,気象庁の解説で、雷が大気中の電荷分離に伴う放電現象で、音が雷鳴、光が電光であることを確認。
+q_food_008,card_food_008,food,昆布とかつお節を合わせるとうま味が強く感じられる主な理由は？,異なるうま味成分の相乗効果,昆布のグルタミン酸とかつお節のイノシン酸を組み合わせると、単独よりうま味を強く感じやすい。,農林水産省 だし・うま味解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_009,card_food_009,food,タマネギを切ると涙が出る主な理由は？,揮発性の刺激物質が目を刺激するから,タマネギの細胞が壊れると酵素反応で揮発性の催涙物質が生まれ、目を刺激する。,Poison Control タマネギ解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_006,card_language_006,language,カステラという名前の由来として有力なのは？,カスティーリャ地方の名,カステラはポルトガル経由で伝わり、名前はスペインのカスティーリャ地方に由来する説が有力。,国立国会図書館 レファレンス事例,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_006,card_daily_life_006,daily_life,PETボトルの識別表示で数字の「1」が示すものは？,素材の樹脂識別コード,PETボトルの「1」は、プラスチック素材を種類ごとに区別する樹脂識別コードに由来する。,環境省 環境ラベルデータベース,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_010,card_nature_geography_010,nature_geography,アマゾン川の本流をまたぐ橋はいくつある？,0本,アマゾン川の本流には橋がない。都市間移動は船や航空機が中心で、広大な自然環境も影響している。,地理学講義 世界の河川とインフラ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_010,card_living_things_010,living_things,カタツムリの歯はおよそ何本ある？,1万本以上,カタツムリの口には歯舌と呼ばれる器官があり、種類によっては1万本以上の微細な歯が並ぶ。,軟体動物生態誌 歯舌の構造,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_008,card_history_008,history,中世ヨーロッパの騎士の全身鎧の重さはおよそ？,約25kg,全身鎧は一般に20〜30kg程度で、重量が全身に分散されるため動けないほどではなかった。,軍事史博物館 西洋甲冑資料,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_007,card_science_007,science,ダイヤモンドを酸素中で十分に燃やすと主に何になる？,二酸化炭素,ダイヤモンドは炭素でできているため、酸素中で燃焼すると二酸化炭素になる。,基礎化学 炭素同素体の燃焼実験,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_010,card_food_010,food,カニカマが海外で広く呼ばれる名前は？,Surimi,カニカマは海外で「Surimi」と呼ばれ、日本発の食品として世界中で食べられている。,日本水産練製品協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_007,card_language_007,language,英語のsalaryの語源として有力なものは？,塩に関係するラテン語,「salary」はラテン語の「salarium」に由来し、塩や塩を買う手当と関連するとされる。,Oxford English Dictionary salary,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_007,card_daily_life_007,daily_life,非常口の「走る人」のピクトグラムをデザインした日本人は？,太田幸夫,非常口の走る人のピクトグラムは、太田幸夫らによる日本の案が国際規格に採用された。,日本サインデザイン協会,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_011,card_nature_geography_011,nature_geography,世界で最も面積が大きい湖は？,カスピ海,カスピ海は面積約37万km²で、世界最大の湖とされる。,Encyclopaedia Britannica Caspian Sea,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_011,card_living_things_011,living_things,ウサギが盲腸便を食べ直す行動を何と呼ぶ？,食糞,ウサギは盲腸便を食べ直して栄養を再吸収する。この行動を食糞と呼ぶ。,小動物臨床医学 ウサギの消化,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_009,card_history_009,history,チューリップ・バブルが起きた国は？,オランダ,17世紀のオランダでチューリップ球根の価格が高騰し、のちに急落した。,経済史 世界のバブル,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_008,card_science_008,science,1円玉の製造コストは額面と比べてどうだと言われる？,1円を超えると言われる,1円玉はアルミニウム価格や製造工程のため、額面の1円を超えるコストがかかると推計されることがある。,造幣局 貨幣製造資料,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_011,card_food_011,food,イチゴの赤い部分は植物学上何にあたる？,花托が発達した偽果,イチゴの赤い部分は花托が発達した偽果で、表面のツブツブ一粒一粒が果実にあたる。,植物分類学 偽果の構造,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_009,card_language_009,language,「サボる」の語源は？,フランス語のsabotage,「サボる」はフランス語のsabotageをもとに日本語で動詞化した言葉。,新明解国語辞典 サボる,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_008,card_daily_life_008,daily_life,非常口の誘導灯が緑色である主な理由は？,赤い炎や煙の中でも見つけやすいから,緑は赤の補色で、火災時の赤い炎や煙の中でも見つけやすい色として採用されている。,消防庁 避難誘導表示基準,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_013,card_nature_geography_013,nature_geography,日本で最も人口が多い離島は？,淡路島,淡路島は日本の離島の中で人口が最も多いとされ、佐渡島や奄美大島を上回る。,総務省 国勢調査,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_013,card_living_things_013,living_things,後ろ向きに飛べる唯一の鳥は？,ハチドリ,ハチドリは肩関節を大きく回転させ、羽を8の字に動かすことで後退飛行できる唯一の鳥とされる。,鳥類学 ハチドリの飛行,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_010,card_history_010,history,古代ローマで闘技場を水で満たして行った催しは？,模擬海戦（ナウマキア）,古代ローマでは闘技場などを水で満たし、模擬海戦（ナウマキア）が行われた。,ローマ帝国史 コロッセオ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_014,card_nature_geography_014,nature_geography,日本で霧ともやを分ける気象上の目安は何？,視程,気象庁では、霧は微小な水滴で視程が1km未満の状態、もやは視程が1km以上10km未満の状態として区別している。,氷、霜、霧、雷、日照時間,気象庁,https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html,2026-07-12,primary,approved,気象庁の予報用語で、霧は視程1km未満、もやは視程1km以上10km未満であることを確認。
+q_nature_geography_015,card_nature_geography_015,nature_geography,津波が発生する主な原因として最も一般的なのは？,海底の急激な変動,津波は海底地震などで海底が急に上下し、海水全体が動かされることで発生する。,NOAA 津波の基礎,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_nature_geography_016,card_nature_geography_016,nature_geography,皆既月食で月が赤く見える主な理由は？,地球の大気を通った赤い光が月を照らすから,皆既月食では地球の大気を通過した太陽光のうち赤い光が月に届き、赤く見える。,NASA 月食解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_014,card_living_things_014,living_things,コウモリが暗闇で障害物や獲物を探す方法は？,反響定位,コウモリは超音波を出し、その反響を聞いて周囲や獲物の位置を把握する。,米国国立公園局 コウモリ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_015,card_living_things_015,living_things,ラクダのこぶに蓄えられている主なものは？,脂肪,ラクダのこぶには水ではなく脂肪が蓄えられている。水分を節約する体の仕組みも砂漠生活を支える。,米国議会図書館 ラクダ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_016,card_living_things_016,living_things,ホタルの発光に関わる酵素は？,ルシフェラーゼ,ホタルはルシフェリンとルシフェラーゼなどの反応で効率よく光を生み出す。,JST ホタル発光研究,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_017,card_living_things_017,living_things,サンゴの白化で失われるものは？,共生藻,高水温などのストレスでサンゴが共生藻を失うと白く見える。白化直後は生きていることもある。,NOAA サンゴ白化,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_living_things_018,card_living_things_018,living_things,タツノオトシゴで出産するのは？,オス,メスがオスの育児嚢に卵を渡し、オスが育てて出産する。,NOAA タツノオトシゴ,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_011,card_history_011,history,世界初の郵便切手として知られるのは？,ペニー・ブラック,1840年にイギリスで発行されたペニー・ブラックが世界初の郵便切手として知られる。,英国郵便博物館 ペニー・ブラック,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_history_012,card_history_012,history,富岡製糸場が操業を始めた年として正しいのは？,1872年,富岡製糸場は1872年に設立された、日本初期の本格的な器械製糸工場。明治の近代化と生糸輸出を支えた。,富岡製糸場を知る,富岡市観光協会,https://www.tomioka-silk.jp/_tomioka-silk-mill/about/,2026-07-12,primary,approved,富岡製糸場公式サイトで、1872年に主要建造物が完成して操業開始し、本格的な器械製糸が始まったことと世界遺産登録を確認。
+q_history_013,card_history_013,history,日本がメートル条約に正式加盟した年は？,1885年,日本は1885年にメートル条約へ正式加盟し、国際的な計量の枠組みに加わった。のちの度量衡整備にもつながる。,Member State: Japan,International Bureau of Weights and Measures (BIPM),https://www.bipm.org/en/countries/jp,2026-07-12,primary,approved,BIPMの日本国ページで、日本が1885年10月9日にメートル条約加盟国となったことを確認。
+q_science_009,card_science_009,science,GPSが位置を求めるために重要な情報は？,衛星信号が届く時刻,GPSは複数の衛星から届く信号の時間差を測り、位置を計算する。,NASA GPSと原子時計,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_010,card_science_010,science,飛行機の翼に揚力が生まれる主な理由は？,空気の流れと圧力差,翼の周囲の空気の流れと圧力差など複数の要因で揚力が生まれる。,NASA Glenn 揚力解説,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_science_011,card_science_011,science,石けんが油汚れを落としやすくする主な理由は？,水となじむ部分と油になじむ部分を持つから,石けん分子は水になじむ部分と油になじむ部分を持ち、油汚れを包み込んで水に分散させる。,Yale Medicine 石けん,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_012,card_food_012,food,消費期限と賞味期限の違いとして正しいのは？,消費期限は安全に食べられる期限、賞味期限はおいしく食べられる期限,消費期限は傷みやすい食品に表示され、安全に食べられる期限の目安。賞味期限は品質が保たれ、おいしく食べられる期限の目安。,消費者庁 食品期限表示,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_food_013,card_food_013,food,ジャガイモの芽や緑色部分に多く含まれる天然毒素は？,ソラニンやチャコニン,ジャガイモの芽や緑色部分にはソラニンやチャコニンが多く含まれることがあり、十分に取り除く必要がある。,農林水産省 ジャガイモ毒素,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_language_010,card_language_010,language,日本語の「パン」は何語に由来する？,ポルトガル語,日本語の「パン」はポルトガル語の「pão」に由来する古い外来語。,国立国語研究所 外来語,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_009,card_daily_life_009,daily_life,3Rで最初に優先されるものは？,Reduce（発生抑制）,3RはReduce、Reuse、Recycleの順で、まずごみの発生そのものを減らすことを重視する。,経済産業省 3R政策,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
+q_daily_life_010,card_daily_life_010,daily_life,日本の消防・救急の緊急通報番号が119番になった理由の一つは？,誤接続を減らし、ダイヤルしやすくするため,消防の緊急通報は当初112番だったが、誤接続が多く、ダイヤルしやすさも考慮して119番へ変更された。,日本大百科全書 119番,,,,unverified,pending,LEGACY_SOURCE_NOTE_ONLY
