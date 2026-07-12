@@ -1,92 +1,102 @@
-# へぇの種 - ドキュメント一式
+# へぇのタネ
 
-作成日: 2026-07-07
+1日1問、約30秒の雑学クイズに答え、解説付きの知識カードを集めるFlutterアプリです。
 
-## 概要
+## 現在の機能
 
-「へぇの種」は、毎日3つのクイズに答えて知識カードを収集する知的暇つぶしアプリです。学習管理アプリではなく、SNSや動画の代わりに1分で読める「へぇ」を提供する体験を中心に設計しています。
+- 初回起動オンボーディング
+- 日付に応じた「今日の1問」
+- 回答、解説、カード獲得
+- 獲得カードの図鑑とカテゴリ絞り込み
+- 連続回答日数、回答数、閲覧数の端末内保存
+- 1080×1350 PNGのカード共有
+- ライト／ダークテーマ
+- データリセット
+- アプリ内プライバシーポリシー、サポート、OSSライセンス
+- 起動・読込・保存失敗時の再試行と復旧導線
 
-## ZIP内の構成
+アカウント、広告、分析SDK、外部バックエンドは使用していません。進行状況は端末内の`SharedPreferences`へ保存します。
 
-```text
-hee_no_tane/
-├─ docs/
-│  ├─ 01_企画書.md
-│  ├─ 02_要件定義_仕様書.md
-│  ├─ 03_システム設計書.md
-│  ├─ 04_AI_コンテンツ_ファクトチェック設計.md
-│  ├─ 05_MVP開発計画_バックログ.md
-│  ├─ 06_収益化_KPI_リスク.md
-│  ├─ 07_画面ワイヤー_コピー.md
-│  └─ 08_出典_調査メモ.md
-├─ sample/
-│  ├─ db_schema.sql
-│  ├─ api_contract_openapi.yaml
-│  └─ sample_cards.json
-├─ prompts/
-│  └─ content_generation_prompts.md
-├─ diagrams/
-│  ├─ architecture.mmd
-│  └─ content_pipeline.mmd
-└─ へぇの種_仕様設計書.docx
+## 開発環境
+
+```bash
+flutter pub get
+dart run tool/validate_content.dart
+dart format --output=none --set-exit-if-changed lib test tool
+flutter analyze
+flutter test
+flutter build web --no-web-resources-cdn
+flutter build apk --debug
 ```
 
-## 今回の前提
+CIでは上記に加えて、macOS runnerで署名なしiOS release buildを実行します。
 
-### 確認できた事実
+## コンテンツ
 
-- 短時間・小単位で学ぶ microlearning は、短い学習コンテンツを集中的に届ける手法として説明されている。
-- Duolingo は Q1 2026 の株主向け資料で DAU 5,650万人、課金ユーザー 1,250万人を公表している。これは「短時間学習 + 習慣化 + ゲーム性」が大規模に成立しうる参考事例であり、このアプリの成功を保証するものではない。
-- Wikimedia Analytics API には、ページビューや「よく見られたページ」等を取得する公式エンドポイントがある。
-- Wikimedia API 利用時は User-Agent を設定し、過剰な並列アクセスを避ける必要がある。
-- Google Play は Data safety section の記入を開発者に求め、Apple は App Review Guidelines で UGC や課金等の要件を定めている。
+- `assets/data/questions.json`
+- `assets/data/cards.json`
 
-### 確認できない情報
+`tool/validate_content.dart`は、JSON構文、必須項目、ID重複、選択肢、回答番号、カテゴリ、カード参照、画像ファイル、`verified`フラグを検証します。
 
-- 日本国内で「知的暇つぶし」専用アプリにどの程度の課金需要があるか。
-- 月額300〜500円のサブスクが成立するか。
-- AI生成 + 人手承認で、十分なコンテンツ量と品質を低コストで維持できるか。
+`verified: true`は構造上の公開可否フラグであり、自動ファクトチェックを意味しません。リリース対象コンテンツは、人手で出典と説明の一致を確認してください。
 
-### 推測
+## Android release signing
 
-- 最初から高額サブスクではなく、無料 + 広告 + 低価格プレミアム、または買い切り知識パックの方が受け入れられやすい。
-- 「学習」「教養」よりも「へぇ」「散歩」「つまみ読み」のような軽い見せ方の方が継続率が出やすい。
+リリースビルドは署名情報がない場合に失敗する設計です。ローカルでは`android/app/keystore.properties`を作成します。このファイルとkeystoreはGit管理対象外です。
 
-## 参照情報
+```properties
+storeFile=upload-keystore.jks
+storePassword=YOUR_STORE_PASSWORD
+keyAlias=YOUR_KEY_ALIAS
+keyPassword=YOUR_KEY_PASSWORD
+```
 
-- **Duolingo Q1 2026 Shareholder Letter**  
-  URL: https://investors.duolingo.com/static-files/aab30d54-eb91-422e-b365-c03859fea85c  
-  用途: Q1 2026 metrics: DAUs 56.5M, paid subscribers 12.5M, both +21% YoY. Used only as evidence that short-session gamified learning can scale, not as proof this app will scale.
-- **Wikimedia Analytics API**  
-  URL: https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/  
-  用途: Official documentation for page views, most-viewed / most-edited pages, and related Wikimedia analytics endpoints.
-- **Wikimedia Analytics API - Page view analytics**  
-  URL: https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html  
-  用途: Page view analytics endpoints provide page-view data for Wikimedia projects, with data available from July 1, 2015.
-- **Wikimedia API Etiquette**  
-  URL: https://www.mediawiki.org/wiki/API:Etiquette  
-  用途: Requires informative User-Agent and recommends considerate, serial requests.
-- **Wikimedia Analytics API Access Policy**  
-  URL: https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/documentation/access-policy.html  
-  用途: User-Agent header is required; clients without User-Agent may be blocked.
-- **Wikimedia Foundation Terms of Use**  
-  URL: https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use  
-  用途: Wikimedia content is provided under free/open licenses; content is informational and not professional advice.
-- **Creative Commons BY-SA 3.0 Deed**  
-  URL: https://creativecommons.org/licenses/by-sa/3.0/deed.en  
-  用途: Attribution and ShareAlike obligations when reusing/remixing licensed material.
-- **Google Play Data safety section**  
-  URL: https://support.google.com/googleplay/android-developer/answer/10787469?hl=en  
-  用途: Developers must disclose how apps collect, share, and protect user data in Play Console.
-- **Google Play User Data policy**  
-  URL: https://support.google.com/googleplay/android-developer/answer/10144311?hl=en  
-  用途: Data safety labels must be accurate, up to date, and consistent with the privacy policy.
-- **Apple App Review Guidelines**  
-  URL: https://developer.apple.com/app-store/review/guidelines/  
-  用途: Guidelines cover user-generated content moderation, purchases, and review requirements.
-- **ATD - What Is Microlearning?**  
-  URL: https://www.td.org/talent-development-glossary-terms/what-is-microlearning  
-  用途: Microlearning is focused, bite-sized learning content in short bursts.
-- **OpenAI API Pricing**  
-  URL: https://developers.openai.com/api/docs/pricing  
-  用途: Current pricing reference as of document creation; costs must be rechecked before implementation.
+```bash
+flutter build appbundle --release
+```
+
+GitHub Actionsの`Build release artifacts`を利用する場合は、Repository secretsへ以下を登録します。
+
+- `ANDROID_KEYSTORE_BASE64`
+- `ANDROID_KEYSTORE_PASSWORD`
+- `ANDROID_KEY_ALIAS`
+- `ANDROID_KEY_PASSWORD`
+
+workflow_dispatchでストア用build numberを入力すると、署名済みAABとWeb bundleをartifactとして生成します。
+
+## 公開ページ
+
+Flutter Webを公開すると、次の静的ページも同じ配布先に配置されます。
+
+- `/privacy.html`
+- `/support.html`
+
+Google Play Console、App Store Connectには、実際に公開したURLを登録してください。
+
+## アプリ識別子
+
+- Android: `com.heenotane.hee_no_tane_app`
+- iOS: `com.heenotane.heeNoTaneApp`
+
+ストアへ初回登録した後は識別子を変更できないため、登録前に最終確認してください。
+
+## リリース手順
+
+詳細は以下を参照してください。
+
+- `docs/RELEASE_CHECKLIST.md`
+- `docs/STORE_LISTING_JA.md`
+- `docs/DATA_SAFETY.md`
+
+## 未完了の外部確認
+
+コードと自動テストだけでは次を完了できません。
+
+- Android実機の共有シート、システムバック、小型画面
+- iPhone/iPad実機の共有シート、スワイプバック、ポップオーバー位置
+- 複数ブラウザのWeb Share APIとダウンロードフォールバック
+- Play Console / App Store Connect登録
+- Android upload keyとApple署名証明書の保管
+- ストアスクリーンショットと実際の審査提出
+
+実機結果はIssue #16へ記録します。
