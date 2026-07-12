@@ -40,5 +40,5 @@ jobs:
       - name: Build web
         run: flutter build web --no-web-resources-cdn
 
-      - name: Build Android release bundle
-        run: flutter build appbundle --release
+      - name: Build Android debug APK
+        run: flutter build apk --debug
