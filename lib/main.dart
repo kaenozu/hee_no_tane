@@ -9,31 +9,48 @@ library;
 ///   - data/repositories/
 ///   - domain/services/
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/app.dart';
 import 'package:hee_no_tane_app/data/repositories/card_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/question_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final questionRepo = QuestionRepository();
-  final cardRepo = CardRepository();
-  final saveRepo = SaveRepository();
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+  };
+  PlatformDispatcher.instance.onError = (error, stackTrace) {
+    debugPrint('Uncaught platform error: $error');
+    debugPrintStack(stackTrace: stackTrace);
+    return true;
+  };
 
-  final questions = await questionRepo.loadAll();
-  final cards = await cardRepo.loadAll();
-  final saveData = await saveRepo.load();
+  try {
+    final questionRepo = QuestionRepository();
+    final cardRepo = CardRepository();
+    final saveRepo = SaveRepository();
 
-  runApp(
-    HeeNoTaneApp(
-      allQuestions: questions,
-      allCards: cards,
-      saveData: saveData,
-      saveRepository: saveRepo,
-      rewardService: RewardService(),
-    ),
-  );
+    final questions = await questionRepo.loadAll();
+    final cards = await cardRepo.loadAll();
+    final saveData = await saveRepo.load();
+
+    runApp(
+      HeeNoTaneApp(
+        allQuestions: questions,
+        allCards: cards,
+        saveData: saveData,
+        saveRepository: saveRepo,
+        rewardService: RewardService(),
+      ),
+    );
+  } catch (error, stackTrace) {
+    debugPrint('Failed to initialize app: $error');
+    debugPrintStack(stackTrace: stackTrace);
+    runApp(const StartupErrorApp());
+  }
 }
