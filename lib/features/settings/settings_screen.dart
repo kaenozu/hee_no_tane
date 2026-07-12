@@ -11,13 +11,11 @@ import 'package:hee_no_tane_app/features/settings/legal_information_screen.dart'
 class SettingsScreen extends StatefulWidget {
   final SaveRepository saveRepository;
   final RewardService rewardService;
-  final VoidCallback onDataReset;
 
   const SettingsScreen({
     super.key,
     required this.saveRepository,
     required this.rewardService,
-    required this.onDataReset,
   });
 
   @override
@@ -55,18 +53,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() => _resetting = true);
     try {
       await widget.saveRepository.reset();
-      if (!mounted) return;
-      widget.onDataReset();
-      Navigator.pop(context);
     } on SaveException catch (error) {
       if (!mounted) return;
       setState(() => _resetting = false);
       _showError(error.message);
+      return;
     } catch (_) {
       if (!mounted) return;
       setState(() => _resetting = false);
       _showError('データの削除に失敗しました。もう一度お試しください。');
+      return;
     }
+
+    if (!mounted) return;
+    Navigator.of(context).pop(true);
   }
 
   void _showError(String message) {
