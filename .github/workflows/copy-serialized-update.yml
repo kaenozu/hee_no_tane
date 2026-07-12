@@ -1,0 +1,40 @@
+name: Copy serialized update files
+
+on:
+  push:
+    branches:
+      - agent/serialize-save-updates-clean
+
+permissions:
+  contents: write
+
+jobs:
+  copy:
+    if: github.event.head_commit.message != 'Copy validated Issue 11 files'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout clean branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/serialize-save-updates-clean
+          fetch-depth: 0
+
+      - name: Copy validated files and remove helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/serialize-save-updates
+          git checkout origin/agent/serialize-save-updates -- \
+            lib/features/collection/card_detail_screen.dart \
+            lib/features/home/home_screen.dart \
+            lib/features/question/daily_question_screen.dart \
+            test/data/save_repository_update_test.dart \
+            test/features/daily_question_screen_test.dart \
+            test/features/daily_question_update_idempotency_test.dart
+          rm .github/workflows/copy-serialized-update.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Copy validated Issue 11 files"
+          git push origin HEAD:agent/serialize-save-updates-clean
