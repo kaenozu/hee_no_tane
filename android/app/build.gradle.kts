@@ -6,11 +6,15 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Load keystore properties (for release builds)
+// Load keystore properties (for release builds).
 val keystorePropsFile = rootProject.file("app/keystore.properties")
 val keystoreProps = Properties()
 if (keystorePropsFile.exists()) {
     keystoreProps.load(FileInputStream(keystorePropsFile))
+}
+
+val releaseTaskRequested = gradle.startParameter.taskNames.any {
+    it.contains("release", ignoreCase = true)
 }
 
 android {
@@ -52,13 +56,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            if (!keystoreProps.containsKey("storeFile")) {
+            if (releaseTaskRequested && !keystoreProps.containsKey("storeFile")) {
                 throw GradleException(
                     "Release signing requires app/keystore.properties with storeFile. " +
-                    "See README for setup instructions."
+                        "See README for setup instructions."
                 )
             }
-            signingConfig = signingConfigs.getByName("release")
+            if (keystoreProps.containsKey("storeFile")) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 }
