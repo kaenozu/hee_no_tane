@@ -1067,7 +1067,15 @@
     "detailText": "消費期限は傷みやすい食品で特に重要。賞味期限と混同せず、表示の意味を分けて考える必要がある。",
     "imageAsset": "assets/images/cards/card_food_012.png",
     "rarity": "normal",
-    "sourceNote": "消費者庁・食品期限表示資料"
+    "sourceNote": "消費者庁・食品期限表示資料",
+    "source": {
+      "title": "期限表示とは",
+      "publisher": "消費者庁",
+      "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms204_250331_01.pdf",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_food_013",
