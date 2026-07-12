@@ -2,40 +2,31 @@ name: Flutter CI
 
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  fix-review-followup:
-    if: github.event.pull_request.head.ref == 'feature/card-share-image'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: feature/card-share-image
-          fetch-depth: 0
 
-      - name: Guard nullable runAsync result
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          path = Path('test/features/card_share_test.dart')
-          text = path.read_text()
-          old = """    expect(bytes.length, greaterThan(8));\n    expect(bytes.sublist(0, 8), [137, 80, 78, 71, 13, 10, 26, 10]);\n"""
-          new = """    if (bytes == null) {\n      throw StateError('Renderer returned null from WidgetTester.runAsync');\n    }\n    expect(bytes.length, greaterThan(8));\n    expect(bytes.sublist(0, 8), [137, 80, 78, 71, 13, 10, 26, 10]);\n"""
-          if old not in text:
-              raise SystemExit('Expected PNG assertion block not found')
-          path.write_text(text.replace(old, new, 1))
-          PY
-          git fetch origin master
-          git checkout origin/master -- .github/workflows/flutter-ci.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add test/features/card_share_test.dart .github/workflows/flutter-ci.yml
-          git diff --cached --check
-          git commit -m "Guard nullable card renderer test result"
-          git push origin HEAD:feature/card-share-image
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
