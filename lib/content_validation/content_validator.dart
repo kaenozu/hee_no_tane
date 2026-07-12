@@ -287,6 +287,7 @@ class ContentValidator {
       final trimmed = choice.trim();
       if (trimmed.isEmpty) {
         issues.add(ContentValidationIssue(choicePath, 'must not be empty'));
+        continue;
       }
       if (trimmed.length > 60) {
         issues.add(
@@ -416,6 +417,7 @@ class ContentValidator {
     final trimmed = value.trim();
     if (!allowEmpty && trimmed.isEmpty) {
       issues.add(ContentValidationIssue('$path.$field', 'must not be empty'));
+      return null;
     }
     if (trimmed.length > maxLength) {
       issues.add(
