@@ -70,8 +70,6 @@ class RepaintBoundaryCardShareImageRenderer
       throw const CardShareException('共有画像の解像度が不正です。');
     }
 
-    await WidgetsBinding.instance.endOfFrame;
-
     final boundaryContext = boundaryKey.currentContext;
     final renderObject = boundaryContext?.findRenderObject();
     if (renderObject is! RenderRepaintBoundary) {
