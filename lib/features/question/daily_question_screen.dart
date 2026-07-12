@@ -153,7 +153,6 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
           relatedQuestion: widget.question,
           rewardService: widget.rewardService,
           saveRepository: widget.saveRepository,
-          saveData: _pendingSaveData ?? widget.saveData,
         ),
       ),
     );

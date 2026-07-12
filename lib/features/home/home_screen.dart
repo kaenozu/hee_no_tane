@@ -116,7 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
           relatedQuestion: _todayQuestion,
           rewardService: widget.rewardService,
           saveRepository: widget.saveRepository,
-          saveData: _saveData,
         ),
       ),
     );
@@ -466,8 +465,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (_) => CardListScreen(
-                      saveData: _saveData,
                       allCards: widget.allCards,
+                      saveRepository: widget.saveRepository,
+                      rewardService: widget.rewardService,
                     ),
                   ),
                 ).then((_) => _load());
