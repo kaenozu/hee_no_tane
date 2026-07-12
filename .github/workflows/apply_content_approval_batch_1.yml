@@ -1,0 +1,67 @@
+name: Apply content approval batch 1
+
+on:
+  push:
+    branches:
+      - agent/content-approval-batch-1
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout approval branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-approval-batch-1
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Validate approval CSV without writing
+        run: dart run tool/content_review.dart import --input review/content_review_batch_1.csv
+
+      - name: Apply approval CSV
+        run: dart run tool/content_review.dart import --input review/content_review_batch_1.csv --write
+
+      - name: Validate content
+        run: dart run tool/validate_content.dart
+
+      - name: Audit content sources
+        run: dart run tool/audit_content_sources.dart
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Commit generated JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/questions.json assets/data/cards.json
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "Apply verified content approval batch 1"
+          git push origin HEAD:agent/content-approval-batch-1
