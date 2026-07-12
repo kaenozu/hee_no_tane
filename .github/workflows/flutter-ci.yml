@@ -52,7 +52,23 @@ jobs:
           retention-days: 1
 
       - name: Test
-        run: flutter test
+        id: test
+        shell: bash
+        run: |
+          set +e
+          flutter test > test-output.txt 2>&1
+          status=$?
+          cat test-output.txt
+          exit "$status"
+
+      - name: Upload test diagnostics
+        if: failure() && steps.test.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-test-output
+          path: test-output.txt
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
