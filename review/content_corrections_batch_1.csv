@@ -1,0 +1,2 @@
+questionId,cardId,changeType,oldRisk,replacementSummary,sourceTitle,sourcePublisher,sourceUrl,verifiedAt,verificationLevel,targetStatus
+q_language_001,card_language_001,"question,explanation,card","urban-legend,etymology","木靴を機械へ投げ込んだ逸話を削除し、sabotage→saboter→sabotの語史とCNRTLが記録する古い用法だけに限定","SABOTER : Définition de SABOTER","Centre National de Ressources Textuelles et Lexicales (CNRTL)",https://www.cnrtl.fr/definition/saboter,2026-07-13,secondary,approved
