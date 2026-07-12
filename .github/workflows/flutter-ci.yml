@@ -44,6 +44,31 @@ jobs:
           path: build/reports/content_source_audit.md
           if-no-files-found: error
 
+      - name: Validate content review workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/reports
+          dart run tool/content_review.dart export \
+            --output build/reports/content_review.csv
+          dart run tool/content_review.dart import \
+            --input build/reports/content_review.csv
+          dart run tool/content_review.dart progress \
+            | tee build/reports/content_review_progress.txt
+          dart run tool/content_review.dart risk \
+            --output build/reports/content_review_risks.csv
+
+      - name: Upload content review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-review-artifacts
+          path: |
+            build/reports/content_review.csv
+            build/reports/content_review_progress.txt
+            build/reports/content_review_risks.csv
+          if-no-files-found: error
+
       - name: Validate release metadata
         run: dart run tool/validate_release_metadata.dart
 
