@@ -41,6 +41,38 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Normalize review CSV quoting
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import csv
+          from pathlib import Path
+
+          path = Path('review/content_review_batch_1.csv')
+          with path.open(encoding='utf-8', newline='') as source:
+              rows = list(csv.reader(source))
+
+          expected = len(rows[0])
+          normalized = [rows[0]]
+          for line_number, row in enumerate(rows[1:], start=2):
+              if len(row) < expected:
+                  raise SystemExit(
+                      f'CSV row {line_number} has {len(row)} columns; expected {expected}'
+                  )
+              if len(row) > expected:
+                  overflow = len(row) - expected
+                  row = row[:5] + [','.join(row[5:6 + overflow])] + row[6 + overflow:]
+              if len(row) != expected:
+                  raise SystemExit(
+                      f'CSV row {line_number} could not be normalized safely'
+                  )
+              normalized.append(row)
+
+          with path.open('w', encoding='utf-8', newline='') as target:
+              writer = csv.writer(target, lineterminator='\r\n')
+              writer.writerows(normalized)
+          PY
+
       - name: Validate approval CSV without writing
         id: review_dry_run
         continue-on-error: true
@@ -79,13 +111,16 @@ jobs:
       - name: Test
         run: flutter test
 
-      - name: Commit generated JSON
+      - name: Commit generated files
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/data/questions.json assets/data/cards.json
+          git add \
+            review/content_review_batch_1.csv \
+            assets/data/questions.json \
+            assets/data/cards.json
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
             exit 0
