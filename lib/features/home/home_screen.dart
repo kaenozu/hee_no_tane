@@ -96,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
           relatedCard: _todayCard,
           saveRepository: widget.saveRepository,
           rewardService: widget.rewardService,
-          saveData: _saveData,
         ),
       ),
     );

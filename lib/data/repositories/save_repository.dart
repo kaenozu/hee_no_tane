@@ -36,6 +36,9 @@ class SaveException implements Exception {
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
 
+  /// Pending serialized update. Null when no update is running or queued.
+  Future<void>? _updateTail;
+
   /// 既存画面向けのベストエフォート読込。
   ///
   /// 読込に失敗した場合は従来どおり空のSaveDataを返す。
@@ -59,10 +62,7 @@ class SaveRepository {
     } catch (e, stackTrace) {
       debugPrint('Failed to load save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveLoadException(
-        'データの読み込みに失敗しました。もう一度お試しください。',
-        cause: e,
-      );
+      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: e);
     }
   }
 
@@ -71,20 +71,47 @@ class SaveRepository {
       final prefs = await SharedPreferences.getInstance();
       final succeeded = await prefs.setString(_key, json.encode(data.toJson()));
       if (!succeeded) {
-        throw const SaveException(
-          'データの保存に失敗しました。もう一度お試しください。',
-        );
+        throw const SaveException('データの保存に失敗しました。もう一度お試しください。');
       }
     } on SaveException {
       rethrow;
     } catch (e, stackTrace) {
       debugPrint('Failed to save data: $e');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveException(
-        'データの保存に失敗しました。もう一度お試しください。',
-        cause: e,
-      );
+      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
     }
+  }
+
+  /// Atomically applies [updater] to the latest save data.
+  ///
+  /// Calls on the same repository instance run in FIFO order. A failed update
+  /// is reported to its caller but does not block later updates.
+  Future<SaveData> update(SaveData Function(SaveData current) updater) {
+    final previous = _updateTail;
+    final operation = previous == null
+        ? _runUpdate(updater)
+        : previous.then((_) => _runUpdate(updater));
+
+    final tail = operation.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    _updateTail = tail;
+    tail.whenComplete(() {
+      if (identical(_updateTail, tail)) {
+        _updateTail = null;
+      }
+    });
+    return operation;
+  }
+
+  Future<SaveData> _runUpdate(
+    SaveData Function(SaveData current) updater,
+  ) async {
+    final current = await loadOrThrow();
+    final updated = updater(current);
+    await save(updated);
+    return updated;
   }
 
   Future<void> reset() async {

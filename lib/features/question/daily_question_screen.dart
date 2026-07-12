@@ -16,7 +16,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/core/date_utils.dart';
@@ -28,13 +27,11 @@ import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 /// [relatedCard] 問題に関連するカード。
 /// [saveRepository] セーブデータ永続化。
 /// [rewardService] カード獲得ロジック。
-/// [saveData] 現在のセーブデータ。
 class DailyQuestionScreen extends StatefulWidget {
   final Question question;
   final HeeCard? relatedCard;
   final SaveRepository saveRepository;
   final RewardService rewardService;
-  final SaveData saveData;
 
   const DailyQuestionScreen({
     super.key,
@@ -42,7 +39,6 @@ class DailyQuestionScreen extends StatefulWidget {
     this.relatedCard,
     required this.saveRepository,
     required this.rewardService,
-    required this.saveData,
   });
 
   @override
@@ -62,19 +58,11 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   /// 保存エラーメッセージ（null = エラーなし）。
   String? _saveError;
 
-  /// 回答時に一度だけ作成される保存予定データ。再試行時に再利用。
-  SaveData? _pendingSaveData;
+  /// 回答日。保存失敗後の再試行でも同じ日付を使用する。
+  String? _answerDate;
 
-  /// 関連カードがすでに所有されていたか。
-  bool _cardWasOwned = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _cardWasOwned =
-        widget.relatedCard != null &&
-        widget.saveData.ownedCardIds.contains(widget.relatedCard!.id);
-  }
+  /// 回答処理開始時点で関連カードを所有していたか。
+  bool? _cardWasOwnedBeforeAnswer;
 
   bool get _hasAnswered => _selectedAnswerIndex != null;
   bool get _hasUnsavedAnswer => _hasAnswered && !_saveSucceeded;
@@ -82,38 +70,48 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   bool get _canNavigate => _saveSucceeded;
   bool get _canAnswer => !_hasAnswered && !_saving;
 
-  /// 解答を処理し、保存予定データを作成して永続化を開始する。
+  /// 解答を処理し、Repository上の最新データへ回答差分を適用する。
   Future<void> _answer(int index) async {
     if (!_canAnswer) return;
-
-    final dateStr = todayDateString();
-    final card = widget.relatedCard;
-
-    // 一度だけSaveDataを作成する。
-    var pending = widget.rewardService.updatePlayStats(
-      widget.saveData,
-      dateStr,
-    );
-    pending = pending.copyWith(lastDailyQuestionDate: dateStr);
-
-    if (card != null && !_cardWasOwned) {
-      pending = widget.rewardService.applyReward(pending, card);
-    }
 
     setState(() {
       _selectedAnswerIndex = index;
       _saving = true;
       _saveError = null;
-      _pendingSaveData = pending;
+      _answerDate = todayDateString();
     });
 
-    await _doSave(pending);
+    await _doSave();
   }
 
   /// 保存を実行する。（初回回答・再試行の共通処理）
-  Future<void> _doSave(SaveData data) async {
+  Future<void> _doSave() async {
+    final dateStr = _answerDate;
+    if (dateStr == null) return;
+
     try {
-      await widget.saveRepository.save(data);
+      await widget.saveRepository.update((current) {
+        final card = widget.relatedCard;
+
+        // 保存成功後に応答を受け取れなかった場合の再試行を冪等化する。
+        if (current.lastDailyQuestionDate == dateStr) {
+          _cardWasOwnedBeforeAnswer ??= true;
+          return current;
+        }
+
+        if (card != null) {
+          _cardWasOwnedBeforeAnswer ??= current.ownedCardIds.contains(card.id);
+        }
+
+        var updated = widget.rewardService.updatePlayStats(current, dateStr);
+        updated = updated.copyWith(lastDailyQuestionDate: dateStr);
+
+        if (card != null && !current.ownedCardIds.contains(card.id)) {
+          updated = widget.rewardService.applyReward(updated, card);
+        }
+        return updated;
+      });
+
       if (!mounted) return;
       setState(() {
         _saving = false;
@@ -122,24 +120,27 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
       });
     } catch (e) {
       if (!mounted) return;
+      final message = e is SaveException
+          ? e.message
+          : e is SaveLoadException
+          ? e.message
+          : '回答の保存に失敗しました。もう一度お試しください。';
       setState(() {
         _saving = false;
         _saveSucceeded = false;
-        _saveError = e is SaveException
-            ? e.message
-            : '回答の保存に失敗しました。もう一度お試しください。';
+        _saveError = message;
       });
     }
   }
 
-  /// 保存を再試行する。_pendingSaveDataを再利用するため二重加算は発生しない。
+  /// 同じ回答日でupdateを再実行し、保存済みなら差分を適用しない。
   Future<void> _retrySave() async {
-    if (_saveSucceeded || _saving || _pendingSaveData == null) return;
+    if (_saveSucceeded || _saving || _answerDate == null) return;
     setState(() {
       _saving = true;
       _saveError = null;
     });
-    await _doSave(_pendingSaveData!);
+    await _doSave();
   }
 
   Future<void> _openCardDetail() async {
@@ -421,7 +422,7 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   /// カード獲得ブロックを表示する。
   /// 保存成功後にのみ表示される。
   Widget _cardRewardBlock(HeeCard card, ColorScheme cs) {
-    final isNew = !_cardWasOwned;
+    final isNew = !(_cardWasOwnedBeforeAnswer ?? true);
 
     return Container(
       width: double.infinity,
