@@ -72,6 +72,20 @@ class SourceMetadata {
     );
   }
 
+  /// Parses optional runtime content without allowing one malformed source
+  /// object to prevent the rest of the bundled content from loading.
+  ///
+  /// Release tooling must continue to use [fromJson] so invalid metadata is
+  /// rejected by CI instead of being silently accepted for publication.
+  static SourceMetadata? tryFromJson(Object? value) {
+    if (value is! Map) return null;
+    try {
+      return SourceMetadata.fromJson(Map<String, dynamic>.from(value));
+    } catch (_) {
+      return null;
+    }
+  }
+
   Uri? get sourceUri {
     final value = url;
     return value == null ? null : tryParseSourceUri(value);
