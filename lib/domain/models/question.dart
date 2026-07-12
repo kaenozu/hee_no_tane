@@ -9,7 +9,7 @@ class Question {
   final int answerIndex;
   final String explanation;
   final String relatedCardId;
-  final String sourceNote;
+  final String legacySourceNote;
   final bool verified;
   final SourceMetadata? sourceMetadata;
 
@@ -22,13 +22,21 @@ class Question {
     required this.answerIndex,
     required this.explanation,
     required this.relatedCardId,
-    required this.sourceNote,
+    required String sourceNote,
     required this.verified,
     this.sourceMetadata,
-  });
+  }) : legacySourceNote = sourceNote;
 
   SourceMetadata get effectiveSource {
-    return sourceMetadata ?? SourceMetadata.legacy(sourceNote);
+    return sourceMetadata ?? SourceMetadata.legacy(legacySourceNote);
+  }
+
+  String get sourceNote {
+    final source = sourceMetadata;
+    if (source == null) return legacySourceNote;
+    final verifiedAt = source.verifiedAt;
+    if (verifiedAt == null) return source.displayLabel;
+    return '${source.displayLabel}（確認日: $verifiedAt）';
   }
 
   factory Question.fromJson(Map<String, dynamic> json) {
