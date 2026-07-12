@@ -2,32 +2,31 @@ name: Flutter CI
 
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  apply-lint-fix:
-    if: github.event.pull_request.head.ref == 'feature/card-share-image'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: feature/card-share-image
-          fetch-depth: 0
 
-      - name: Remove unnecessary import and diagnostics
-        shell: bash
-        run: |
-          set -euo pipefail
-          sed -i "/import 'package:flutter\/rendering.dart';/d" lib/features/collection/card_share_preview.dart
-          rm -f .github/card-share-analyze.txt
-          git fetch origin master
-          git checkout origin/master -- .github/workflows/flutter-ci.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --check
-          git commit -m "Remove unnecessary card share import"
-          git push origin HEAD:feature/card-share-image
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
