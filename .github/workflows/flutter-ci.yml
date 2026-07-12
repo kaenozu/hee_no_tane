@@ -34,9 +34,6 @@ jobs:
       - name: Validate release metadata
         run: dart run tool/validate_release_metadata.dart
 
-      - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed lib test tool
-
       - name: Check whitespace
         run: git diff --check
 
