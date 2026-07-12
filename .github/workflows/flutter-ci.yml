@@ -20,37 +20,48 @@ jobs:
       - name: Apply targeted cleanup
         shell: bash
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
+          set -u
+          cat > /tmp/apply_cleanup.py <<'PY'
           from pathlib import Path
 
           test_path = Path('test/content_validation/content_validator_test.dart')
           text = test_path.read_text()
-          replacements = {
-              "'q' * 101": "List.filled(101, 'q').join()",
-              "'e' * 241": "List.filled(241, 'e').join()",
-              "'s' * 121": "List.filled(121, 's').join()",
-              "'t' * 61": "List.filled(61, 't').join()",
-              "'s' * 141": "List.filled(141, 's').join()",
-              "'d' * 501": "List.filled(501, 'd').join()",
-          }
-          for old, new in replacements.items():
-              if old not in text:
-                  raise SystemExit(f'Expected test expression not found: {old}')
-              text = text.replace(old, new, 1)
+          replacements = [
+              ("'q' * 101", "List.filled(101, 'q').join()"),
+              ("'e' * 241", "List.filled(241, 'e').join()"),
+              ("'s' * 121", "List.filled(121, 's').join()"),
+              ("'t' * 61", "List.filled(61, 't').join()"),
+              ("'s' * 141", "List.filled(141, 's').join()"),
+              ("'d' * 501", "List.filled(501, 'd').join()"),
+          ]
+          for old, new in replacements:
+              text = text.replace(old, new)
+          for old, _ in replacements:
+              if old in text:
+                  raise RuntimeError(f'Expression still present: {old}')
           test_path.write_text(text)
 
           validator_path = Path('lib/content_validation/content_validator.dart')
           validator = validator_path.read_text()
-          old_record = """        _QuestionRecord(\n          index: index,\n          id: id,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
-          new_record = """        _QuestionRecord(\n          index: index,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
-          if old_record not in validator:
-              raise SystemExit('Question record construction block not found')
-          validator = validator.replace(old_record, new_record, 1)
-          validator = validator.replace('  final String? id;\n', '', 1)
-          validator = validator.replace('    required this.id,\n', '', 1)
+          construction = """        _QuestionRecord(\n          index: index,\n          id: id,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
+          replacement = """        _QuestionRecord(\n          index: index,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
+          validator = validator.replace(construction, replacement)
+
+          start = validator.index('class _QuestionRecord')
+          end = validator.index('class _CardRecord')
+          question_record = validator[start:end]
+          question_record = question_record.replace('  final String? id;\n', '')
+          question_record = question_record.replace('    required this.id,\n', '')
+          validator = validator[:start] + question_record + validator[end:]
+          if 'id: id' in validator[start:validator.index('class _CardRecord')]:
+              raise RuntimeError('Unused question id remains')
           validator_path.write_text(validator)
           PY
+
+          set +e
+          python3 /tmp/apply_cleanup.py > /tmp/content-cleanup.log 2>&1
+          status=$?
+          set -e
 
           cat > .github/workflows/flutter-ci.yml <<'YAML'
           name: Flutter CI
@@ -92,6 +103,17 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ "$status" -ne 0 ]; then
+            cp /tmp/content-cleanup.log .github/content-cleanup-error.txt
+            git add -A
+            git commit -m "Record content cleanup failure"
+            git push origin HEAD:feature/content-validation
+            cat /tmp/content-cleanup.log
+            exit "$status"
+          fi
+
+          rm -f .github/content-cleanup-error.txt
           git add -A
           git diff --cached --check
           git commit -m "Clean up content validation implementation"
