@@ -3,27 +3,17 @@
 /// ホーム画面。毎日1問のクイズに答え、知識カードを収集する。
 library;
 
-/// ストリーク・収集数・閲覧数を表示し、今日の1問を開始する。
-///
-/// 関連:
-///   - ../../domain/services/daily_question_service.dart
-///   - ../../core/date_utils.dart
-///   - ../question/daily_question_screen.dart
-///   - ../collection/card_detail_screen.dart
-///   - ../collection/card_list_screen.dart
-///   - ../settings/settings_screen.dart
-
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/domain/models/question.dart';
+import 'package:hee_no_tane_app/core/date_utils.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/core/date_utils.dart';
-import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
+import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
 import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,6 +21,7 @@ class HomeScreen extends StatefulWidget {
   final List<HeeCard> allCards;
   final SaveRepository saveRepository;
   final RewardService rewardService;
+  final VoidCallback? onDataReset;
 
   const HomeScreen({
     super.key,
@@ -38,6 +29,7 @@ class HomeScreen extends StatefulWidget {
     required this.allCards,
     required this.saveRepository,
     required this.rewardService,
+    this.onDataReset,
   });
 
   @override
@@ -49,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Question? _todayQuestion;
   HeeCard? _todayCard;
   bool _loading = true;
+  String? _loadError;
 
   @override
   void initState() {
@@ -56,36 +49,49 @@ class _HomeScreenState extends State<HomeScreen> {
     _load();
   }
 
-  Future<void> _load() async {
-    final data = await widget.saveRepository.load();
-    if (!mounted) return;
-    final dateStr = todayDateString();
-    final service = DailyQuestionService();
-    final questions = service.generateQuestions(
-      dateStr,
-      widget.allQuestions,
-      count: 1,
-    );
-    final question = questions.isNotEmpty ? questions.first : null;
-    final card = question != null ? _resolveCard(question) : null;
-    setState(() {
-      _saveData = data;
-      _todayQuestion = question;
-      _todayCard = card;
-      _loading = false;
-    });
+  Future<void> _load({bool showLoading = false}) async {
+    if (showLoading && mounted) {
+      setState(() {
+        _loading = true;
+        _loadError = null;
+      });
+    }
+
+    try {
+      final data = await widget.saveRepository.loadOrThrow();
+      if (!mounted) return;
+      final dateStr = todayDateString();
+      final questions = DailyQuestionService().generateQuestions(
+        dateStr,
+        widget.allQuestions,
+        count: 1,
+      );
+      final question = questions.isNotEmpty ? questions.first : null;
+      final card = question != null ? _resolveCard(question) : null;
+      setState(() {
+        _saveData = data;
+        _todayQuestion = question;
+        _todayCard = card;
+        _loading = false;
+        _loadError = null;
+      });
+    } on SaveLoadException catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _loadError = error.message;
+      });
+    }
   }
 
   HeeCard? _resolveCard(Question question) {
-    final cardMap = {for (final c in widget.allCards) c.id: c};
+    final cardMap = {for (final card in widget.allCards) card.id: card};
     return cardMap[question.relatedCardId];
   }
 
-  bool get _isTodayAnswered {
-    return _saveData.lastDailyQuestionDate == todayDateString();
-  }
+  bool get _isTodayAnswered =>
+      _saveData.lastDailyQuestionDate == todayDateString();
 
-  /// 今日の1問を開始する。
   Future<void> _startDailyQuestion() async {
     if (_todayQuestion == null) return;
     await Navigator.push<bool>(
@@ -103,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
     await _load();
   }
 
-  /// カード詳細画面へ遷移する。
   Future<void> _openCardDetail() async {
     if (_todayCard == null) return;
     await Navigator.push<bool>(
@@ -120,10 +125,33 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _openSettings() async {
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => SettingsScreen(
+          saveRepository: widget.saveRepository,
+          rewardService: widget.rewardService,
+          onDataReset: () {
+            widget.onDataReset?.call();
+          },
+        ),
+      ),
+    );
+    if (!mounted) return;
+    await _load();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return Scaffold(body: const Center(child: CircularProgressIndicator()));
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_loadError != null) {
+      return _buildLoadError();
     }
 
     return Scaffold(
@@ -135,6 +163,48 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverToBoxAdapter(child: _dailyQuestionSection()),
             SliverToBoxAdapter(child: _bottomNav()),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoadError() {
+    final cs = Theme.of(context).colorScheme;
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(28),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 440),
+              child: Column(
+                children: [
+                  Icon(Icons.error_outline_rounded, size: 64, color: cs.error),
+                  const SizedBox(height: 20),
+                  Text(
+                    'データを読み込めませんでした',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    _loadError!,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 24),
+                  FilledButton.icon(
+                    key: const ValueKey('home-load-retry'),
+                    onPressed: () => _load(showLoading: true),
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: const Text('再試行'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -169,19 +239,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const Spacer(),
           IconButton(
+            tooltip: '設定',
             icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => SettingsScreen(
-                    saveRepository: widget.saveRepository,
-                    rewardService: widget.rewardService,
-                    onDataReset: () => _load(),
-                  ),
-                ),
-              ).then((_) => _load());
-            },
+            onPressed: _openSettings,
           ),
         ],
       ),
@@ -233,39 +293,41 @@ class _HomeScreenState extends State<HomeScreen> {
     ColorScheme cs,
   ) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerHighest.withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.3)),
-        ),
-        child: Column(
-          children: [
-            Icon(icon, size: 20, color: color),
-            const SizedBox(height: 2),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-                color: cs.onSurface,
+      child: Semantics(
+        label: '$label $value',
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+          decoration: BoxDecoration(
+            color: cs.surfaceContainerHighest.withValues(alpha: 0.4),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.3)),
+          ),
+          child: Column(
+            children: [
+              Icon(icon, size: 20, color: color),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: cs.onSurface,
+                ),
               ),
-            ),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 11,
-                color: cs.onSurface.withValues(alpha: 0.6),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: cs.onSurface.withValues(alpha: 0.6),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  /// 今日の1問セクション。
   Widget _dailyQuestionSection() {
     final cs = Theme.of(context).colorScheme;
     final question = _todayQuestion;
@@ -278,8 +340,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Text(
           '利用可能な問題がありません',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: cs.onSurface.withValues(alpha: 0.5),
-          ),
+                color: cs.onSurface.withValues(alpha: 0.5),
+              ),
         ),
       );
     }
@@ -344,40 +406,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               '約30秒',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: cs.onSurface.withValues(alpha: 0.5),
-              ),
+                    color: cs.onSurface.withValues(alpha: 0.5),
+                  ),
             ),
             const SizedBox(height: 16),
             if (answered && card != null) ...[
-              // 回答済み表示
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: cs.primary.withValues(alpha: 0.06),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '今日の1問は完了しました',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: cs.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      card.title,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              _answeredCard(card, cs),
               const SizedBox(height: 12),
               SizedBox(
                 width: double.infinity,
@@ -385,48 +419,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: _openCardDetail,
                   icon: const Icon(Icons.auto_stories, size: 18),
                   label: const Text('カードを読む'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: cs.primary,
-                    side: BorderSide(color: cs.primary.withValues(alpha: 0.3)),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                 ),
               ),
-            ] else if (answered && card == null) ...[
-              // 回答済みだがカードなし
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: cs.primary.withValues(alpha: 0.06),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '今日の1問は完了しました',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: cs.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'カード情報を読み込めませんでした',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: cs.onSurface.withValues(alpha: 0.6),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            ] else if (answered) ...[
+              _missingCard(cs),
             ] else ...[
-              // 未回答表示
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -435,15 +432,74 @@ class _HomeScreenState extends State<HomeScreen> {
                   label: const Text('今日の1問を始める'),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
                   ),
                 ),
               ),
             ],
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _answeredCard(HeeCard card, ColorScheme cs) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: cs.primary.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '今日の1問は完了しました',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: cs.primary,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            card.title,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _missingCard(ColorScheme cs) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: cs.primary.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '今日の1問は完了しました',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: cs.primary,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'カード情報を読み込めませんでした',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: cs.onSurface.withValues(alpha: 0.6),
+                ),
+          ),
+        ],
       ),
     );
   }
@@ -455,35 +511,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
-      child: Row(
-        children: [
-          Expanded(
-            child: OutlinedButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CardListScreen(
-                      allCards: widget.allCards,
-                      saveRepository: widget.saveRepository,
-                      rewardService: widget.rewardService,
-                    ),
-                  ),
-                ).then((_) => _load());
-              },
-              icon: const Icon(Icons.collections_bookmark, size: 20),
-              label: Text('図鑑 ($owned/$total)'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: cs.primary,
-                side: BorderSide(color: cs.primary.withValues(alpha: 0.3)),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+      child: SizedBox(
+        width: double.infinity,
+        child: OutlinedButton.icon(
+          onPressed: () async {
+            await Navigator.push<void>(
+              context,
+              MaterialPageRoute(
+                builder: (_) => CardListScreen(
+                  allCards: widget.allCards,
+                  saveRepository: widget.saveRepository,
+                  rewardService: widget.rewardService,
                 ),
               ),
-            ),
+            );
+            if (!mounted) return;
+            await _load();
+          },
+          icon: const Icon(Icons.collections_bookmark, size: 20),
+          label: Text('図鑑 ($owned/$total)'),
+          style: OutlinedButton.styleFrom(
+            foregroundColor: cs.primary,
+            side: BorderSide(color: cs.primary.withValues(alpha: 0.3)),
+            padding: const EdgeInsets.symmetric(vertical: 14),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -509,5 +561,7 @@ const Map<String, Color> _categoryColors = {
   'daily_life': Color(0xFF607D8B),
 };
 
-String _categoryLabel(String cat) => _categoryLabels[cat] ?? cat;
-Color _categoryColor(String cat) => _categoryColors[cat] ?? Colors.grey;
+String _categoryLabel(String category) =>
+    _categoryLabels[category] ?? category;
+Color _categoryColor(String category) =>
+    _categoryColors[category] ?? Colors.grey;
