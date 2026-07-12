@@ -60,10 +60,14 @@ Future<void> main(List<String> arguments) async {
 }
 
 File _resolveFile(Directory root, String path) {
-  final candidate = File(path);
-  if (candidate.isAbsolute) return candidate;
+  if (_isAbsolutePath(path)) return File(path);
   final normalized = path.replaceAll('/', Platform.pathSeparator);
   return File('${root.path}${Platform.pathSeparator}$normalized');
+}
+
+bool _isAbsolutePath(String path) {
+  if (path.startsWith('/') || path.startsWith('\\')) return true;
+  return Platform.isWindows && RegExp(r'^[a-zA-Z]:[\\/]').hasMatch(path);
 }
 
 void _printFailure(List<String> errors) {
@@ -105,10 +109,13 @@ class _CliOptions {
       switch (argument) {
         case '--root':
           root = value;
+          break;
         case '--questions':
           questionsPath = value;
+          break;
         case '--cards':
           cardsPath = value;
+          break;
       }
     }
 
