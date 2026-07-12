@@ -2,119 +2,34 @@ name: Flutter CI
 
 on:
   pull_request:
-
-permissions:
-  contents: write
+  push:
+    branches:
+      - main
 
 jobs:
-  apply-content-cleanup:
-    if: github.event.pull_request.head.ref == 'feature/content-validation'
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout feature branch
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          ref: feature/content-validation
-          fetch-depth: 0
+          channel: stable
+          cache: true
 
-      - name: Apply targeted cleanup
-        shell: bash
-        run: |
-          set -u
-          cat > /tmp/apply_cleanup.py <<'PY'
-          from pathlib import Path
+      - name: Install dependencies
+        run: flutter pub get
 
-          test_path = Path('test/content_validation/content_validator_test.dart')
-          text = test_path.read_text()
-          replacements = [
-              ("'q' * 101", "List.filled(101, 'q').join()"),
-              ("'e' * 241", "List.filled(241, 'e').join()"),
-              ("'s' * 121", "List.filled(121, 's').join()"),
-              ("'t' * 61", "List.filled(61, 't').join()"),
-              ("'s' * 141", "List.filled(141, 's').join()"),
-              ("'d' * 501", "List.filled(501, 'd').join()"),
-          ]
-          for old, new in replacements:
-              text = text.replace(old, new)
-          for old, _ in replacements:
-              if old in text:
-                  raise RuntimeError(f'Expression still present: {old}')
-          test_path.write_text(text)
+      - name: Validate content
+        run: dart run tool/validate_content.dart
 
-          validator_path = Path('lib/content_validation/content_validator.dart')
-          validator = validator_path.read_text()
-          construction = """        _QuestionRecord(\n          index: index,\n          id: id,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
-          replacement = """        _QuestionRecord(\n          index: index,\n          category: category,\n          relatedCardId: relatedCardId,\n        ),\n"""
-          validator = validator.replace(construction, replacement)
+      - name: Analyze
+        run: flutter analyze
 
-          start = validator.index('class _QuestionRecord')
-          end = validator.index('class _CardRecord')
-          question_record = validator[start:end]
-          question_record = question_record.replace('  final String? id;\n', '')
-          question_record = question_record.replace('    required this.id,\n', '')
-          validator = validator[:start] + question_record + validator[end:]
-          if 'id: id' in validator[start:validator.index('class _CardRecord')]:
-              raise RuntimeError('Unused question id remains')
-          validator_path.write_text(validator)
-          PY
+      - name: Test
+        run: flutter test
 
-          set +e
-          python3 /tmp/apply_cleanup.py > /tmp/content-cleanup.log 2>&1
-          status=$?
-          set -e
-
-          cat > .github/workflows/flutter-ci.yml <<'YAML'
-          name: Flutter CI
-
-          on:
-            pull_request:
-            push:
-              branches:
-                - main
-
-          jobs:
-            quality:
-              runs-on: ubuntu-latest
-              steps:
-                - name: Checkout
-                  uses: actions/checkout@v4
-
-                - name: Set up Flutter
-                  uses: subosito/flutter-action@v2
-                  with:
-                    channel: stable
-                    cache: true
-
-                - name: Install dependencies
-                  run: flutter pub get
-
-                - name: Validate content
-                  run: dart run tool/validate_content.dart
-
-                - name: Analyze
-                  run: flutter analyze
-
-                - name: Test
-                  run: flutter test
-
-                - name: Build web
-                  run: flutter build web --no-web-resources-cdn
-          YAML
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          if [ "$status" -ne 0 ]; then
-            cp /tmp/content-cleanup.log .github/content-cleanup-error.txt
-            git add -A
-            git commit -m "Record content cleanup failure"
-            git push origin HEAD:feature/content-validation
-            cat /tmp/content-cleanup.log
-            exit "$status"
-          fi
-
-          rm -f .github/content-cleanup-error.txt
-          git add -A
-          git diff --cached --check
-          git commit -m "Clean up content validation implementation"
-          git push origin HEAD:feature/content-validation
+      - name: Build web
+        run: flutter build web --no-web-resources-cdn
