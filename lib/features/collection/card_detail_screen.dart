@@ -18,6 +18,8 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+import 'package:hee_no_tane_app/features/collection/card_share_preview.dart';
+import 'package:hee_no_tane_app/features/collection/card_share_service.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
 class CardDetailScreen extends StatefulWidget {
@@ -67,6 +69,19 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     }
   }
 
+  Future<void> _openShareDialog() async {
+    if (!widget.isOwned) return;
+
+    await showDialog<void>(
+      context: context,
+      builder: (_) => CardShareDialog(
+        card: widget.card,
+        shareGateway: const SharePlusCardShareGateway(),
+        imageRenderer: const RepaintBoundaryCardShareImageRenderer(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
@@ -74,7 +89,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryLabel(widget.card.category)),
-        actions: const [],
+        actions: [
+          if (widget.isOwned)
+            IconButton(
+              key: const ValueKey('card-share-action'),
+              tooltip: '画像で共有',
+              onPressed: _openShareDialog,
+              icon: const Icon(Icons.ios_share_rounded),
+            ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
