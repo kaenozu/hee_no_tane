@@ -102,8 +102,14 @@ void main() {
       expect(messages, contains('questions[0].question: must not be empty'));
       expect(messages, contains('questions[0].choices[2]: must not be empty'));
       expect(messages, contains('questions[0].choices[3]: must be a string'));
-      expect(messages, contains('questions[0].choices: must not contain duplicates'));
-      expect(messages, contains('questions[0].answerIndex: expected 0..3, got 4'));
+      expect(
+        messages,
+        contains('questions[0].choices: must not contain duplicates'),
+      );
+      expect(
+        messages,
+        contains('questions[0].answerIndex: expected 0..3, got 4'),
+      );
       expect(
         messages,
         contains(
@@ -123,7 +129,9 @@ void main() {
 
       expect(
         _messages(result),
-        contains('questions[0].choices: must contain exactly 4 choices, got 2'),
+        contains(
+          'questions[0].choices: must contain exactly 4 choices, got 2',
+        ),
       );
       expect(
         _messages(result),
@@ -214,18 +222,18 @@ void main() {
         questionsJson: jsonEncode([
           _question(
             overrides: {
-              'question': 'q' * 101,
-              'explanation': 'e' * 241,
-              'sourceNote': 's' * 121,
+              'question': List.filled(101, 'q').join(),
+              'explanation': List.filled(241, 'e').join(),
+              'sourceNote': List.filled(121, 's').join(),
             },
           ),
         ]),
         cardsJson: jsonEncode([
           _card(
             overrides: {
-              'title': 't' * 61,
-              'shortText': 's' * 141,
-              'detailText': 'd' * 501,
+              'title': List.filled(61, 't').join(),
+              'shortText': List.filled(141, 's').join(),
+              'detailText': List.filled(501, 'd').join(),
             },
           ),
         ]),
@@ -235,11 +243,15 @@ void main() {
       expect(result.issues.length, greaterThanOrEqualTo(6));
       expect(
         _messages(result),
-        contains('questions[0].question: must be at most 100 characters, got 101'),
+        contains(
+          'questions[0].question: must be at most 100 characters, got 101',
+        ),
       );
       expect(
         _messages(result),
-        contains('cards[0].detailText: must be at most 500 characters, got 501'),
+        contains(
+          'cards[0].detailText: must be at most 500 characters, got 501',
+        ),
       );
     });
   });
@@ -262,7 +274,10 @@ void main() {
 
       final success = await _runCli(root.path);
       expect(success.exitCode, 0, reason: '${success.stdout}\n${success.stderr}');
-      expect(success.stdout, contains('Content validation passed: 1 questions, 1 cards'));
+      expect(
+        success.stdout,
+        contains('Content validation passed: 1 questions, 1 cards'),
+      );
 
       await questionsFile.writeAsString(
         jsonEncode([_question(overrides: {'answerIndex': 9})]),
