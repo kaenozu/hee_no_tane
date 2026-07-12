@@ -149,22 +149,42 @@ void main() {
     expect(find.text(_card.title), findsNothing);
   });
 
-  testWidgets('S3. share action opens a preview without hidden detail text', (
-    tester,
-  ) async {
+  testWidgets('S3. share action opens a safe card preview', (tester) async {
     await _pumpCardDetail(tester, isOwned: true);
 
     await tester.tap(find.byKey(const ValueKey('card-share-action')));
     await tester.pumpAndSettle();
 
+    final preview = find.byKey(const ValueKey('card-share-preview'));
     expect(find.text('共有画像を確認'), findsOneWidget);
-    expect(find.byKey(const ValueKey('card-share-preview')), findsOneWidget);
-    expect(find.text(_card.title), findsWidgets);
-    expect(find.text(_card.shortText), findsWidgets);
-    expect(find.text('食べ物'), findsOneWidget);
-    expect(find.text('出典: ${_card.sourceNote}'), findsOneWidget);
-    expect(find.text('へぇの種'), findsOneWidget);
-    expect(find.text(_card.detailText), findsOneWidget);
+    expect(preview, findsOneWidget);
+    expect(
+      find.descendant(of: preview, matching: find.text(_card.title)),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: preview, matching: find.text(_card.shortText)),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: preview, matching: find.text('食べ物')),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: preview,
+        matching: find.text('出典: ${_card.sourceNote}'),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: preview, matching: find.text('へぇの種')),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(of: preview, matching: find.text(_card.detailText)),
+      findsNothing,
+    );
   });
 
   testWidgets('S4. share sends PNG bytes, file name, and iPad origin', (
@@ -253,7 +273,7 @@ void main() {
 
     await tester.tap(find.widgetWithText(FilledButton, '共有する'));
     await tester.pump();
-    await tester.tap(find.byType(FilledButton));
+    await tester.tap(find.byType(FilledButton), warnIfMissed: false);
     await tester.pump();
 
     expect(gateway.callCount, 1);
@@ -279,12 +299,15 @@ void main() {
     );
     await tester.pump();
 
-    final bytes = await const RepaintBoundaryCardShareImageRenderer().render(
-      boundaryKey,
-      pixelRatio: 1.0,
+    final bytes = await tester.runAsync(
+      () => const RepaintBoundaryCardShareImageRenderer().render(
+        boundaryKey,
+        pixelRatio: 1.0,
+      ),
     );
 
-    expect(bytes.length, greaterThan(8));
+    expect(bytes, isNotNull);
+    expect(bytes!.length, greaterThan(8));
     expect(bytes.sublist(0, 8), [137, 80, 78, 71, 13, 10, 26, 10]);
   });
 }
