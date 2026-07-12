@@ -21,6 +21,9 @@ import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_share_preview.dart';
 import 'package:hee_no_tane_app/features/collection/card_share_service.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+typedef SourceLauncher = Future<bool> Function(Uri uri);
 
 class CardDetailScreen extends StatefulWidget {
   final HeeCard card;
@@ -28,6 +31,7 @@ class CardDetailScreen extends StatefulWidget {
   final Question? relatedQuestion;
   final RewardService rewardService;
   final SaveRepository saveRepository;
+  final SourceLauncher? sourceLauncher;
 
   const CardDetailScreen({
     super.key,
@@ -36,6 +40,7 @@ class CardDetailScreen extends StatefulWidget {
     this.relatedQuestion,
     required this.rewardService,
     required this.saveRepository,
+    this.sourceLauncher,
   });
 
   @override
@@ -82,9 +87,34 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Future<void> _openSource() async {
+    final source = widget.card.effectiveSource;
+    if (!widget.isOwned || !source.isApproved) return;
+    final uri = source.sourceUri!;
+
+    try {
+      final launcher = widget.sourceLauncher;
+      final opened = launcher == null
+          ? await launchUrl(uri)
+          : await launcher(uri);
+      if (!opened && mounted) _showSourceLaunchError();
+    } catch (error, stackTrace) {
+      debugPrint('Failed to open card source: $error');
+      debugPrintStack(stackTrace: stackTrace);
+      if (mounted) _showSourceLaunchError();
+    }
+  }
+
+  void _showSourceLaunchError() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('出典ページを開けませんでした。カードはそのまま閲覧できます。')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final source = widget.card.effectiveSource;
 
     return Scaffold(
       appBar: AppBar(
@@ -201,6 +231,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   ),
                 ],
               ),
+              if (source.isApproved) ...[
+                const SizedBox(height: 4),
+                TextButton.icon(
+                  key: const ValueKey('card-source-open-action'),
+                  onPressed: _openSource,
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: const Text('出典を開く'),
+                ),
+              ],
             ] else ...[
               const SizedBox(height: 8),
               Container(
