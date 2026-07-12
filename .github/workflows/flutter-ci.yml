@@ -1,5 +1,6 @@
 name: Flutter CI
 
+# Trigger the one-time branch repair workflow from a non-Actions commit.
 on:
   pull_request:
 
