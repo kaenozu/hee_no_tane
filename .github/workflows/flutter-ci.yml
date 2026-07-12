@@ -49,7 +49,25 @@ jobs:
         run: git diff --check
 
       - name: Analyze
-        run: flutter analyze
+        id: analyze
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -o pipefail
+          flutter analyze 2>&1 | tee build/reports/flutter_analyze.log
+
+      - name: Upload analyzer diagnostics
+        if: steps.analyze.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-analyze-diagnostics
+          path: build/reports/flutter_analyze.log
+          if-no-files-found: error
+
+      - name: Fail on analyzer errors
+        if: steps.analyze.outcome == 'failure'
+        run: exit 1
 
       - name: Test
         run: flutter test
