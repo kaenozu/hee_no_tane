@@ -33,13 +33,35 @@ jobs:
         run: dart run tool/validate_content.dart
 
       - name: Analyze
-        run: flutter analyze
+        id: analyze
+        shell: bash
+        run: |
+          set +e
+          flutter analyze > analyze-output.txt 2>&1
+          status=$?
+          cat analyze-output.txt
+          exit "$status"
+
+      - name: Upload analyze diagnostics
+        if: failure() && steps.analyze.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-analyze-output
+          path: analyze-output.txt
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Test
         run: flutter test
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
+
+      - name: Verify public policy pages
+        shell: bash
+        run: |
+          test -f build/web/privacy.html
+          test -f build/web/support.html
 
       - name: Build Android debug APK
         run: flutter build apk --debug
