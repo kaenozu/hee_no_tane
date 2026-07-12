@@ -318,8 +318,7 @@ void main() {
       ),
     );
 
-    expect(bytes, isNotNull);
-    expect(bytes!.length, greaterThan(8));
+    expect(bytes.length, greaterThan(8));
     expect(bytes.sublist(0, 8), [137, 80, 78, 71, 13, 10, 26, 10]);
   });
 
