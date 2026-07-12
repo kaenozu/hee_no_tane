@@ -1760,7 +1760,15 @@
     "explanation": "消費期限は安全に食べられる期限の目安。賞味期限はおいしく食べられる期限なので、意味が異なる。",
     "relatedCardId": "card_food_012",
     "sourceNote": "消費者庁・食品期限表示資料",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "期限表示とは",
+      "publisher": "消費者庁",
+      "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms204_250331_01.pdf",
+      "verifiedAt": "2026-07-12",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_food_013",
