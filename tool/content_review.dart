@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:hee_no_tane_app/content_review/content_review_workflow.dart';
+import 'package:hee_no_tane_app/content_review/content_risk_classifier.dart';
 
 const _defaultQuestionsPath = 'assets/data/questions.json';
 const _defaultCardsPath = 'assets/data/cards.json';
@@ -16,14 +17,21 @@ Future<void> main(List<String> arguments) async {
   final questionsPath = options['questions'] ?? _defaultQuestionsPath;
   final cardsPath = options['cards'] ?? _defaultCardsPath;
   final workflow = const ContentReviewWorkflow();
+  final classifier = const ContentRiskClassifier();
 
   try {
     switch (command) {
       case 'export':
         final output = options['output'] ?? 'build/content_review.csv';
-        final csv = workflow.exportCsv(
-          questionsJson: await File(questionsPath).readAsString(),
-          cardsJson: await File(cardsPath).readAsString(),
+        final questionsJson = await File(questionsPath).readAsString();
+        final cardsJson = await File(cardsPath).readAsString();
+        final baseCsv = workflow.exportCsv(
+          questionsJson: questionsJson,
+          cardsJson: cardsJson,
+        );
+        final csv = classifier.enhanceReviewCsv(
+          baseCsv: baseCsv,
+          cardsJson: cardsJson,
         );
         await _writeOutput(output, csv);
         stdout.writeln('承認レビューCSVを出力しました: $output');
@@ -35,9 +43,14 @@ Future<void> main(List<String> arguments) async {
             'import requires --input <csv-path>',
           );
         }
+        final cardsJson = await File(cardsPath).readAsString();
+        final baseCsv = classifier.stripReviewCsv(
+          reviewCsv: await File(input).readAsString(),
+          cardsJson: cardsJson,
+        );
         final write = options.containsKey('write');
         final plan = await workflow.applyCsvToFiles(
-          csv: await File(input).readAsString(),
+          csv: baseCsv,
           questionsPath: questionsPath,
           cardsPath: cardsPath,
           write: write,
@@ -80,13 +93,13 @@ Future<void> main(List<String> arguments) async {
             options['output'] ?? 'build/reports/content_review_risks.csv';
         final questionsJson = await File(questionsPath).readAsString();
         final cardsJson = await File(cardsPath).readAsString();
-        final risks = workflow.risks(
+        final risks = classifier.risks(
           questionsJson: questionsJson,
           cardsJson: cardsJson,
         );
         await _writeOutput(
           output,
-          workflow.riskCsv(
+          classifier.riskCsv(
             questionsJson: questionsJson,
             cardsJson: cardsJson,
           ),
@@ -155,5 +168,12 @@ Common options:
 
 Import performs a full dry-run by default. JSON is changed only when every row
 passes validation and --write is supplied.
+
+imageFit is a review-only field and accepts:
+  unchecked, fit, generic_placeholder, replace_required
+
+Risk output separates dynamic and stable comparisons, current roles and current
+facts, health and anatomy, financial advice, prices, currency history, and
+near-duplicate facts.
 ''');
 }
