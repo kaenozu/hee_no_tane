@@ -54,18 +54,26 @@
     "id": "q_bio_002",
     "category": "living_things",
     "difficulty": "normal",
-    "question": "シロナガスクジラの心臓の重さは約どれくらい？",
+    "question": "2017年、Royal Ontario Museumの実物シロナガスクジラ心臓標本がドイツで受けた保存処理は？",
     "choices": [
-      "約10kg",
-      "約180kg",
-      "約500kg",
-      "約1t"
+      "プラスティネーション",
+      "凍結乾燥",
+      "液浸保存",
+      "樹脂製レプリカの作製"
     ],
-    "answerIndex": 1,
-    "explanation": "シロナガスクジラの心臓は約180kgもある。小型車1台分くらいの重さなんだ。",
+    "answerIndex": 0,
+    "explanation": "Royal Ontario Museumの公式発表によると、この実物標本はドイツのグーベンでプラスティネーション処理を受け、2017年5月15日にトロントへ到着した。",
     "relatedCardId": "card_bio_002",
-    "sourceNote": "National Geographic",
-    "verified": true
+    "sourceNote": "Royal Ontario Museum（2017）",
+    "verified": true,
+    "source": {
+      "title": "Blue Whale Heart Arrives at the ROM",
+      "publisher": "Royal Ontario Museum",
+      "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_his_001",
@@ -156,18 +164,26 @@
     "id": "q_food_002",
     "category": "food",
     "difficulty": "normal",
-    "question": "リンゴの生産量が世界一の国は？",
+    "question": "2010年の原著論文が、栽培リンゴの祖先種として同定したのは？",
     "choices": [
-      "日本",
-      "アメリカ",
-      "中国",
-      "イタリア"
+      "Malus sieversii",
+      "Malus sylvestris",
+      "Malus baccata",
+      "Malus floribunda"
     ],
-    "answerIndex": 2,
-    "explanation": "世界のリンゴ生産量の約半分は中国。日本で食べられているリンゴの多くも中国産なんだ。",
+    "answerIndex": 0,
+    "explanation": "2010年にNature Geneticsで公表された原著論文は、バラ科の主要分類群と比較した系統再構築により、栽培リンゴの祖先種をMalus sieversiiと同定した。",
     "relatedCardId": "card_food_002",
-    "sourceNote": "FAO統計",
-    "verified": true
+    "sourceNote": "Nature Genetics（2010）",
+    "verified": true,
+    "source": {
+      "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+      "publisher": "Nature Genetics (Springer Nature)",
+      "url": "https://www.nature.com/articles/ng.654",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_lang_001",
@@ -360,7 +376,7 @@
     "id": "q_geo_004",
     "category": "nature_geography",
     "difficulty": "hard",
-    "question": "地球上でいちばん乾燥した場所は？",
+    "question": "2009年、火星を想定した掘削調査で生命検出チップが試験された砂漠は？",
     "choices": [
       "サハラ砂漠",
       "アタカマ砂漠",
@@ -368,10 +384,18 @@
       "モハーベ砂漠"
     ],
     "answerIndex": 1,
-    "explanation": "チリのアタカマ砂漠は、過去400年以上雨が降っていない記録がある地域もある、世界で最も乾燥した場所なんだ。",
+    "explanation": "研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。この技術は、火星で生命を探すための惑星探査技術として評価された。",
     "relatedCardId": "card_geo_004",
-    "sourceNote": "NASA Earth Observatory",
-    "verified": true
+    "sourceNote": "Parroほか（2011）Astrobiology",
+    "verified": true,
+    "source": {
+      "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+      "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_bio_004",
@@ -462,18 +486,26 @@
     "id": "q_life_004",
     "category": "daily_life",
     "difficulty": "hard",
-    "question": "「エレベーターの開閉ボタン」実はあまり効果がないと言われる理由は？",
+    "question": "米国のADA Accessibility Standards 407.3.5で、かご呼びに応答したエレベーターの扉が完全に開いた状態を保つ最低時間は？",
     "choices": [
-      "安全のため自動ドアが優先されるから",
-      "ボタンが飾りだから",
-      "電気代節約のため",
-      "メーカーの仕様"
+      "1秒",
+      "3秒",
+      "5秒",
+      "20秒"
     ],
-    "answerIndex": 0,
-    "explanation": "多くのエレベーターでは、安全基準により自動ドアの開閉タイミングが優先される。閉ボタンを押しても数秒間は反応しないよう設計されていることが多いんだ。",
+    "answerIndex": 1,
+    "explanation": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと規定している。米国の特定規定であり、すべての国・機種の閉ボタンの挙動を示すものではない。",
     "relatedCardId": "card_life_004",
-    "sourceNote": "日本エレベーター協会",
-    "verified": true
+    "sourceNote": "U.S. Access Board ADA 407.3.5",
+    "verified": true,
+    "source": {
+      "title": "Chapter 4: Accessible Routes",
+      "publisher": "U.S. Access Board",
+      "url": "https://www.access-board.gov/ada/chapter/ch04/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_geo_005",
@@ -504,7 +536,7 @@
     "id": "q_bio_005",
     "category": "living_things",
     "difficulty": "easy",
-    "question": "パンダの食べるもののほとんどは？",
+    "question": "ジャイアントパンダが主に食べるものは？",
     "choices": [
       "果物",
       "竹",
@@ -512,10 +544,18 @@
       "魚"
     ],
     "answerIndex": 1,
-    "explanation": "ジャイアントパンダの食事の99%は竹。1日に12〜38kgもの竹を食べるんだ。",
+    "explanation": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
     "relatedCardId": "card_bio_005",
-    "sourceNote": "WWF",
-    "verified": true
+    "sourceNote": "WWF「Giant pandas」",
+    "verified": true,
+    "source": {
+      "title": "Giant pandas",
+      "publisher": "World Wildlife Fund (WWF)",
+      "url": "https://www.worldwildlife.org/species/giant-panda/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_001",
@@ -606,7 +646,7 @@
     "id": "q_language_001",
     "category": "language",
     "difficulty": "hard",
-    "question": "仕事をわざと怠る「サボタージュ」の語源となった、フランスの履物は何？",
+    "question": "フランス語の「sabotage（サボタージュ）」と語源的につながる履物「sabot」は何？",
     "choices": [
       "木靴",
       "サンダル",
@@ -614,27 +654,43 @@
       "布の靴"
     ],
     "answerIndex": 0,
-    "explanation": "フランス語の「サボ（木靴）」が語源です。労働者がストライキの際、機械に木靴を投げ込んで壊したことが始まりと言われています。",
+    "explanation": "「sabotage」はフランス語の動詞saboterから派生し、saboterは木靴を表すsabotに由来する。CNRTLには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。",
     "relatedCardId": "card_language_001",
-    "sourceNote": "語源由来辞典 サボる",
-    "verified": true
+    "sourceNote": "CNRTL「SABOTER」の語義・語源",
+    "verified": true,
+    "source": {
+      "title": "SABOTER : Définition de SABOTER",
+      "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+      "url": "https://www.cnrtl.fr/definition/saboter",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_daily_life_001",
     "category": "daily_life",
     "difficulty": "normal",
-    "question": "犯罪の抑止や心の落ち着きを目的として、駅や街頭で導入される照明の色は何色？",
+    "question": "2013年に発表された日本の駅ホームの青色灯に関する観察研究で、分析対象となった駅は合計何駅？",
     "choices": [
-      "赤色",
-      "緑色",
-      "青色",
-      "白色"
+      "11駅",
+      "60駅",
+      "71駅",
+      "100駅"
     ],
     "answerIndex": 2,
-    "explanation": "青色光には人間の副交感神経を刺激してリラックスさせる効果があると考えられ、防犯対策や駅のホームでの事故防止に採用されています。",
+    "explanation": "この研究は、ある鉄道会社の2000〜2010年のデータを使い、青色灯を導入した11駅と導入していない60駅、計71駅を比較した。観察研究であり、青色灯が作用する仕組みは調べていない。",
     "relatedCardId": "card_daily_life_001",
-    "sourceNote": "警察庁 防犯環境設計指針",
-    "verified": true
+    "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+    "verified": true,
+    "source": {
+      "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+      "publisher": "Journal of Affective Disorders (Elsevier)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_002",
@@ -657,18 +713,26 @@
     "id": "q_living_things_002",
     "category": "living_things",
     "difficulty": "normal",
-    "question": "野生のキリンの1日の平均睡眠時間は、だいたいどれくらいの長さだと言われているでしょうか？",
+    "question": "1996年に発表されたキリンの行動睡眠研究で、観察場所として題名に示されているのは？",
     "choices": [
-      "約20分",
-      "約4時間",
-      "約8時間",
-      "約12時間"
+      "動物園",
+      "野生のサバンナ",
+      "大学の睡眠実験室",
+      "海洋公園"
     ],
     "answerIndex": 0,
-    "explanation": "野生のキリンは肉食獣などの天敵から身を守るため、非常に短い睡眠をとります。1回数分程度の「うたた寝」を細切れに繰り返し、1日の合計睡眠時間はわずか20分程度と言われています。動物界でも屈指の短眠家として有名です。",
+    "explanation": "ToblerとSchwierinが1996年に発表した論文の題名は「動物園におけるキリンの行動睡眠」で、観察場所として動物園が示されている。",
     "relatedCardId": "card_living_things_002",
-    "sourceNote": "ナショナルジオグラフィック 日本版",
-    "verified": true
+    "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+    "verified": true,
+    "source": {
+      "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+      "publisher": "Journal of Sleep Research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_history_002",

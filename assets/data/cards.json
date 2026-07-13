@@ -31,13 +31,21 @@
   },
   {
     "id": "card_bio_002",
-    "title": "シロナガスクジラの心臓",
+    "title": "保存されたシロナガスクジラの心臓",
     "category": "living_things",
-    "shortText": "地球上で最も大きな心臓。",
-    "detailText": "シロナガスクジラの心臓は約180kg。小型車1台分の重さで、1回の拍動で約80リットルの血液を送り出す。",
+    "shortText": "実物標本はプラスティネーションで保存された。",
+    "detailText": "Royal Ontario Museumの2017年公式発表によると、実物の心臓標本はドイツのグーベンでプラスティネーション処理を受けた。2017年5月15日にトロントへ到着し、5月18日に展示へ設置された。",
     "imageAsset": "assets/images/cards/card_bio_002.png",
     "rarity": "rare",
-    "sourceNote": "National Geographic"
+    "sourceNote": "Royal Ontario Museum（2017）",
+    "source": {
+      "title": "Blue Whale Heart Arrives at the ROM",
+      "publisher": "Royal Ontario Museum",
+      "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_his_001",
@@ -91,13 +99,21 @@
   },
   {
     "id": "card_food_002",
-    "title": "中国のリンゴ",
+    "title": "栽培リンゴの祖先種",
     "category": "food",
-    "shortText": "世界のリンゴの約半分は中国産。",
-    "detailText": "中国は世界最大のリンゴ生産国で、全世界の生産量の約半分を占める。日本で流通するリンゴの多くも中国産。",
+    "shortText": "2010年の系統解析ではMalus sieversiiと同定された。",
+    "detailText": "2010年にNature Geneticsで公表された原著論文は、栽培リンゴの高品質ドラフトゲノム配列を報告し、バラ科の主要分類群と比較した系統再構築により、その祖先種をMalus sieversiiと同定した。",
     "imageAsset": "assets/images/cards/card_food_002.png",
     "rarity": "normal",
-    "sourceNote": "FAO統計"
+    "sourceNote": "Nature Genetics（2010）",
+    "source": {
+      "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+      "publisher": "Nature Genetics (Springer Nature)",
+      "url": "https://www.nature.com/articles/ng.654",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_lang_001",
@@ -211,13 +227,21 @@
   },
   {
     "id": "card_geo_004",
-    "title": "アタカマ砂漠",
+    "title": "火星探査とアタカマ砂漠",
     "category": "nature_geography",
-    "shortText": "世界で最も乾燥した場所。",
-    "detailText": "チリのアタカマ砂漠は、400年以上雨が降っていない地域がある世界一乾燥した砂漠。火星に似た環境としても有名。",
+    "shortText": "火星の生命探査技術が試験された。",
+    "detailText": "2009年、研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。検出技術は、火星で生命を探すための惑星探査技術として評価された。",
     "imageAsset": "assets/images/cards/card_geo_004.png",
     "rarity": "rare",
-    "sourceNote": "NASA Earth Observatory"
+    "sourceNote": "Parroほか（2011）Astrobiology",
+    "source": {
+      "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+      "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_bio_004",
@@ -271,13 +295,21 @@
   },
   {
     "id": "card_life_004",
-    "title": "エレベーターの閉ボタン",
+    "title": "ADAのエレベーター扉遅延",
     "category": "daily_life",
-    "shortText": "実はすぐには閉まらない設計。",
-    "detailText": "多くのエレベーターは安全基準により、閉ボタンを押してもすぐには反応しない。自動ドアの開閉タイミングが優先されるよう設計されている。",
+    "shortText": "かご呼びでは完全に開いた状態を最低3秒保つ。",
+    "detailText": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと定めている。この規定だけから、他国や全機種で閉ボタンが無効だとは判断できない。",
     "imageAsset": "assets/images/cards/card_life_004.png",
     "rarity": "normal",
-    "sourceNote": "日本エレベーター協会"
+    "sourceNote": "U.S. Access Board ADA 407.3.5",
+    "source": {
+      "title": "Chapter 4: Accessible Routes",
+      "publisher": "U.S. Access Board",
+      "url": "https://www.access-board.gov/ada/chapter/ch04/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_geo_005",
@@ -301,11 +333,19 @@
     "id": "card_bio_005",
     "title": "パンダと竹",
     "category": "living_things",
-    "shortText": "食事の99%が竹。",
-    "detailText": "ジャイアントパンダは1日に12〜38kgもの竹を食べる。肉食動物の消化器官を持つが、99%は竹を食べる草食寄りの食生活。",
+    "shortText": "ほぼ竹だけを食べて暮らす。",
+    "detailText": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
     "imageAsset": "assets/images/cards/card_bio_005.png",
     "rarity": "normal",
-    "sourceNote": "WWF"
+    "sourceNote": "WWF「Giant pandas」",
+    "source": {
+      "title": "Giant pandas",
+      "publisher": "World Wildlife Fund (WWF)",
+      "url": "https://www.worldwildlife.org/species/giant-panda/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_001",
@@ -359,23 +399,39 @@
   },
   {
     "id": "card_language_001",
-    "title": "サボるの語源",
+    "title": "サボタージュと木靴",
     "category": "language",
-    "shortText": "意外な履物が由来の言葉",
-    "detailText": "日本語の「サボる」もこの言葉が由来です。かつてフランスの労働者が木靴を使って抗議活動をした歴史から生まれた表現です。",
+    "shortText": "語源のsabotは木靴",
+    "detailText": "フランス語saboterには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。sabotageはこの動詞から派生した語。",
     "imageAsset": "assets/images/cards/card_language_001.png",
     "rarity": "rare",
-    "sourceNote": "語源由来辞典 サボる"
+    "sourceNote": "CNRTL「SABOTER」の語義・語源",
+    "source": {
+      "title": "SABOTER : Définition de SABOTER",
+      "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+      "url": "https://www.cnrtl.fr/definition/saboter",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_daily_life_001",
-    "title": "青色防犯灯の効果",
+    "title": "駅ホームの青色灯研究",
     "category": "daily_life",
-    "shortText": "防犯のために導入された青い光",
-    "detailText": "イギリスで導入された際、犯罪率が低下したという報告があり、日本でも全国の自治体で街灯や鉄道駅のホームへの導入が進みました。",
+    "shortText": "2013年の観察研究は71駅を比較。",
+    "detailText": "2013年の研究は、ある鉄道会社の2000〜2010年のデータを用い、青色灯を導入した11駅と導入していない60駅を比較した。論文は、単一の鉄道会社のデータに基づくことと、青色灯が作用する仕組みを検討していないことを限界としている。",
     "imageAsset": "assets/images/cards/card_daily_life_001.png",
     "rarity": "normal",
-    "sourceNote": "警察庁 防犯環境設計指針"
+    "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+    "source": {
+      "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+      "publisher": "Journal of Affective Disorders (Elsevier)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_002",
@@ -389,13 +445,21 @@
   },
   {
     "id": "card_living_things_002",
-    "title": "キリンの超短眠術",
+    "title": "動物園で調べたキリンの睡眠",
     "category": "living_things",
-    "shortText": "世界で最も睡眠時間が短いといわれる動物。",
-    "detailText": "キリンは立ったまま数分間の眠りを繰り返します。深い眠りにつくのは稀で、首を丸めて座って眠る姿は非常に珍しい光景です。厳しい自然界を生き抜くための究極の適応といえます。",
+    "shortText": "1996年の行動睡眠研究は動物園が対象。",
+    "detailText": "ToblerとSchwierinは、動物園におけるキリンの行動睡眠を報告した。論文は1996年にJournal of Sleep Researchへ掲載された。",
     "imageAsset": "assets/images/cards/card_living_things_002.png",
     "rarity": "rare",
-    "sourceNote": "ナショナルジオグラフィック 日本版"
+    "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+    "source": {
+      "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+      "publisher": "Journal of Sleep Research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_history_002",
