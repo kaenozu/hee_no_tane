@@ -221,7 +221,7 @@ void main() {
           id: 'q_sandwich_2',
           cardId: 'card_sandwich_2',
           category: 'food',
-          question: 'サンドイッチの名称の由来となった人物の爵位は？',
+          question: '軽食の定番「サンドイッチ」の名前の由来となった、18世紀のイギリスの人物が持つ爵位は何？',
           answer: '伯爵',
           explanation: '第4代サンドイッチ伯爵の名に由来する。',
         ),
