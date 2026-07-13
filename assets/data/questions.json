@@ -856,19 +856,27 @@
   {
     "id": "q_history_005",
     "category": "history",
-    "difficulty": "hard",
-    "question": "18世紀のフランスでジャガイモを普及させた方法は？",
+    "difficulty": "normal",
+    "question": "スミソニアン国立航空宇宙博物館によると、1903年12月17日のライト・フライヤー初飛行を操縦したのは？",
     "choices": [
-      "法律で義務づけた",
-      "あえて畑を厳重に警備した",
-      "王室の主食にした",
-      "無料の種を配った"
+      "オーヴィル・ライト",
+      "ウィルバー・ライト",
+      "チャールズ・リンドバーグ",
+      "グレン・カーチス"
     ],
-    "answerIndex": 1,
-    "explanation": "農学者パルマンティエは、当時不人気だったジャガイモの畑をあえて兵士に厳重に警備させ、「価値がある高級品」と思わせる心理作戦をとりました。夜間に警備を緩めると、狙い通り近隣の農民たちが種芋を盗み、フランス全土へ普及しました。",
+    "answerIndex": 0,
+    "explanation": "国立航空宇宙博物館によると、ライト・フライヤーは1903年12月17日にノースカロライナ州キティホークで初飛行した。最初の飛行はオーヴィルの操縦で12秒間、120フィート（約36m）進んだ。",
     "relatedCardId": "card_history_005",
-    "sourceNote": "歴史書「世界の食文化史・フランス」",
-    "verified": true
+    "sourceNote": "Smithsonian National Air and Space Museum",
+    "verified": true,
+    "source": {
+      "title": "1903 Wright Flyer",
+      "publisher": "Smithsonian National Air and Space Museum",
+      "url": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_science_005",
@@ -1247,18 +1255,26 @@
     "id": "q_food_010",
     "category": "food",
     "difficulty": "easy",
-    "question": "カニのすり身で作る「カニカマ」を世界で初めて開発した国は？",
+    "question": "NOAA Fisheriesがアラスカスケトウダラ製品の一つとして挙げる、カニ肉を模した食品は？",
     "choices": [
-      "アメリカ",
-      "日本",
-      "タイ",
-      "中国"
+      "すり身（イミテーションクラブ）",
+      "ツナ缶",
+      "かつお節",
+      "アンチョビ"
     ],
-    "answerIndex": 1,
-    "explanation": "カニカマ（風味かまぼこ）は、1970年代に日本の食品メーカー（石川県の「スギヨ」や広島県の「大崎水産」など）が開発した日本発祥の食材です。現在では「Surimi」として世界中で愛される大ヒット食品となっています。",
+    "answerIndex": 0,
+    "explanation": "NOAA Fisheriesは、アラスカスケトウダラの製品の一つとして、すり身（imitation crab）を挙げている。",
     "relatedCardId": "card_food_010",
-    "sourceNote": "日本水産加工業協同組合連合会史",
-    "verified": true
+    "sourceNote": "NOAA Fisheries Alaska Pollock",
+    "verified": true,
+    "source": {
+      "title": "Alaska Pollock",
+      "publisher": "NOAA Fisheries",
+      "url": "https://www.fisheries.noaa.gov/species/alaska-pollock",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_language_007",
@@ -1281,18 +1297,26 @@
     "id": "q_daily_life_007",
     "category": "daily_life",
     "difficulty": "normal",
-    "question": "トランプのカードが「52枚」ある理由に関係するものは？",
+    "question": "メトロポリタン美術館の「The Cloisters Playing Cards」は何枚そろった一組？",
     "choices": [
-      "1年の週の数",
-      "月の満ち欠けの周期",
-      "星座の数",
-      "人間の骨の数"
+      "40枚",
+      "48枚",
+      "52枚",
+      "54枚"
     ],
-    "answerIndex": 0,
-    "explanation": "トランプのジョーカーを除く52枚という数は、1年の「52週」を表しています。また、1つのマーク（13枚）は四季の各季節の週数を表し、カードの数字をすべて足してジョーカー（1）を加えると「365（1年の日数）」になるなど、暦と深い関係があります。",
+    "answerIndex": 2,
+    "explanation": "メトロポリタン美術館の作品解説によると、この15世紀のカード一組は52枚で、4つのスートから成る。",
     "relatedCardId": "card_daily_life_007",
-    "sourceNote": "世界の室内ゲーム史「プレイングカードの暦」",
-    "verified": true
+    "sourceNote": "The Metropolitan Museum of Art",
+    "verified": true,
+    "source": {
+      "title": "The Cloisters Playing Cards",
+      "publisher": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/475513",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_011",
@@ -1382,36 +1406,52 @@
   {
     "id": "q_history_009",
     "category": "history",
-    "difficulty": "easy",
-    "question": "17世紀のオランダで、家が1軒買えるほどのバブルを起こした植物は？",
+    "difficulty": "normal",
+    "question": "大英博物館のロゼッタ・ストーンに刻まれた3種類の文字に含まれないものは？",
     "choices": [
-      "バラ",
-      "チューリップ",
-      "ヒマワリ",
-      "サボテン"
+      "ヒエログリフ",
+      "デモティック",
+      "ギリシャ文字",
+      "ラテン文字"
     ],
-    "answerIndex": 1,
-    "explanation": "1630年代のオランダで起きた世界最古の経済バブルが「チューリップ・バブル」です。珍しい斑点模様の球根に異常な高値がつき、たった1個の球根と引き換えに、高級住宅1軒や職人の年収の数倍の資産が取引されるという狂乱事態にまで発展しました。",
+    "answerIndex": 3,
+    "explanation": "大英博物館の作品記録によると、ロゼッタ・ストーンにはヒエログリフ、デモティック、ギリシャ文字の3つの文字体系で同じ勅令が刻まれている。ラテン文字は含まれない。",
     "relatedCardId": "card_history_009",
-    "sourceNote": "経済史「世界の大バブルと恐慌」",
-    "verified": true
+    "sourceNote": "The British Museum — The Rosetta Stone",
+    "verified": true,
+    "source": {
+      "title": "The Rosetta Stone (EA24)",
+      "publisher": "The British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/Y_EA24",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_science_008",
     "category": "science",
     "difficulty": "easy",
-    "question": "1円玉の製造コスト（1枚あたり）は、およそいくら？",
+    "question": "造幣局の「Circulating Coin Designs」で、現在の1円硬貨の素材は？",
     "choices": [
-      "約0.5円",
-      "約1円",
-      "約3円",
-      "約10円"
+      "純アルミニウム",
+      "純銅",
+      "鉄",
+      "ニッケル"
     ],
-    "answerIndex": 2,
-    "explanation": "1円玉の材料であるアルミニウムの地金価格や人件費、製造工程のコストを合わせると、1枚作るのに「約2円〜3円」かかるとされています。そのため、作れば作るほど政府としては赤字になりますが、通貨の流通維持のために造幣局で製造されています。",
+    "answerIndex": 0,
+    "explanation": "造幣局は、1円硬貨の素材をアルミニウム、組成を純アルミニウム、重さを1.0g、直径を20.0mmと示している。",
     "relatedCardId": "card_science_008",
-    "sourceNote": "造幣局「貨幣製造コスト推計資料」",
-    "verified": true
+    "sourceNote": "造幣局 Circulating Coin Designs",
+    "verified": true,
+    "source": {
+      "title": "Circulating Coin Designs",
+      "publisher": "造幣局（Japan Mint）",
+      "url": "https://www.mint.go.jp/eng/kids-eng/eng_kids_circulating_c.html",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_food_011",
@@ -1451,18 +1491,26 @@
     "id": "q_daily_life_008",
     "category": "daily_life",
     "difficulty": "easy",
-    "question": "非常口のサインの人が「緑色」で描かれている理由は？",
+    "question": "英国HSEの安全標識ガイダンスL64で、緑色が示す用途は？",
     "choices": [
-      "緑が一番オシャレだから",
-      "火災の赤い炎の中で最も目立つから",
-      "低コストで印刷できるから",
-      "法律で定められたラッキーカラーだから"
+      "非常口・避難経路や応急手当",
+      "消火設備",
+      "禁止行為",
+      "注意・警告"
     ],
-    "answerIndex": 1,
-    "explanation": "非常口のマークが緑色なのは、火災の際に燃え盛る「赤い炎」の中で、赤の補色（反対色）である「緑色」が最も人間の目に際立って見え、視認性が高いからです。この視覚効果を利用した日本のデザインは、現在国際標準（ISO）としても採用されています。",
+    "answerIndex": 0,
+    "explanation": "HSEのL64表1は、緑を非常脱出・応急手当の標識に割り当て、扉、出口、避難経路、設備、施設を示すとしている。",
     "relatedCardId": "card_daily_life_008",
-    "sourceNote": "消防庁「避難誘導表示の基準」",
-    "verified": true
+    "sourceNote": "HSE L64 Safety signs and signals",
+    "verified": true,
+    "source": {
+      "title": "Safety signs and signals: Guidance on Regulations L64",
+      "publisher": "UK Health and Safety Executive (HSE)",
+      "url": "https://www.hse.gov.uk/pubns/priced/l64.pdf",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_013",
