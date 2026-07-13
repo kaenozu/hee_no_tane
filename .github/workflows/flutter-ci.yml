@@ -67,6 +67,8 @@ jobs:
             build/reports/content_review.csv
             build/reports/content_review_progress.txt
             build/reports/content_review_risks.csv
+            assets/data/questions.json
+            assets/data/cards.json
           if-no-files-found: error
 
       - name: Validate release metadata
