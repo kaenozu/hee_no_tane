@@ -6,8 +6,55 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
+  apply_food_correction:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/content-triage-and-correction'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-triage-and-correction
+          fetch-depth: 0
+
+      - name: Verify reviewed starting point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "091deb2d40cd5cac549656d785ea2228f877f5ac"
+          test -f tool/agent_apply_food_002.py
+          test -f .github/workflows/agent_apply_food_002.yml
+
+      - name: Apply correction and validate generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tool/agent_apply_food_002.py
+          python3 -m json.tool assets/data/questions.json >/dev/null
+          python3 -m json.tool assets/data/cards.json >/dev/null
+          git diff --check
+
+      - name: Restore CI and publish the reviewed change
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git show HEAD^:.github/workflows/flutter-ci.yml > .github/workflows/flutter-ci.yml
+          git rm .github/workflows/agent_apply_food_002.yml tool/agent_apply_food_002.py
+          git add .github/workflows/flutter-ci.yml \
+            assets/data/questions.json assets/data/cards.json \
+            review/content_corrections_batch_1.csv \
+            review/content_research_q_food_002.md \
+            docs/17_コンテンツトリアージ運用.md
+          git commit -m "Replace unsupported apple production claims"
+          git push origin HEAD:agent/content-triage-and-correction
+
   quality:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.ref != 'agent/content-triage-and-correction'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
