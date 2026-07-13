@@ -211,13 +211,21 @@
   },
   {
     "id": "card_geo_004",
-    "title": "アタカマ砂漠",
+    "title": "火星探査とアタカマ砂漠",
     "category": "nature_geography",
-    "shortText": "世界で最も乾燥した場所。",
-    "detailText": "チリのアタカマ砂漠は、400年以上雨が降っていない地域がある世界一乾燥した砂漠。火星に似た環境としても有名。",
+    "shortText": "火星の生命探査技術が試験された。",
+    "detailText": "2009年、研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。検出技術は、火星で生命を探すための惑星探査技術として評価された。",
     "imageAsset": "assets/images/cards/card_geo_004.png",
     "rarity": "rare",
-    "sourceNote": "NASA Earth Observatory"
+    "sourceNote": "Parroほか（2011）Astrobiology",
+    "source": {
+      "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+      "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_bio_004",

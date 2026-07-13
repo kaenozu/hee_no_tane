@@ -360,7 +360,7 @@
     "id": "q_geo_004",
     "category": "nature_geography",
     "difficulty": "hard",
-    "question": "地球上でいちばん乾燥した場所は？",
+    "question": "2009年、火星を想定した掘削調査で生命検出チップが試験された砂漠は？",
     "choices": [
       "サハラ砂漠",
       "アタカマ砂漠",
@@ -368,10 +368,18 @@
       "モハーベ砂漠"
     ],
     "answerIndex": 1,
-    "explanation": "チリのアタカマ砂漠は、過去400年以上雨が降っていない記録がある地域もある、世界で最も乾燥した場所なんだ。",
+    "explanation": "研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。この技術は、火星で生命を探すための惑星探査技術として評価された。",
     "relatedCardId": "card_geo_004",
-    "sourceNote": "NASA Earth Observatory",
-    "verified": true
+    "sourceNote": "Parroほか（2011）Astrobiology",
+    "verified": true,
+    "source": {
+      "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+      "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_bio_004",
