@@ -3,7 +3,7 @@
 確認日: 2026-07-13
 対象ブランチ: `agent/content-triage-and-correction`
 調査開始時HEAD: `754475c8405c90eb01aefe837005a1147b3708ff`
-実装実行時HEAD: `5ed2b0cc94926368ec32bce3dd4232bfe583f5d8`
+内容実装コミット: `8ea4a46225898c69b095ab1506730d119bb4021e`
 判定: `approved`
 検証レベル: `primary`
 
