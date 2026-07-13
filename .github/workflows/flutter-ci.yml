@@ -6,22 +6,7 @@ on:
     branches:
       - master
 
-permissions:
-  contents: write
-
 jobs:
-  refine-content-batch-2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout content branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-          fetch-depth: 0
-
-      - name: Refine display text
-        run: python .github/scripts/refine_content_batch_2.py
-
   quality:
     runs-on: ubuntu-latest
     steps:
