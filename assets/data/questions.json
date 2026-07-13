@@ -647,18 +647,26 @@
     "id": "q_daily_life_001",
     "category": "daily_life",
     "difficulty": "normal",
-    "question": "犯罪の抑止や心の落ち着きを目的として、駅や街頭で導入される照明の色は何色？",
+    "question": "2013年に発表された日本の駅ホームの青色灯に関する観察研究で、分析対象となった駅は合計何駅？",
     "choices": [
-      "赤色",
-      "緑色",
-      "青色",
-      "白色"
+      "11駅",
+      "60駅",
+      "71駅",
+      "100駅"
     ],
     "answerIndex": 2,
-    "explanation": "青色光には人間の副交感神経を刺激してリラックスさせる効果があると考えられ、防犯対策や駅のホームでの事故防止に採用されています。",
+    "explanation": "この研究は、ある鉄道会社の2000〜2010年のデータを使い、青色灯を導入した11駅と導入していない60駅、計71駅を比較した。観察研究であり、青色灯が作用する仕組みは調べていない。",
     "relatedCardId": "card_daily_life_001",
-    "sourceNote": "警察庁 防犯環境設計指針",
-    "verified": true
+    "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+    "verified": true,
+    "source": {
+      "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+      "publisher": "Journal of Affective Disorders (Elsevier)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_002",

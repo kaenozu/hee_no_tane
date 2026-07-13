@@ -393,13 +393,21 @@
   },
   {
     "id": "card_daily_life_001",
-    "title": "青色防犯灯の効果",
+    "title": "駅ホームの青色灯研究",
     "category": "daily_life",
-    "shortText": "防犯のために導入された青い光",
-    "detailText": "イギリスで導入された際、犯罪率が低下したという報告があり、日本でも全国の自治体で街灯や鉄道駅のホームへの導入が進みました。",
+    "shortText": "2013年の観察研究は71駅を比較。",
+    "detailText": "2013年の研究は、ある鉄道会社の2000〜2010年のデータを用い、青色灯を導入した11駅と導入していない60駅を比較した。論文は、単一の鉄道会社のデータに基づくことと、青色灯が作用する仕組みを検討していないことを限界としている。",
     "imageAsset": "assets/images/cards/card_daily_life_001.png",
     "rarity": "normal",
-    "sourceNote": "警察庁 防犯環境設計指針"
+    "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+    "source": {
+      "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+      "publisher": "Journal of Affective Disorders (Elsevier)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_002",
