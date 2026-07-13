@@ -31,13 +31,21 @@
   },
   {
     "id": "card_bio_002",
-    "title": "シロナガスクジラの心臓",
+    "title": "保存されたシロナガスクジラの心臓",
     "category": "living_things",
-    "shortText": "地球上で最も大きな心臓。",
-    "detailText": "シロナガスクジラの心臓は約180kg。小型車1台分の重さで、1回の拍動で約80リットルの血液を送り出す。",
+    "shortText": "実物標本はプラスティネーションで保存された。",
+    "detailText": "Royal Ontario Museumの2017年公式発表によると、実物の心臓標本はドイツのグーベンでプラスティネーション処理を受けた。2017年5月15日にトロントへ到着し、5月18日に展示へ設置された。",
     "imageAsset": "assets/images/cards/card_bio_002.png",
     "rarity": "rare",
-    "sourceNote": "National Geographic"
+    "sourceNote": "Royal Ontario Museum（2017）",
+    "source": {
+      "title": "Blue Whale Heart Arrives at the ROM",
+      "publisher": "Royal Ontario Museum",
+      "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_his_001",

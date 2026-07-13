@@ -54,18 +54,26 @@
     "id": "q_bio_002",
     "category": "living_things",
     "difficulty": "normal",
-    "question": "シロナガスクジラの心臓の重さは約どれくらい？",
+    "question": "2017年、Royal Ontario Museumの実物シロナガスクジラ心臓標本がドイツで受けた保存処理は？",
     "choices": [
-      "約10kg",
-      "約180kg",
-      "約500kg",
-      "約1t"
+      "プラスティネーション",
+      "凍結乾燥",
+      "液浸保存",
+      "樹脂製レプリカの作製"
     ],
-    "answerIndex": 1,
-    "explanation": "シロナガスクジラの心臓は約180kgもある。小型車1台分くらいの重さなんだ。",
+    "answerIndex": 0,
+    "explanation": "Royal Ontario Museumの公式発表によると、この実物標本はドイツのグーベンでプラスティネーション処理を受け、2017年5月15日にトロントへ到着した。",
     "relatedCardId": "card_bio_002",
-    "sourceNote": "National Geographic",
-    "verified": true
+    "sourceNote": "Royal Ontario Museum（2017）",
+    "verified": true,
+    "source": {
+      "title": "Blue Whale Heart Arrives at the ROM",
+      "publisher": "Royal Ontario Museum",
+      "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_his_001",
