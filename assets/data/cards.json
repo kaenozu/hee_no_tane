@@ -301,11 +301,19 @@
     "id": "card_bio_005",
     "title": "パンダと竹",
     "category": "living_things",
-    "shortText": "食事の99%が竹。",
-    "detailText": "ジャイアントパンダは1日に12〜38kgもの竹を食べる。肉食動物の消化器官を持つが、99%は竹を食べる草食寄りの食生活。",
+    "shortText": "ほぼ竹だけを食べて暮らす。",
+    "detailText": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
     "imageAsset": "assets/images/cards/card_bio_005.png",
     "rarity": "normal",
-    "sourceNote": "WWF"
+    "sourceNote": "WWF「Giant pandas」",
+    "source": {
+      "title": "Giant pandas",
+      "publisher": "World Wildlife Fund (WWF)",
+      "url": "https://www.worldwildlife.org/species/giant-panda/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_001",

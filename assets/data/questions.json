@@ -504,7 +504,7 @@
     "id": "q_bio_005",
     "category": "living_things",
     "difficulty": "easy",
-    "question": "パンダの食べるもののほとんどは？",
+    "question": "ジャイアントパンダが主に食べるものは？",
     "choices": [
       "果物",
       "竹",
@@ -512,10 +512,18 @@
       "魚"
     ],
     "answerIndex": 1,
-    "explanation": "ジャイアントパンダの食事の99%は竹。1日に12〜38kgもの竹を食べるんだ。",
+    "explanation": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
     "relatedCardId": "card_bio_005",
-    "sourceNote": "WWF",
-    "verified": true
+    "sourceNote": "WWF「Giant pandas」",
+    "verified": true,
+    "source": {
+      "title": "Giant pandas",
+      "publisher": "World Wildlife Fund (WWF)",
+      "url": "https://www.worldwildlife.org/species/giant-panda/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_nature_geography_001",
