@@ -533,13 +533,21 @@
   },
   {
     "id": "card_history_005",
-    "title": "ジャガイモ泥棒の心理戦",
+    "title": "ライト・フライヤーの初飛行",
     "category": "history",
-    "shortText": "フランスでジャガイモが広まった奇策",
-    "detailText": "厳重に警備された畑ほど盗みたくなる人間の心理を利用し、あえて「泥棒」をさせることでジャガイモを大流行させた歴史的作戦です。",
+    "shortText": "1903年12月17日、最初の飛行はオーヴィルが操縦した。",
+    "detailText": "スミソニアン国立航空宇宙博物館によると、ライト兄弟の1903年型フライヤーはキティホークで初飛行した。最初の飛行はオーヴィルの操縦で12秒間、36m進んだ。",
     "imageAsset": "assets/images/cards/card_history_005.png",
     "rarity": "rare",
-    "sourceNote": "歴史書「世界の食文化史・フランス」"
+    "sourceNote": "Smithsonian National Air and Space Museum",
+    "source": {
+      "title": "1903 Wright Flyer",
+      "publisher": "Smithsonian National Air and Space Museum",
+      "url": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_science_005",
@@ -769,13 +777,21 @@
   },
   {
     "id": "card_food_010",
-    "title": "世界を救う「Surimi」",
+    "title": "スケトウダラとすり身",
     "category": "food",
-    "shortText": "カニの代用品として生まれた日本発の傑作",
-    "detailText": "人工カニ肉として開発されたカニカマは、今や世界中で大人気。海外のスーパーでもそのまま通じる、日本生まれのハイテク食品です。",
+    "shortText": "アラスカスケトウダラはイミテーションクラブにも加工される。",
+    "detailText": "NOAA Fisheriesは、アラスカスケトウダラの製品として、切り身や卵と並び、すり身（imitation crab）を挙げている。カニカマの世界初や単一企業による発明という起源の断定は採用しない。",
     "imageAsset": "assets/images/cards/card_food_010.png",
     "rarity": "normal",
-    "sourceNote": "日本水産加工業協同組合連合会史"
+    "sourceNote": "NOAA Fisheries Alaska Pollock",
+    "source": {
+      "title": "Alaska Pollock",
+      "publisher": "NOAA Fisheries",
+      "url": "https://www.fisheries.noaa.gov/species/alaska-pollock",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_language_007",
@@ -789,13 +805,21 @@
   },
   {
     "id": "card_daily_life_007",
-    "title": "トランプに隠された1年",
+    "title": "15世紀の52枚のカード",
     "category": "daily_life",
-    "shortText": "カードの枚数に秘められた暦の暗号",
-    "detailText": "何気なく遊んでいるトランプの枚数は、実はカレンダーの役割を持っています。52枚のカードは、1年の52週を完璧に表現しています。",
+    "shortText": "メトロポリタン美術館所蔵の一組は52枚。",
+    "detailText": "メトロポリタン美術館の「The Cloisters Playing Cards」は、15世紀の通常のプレイングカードとして唯一知られる完全な一組で、52枚・4スートから成る。暦を表すために52枚になったという由来は、この作品解説からは導けない。",
     "imageAsset": "assets/images/cards/card_daily_life_007.png",
     "rarity": "normal",
-    "sourceNote": "世界の室内ゲーム史「プレイングカードの暦」"
+    "sourceNote": "The Metropolitan Museum of Art",
+    "source": {
+      "title": "The Cloisters Playing Cards",
+      "publisher": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/475513",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_011",
@@ -849,23 +873,39 @@
   },
   {
     "id": "card_history_009",
-    "title": "歴史を変えた球根バブル",
+    "title": "ロゼッタ・ストーンの3種類の文字",
     "category": "history",
-    "shortText": "一輪の花が国家を揺るがした世界初のバブル",
-    "detailText": "たった1つの球根で家が買えたという歴史上の実話。チューリップへの熱狂が行き過ぎ、最後は突然の大暴落で多くの人が破産しました。",
+    "shortText": "ヒエログリフ、デモティック、ギリシャ文字が刻まれている。",
+    "detailText": "大英博物館の作品記録によると、紀元前196年のロゼッタ・ストーンには、ヒエログリフ14行、デモティック32行、ギリシャ文字54行で勅令が刻まれている。ラテン文字ではない。",
     "imageAsset": "assets/images/cards/card_history_009.png",
     "rarity": "normal",
-    "sourceNote": "経済史「世界の大バブルと恐慌」"
+    "sourceNote": "The British Museum — The Rosetta Stone",
+    "source": {
+      "title": "The Rosetta Stone (EA24)",
+      "publisher": "The British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/Y_EA24",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_science_008",
-    "title": "1円玉の価値とコスト",
+    "title": "1円アルミニウム硬貨",
     "category": "science",
-    "shortText": "額面よりもお金がかかる1円玉の秘密",
-    "detailText": "私たちが普段使う1円玉ですが、金属の価格高騰などもあり、1円以上のコストをかけて丁寧に作られているプレミアムな硬貨です。",
+    "shortText": "素材は純アルミニウム、重さは1.0g。",
+    "detailText": "造幣局の「Circulating Coin Designs」は、現在の1円硬貨を純アルミニウム製、重さ1.0g、直径20.0mmとしている。変動する製造原価や赤字という説明は採用していない。",
     "imageAsset": "assets/images/cards/card_science_008.png",
     "rarity": "normal",
-    "sourceNote": "造幣局「貨幣製造コスト推計資料」"
+    "sourceNote": "造幣局 Circulating Coin Designs",
+    "source": {
+      "title": "Circulating Coin Designs",
+      "publisher": "造幣局（Japan Mint）",
+      "url": "https://www.mint.go.jp/eng/kids-eng/eng_kids_circulating_c.html",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_food_011",
@@ -889,13 +929,21 @@
   },
   {
     "id": "card_daily_life_008",
-    "title": "非常口が緑色である理由",
+    "title": "安全標識の緑色",
     "category": "daily_life",
-    "shortText": "赤い炎のなかで命を救うカラーデザイン",
-    "detailText": "暗闇や煙、そして赤い炎に包まれた最悪の状況でも、パニックにならずに逃げ道を見つけられるよう、科学的根拠に基づいて緑色が選ばれました。",
+    "shortText": "非常口・避難経路と応急手当を示す色。",
+    "detailText": "英国HSEの安全標識ガイダンスL64表1では、緑色は非常脱出・応急手当の標識に使われ、扉、出口、避難経路、設備、施設を示す。炎との補色関係を一般理由としては説明していない。",
     "imageAsset": "assets/images/cards/card_daily_life_008.png",
     "rarity": "normal",
-    "sourceNote": "消防庁「避難誘導表示の基準」"
+    "sourceNote": "HSE L64 Safety signs and signals",
+    "source": {
+      "title": "Safety signs and signals: Guidance on Regulations L64",
+      "publisher": "UK Health and Safety Executive (HSE)",
+      "url": "https://www.hse.gov.uk/pubns/priced/l64.pdf",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_nature_geography_013",
