@@ -380,10 +380,20 @@ class ContentRiskClassifier {
       '${second.question} ${second.answer} ${second.explanation} '
       '${second.cardTitle} ${second.cardDetail}',
     );
-    final sameAnswer =
-        _normalizeFactText(first.answer) == _normalizeFactText(second.answer);
-    if (sameAnswer &&
-        questionSimilarity >= 0.30 &&
+    final firstAnswer = _normalizeFactText(first.answer);
+    final secondAnswer = _normalizeFactText(second.answer);
+    final sameAnswer = firstAnswer == secondAnswer;
+    final shorterAnswer = firstAnswer.length <= secondAnswer.length
+        ? firstAnswer
+        : secondAnswer;
+    final longerAnswer = firstAnswer.length <= secondAnswer.length
+        ? secondAnswer
+        : firstAnswer;
+    final compatibleAnswer =
+        sameAnswer ||
+        (shorterAnswer.length >= 2 && longerAnswer.contains(shorterAnswer));
+    if (compatibleAnswer &&
+        questionSimilarity >= 0.28 &&
         combinedSimilarity >= 0.20) {
       return true;
     }
