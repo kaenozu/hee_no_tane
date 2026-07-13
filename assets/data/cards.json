@@ -413,13 +413,21 @@
   },
   {
     "id": "card_living_things_002",
-    "title": "キリンの超短眠術",
+    "title": "動物園で調べたキリンの睡眠",
     "category": "living_things",
-    "shortText": "世界で最も睡眠時間が短いといわれる動物。",
-    "detailText": "キリンは立ったまま数分間の眠りを繰り返します。深い眠りにつくのは稀で、首を丸めて座って眠る姿は非常に珍しい光景です。厳しい自然界を生き抜くための究極の適応といえます。",
+    "shortText": "1996年の行動睡眠研究は動物園が対象。",
+    "detailText": "ToblerとSchwierinは、動物園におけるキリンの行動睡眠を報告した。論文は1996年にJournal of Sleep Researchへ掲載された。",
     "imageAsset": "assets/images/cards/card_living_things_002.png",
     "rarity": "rare",
-    "sourceNote": "ナショナルジオグラフィック 日本版"
+    "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+    "source": {
+      "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+      "publisher": "Journal of Sleep Research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_history_002",

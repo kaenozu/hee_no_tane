@@ -681,18 +681,26 @@
     "id": "q_living_things_002",
     "category": "living_things",
     "difficulty": "normal",
-    "question": "野生のキリンの1日の平均睡眠時間は、だいたいどれくらいの長さだと言われているでしょうか？",
+    "question": "1996年に発表されたキリンの行動睡眠研究で、観察場所として題名に示されているのは？",
     "choices": [
-      "約20分",
-      "約4時間",
-      "約8時間",
-      "約12時間"
+      "動物園",
+      "野生のサバンナ",
+      "大学の睡眠実験室",
+      "海洋公園"
     ],
     "answerIndex": 0,
-    "explanation": "野生のキリンは肉食獣などの天敵から身を守るため、非常に短い睡眠をとります。1回数分程度の「うたた寝」を細切れに繰り返し、1日の合計睡眠時間はわずか20分程度と言われています。動物界でも屈指の短眠家として有名です。",
+    "explanation": "ToblerとSchwierinが1996年に発表した論文の題名は「動物園におけるキリンの行動睡眠」で、観察場所として動物園が示されている。",
     "relatedCardId": "card_living_things_002",
-    "sourceNote": "ナショナルジオグラフィック 日本版",
-    "verified": true
+    "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+    "verified": true,
+    "source": {
+      "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+      "publisher": "Journal of Sleep Research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_history_002",
