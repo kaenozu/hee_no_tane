@@ -865,7 +865,7 @@
       "グレン・カーチス"
     ],
     "answerIndex": 0,
-    "explanation": "国立航空宇宙博物館は、ライト・フライヤーが1903年12月17日にノースカロライナ州キティホークで初飛行し、最初の12秒・36mの飛行をオーヴィルが操縦したと説明している。旧本文のジャガイモ畑の警備・盗難逸話は削除した。",
+    "explanation": "国立航空宇宙博物館によると、ライト・フライヤーは1903年12月17日にノースカロライナ州キティホークで初飛行した。最初の飛行はオーヴィルの操縦で12秒間、120フィート（約36m）進んだ。",
     "relatedCardId": "card_history_005",
     "sourceNote": "Smithsonian National Air and Space Museum",
     "verified": true,
@@ -1263,7 +1263,7 @@
       "アンチョビ"
     ],
     "answerIndex": 0,
-    "explanation": "NOAA Fisheriesは、アラスカスケトウダラ製品の一つとして、すり身（imitation crab）を挙げている。どの企業・国が世界で最初に開発したかという旧問題は、起源の定義と製品形態が混在するため削除した。",
+    "explanation": "NOAA Fisheriesは、アラスカスケトウダラの製品の一つとして、すり身（imitation crab）を挙げている。",
     "relatedCardId": "card_food_010",
     "sourceNote": "NOAA Fisheries Alaska Pollock",
     "verified": true,
@@ -1305,7 +1305,7 @@
       "54枚"
     ],
     "answerIndex": 2,
-    "explanation": "メトロポリタン美術館の作品解説では、この15世紀のカード一組は52枚で、4つのスートから成る。52枚を1年52週のために設計したとは説明していない。",
+    "explanation": "メトロポリタン美術館の作品解説によると、この15世紀のカード一組は52枚で、4つのスートから成る。",
     "relatedCardId": "card_daily_life_007",
     "sourceNote": "The Metropolitan Museum of Art",
     "verified": true,
@@ -1415,7 +1415,7 @@
       "ラテン文字"
     ],
     "answerIndex": 3,
-    "explanation": "大英博物館の作品記録では、ロゼッタ・ストーンにはヒエログリフ、デモティック、ギリシャ文字の3つの文字体系で同じ勅令が刻まれている。ラテン文字は含まれない。旧本文のチューリップ球根価格や大量破産の一般化は削除した。",
+    "explanation": "大英博物館の作品記録によると、ロゼッタ・ストーンにはヒエログリフ、デモティック、ギリシャ文字の3つの文字体系で同じ勅令が刻まれている。ラテン文字は含まれない。",
     "relatedCardId": "card_history_009",
     "sourceNote": "The British Museum — The Rosetta Stone",
     "verified": true,
@@ -1440,7 +1440,7 @@
       "ニッケル"
     ],
     "answerIndex": 0,
-    "explanation": "造幣局は、1円硬貨の素材をアルミニウム、組成を純アルミニウム、重さを1.0gと示している。製造原価は変動し、同資料には示されていないため、約3円という旧問題は削除した。",
+    "explanation": "造幣局は、1円硬貨の素材をアルミニウム、組成を純アルミニウム、重さを1.0g、直径を20.0mmと示している。",
     "relatedCardId": "card_science_008",
     "sourceNote": "造幣局 Circulating Coin Designs",
     "verified": true,
@@ -1499,7 +1499,7 @@
       "注意・警告"
     ],
     "answerIndex": 0,
-    "explanation": "HSEのL64表1は、緑を非常脱出・応急手当の標識に割り当て、扉、出口、避難経路、設備、施設を示すとしている。赤い炎の補色だからという旧本文の因果説明は削除した。",
+    "explanation": "HSEのL64表1は、緑を非常脱出・応急手当の標識に割り当て、扉、出口、避難経路、設備、施設を示すとしている。",
     "relatedCardId": "card_daily_life_008",
     "sourceNote": "HSE L64 Safety signs and signals",
     "verified": true,
