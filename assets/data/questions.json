@@ -478,18 +478,26 @@
     "id": "q_life_004",
     "category": "daily_life",
     "difficulty": "hard",
-    "question": "「エレベーターの開閉ボタン」実はあまり効果がないと言われる理由は？",
+    "question": "米国のADA Accessibility Standards 407.3.5で、かご呼びに応答したエレベーターの扉が完全に開いた状態を保つ最低時間は？",
     "choices": [
-      "安全のため自動ドアが優先されるから",
-      "ボタンが飾りだから",
-      "電気代節約のため",
-      "メーカーの仕様"
+      "1秒",
+      "3秒",
+      "5秒",
+      "20秒"
     ],
-    "answerIndex": 0,
-    "explanation": "多くのエレベーターでは、安全基準により自動ドアの開閉タイミングが優先される。閉ボタンを押しても数秒間は反応しないよう設計されていることが多いんだ。",
+    "answerIndex": 1,
+    "explanation": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと規定している。米国の特定規定であり、すべての国・機種の閉ボタンの挙動を示すものではない。",
     "relatedCardId": "card_life_004",
-    "sourceNote": "日本エレベーター協会",
-    "verified": true
+    "sourceNote": "U.S. Access Board ADA 407.3.5",
+    "verified": true,
+    "source": {
+      "title": "Chapter 4: Accessible Routes",
+      "publisher": "U.S. Access Board",
+      "url": "https://www.access-board.gov/ada/chapter/ch04/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_geo_005",

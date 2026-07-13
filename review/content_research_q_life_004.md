@@ -1,135 +1,6 @@
-from __future__ import annotations
+# `q_life_004` / `card_life_004` 調査・修正記録
 
-import json
-from pathlib import Path
-
-STABLE_HEAD = "539b1c5ff4bf4f4f8c7a7dbf44416dc06fffe92f"
-QUESTION_ID = "q_life_004"
-CARD_ID = "card_life_004"
-SOURCE_TITLE = "Chapter 4: Accessible Routes"
-SOURCE_PUBLISHER = "U.S. Access Board"
-SOURCE_URL = "https://www.access-board.gov/ada/chapter/ch04/"
-VERIFIED_AT = "2026-07-13"
-
-ROOT = Path(__file__).resolve().parents[2]
-QUESTIONS_PATH = ROOT / "assets/data/questions.json"
-CARDS_PATH = ROOT / "assets/data/cards.json"
-CORRECTIONS_PATH = ROOT / "review/content_corrections_batch_1.csv"
-RESEARCH_PATH = ROOT / "review/content_research_q_life_004.md"
-SCRIPT_PATH = ROOT / ".github/scripts/apply_q_life_004.py"
-WORKFLOW_PATH = ROOT / ".github/workflows/apply-q-life-004.yml"
-
-
-def load_json(path: Path) -> list[dict[str, object]]:
-    value = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(value, list):
-        raise RuntimeError(f"{path} must contain a JSON array")
-    return value
-
-
-def find_unique(records: list[dict[str, object]], record_id: str) -> tuple[int, dict[str, object]]:
-    matches = [(index, record) for index, record in enumerate(records) if record.get("id") == record_id]
-    if len(matches) != 1:
-        raise RuntimeError(f"expected exactly one {record_id}, found {len(matches)}")
-    return matches[0]
-
-
-questions = load_json(QUESTIONS_PATH)
-question_index, old_question = find_unique(questions, QUESTION_ID)
-expected_old_question = {
-    "id": "q_life_004",
-    "category": "daily_life",
-    "difficulty": "hard",
-    "question": "「エレベーターの開閉ボタン」実はあまり効果がないと言われる理由は？",
-    "choices": ["安全のため自動ドアが優先されるから", "ボタンが飾りだから", "電気代節約のため", "メーカーの仕様"],
-    "answerIndex": 0,
-    "explanation": "多くのエレベーターでは、安全基準により自動ドアの開閉タイミングが優先される。閉ボタンを押しても数秒間は反応しないよう設計されていることが多いんだ。",
-    "relatedCardId": "card_life_004",
-    "sourceNote": "日本エレベーター協会",
-    "verified": True,
-}
-if old_question != expected_old_question:
-    raise RuntimeError(f"unexpected current question record: {old_question!r}")
-
-questions[question_index] = {
-    "id": "q_life_004",
-    "category": "daily_life",
-    "difficulty": "hard",
-    "question": "米国のADA Accessibility Standards 407.3.5で、かご呼びに応答したエレベーターの扉が完全に開いた状態を保つ最低時間は？",
-    "choices": ["1秒", "3秒", "5秒", "20秒"],
-    "answerIndex": 1,
-    "explanation": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと規定している。米国の特定規定であり、すべての国・機種の閉ボタンの挙動を示すものではない。",
-    "relatedCardId": "card_life_004",
-    "sourceNote": "U.S. Access Board ADA 407.3.5",
-    "verified": True,
-    "source": {
-        "title": SOURCE_TITLE,
-        "publisher": SOURCE_PUBLISHER,
-        "url": SOURCE_URL,
-        "verifiedAt": VERIFIED_AT,
-        "verificationLevel": "primary",
-        "reviewStatus": "approved",
-    },
-}
-QUESTIONS_PATH.write_text(
-    json.dumps(questions, ensure_ascii=False, indent=2) + "\n",
-    encoding="utf-8",
-)
-
-cards = load_json(CARDS_PATH)
-card_index, old_card = find_unique(cards, CARD_ID)
-expected_old_card = {
-    "id": "card_life_004",
-    "title": "エレベーターの閉ボタン",
-    "category": "daily_life",
-    "shortText": "実はすぐには閉まらない設計。",
-    "detailText": "多くのエレベーターは安全基準により、閉ボタンを押してもすぐには反応しない。自動ドアの開閉タイミングが優先されるよう設計されている。",
-    "imageAsset": "assets/images/cards/card_life_004.png",
-    "rarity": "normal",
-    "sourceNote": "日本エレベーター協会",
-}
-if old_card != expected_old_card:
-    raise RuntimeError(f"unexpected current card record: {old_card!r}")
-
-cards[card_index] = {
-    "id": "card_life_004",
-    "title": "ADAのエレベーター扉遅延",
-    "category": "daily_life",
-    "shortText": "かご呼びでは完全に開いた状態を最低3秒保つ。",
-    "detailText": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと定めている。この規定だけから、他国や全機種で閉ボタンが無効だとは判断できない。",
-    "imageAsset": "assets/images/cards/card_life_004.png",
-    "rarity": "normal",
-    "sourceNote": "U.S. Access Board ADA 407.3.5",
-    "source": {
-        "title": SOURCE_TITLE,
-        "publisher": SOURCE_PUBLISHER,
-        "url": SOURCE_URL,
-        "verifiedAt": VERIFIED_AT,
-        "verificationLevel": "primary",
-        "reviewStatus": "approved",
-    },
-}
-CARDS_PATH.write_text(
-    json.dumps(cards, ensure_ascii=False, indent=2) + "\n",
-    encoding="utf-8",
-)
-
-corrections = CORRECTIONS_PATH.read_text(encoding="utf-8")
-if QUESTION_ID in corrections or CARD_ID in corrections:
-    raise RuntimeError("correction CSV already contains the target pair")
-if not corrections.endswith("\n"):
-    corrections += "\n"
-corrections += (
-    'q_life_004,card_life_004,"question,choices,answer,explanation,card",'
-    '"scope,configuration,safety-standard,button-behavior",'
-    '"閉ボタンが効かないという国・機種横断の一般化を削除し、U.S. Access BoardのADA 407.3.5が直接定める扉の完全開放3秒へ差し替え",'
-    f'{SOURCE_TITLE},{SOURCE_PUBLISHER},{SOURCE_URL},{VERIFIED_AT},primary,approved\n'
-)
-CORRECTIONS_PATH.write_text(corrections, encoding="utf-8")
-
-research = f"""# `q_life_004` / `card_life_004` 調査・修正記録
-
-確認日: {VERIFIED_AT}
+確認日: 2026-07-13
 対象ブランチ: `agent/content-triage-and-correction`
 判定: 閉ボタンの有効性に関する国・機種・設定横断の一般化を削除し、U.S. Access BoardのADA Accessibility Standardsが直接規定する扉の完全開放時間へ差し替えて承認
 
@@ -158,10 +29,10 @@ research = f"""# `q_life_004` / `card_life_004` 調査・修正記録
 
 ## 採用した一次資料
 
-- Title: `{SOURCE_TITLE}`
-- Publisher: `{SOURCE_PUBLISHER}`
+- Title: `Chapter 4: Accessible Routes`
+- Publisher: `U.S. Access Board`
 - Standard: ADA Accessibility Standards, Chapter 4
-- Record: {SOURCE_URL}
+- Record: https://www.access-board.gov/ada/chapter/ch04/
 
 U.S. Access Boardは米国連邦政府の独立機関であり、このページはADA Accessibility Standardsの公式本文である。
 
@@ -243,10 +114,3 @@ U.S. Access Boardは米国連邦政府の独立機関であり、このページ
 - 閉ボタンの反応時間や有効性を説明する場合
 - 5秒の扉・信号タイミングまたは20秒の再開扉装置を追加する場合
 - 消防運転、独立運転、点検運転などのモード別挙動を追加する場合
-"""
-RESEARCH_PATH.write_text(research, encoding="utf-8")
-
-SCRIPT_PATH.unlink()
-WORKFLOW_PATH.unlink()
-
-print(f"prepared correction from stable head {STABLE_HEAD}")

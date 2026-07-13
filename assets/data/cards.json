@@ -287,13 +287,21 @@
   },
   {
     "id": "card_life_004",
-    "title": "エレベーターの閉ボタン",
+    "title": "ADAのエレベーター扉遅延",
     "category": "daily_life",
-    "shortText": "実はすぐには閉まらない設計。",
-    "detailText": "多くのエレベーターは安全基準により、閉ボタンを押してもすぐには反応しない。自動ドアの開閉タイミングが優先されるよう設計されている。",
+    "shortText": "かご呼びでは完全に開いた状態を最低3秒保つ。",
+    "detailText": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと定めている。この規定だけから、他国や全機種で閉ボタンが無効だとは判断できない。",
     "imageAsset": "assets/images/cards/card_life_004.png",
     "rarity": "normal",
-    "sourceNote": "日本エレベーター協会"
+    "sourceNote": "U.S. Access Board ADA 407.3.5",
+    "source": {
+      "title": "Chapter 4: Accessible Routes",
+      "publisher": "U.S. Access Board",
+      "url": "https://www.access-board.gov/ada/chapter/ch04/",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_geo_005",
