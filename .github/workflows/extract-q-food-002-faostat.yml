@@ -1,0 +1,50 @@
+name: Extract q_food_002 FAOSTAT evidence
+
+on:
+  push:
+    branches:
+      - agent/content-triage-and-correction
+    paths:
+      - .github/workflows/extract-q-food-002-faostat.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-triage-and-correction
+          fetch-depth: 3
+
+      - name: Extract official FAOSTAT rows
+        run: python .github/scripts/extract_q_food_002_faostat.py
+
+      - name: Guard evidence-only diff and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          stable_head=a10175d12458ed4cc487fb0c657b90fd0dd9d8b6
+          actual_stable_head="$(git rev-parse HEAD~2)"
+          if [[ "$actual_stable_head" != "$stable_head" ]]; then
+            echo "Unexpected stable parent: $actual_stable_head" >&2
+            exit 1
+          fi
+
+          git add -A
+          expected_files="review/content_research_q_food_002.md"
+          actual_files="$(git diff --cached --name-only "$stable_head")"
+          if [[ "$actual_files" != "$expected_files" ]]; then
+            echo "Unexpected final evidence diff:" >&2
+            printf '%s\n' "$actual_files" >&2
+            exit 1
+          fi
+
+          git diff --cached --check "$stable_head"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m "research: extract official FAOSTAT apple rows"
+          git push origin HEAD:agent/content-triage-and-correction
