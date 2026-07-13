@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import base64
 import json
-import re
 import subprocess
 import zlib
 from pathlib import Path
@@ -49,26 +48,6 @@ Path('docs/19_コンテンツ修正バッチ2.md').write_text(
     payload['summary'], encoding='utf-8'
 )
 
-workflow = Path('.github/workflows/flutter-ci.yml')
-workflow_text = workflow.read_text(encoding='utf-8')
-workflow_text = re.sub(
-    r'\n# BEGIN CONTENT BATCH 2 PERMISSIONS.*?# END CONTENT BATCH 2 PERMISSIONS\n',
-    '\n',
-    workflow_text,
-    flags=re.S,
-)
-workflow_text = re.sub(
-    r'\n  # BEGIN CONTENT BATCH 2 JOB.*?  # END CONTENT BATCH 2 JOB\n',
-    '\n',
-    workflow_text,
-    flags=re.S,
-)
-workflow.write_text(workflow_text, encoding='utf-8')
-
-Path('.github/scripts/apply_content_batch_2.py').unlink()
-for index in range(1, 5):
-    Path(f'.github/scripts/content_batch_2.payload.{index}').unlink()
-
 subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
 subprocess.run(
     [
@@ -79,7 +58,21 @@ subprocess.run(
     ],
     check=True,
 )
-subprocess.run(['git', 'add', '-A'], check=True)
+
+paths = [
+    'assets/data/questions.json',
+    'assets/data/cards.json',
+    'review/content_triage_batch_2.csv',
+    'review/content_corrections_batch_2.csv',
+    'docs/19_コンテンツ修正バッチ2.md',
+    *payload['docs'].keys(),
+]
+subprocess.run(['git', 'add', '--', *paths], check=True)
+
+if subprocess.run(['git', 'diff', '--cached', '--quiet']).returncode == 0:
+    print('Verified content batch is already applied; no push required.')
+    raise SystemExit(0)
+
 subprocess.run(
     ['git', 'commit', '-m', 'Correct six high-risk content pairs'],
     check=True,
