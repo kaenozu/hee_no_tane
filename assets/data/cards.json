@@ -99,13 +99,21 @@
   },
   {
     "id": "card_food_002",
-    "title": "中国のリンゴ",
+    "title": "栽培リンゴの祖先種",
     "category": "food",
-    "shortText": "世界のリンゴの約半分は中国産。",
-    "detailText": "中国は世界最大のリンゴ生産国で、全世界の生産量の約半分を占める。日本で流通するリンゴの多くも中国産。",
+    "shortText": "2010年の系統解析ではMalus sieversiiと同定された。",
+    "detailText": "2010年にNature Geneticsで公表された原著論文は、栽培リンゴの高品質ドラフトゲノム配列を報告し、バラ科の主要分類群と比較した系統再構築により、その祖先種をMalus sieversiiと同定した。",
     "imageAsset": "assets/images/cards/card_food_002.png",
     "rarity": "normal",
-    "sourceNote": "FAO統計"
+    "sourceNote": "Nature Genetics（2010）",
+    "source": {
+      "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+      "publisher": "Nature Genetics (Springer Nature)",
+      "url": "https://www.nature.com/articles/ng.654",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "card_lang_001",

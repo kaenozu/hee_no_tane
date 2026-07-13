@@ -164,18 +164,26 @@
     "id": "q_food_002",
     "category": "food",
     "difficulty": "normal",
-    "question": "リンゴの生産量が世界一の国は？",
+    "question": "2010年の原著論文が、栽培リンゴの祖先種として同定したのは？",
     "choices": [
-      "日本",
-      "アメリカ",
-      "中国",
-      "イタリア"
+      "Malus sieversii",
+      "Malus sylvestris",
+      "Malus baccata",
+      "Malus floribunda"
     ],
-    "answerIndex": 2,
-    "explanation": "世界のリンゴ生産量の約半分は中国。日本で食べられているリンゴの多くも中国産なんだ。",
+    "answerIndex": 0,
+    "explanation": "2010年にNature Geneticsで公表された原著論文は、バラ科の主要分類群と比較した系統再構築により、栽培リンゴの祖先種をMalus sieversiiと同定した。",
     "relatedCardId": "card_food_002",
-    "sourceNote": "FAO統計",
-    "verified": true
+    "sourceNote": "Nature Genetics（2010）",
+    "verified": true,
+    "source": {
+      "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+      "publisher": "Nature Genetics (Springer Nature)",
+      "url": "https://www.nature.com/articles/ng.654",
+      "verifiedAt": "2026-07-13",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved"
+    }
   },
   {
     "id": "q_lang_001",
