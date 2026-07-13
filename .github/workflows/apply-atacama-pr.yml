@@ -1,0 +1,60 @@
+name: Trigger Atacama correction from PR
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - .github/workflows/apply-atacama-pr.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.head_ref == 'agent/content-triage-and-correction'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout correction branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/content-triage-and-correction
+          fetch-depth: 0
+
+      - name: Execute guarded transformation and cleanup
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          delegated = Path('.github/workflows/apply-atacama-content.yml')
+          trigger = Path('.github/workflows/apply-atacama-pr.yml')
+          lines = delegated.read_text(encoding='utf-8').splitlines()
+          scripts = []
+          index = 0
+          while index < len(lines):
+              if lines[index] == '        run: |':
+                  index += 1
+                  block = []
+                  while index < len(lines):
+                      line = lines[index]
+                      if line and not line.startswith('          '):
+                          break
+                      block.append(line[10:] if line.startswith('          ') else '')
+                      index += 1
+                  scripts.append('\n'.join(block))
+                  continue
+              index += 1
+
+          if len(scripts) != 3:
+              raise SystemExit(f'expected 3 delegated run blocks, found {len(scripts)}')
+
+          for script_index, script in enumerate(scripts):
+              if script_index == 2:
+                  trigger.unlink()
+              subprocess.run(
+                  ['bash', '-euo', 'pipefail', '-c', script],
+                  check=True,
+              )
+          PY
