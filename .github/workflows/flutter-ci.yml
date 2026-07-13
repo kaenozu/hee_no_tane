@@ -69,6 +69,11 @@ jobs:
             build/reports/content_review_risks.csv
             assets/data/questions.json
             assets/data/cards.json
+            assets/images/cards
+            tool/content_review.dart
+            lib/content_review
+            test/content_review
+            pubspec.yaml
           if-no-files-found: error
 
       - name: Validate release metadata
