@@ -6,7 +6,26 @@ on:
     branches:
       - master
 
+# BEGIN CONTENT BATCH 2 PERMISSIONS
+permissions:
+  contents: write
+# END CONTENT BATCH 2 PERMISSIONS
+
 jobs:
+  # BEGIN CONTENT BATCH 2 JOB
+  apply-content-batch-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout content branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Apply verified content batch
+        run: python .github/scripts/apply_content_batch_2.py
+  # END CONTENT BATCH 2 JOB
+
   quality:
     runs-on: ubuntu-latest
     steps:
