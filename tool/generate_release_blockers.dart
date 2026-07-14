@@ -75,7 +75,7 @@ Future<Map<String, Object?>> generateReleaseBlockerManifest({
   required List<Map<String, dynamic>> questions,
   required List<Map<String, dynamic>> cards,
   required int expectedPairs,
-  Map<String, Object?>? configuration,
+  required Map<String, Object?> configuration,
 }) async {
   final cardById = <String, Map<String, dynamic>>{};
   final duplicateCardIds = <String>{};
@@ -240,7 +240,7 @@ Future<Map<String, Object?>> generateReleaseBlockerManifest({
   return {
     'tool': 'generate_release_blockers',
     'generatedAt': DateTime.now().toUtc().toIso8601String(),
-    if (configuration != null) 'configuration': configuration,
+    'configuration': configuration,
     'summary': {
       'expectedPairCount': expectedPairs,
       'questionCount': questions.length,
