@@ -264,10 +264,7 @@ void main() {
 
     expect(tester.takeException(), isNull);
     expect(gateway.callCount, 0);
-    expect(
-      find.text('共有画像を作成できませんでした。もう一度お試しください。'),
-      findsOneWidget,
-    );
+    expect(find.text('共有画像を作成できませんでした。もう一度お試しください。'), findsOneWidget);
     expect(find.text('共有する'), findsOneWidget);
   });
 
@@ -290,7 +287,10 @@ void main() {
 
     expect(gateway.callCount, 1);
     expect(find.text('作成中...'), findsOneWidget);
-    expect(tester.widget<FilledButton>(find.byType(FilledButton)).onPressed, isNull);
+    expect(
+      tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
+      isNull,
+    );
 
     gateway.complete();
     await tester.pumpAndSettle();

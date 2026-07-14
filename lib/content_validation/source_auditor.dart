@@ -14,6 +14,7 @@ class SourceAuditEntry {
   final SourceMetadata metadata;
   final List<String> findings;
   final bool invalidMetadata;
+  final bool requireReleaseApproval;
 
   const SourceAuditEntry({
     required this.collection,
@@ -24,9 +25,14 @@ class SourceAuditEntry {
     required this.metadata,
     required this.findings,
     required this.invalidMetadata,
+    this.requireReleaseApproval = false,
   });
 
-  bool get isApproved => !invalidMetadata && metadata.isApproved;
+  bool get isApproved =>
+      !invalidMetadata &&
+      (requireReleaseApproval
+          ? metadata.isReleaseApproved
+          : metadata.isApproved);
   bool get needsReview => !isApproved;
 }
 
@@ -34,10 +40,7 @@ class SourceAuditResult {
   final List<SourceAuditEntry> entries;
   final List<String> globalIssues;
 
-  const SourceAuditResult({
-    required this.entries,
-    required this.globalIssues,
-  });
+  const SourceAuditResult({required this.entries, required this.globalIssues});
 
   int get totalCount => entries.length;
   int get approvedCount => entries.where((entry) => entry.isApproved).length;
@@ -47,7 +50,8 @@ class SourceAuditResult {
       globalIssues.length;
 
   bool get hasInvalidMetadata => invalidCount > 0;
-  bool get allApproved => !hasInvalidMetadata && pendingCount == 0;
+  bool get allApproved =>
+      totalCount > 0 && !hasInvalidMetadata && pendingCount == 0;
 
   String toMarkdown() {
     final buffer = StringBuffer()
@@ -106,23 +110,48 @@ class ContentSourceAuditor {
   SourceAuditResult auditJsonStrings({
     required String questionsJson,
     required String cardsJson,
+    bool releaseOnly = false,
   }) {
     final globalIssues = <String>[];
     final questionRoot = _decodeRoot(questionsJson, 'questions', globalIssues);
     final cardRoot = _decodeRoot(cardsJson, 'cards', globalIssues);
 
+    final selectedQuestions = releaseOnly
+        ? questionRoot.where((item) {
+            return item is Map<String, dynamic> && item['verified'] == true;
+          }).toList()
+        : questionRoot;
+    final releaseCardIds = <String>{
+      for (final item in selectedQuestions)
+        if (item is Map<String, dynamic> && item['relatedCardId'] is String)
+          item['relatedCardId'] as String,
+    };
+    final selectedCards = releaseOnly
+        ? cardRoot.where((item) {
+            return item is Map<String, dynamic> &&
+                releaseCardIds.contains(item['id']);
+          }).toList()
+        : cardRoot;
+
     final questions = _auditCollection(
-      root: questionRoot,
+      root: selectedQuestions,
       collection: 'question',
       labelField: 'question',
+      requireReleaseApproval: releaseOnly,
     );
     final cards = _auditCollection(
-      root: cardRoot,
+      root: selectedCards,
       collection: 'card',
       labelField: 'title',
+      requireReleaseApproval: releaseOnly,
     );
 
-    _auditQuestionCardConsistency(questionRoot, questions, cards, globalIssues);
+    _auditQuestionCardConsistency(
+      selectedQuestions,
+      questions,
+      cards,
+      globalIssues,
+    );
 
     return SourceAuditResult(
       entries: List.unmodifiable([...questions, ...cards]),
@@ -149,6 +178,7 @@ class ContentSourceAuditor {
     required List<dynamic> root,
     required String collection,
     required String labelField,
+    required bool requireReleaseApproval,
   }) {
     final entries = <SourceAuditEntry>[];
 
@@ -165,6 +195,7 @@ class ContentSourceAuditor {
             metadata: const SourceMetadata.legacy('出典不明'),
             findings: const ['content item is not a JSON object'],
             invalidMetadata: true,
+            requireReleaseApproval: requireReleaseApproval,
           ),
         );
         continue;
@@ -188,7 +219,11 @@ class ContentSourceAuditor {
       } else {
         try {
           metadata = SourceMetadata.fromJson(source);
-          _appendApprovalFindings(metadata, findings);
+          _appendApprovalFindings(
+            metadata,
+            findings,
+            requireReleaseApproval: requireReleaseApproval,
+          );
           if (metadata.reviewStatus == 'approved' && !metadata.isApproved) {
             invalidMetadata = true;
             findings.add('approvedですが必須情報が不足しています');
@@ -210,6 +245,7 @@ class ContentSourceAuditor {
           metadata: metadata,
           findings: List.unmodifiable(findings),
           invalidMetadata: invalidMetadata,
+          requireReleaseApproval: requireReleaseApproval,
         ),
       );
     }
@@ -219,8 +255,9 @@ class ContentSourceAuditor {
 
   void _appendApprovalFindings(
     SourceMetadata metadata,
-    List<String> findings,
-  ) {
+    List<String> findings, {
+    required bool requireReleaseApproval,
+  }) {
     if (metadata.reviewStatus != 'approved') {
       findings.add('reviewStatus=${metadata.reviewStatus}');
     }
@@ -232,6 +269,9 @@ class ContentSourceAuditor {
     }
     if (metadata.verifiedAt == null) {
       findings.add('確認日がありません');
+    }
+    if (requireReleaseApproval && !metadata.isReleaseApproved) {
+      findings.add('有効なcontentHashがありません');
     }
   }
 
@@ -256,6 +296,13 @@ class ContentSourceAuditor {
         globalIssues.add(
           'question ${question.id} and card $relatedCardId have different '
           'approved source URLs',
+        );
+      }
+      if (question.requireReleaseApproval &&
+          question.metadata.contentHash != card.metadata.contentHash) {
+        globalIssues.add(
+          'question ${question.id} and card $relatedCardId have different '
+          'approved content hashes',
         );
       }
     }

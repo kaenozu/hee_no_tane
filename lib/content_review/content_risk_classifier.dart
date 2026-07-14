@@ -5,26 +5,11 @@ import 'dart:convert';
 
 import 'package:hee_no_tane_app/content_review/content_review_workflow.dart';
 
-const enhancedContentReviewColumns = <String>[
-  'questionId',
-  'cardId',
-  'category',
-  'question',
-  'answer',
-  'explanation',
-  'imageAsset',
-  'imageFit',
-  'sourceTitle',
-  'sourcePublisher',
-  'sourceUrl',
-  'verifiedAt',
-  'verificationLevel',
-  'reviewStatus',
-  'reviewNote',
-];
+const enhancedContentReviewColumns = contentReviewColumns;
 
 const contentImageFitValues = <String>{
   'unchecked',
+  'approved',
   'fit',
   'generic_placeholder',
   'replace_required',
@@ -96,29 +81,7 @@ class ContentRiskClassifier {
         'base review CSV header does not match contentReviewColumns',
       );
     }
-    final cards = _decodeCollection(cardsJson, 'cards');
-    final cardsById = _byId(cards, 'cards');
-    final rows = <List<String>>[enhancedContentReviewColumns];
-    for (var index = 1; index < table.length; index++) {
-      final row = table[index];
-      if (row.every((value) => value.isEmpty)) continue;
-      if (row.length != contentReviewColumns.length) {
-        throw ContentReviewException('review CSV row ${index + 1} is invalid');
-      }
-      final cardId = row[contentReviewColumns.indexOf('cardId')];
-      final card = cardsById[cardId];
-      if (card == null) {
-        throw ContentReviewException('unknown cardId in review CSV: $cardId');
-      }
-      final explanationIndex = contentReviewColumns.indexOf('explanation');
-      rows.add([
-        ...row.take(explanationIndex + 1),
-        card['imageAsset'] is String ? card['imageAsset'] as String : '',
-        'unchecked',
-        ...row.skip(explanationIndex + 1),
-      ]);
-    }
-    return _encodeCsv(rows);
+    return _encodeCsv(table);
   }
 
   String stripReviewCsv({
@@ -126,51 +89,46 @@ class ContentRiskClassifier {
     required String cardsJson,
   }) {
     final table = _parseCsv(reviewCsv);
-    if (table.isEmpty) {
-      throw const ContentReviewException('CSV is empty');
-    }
-    if (_sameStrings(table.first, contentReviewColumns)) {
-      return _encodeCsv(table);
-    }
-    if (!_sameStrings(table.first, enhancedContentReviewColumns)) {
-      throw ContentReviewException(
-        'CSV header must match either the legacy or enhanced review schema',
+    if (table.isEmpty || !_sameStrings(table.first, contentReviewColumns)) {
+      throw const ContentReviewException(
+        'review CSV header does not match contentReviewColumns',
       );
     }
     final cards = _decodeCollection(cardsJson, 'cards');
     final cardsById = _byId(cards, 'cards');
-    final rows = <List<String>>[contentReviewColumns];
-    final imageAssetIndex = enhancedContentReviewColumns.indexOf('imageAsset');
-    final imageFitIndex = enhancedContentReviewColumns.indexOf('imageFit');
-    final cardIdIndex = enhancedContentReviewColumns.indexOf('cardId');
+    final cardIdIndex = contentReviewColumns.indexOf('cardId');
+    final imageAssetIndex = contentReviewColumns.indexOf('imageAsset');
+    final imageStatusIndex = contentReviewColumns.indexOf('imageReviewStatus');
     for (var index = 1; index < table.length; index++) {
       final row = table[index];
       if (row.every((value) => value.isEmpty)) continue;
-      if (row.length != enhancedContentReviewColumns.length) {
-        throw ContentReviewException('review CSV row ${index + 1} is invalid');
+      if (row.length != contentReviewColumns.length) {
+        throw ContentReviewException(
+          'review CSV row ${index + 1} has ${row.length} columns; '
+          'expected ${contentReviewColumns.length}',
+        );
       }
       final cardId = row[cardIdIndex];
       final card = cardsById[cardId];
       if (card == null) {
         throw ContentReviewException('unknown cardId in review CSV: $cardId');
       }
-      final expectedAsset =
-          card['imageAsset'] is String ? card['imageAsset'] as String : '';
+      final expectedAsset = card['imageAsset'] is String
+          ? card['imageAsset'] as String
+          : '';
       if (row[imageAssetIndex] != expectedAsset) {
         throw ContentReviewException(
           '$cardId changed immutable CSV field imageAsset',
         );
       }
-      final imageFit = row[imageFitIndex].trim();
-      if (!contentImageFitValues.contains(imageFit)) {
-        throw ContentReviewException('$cardId has invalid imageFit: $imageFit');
+      final status = row[imageStatusIndex].trim();
+      if (!contentImageFitValues.contains(status)) {
+        throw ContentReviewException(
+          '$cardId has invalid imageReviewStatus: $status',
+        );
       }
-      rows.add([
-        for (var column = 0; column < row.length; column++)
-          if (column != imageAssetIndex && column != imageFitIndex) row[column],
-      ]);
     }
-    return _encodeCsv(rows);
+    return _encodeCsv(table);
   }
 
   List<ContentRiskRecord> risks({
@@ -202,7 +160,7 @@ class ContentRiskClassifier {
       final cardDetail = _requiredString(card, 'detailText', cardId);
       final text = [
         questionText,
-        answer,
+        ...choices,
         explanation,
         cardTitle,
         card['shortText'],
@@ -258,10 +216,7 @@ class ContentRiskClassifier {
     ]);
   }
 
-  String riskCsv({
-    required String questionsJson,
-    required String cardsJson,
-  }) {
+  String riskCsv({required String questionsJson, required String cardsJson}) {
     final rows = <List<String>>[
       const [
         'questionId',
@@ -297,9 +252,7 @@ class ContentRiskClassifier {
 
   List<String> _riskReasons(String text, String category) {
     final reasons = <String>[];
-    if (RegExp(
-      r'[0-9０-９]|[%％]|約\s*[一二三四五六七八九十百千万億兆]',
-    ).hasMatch(text)) {
+    if (RegExp(r'[0-9０-９]|[%％]|約\s*[一二三四五六七八九十百千万億兆]').hasMatch(text)) {
       reasons.add('numeric');
     }
 
@@ -344,9 +297,7 @@ class ContentRiskClassifier {
     ).hasMatch(text)) {
       reasons.add('biological_anatomy');
     }
-    if (RegExp(
-      r'法律|法令|違法|罰金|刑罰|権利|義務|裁判|契約|税制|税金',
-    ).hasMatch(text)) {
+    if (RegExp(r'法律|法令|違法|罰金|刑罰|権利|義務|裁判|契約|税制|税金').hasMatch(text)) {
       reasons.add('legal');
     }
     if (RegExp(
@@ -355,30 +306,23 @@ class ContentRiskClassifier {
     ).hasMatch(text)) {
       reasons.add('financial_advice');
     }
-    if (RegExp(
-      r'価格|値段|相場|時価|製造コスト|製造原価|原価|費用|いくら',
-    ).hasMatch(text)) {
+    if (RegExp(r'価格|値段|相場|時価|製造コスト|製造原価|原価|費用|いくら').hasMatch(text)) {
       reasons.add('dynamic_price');
     }
     if (RegExp(r'紙幣|硬貨|貨幣|通貨|コイン').hasMatch(text) &&
-        RegExp(
-          r'歴史|発行|制定|採用|肖像|図柄|デザイン|年|時代|最初|初',
-        ).hasMatch(text)) {
+        RegExp(r'歴史|発行|制定|採用|肖像|図柄|デザイン|年|時代|最初|初').hasMatch(text)) {
       reasons.add('currency_history');
     }
     return reasons;
   }
 
   bool _isDuplicateFact(_RiskCandidate first, _RiskCandidate second) {
-    final questionSimilarity = _textSimilarity(
-      first.question,
-      second.question,
-    );
+    final questionSimilarity = _textSimilarity(first.question, second.question);
     final combinedSimilarity = _textSimilarity(
       '${first.question} ${first.answer} ${first.explanation} '
-      '${first.cardTitle} ${first.cardDetail}',
+          '${first.cardTitle} ${first.cardDetail}',
       '${second.question} ${second.answer} ${second.explanation} '
-      '${second.cardTitle} ${second.cardDetail}',
+          '${second.cardTitle} ${second.cardDetail}',
     );
     final firstAnswer = _normalizeFactText(first.answer);
     final secondAnswer = _normalizeFactText(second.answer);
@@ -422,13 +366,7 @@ class ContentRiskClassifier {
       RegExp(r'[\s、。！？!?…・「」『』（）()【】\[\]／/：:；;,.ー\-]'),
       '',
     );
-    for (final filler in const [
-      '一般に',
-      'だいたい',
-      'でしょうか',
-      'と言われている',
-      'といわれている',
-    ]) {
+    for (final filler in const ['一般に', 'だいたい', 'でしょうか', 'と言われている', 'といわれている']) {
       normalized = normalized.replaceAll(filler, '');
     }
     return normalized;
@@ -557,7 +495,9 @@ class ContentRiskClassifier {
       }
     }
     if (inQuotes) {
-      throw const ContentReviewException('CSV contains an unclosed quoted field');
+      throw const ContentReviewException(
+        'CSV contains an unclosed quoted field',
+      );
     }
     if (field.isNotEmpty || row.isNotEmpty || quoteClosed) finishRow();
     if (rows.isNotEmpty && rows.last.every((value) => value.isEmpty)) {

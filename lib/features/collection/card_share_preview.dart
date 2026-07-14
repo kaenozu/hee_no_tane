@@ -176,10 +176,7 @@ class CardSharePreview extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 18),
-                  Container(
-                    height: 1,
-                    color: accent.withValues(alpha: 0.2),
-                  ),
+                  Container(height: 1, color: accent.withValues(alpha: 0.2)),
                   const SizedBox(height: 18),
                   Expanded(
                     child: Center(
@@ -209,11 +206,7 @@ class CardSharePreview extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.source_outlined,
-                          size: 14,
-                          color: accent,
-                        ),
+                        Icon(Icons.source_outlined, size: 14, color: accent),
                         const SizedBox(width: 7),
                         Expanded(
                           child: Text(

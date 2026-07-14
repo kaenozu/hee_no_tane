@@ -4,34 +4,33 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/content_review/content_review_workflow.dart';
 
+import '../helpers/release_content.dart';
+
 void main() {
   const workflow = ContentReviewWorkflow();
 
-  test('export pairs questions with cards and quotes CSV safely', () {
-    final questions = _questionsJson(
-      question: '空気で,最も多い成分は？',
-      explanation: '答えは窒素。\n約78%です。',
-    );
-
+  test('export covers all reviewable claims and quotes CSV safely', () {
     final csv = workflow.exportCsv(
-      questionsJson: questions,
+      questionsJson: _questionsJson(
+        question: '空気で,最も多い成分は？',
+        explanation: '答えは窒素。\n約78%です。',
+      ),
       cardsJson: _cardsJson(),
     );
 
     expect(csv.split('\r\n').first, contentReviewColumns.join(','));
-    expect(csv, contains('q_001,card_001,science'));
+    expect(csv, contains('choice0,choice1,choice2,choice3,answerIndex'));
+    expect(csv, contains('cardTitle,cardShortText,cardDetailText,cardRarity'));
+    expect(csv, contains('imageReviewStatus,imageReviewedAt,imageReviewNote'));
+    expect(csv, contains('reviewNote,contentHash'));
     expect(csv, contains('"空気で,最も多い成分は？"'));
-    expect(csv, contains('窒素'));
     expect(csv, contains('"答えは窒素。\n約78%です。"'));
   });
 
-  test('an unchanged exported legacy CSV produces no JSON diff', () {
+  test('an unchanged exported pending CSV produces no JSON diff', () {
     final questions = _questionsJson();
     final cards = _cardsJson();
-    final csv = workflow.exportCsv(
-      questionsJson: questions,
-      cardsJson: cards,
-    );
+    final csv = workflow.exportCsv(questionsJson: questions, cardsJson: cards);
 
     final plan = workflow.planImport(
       csv: csv,
@@ -42,60 +41,97 @@ void main() {
     expect(plan.hasChanges, isFalse);
   });
 
-  test('approved source is applied identically to question and card', () {
+  test('approved source and visual review are applied to the pair', () {
+    final questions = _questionsJson();
+    final cards = _cardsJson();
+    final csv = _reviewCsv(
+      workflow: workflow,
+      questionsJson: questions,
+      cardsJson: cards,
+      updates: const {
+        'sourceTitle': '大気の組成',
+        'sourcePublisher': '気象庁',
+        'sourceUrl': 'https://www.jma.go.jp/example',
+        'verifiedAt': '2026-07-12',
+        'verificationLevel': 'primary',
+        'reviewStatus': 'approved',
+        'reviewNote': '一次資料で確認',
+        'imageReviewStatus': 'generic_placeholder',
+        'imageReviewedAt': '2026-07-14',
+        'imageReviewNote': '汎用画像として確認',
+      },
+    );
     final plan = workflow.planImport(
-      csv: _reviewCsv(
-        sourceTitle: '大気の組成',
-        sourcePublisher: '気象庁',
-        sourceUrl: 'https://www.jma.go.jp/example',
-        verifiedAt: '2026-07-12',
-        verificationLevel: 'primary',
-        reviewStatus: 'approved',
-      ),
-      questionsJson: _questionsJson(),
-      cardsJson: _cardsJson(),
+      csv: csv,
+      questionsJson: questions,
+      cardsJson: cards,
     );
 
     expect(plan.changes, hasLength(1));
     final question = (jsonDecode(plan.questionsJson) as List).single as Map;
     final card = (jsonDecode(plan.cardsJson) as List).single as Map;
-    expect(question['id'], 'q_001');
-    expect(card['id'], 'card_001');
     expect(question['source'], card['source']);
+    expect(question['verified'], isTrue);
     expect((question['source'] as Map)['reviewStatus'], 'approved');
+    expect((question['source'] as Map)['reviewNote'], '一次資料で確認');
+    expect((question['source'] as Map)['contentHash'], hasLength(64));
+    expect((card['imageReview'] as Map)['status'], 'generic_placeholder');
   });
 
   test('approved source without required evidence is rejected', () {
+    final questions = _questionsJson();
+    final cards = _cardsJson();
+    final csv = _reviewCsv(
+      workflow: workflow,
+      questionsJson: questions,
+      cardsJson: cards,
+      updates: const {
+        'sourceTitle': '資料',
+        'sourcePublisher': '発行元',
+        'verifiedAt': '2026-07-12',
+        'verificationLevel': 'primary',
+        'reviewStatus': 'approved',
+        'imageReviewStatus': 'generic_placeholder',
+        'imageReviewedAt': '2026-07-14',
+      },
+    );
+
     expect(
       () => workflow.planImport(
-        csv: _reviewCsv(
-          sourceTitle: '資料',
-          sourcePublisher: '発行元',
-          verifiedAt: '2026-07-12',
-          verificationLevel: 'primary',
-          reviewStatus: 'approved',
-        ),
-        questionsJson: _questionsJson(),
-        cardsJson: _cardsJson(),
+        csv: csv,
+        questionsJson: questions,
+        cardsJson: cards,
       ),
       throwsA(isA<ContentReviewException>()),
     );
   });
 
-  test('changed IDs and immutable content are rejected', () {
+  test('changed immutable content and stale content hashes are rejected', () {
+    final questions = _questionsJson();
+    final cards = _cardsJson();
     expect(
       () => workflow.planImport(
-        csv: _reviewCsv(questionId: 'q_changed'),
-        questionsJson: _questionsJson(),
-        cardsJson: _cardsJson(),
+        csv: _reviewCsv(
+          workflow: workflow,
+          questionsJson: questions,
+          cardsJson: cards,
+          updates: const {'question': '書き換えた問題'},
+        ),
+        questionsJson: questions,
+        cardsJson: cards,
       ),
       throwsA(isA<ContentReviewException>()),
     );
     expect(
       () => workflow.planImport(
-        csv: _reviewCsv(question: '書き換えた問題'),
-        questionsJson: _questionsJson(),
-        cardsJson: _cardsJson(),
+        csv: _reviewCsv(
+          workflow: workflow,
+          questionsJson: questions,
+          cardsJson: cards,
+          updates: {'contentHash': List<String>.filled(64, '0').join()},
+        ),
+        questionsJson: questions,
+        cardsJson: cards,
       ),
       throwsA(isA<ContentReviewException>()),
     );
@@ -113,7 +149,12 @@ void main() {
 
     await expectLater(
       workflow.applyCsvToFiles(
-        csv: _reviewCsv(questionId: 'q_changed'),
+        csv: _reviewCsv(
+          workflow: workflow,
+          questionsJson: originalQuestions,
+          cardsJson: originalCards,
+          updates: const {'questionId': 'q_changed'},
+        ),
         questionsPath: questionsFile.path,
         cardsPath: cardsFile.path,
         write: true,
@@ -137,12 +178,19 @@ void main() {
 
     final plan = await workflow.applyCsvToFiles(
       csv: _reviewCsv(
-        sourceTitle: '大気の組成',
-        sourcePublisher: '気象庁',
-        sourceUrl: 'https://www.jma.go.jp/example',
-        verifiedAt: '2026-07-12',
-        verificationLevel: 'primary',
-        reviewStatus: 'approved',
+        workflow: workflow,
+        questionsJson: originalQuestions,
+        cardsJson: originalCards,
+        updates: const {
+          'sourceTitle': '大気の組成',
+          'sourcePublisher': '気象庁',
+          'sourceUrl': 'https://www.jma.go.jp/example',
+          'verifiedAt': '2026-07-12',
+          'verificationLevel': 'primary',
+          'reviewStatus': 'approved',
+          'imageReviewStatus': 'generic_placeholder',
+          'imageReviewedAt': '2026-07-14',
+        },
       ),
       questionsPath: questionsFile.path,
       cardsPath: cardsFile.path,
@@ -154,27 +202,27 @@ void main() {
     expect(await cardsFile.readAsString(), originalCards);
   });
 
-  test('category progress counts only matching approved pairs', () {
-    final source = {
-      'title': '大気の組成',
-      'publisher': '気象庁',
-      'url': 'https://www.jma.go.jp/example',
-      'verifiedAt': '2026-07-12',
-      'verificationLevel': 'primary',
-      'reviewStatus': 'approved',
-    };
+  test('category progress counts only release-approved pairs', () {
+    final pair = releaseContentPair(
+      id: '001',
+      questionText: '空気の中で一番多い成分は？',
+      choices: const ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+      answerIndex: 1,
+      explanation: '空気の約78%は窒素です。',
+      title: '大気の成分',
+      shortText: '空気の約78%は窒素。',
+      detailText: '心臓や血液にも必要な空気は窒素を最も多く含む。',
+    );
     final progress = workflow.progress(
-      questionsJson: _questionsJson(source: source),
-      cardsJson: _cardsJson(source: source),
+      questionsJson: jsonEncode([pair.question.toJson()]),
+      cardsJson: jsonEncode([pair.card.toJson()]),
     );
 
-    expect(progress, hasLength(1));
-    expect(progress.single.category, 'science');
     expect(progress.single.approved, 1);
     expect(progress.single.total, 1);
   });
 
-  test('risk extraction identifies numeric, ranking, and medical claims', () {
+  test('risk extraction scans distractors as well as the correct answer', () {
     final risks = workflow.risks(
       questionsJson: _questionsJson(),
       cardsJson: _cardsJson(),
@@ -182,84 +230,99 @@ void main() {
 
     expect(risks, hasLength(1));
     expect(risks.single.reasons, containsAll(['numeric', 'medical']));
-    expect(
-      workflow.riskCsv(
-        questionsJson: _questionsJson(),
-        cardsJson: _cardsJson(),
-      ),
-      contains('q_001,card_001,science'),
-    );
   });
 }
 
 String _questionsJson({
   String question = '空気の中で一番多い成分は？',
   String explanation = '空気の約78%は窒素です。',
-  Map<String, dynamic>? source,
-}) {
-  final item = <String, dynamic>{
-    'id': 'q_001',
-    'category': 'science',
-    'difficulty': 'easy',
-    'question': question,
-    'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
-    'answerIndex': 1,
-    'explanation': explanation,
-    'relatedCardId': 'card_001',
-    'sourceNote': '気象庁',
-    'verified': true,
-  };
-  if (source != null) item['source'] = source;
-  return '${const JsonEncoder.withIndent('  ').convert([item])}\n';
-}
+}) =>
+    '${const JsonEncoder.withIndent('  ').convert([
+      <String, dynamic>{
+        'id': 'q_001',
+        'category': 'science',
+        'difficulty': 'easy',
+        'question': question,
+        'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+        'answerIndex': 1,
+        'explanation': explanation,
+        'relatedCardId': 'card_001',
+        'sourceNote': '気象庁',
+        'verified': false,
+      },
+    ])}\n';
 
-String _cardsJson({Map<String, dynamic>? source}) {
-  final item = <String, dynamic>{
-    'id': 'card_001',
-    'title': '大気の成分',
-    'category': 'science',
-    'shortText': '空気の約78%は窒素。',
-    'detailText': '心臓や血液にも必要な空気は窒素を最も多く含む。',
-    'imageAsset': '',
-    'rarity': 'normal',
-    'sourceNote': '気象庁',
-  };
-  if (source != null) item['source'] = source;
-  return '${const JsonEncoder.withIndent('  ').convert([item])}\n';
-}
+String _cardsJson() =>
+    '${const JsonEncoder.withIndent('  ').convert([
+      <String, dynamic>{
+        'id': 'card_001',
+        'title': '大気の成分',
+        'category': 'science',
+        'shortText': '空気の約78%は窒素。',
+        'detailText': '心臓や血液にも必要な空気は窒素を最も多く含む。',
+        'imageAsset': 'assets/images/cards/card_001.png',
+        'rarity': 'normal',
+        'sourceNote': '気象庁',
+        'imageReview': <String, dynamic>{'status': 'unchecked', 'reviewedAt': ''},
+      },
+    ])}\n';
 
 String _reviewCsv({
-  String questionId = 'q_001',
-  String cardId = 'card_001',
-  String category = 'science',
-  String question = '空気の中で一番多い成分は？',
-  String answer = '窒素',
-  String explanation = '空気の約78%は窒素です。',
-  String sourceTitle = '',
-  String sourcePublisher = '',
-  String sourceUrl = '',
-  String verifiedAt = '',
-  String verificationLevel = 'unverified',
-  String reviewStatus = 'pending',
-  String reviewNote = '',
+  required ContentReviewWorkflow workflow,
+  required String questionsJson,
+  required String cardsJson,
+  required Map<String, String> updates,
 }) {
-  final values = [
-    questionId,
-    cardId,
-    category,
-    question,
-    answer,
-    explanation,
-    sourceTitle,
-    sourcePublisher,
-    sourceUrl,
-    verifiedAt,
-    verificationLevel,
-    reviewStatus,
-    reviewNote,
-  ];
-  return '${contentReviewColumns.join(',')}\r\n${values.map(_csvValue).join(',')}\r\n';
+  final table = _parseCsv(
+    workflow.exportCsv(questionsJson: questionsJson, cardsJson: cardsJson),
+  );
+  final header = table.first;
+  final row = table[1];
+  for (final entry in updates.entries) {
+    final index = header.indexOf(entry.key);
+    if (index < 0) throw StateError('Unknown column ${entry.key}');
+    row[index] = entry.value;
+  }
+  return _encodeCsv(table);
 }
+
+List<List<String>> _parseCsv(String source) {
+  final rows = <List<String>>[];
+  var row = <String>[];
+  var field = StringBuffer();
+  var quoted = false;
+  for (var index = 0; index < source.length; index++) {
+    final character = source[index];
+    if (quoted) {
+      if (character == '"') {
+        if (index + 1 < source.length && source[index + 1] == '"') {
+          field.write('"');
+          index++;
+        } else {
+          quoted = false;
+        }
+      } else {
+        field.write(character);
+      }
+    } else if (character == '"') {
+      quoted = true;
+    } else if (character == ',') {
+      row.add(field.toString());
+      field = StringBuffer();
+    } else if (character == '\n') {
+      row.add(field.toString().replaceAll(RegExp(r'\r$'), ''));
+      if (row.any((value) => value.isNotEmpty)) rows.add(row);
+      row = <String>[];
+      field = StringBuffer();
+    } else {
+      field.write(character);
+    }
+  }
+  return rows;
+}
+
+String _encodeCsv(List<List<String>> rows) =>
+    '${rows.map((row) => row.map(_csvValue).join(',')).join('\r\n')}\r\n';
 
 String _csvValue(String value) {
   if (!value.contains(RegExp(r'[,"\r\n]'))) return value;

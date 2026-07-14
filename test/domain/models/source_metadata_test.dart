@@ -102,42 +102,43 @@ void main() {
       expect(card.effectiveSource.isApproved, isTrue);
     });
 
-    test('runtime models fall back when structured source is malformed', () {
-      final question = Question.fromJson({
-        'id': 'q_001',
-        'category': 'science',
-        'difficulty': 'easy',
-        'question': '空気の中で一番多い成分は？',
-        'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
-        'answerIndex': 1,
-        'explanation': '空気の約78%は窒素です。',
-        'relatedCardId': 'card_001',
-        'sourceNote': '気象庁',
-        'verified': true,
-        'source': {
-          'title': '壊れた資料',
-          'publisher': '発行元',
-          'url': 'javascript:alert(1)',
-          'verificationLevel': 'primary',
-          'reviewStatus': 'approved',
-        },
-      });
-      final card = HeeCard.fromJson({
-        'id': 'card_001',
-        'title': '大気の成分',
-        'category': 'science',
-        'shortText': '空気の約78%は窒素。',
-        'detailText': '地球の大気は窒素、酸素などで構成されています。',
-        'imageAsset': '',
-        'rarity': 'normal',
-        'sourceNote': '気象庁',
-        'source': 'not-an-object',
-      });
-
-      expect(question.sourceMetadata, isNull);
-      expect(card.sourceMetadata, isNull);
-      expect(question.effectiveSource.isLegacy, isTrue);
-      expect(card.effectiveSource.isLegacy, isTrue);
+    test('runtime models reject malformed structured source metadata', () {
+      expect(
+        () => Question.fromJson({
+          'id': 'q_001',
+          'category': 'science',
+          'difficulty': 'easy',
+          'question': '空気の中で一番多い成分は？',
+          'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+          'answerIndex': 1,
+          'explanation': '空気の約78%は窒素です。',
+          'relatedCardId': 'card_001',
+          'sourceNote': '気象庁',
+          'verified': true,
+          'source': {
+            'title': '壊れた資料',
+            'publisher': '発行元',
+            'url': 'javascript:alert(1)',
+            'verificationLevel': 'primary',
+            'reviewStatus': 'approved',
+          },
+        }),
+        throwsFormatException,
+      );
+      expect(
+        () => HeeCard.fromJson({
+          'id': 'card_001',
+          'title': '大気の成分',
+          'category': 'science',
+          'shortText': '空気の約78%は窒素。',
+          'detailText': '地球の大気は窒素、酸素などで構成されています。',
+          'imageAsset': '',
+          'rarity': 'normal',
+          'sourceNote': '気象庁',
+          'source': 'not-an-object',
+        }),
+        throwsA(anyOf(isA<TypeError>(), isA<FormatException>())),
+      );
     });
   });
 }

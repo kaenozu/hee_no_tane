@@ -13,23 +13,26 @@ class Question {
   final bool verified;
   final SourceMetadata? sourceMetadata;
 
-  const Question({
+  Question({
     required this.id,
     required this.category,
     required this.difficulty,
     required this.question,
-    required this.choices,
+    required List<String> choices,
     required this.answerIndex,
     required this.explanation,
     required this.relatedCardId,
     required String sourceNote,
     required this.verified,
     this.sourceMetadata,
-  }) : legacySourceNote = sourceNote;
+  }) : choices = List.unmodifiable(choices),
+       legacySourceNote = sourceNote;
 
-  SourceMetadata get effectiveSource {
-    return sourceMetadata ?? SourceMetadata.legacy(legacySourceNote);
-  }
+  SourceMetadata get effectiveSource =>
+      sourceMetadata ?? SourceMetadata.legacy(legacySourceNote);
+
+  bool get isSourceReleaseApproved =>
+      verified && sourceMetadata?.isReleaseApproved == true;
 
   String get sourceNote {
     final source = sourceMetadata;
@@ -40,8 +43,15 @@ class Question {
   }
 
   factory Question.fromJson(Map<String, dynamic> json) {
-    final choices = List<String>.from(json['choices'] as List);
-    final answerIndex = json['answerIndex'] as int;
+    final choicesValue = json['choices'];
+    if (choicesValue is! List || choicesValue.any((item) => item is! String)) {
+      throw const FormatException('Question choices must be a string array.');
+    }
+    final choices = List<String>.from(choicesValue);
+    final answerIndex = json['answerIndex'];
+    if (answerIndex is! int) {
+      throw const FormatException('Question answerIndex must be an integer.');
+    }
     if (choices.isEmpty) {
       throw const FormatException('Question choices must not be empty.');
     }
@@ -51,18 +61,47 @@ class Question {
       );
     }
 
+    final sourceValue = json['source'];
+    final source = sourceValue == null
+        ? null
+        : SourceMetadata.fromJson(
+            Map<String, dynamic>.from(sourceValue as Map),
+          );
+
     return Question(
-      id: json['id'] as String,
-      category: json['category'] as String,
-      difficulty: json['difficulty'] as String,
-      question: json['question'] as String,
+      id: _requiredString(json, 'id'),
+      category: _requiredString(json, 'category'),
+      difficulty: _requiredString(json, 'difficulty'),
+      question: _requiredString(json, 'question'),
       choices: choices,
       answerIndex: answerIndex,
-      explanation: json['explanation'] as String,
-      relatedCardId: json['relatedCardId'] as String,
-      sourceNote: json['sourceNote'] as String,
+      explanation: _requiredString(json, 'explanation'),
+      relatedCardId: _requiredString(json, 'relatedCardId'),
+      sourceNote: _requiredString(json, 'sourceNote'),
       verified: json['verified'] as bool,
-      sourceMetadata: SourceMetadata.tryFromJson(json['source']),
+      sourceMetadata: source,
     );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'category': category,
+    'difficulty': difficulty,
+    'question': question,
+    'choices': choices,
+    'answerIndex': answerIndex,
+    'explanation': explanation,
+    'relatedCardId': relatedCardId,
+    'sourceNote': legacySourceNote,
+    'verified': verified,
+    if (sourceMetadata != null) 'source': sourceMetadata!.toJson(),
+  };
+
+  static String _requiredString(Map<String, dynamic> json, String key) {
+    final value = json[key];
+    if (value is! String || value.trim().isEmpty) {
+      throw FormatException('Question $key must be a non-empty string.');
+    }
+    return value.trim();
   }
 }

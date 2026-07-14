@@ -2,6 +2,7 @@
 ///
 /// アプリのルートウィジェット。
 library;
+
 /// Material 3 テーマ定義（暖色系・紙/木/植物モチーフ）、画面遷移の起点。
 ///
 /// 関連:
@@ -61,6 +62,12 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
     setState(() => _onboardingCompleted = true);
   }
 
+  Future<void> _handleDataReset() async {
+    themeModeNotifier.value = ThemeMode.system;
+    if (!mounted) return;
+    setState(() => _onboardingCompleted = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
@@ -79,6 +86,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
                   allCards: widget.allCards,
                   saveRepository: widget.saveRepository,
                   rewardService: widget.rewardService,
+                  onDataReset: _handleDataReset,
                 )
               : OnboardingScreen(onComplete: _completeOnboarding),
         );

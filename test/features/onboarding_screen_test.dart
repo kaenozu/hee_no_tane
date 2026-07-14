@@ -66,10 +66,12 @@ void main() {
 
       expect(find.byType(OnboardingScreen), findsNothing);
       expect(find.byType(HomeScreen), findsOneWidget);
-      expect(find.text('利用可能な問題がありません'), findsOneWidget);
+      expect(find.text('承認済みの問題がありません'), findsOneWidget);
     });
 
-    testWidgets('completes all pages, persists, and opens home', (tester) async {
+    testWidgets('completes all pages, persists, and opens home', (
+      tester,
+    ) async {
       final repository = FakeSaveRepository();
       final data = SaveData();
       repository.setLoadedData(data);
@@ -134,9 +136,11 @@ void main() {
       expect(find.byType(HomeScreen), findsNothing);
       expect(find.text('保存に失敗しました'), findsOneWidget);
       expect(
-        tester.widget<FilledButton>(
-          find.byKey(const ValueKey('onboarding-start')),
-        ).onPressed,
+        tester
+            .widget<FilledButton>(
+              find.byKey(const ValueKey('onboarding-start')),
+            )
+            .onPressed,
         isNotNull,
       );
     });

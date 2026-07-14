@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/source_metadata.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../helpers/release_content.dart';
+
 void main() {
-  testWidgets('approved owned card shows and opens source link', (tester) async {
+  testWidgets('approved owned card shows and opens source link', (
+    tester,
+  ) async {
     SharedPreferences.setMockInitialValues({});
     Uri? openedUri;
 
@@ -73,31 +76,17 @@ void main() {
     await tester.pump();
 
     expect(find.text('詳しい本文'), findsOneWidget);
-    expect(
-      find.text('出典ページを開けませんでした。カードはそのまま閲覧できます。'),
-      findsOneWidget,
-    );
+    expect(find.text('出典ページを開けませんでした。カードはそのまま閲覧できます。'), findsOneWidget);
   });
 }
 
-const _approvedCard = HeeCard(
-  id: 'card',
+final _approvedCard = releaseContentPair(
+  id: 'source_link',
   title: 'テストカード',
-  category: 'science',
   shortText: '短い知識',
   detailText: '詳しい本文',
-  imageAsset: '',
-  rarity: 'normal',
-  sourceNote: '気象庁',
-  sourceMetadata: SourceMetadata(
-    title: '大気の組成',
-    publisher: '気象庁',
-    url: 'https://www.jma.go.jp/example',
-    verifiedAt: '2026-07-12',
-    verificationLevel: 'primary',
-    reviewStatus: 'approved',
-  ),
-);
+  sourceUrl: 'https://www.jma.go.jp/example',
+).card;
 
 const _legacyCard = HeeCard(
   id: 'card',

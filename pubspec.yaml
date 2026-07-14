@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  crypto: ^3.0.7
   shared_preferences: ^2.3.0
   intl: ^0.20.0
   url_launcher: ^6.3.0
@@ -62,6 +63,7 @@ flutter:
   assets:
     - assets/data/questions.json
     - assets/data/cards.json
+    - assets/data/content_manifest.json
     - assets/images/cards/
 
   fonts:

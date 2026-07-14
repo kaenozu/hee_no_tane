@@ -1,23 +1,29 @@
 flowchart LR
-  subgraph Client
-    App[Mobile App]
+  subgraph Repository[Repository and editorial workflow]
+    Review[Review CSV]
+    Audit[Source / image / risk audit]
+    JSON[Questions and cards JSON]
+    Images[Bundled card images]
+    Review --> Audit --> JSON
   end
-  subgraph Backend
-    API[API / Edge Functions]
-    DB[(PostgreSQL)]
-    Cache[(Cache)]
-  end
-  subgraph Ops
-    Admin[Admin Web]
-    Batch[AI Content Jobs]
-  end
-  Sources[Wikimedia / Official Sources]
-  LLM[LLM API]
 
-  App --> API
-  API --> DB
-  API --> Cache
-  Admin --> API
-  Batch --> Sources
-  Batch --> LLM
-  Batch --> DB
+  subgraph CI[GitHub Actions]
+    Validate[Manifest and content validation]
+    Quality[Format / analyze / tests]
+    Build[Web / Debug APK / Release AAB]
+  end
+
+  subgraph App[Flutter application]
+    Repo[Strict asset repositories]
+    Policy[Runtime release policy and SHA-256]
+    UI[Onboarding / Home / Quiz / Collection / Settings]
+    Save[(SharedPreferences)]
+    Repo --> Policy --> UI
+    UI <--> Save
+  end
+
+  JSON --> Validate
+  Images --> Validate
+  Validate --> Quality --> Build
+  JSON --> Repo
+  Images --> Repo

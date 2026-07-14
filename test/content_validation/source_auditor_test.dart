@@ -50,10 +50,7 @@ void main() {
 
     expect(result.hasInvalidMetadata, isTrue);
     expect(result.invalidCount, 1);
-    expect(
-      result.entries.first.findings,
-      contains('approvedですが必須情報が不足しています'),
-    );
+    expect(result.entries.first.findings, contains('approvedですが必須情報が不足しています'));
   });
 
   test('different approved question and card URLs are rejected', () {
@@ -68,7 +65,10 @@ void main() {
 
     expect(result.hasInvalidMetadata, isTrue);
     expect(result.globalIssues, hasLength(1));
-    expect(result.globalIssues.single, contains('different approved source URLs'));
+    expect(
+      result.globalIssues.single,
+      contains('different approved source URLs'),
+    );
   });
 }
 

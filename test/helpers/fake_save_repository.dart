@@ -21,9 +21,7 @@ class FakeSaveRepository extends SaveRepository {
     _loadedData = SaveData.fromJson(data.toJson());
   }
 
-  void failLoads([
-    Object error = const SaveLoadException('読み込みに失敗しました'),
-  ]) {
+  void failLoads([Object error = const SaveLoadException('読み込みに失敗しました')]) {
     _loadError = error;
   }
 

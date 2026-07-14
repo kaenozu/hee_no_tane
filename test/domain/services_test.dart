@@ -5,6 +5,8 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 
+import '../helpers/release_content.dart';
+
 void main() {
   late RewardService rewardService;
 
@@ -13,163 +15,106 @@ void main() {
   });
 
   group('DailyQuestionService', () {
-    test('generates 3 questions from date seed', () {
-      final service = DailyQuestionService();
-
-      final questions = List.generate(
-        10,
-        (i) => Question(
-          id: 'q_$i',
-          category: 'test',
-          difficulty: 'easy',
-          question: 'q$i',
-          choices: ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c',
-          sourceNote: 's',
-          verified: true,
-        ),
+    test('generates 3 release-approved questions from date seed', () {
+      final pairs = List.generate(10, (i) => releaseContentPair(id: '$i'));
+      final result = DailyQuestionService().generateQuestions(
+        '2026-07-08',
+        pairs.map((pair) => pair.question).toList(),
+        allCards: pairs.map((pair) => pair.card).toList(),
       );
-
-      final result = service.generateQuestions('2026-07-08', questions);
-      expect(result.length, 3);
+      expect(result, hasLength(3));
     });
 
-    test('returns verified questions only', () {
-      final service = DailyQuestionService();
+    test('returns release-approved question/card pairs only', () {
+      final approved = releaseContentPair(id: 'approved');
+      final unapprovedQuestion = Question(
+        id: 'q_unapproved',
+        category: 'science',
+        difficulty: 'easy',
+        question: '未承認問題',
+        choices: const ['A', 'B', 'C', 'D'],
+        answerIndex: 0,
+        explanation: '未承認解説',
+        relatedCardId: 'card_unapproved',
+        sourceNote: '未承認',
+        verified: true,
+      );
+      final unapprovedCard = HeeCard(
+        id: 'card_unapproved',
+        title: '未承認カード',
+        category: 'science',
+        shortText: '短文',
+        detailText: '本文',
+        imageAsset: '',
+        rarity: 'normal',
+        sourceNote: '未承認',
+      );
 
-      final questions = [
-        Question(
-          id: 'q1',
-          category: 't',
-          difficulty: 'e',
-          question: 'q',
-          choices: ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c',
-          sourceNote: 's',
-          verified: false,
-        ),
-        Question(
-          id: 'q2',
-          category: 't',
-          difficulty: 'e',
-          question: 'q',
-          choices: ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c',
-          sourceNote: 's',
-          verified: true,
-        ),
-        Question(
-          id: 'q3',
-          category: 't',
-          difficulty: 'e',
-          question: 'q',
-          choices: ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c',
-          sourceNote: 's',
-          verified: true,
-        ),
-      ];
-
-      final result = service.generateQuestions('2026-07-08', questions);
-      expect(result.length, 2);
-      expect(result.every((q) => q.verified), true);
+      final result = DailyQuestionService().generateQuestions(
+        '2026-07-08',
+        [approved.question, unapprovedQuestion],
+        allCards: [approved.card, unapprovedCard],
+      );
+      expect(result.map((question) => question.id), [approved.question.id]);
     });
 
     test('uses a stable date seed for the daily question order', () {
+      final pairs = List.generate(8, (i) => releaseContentPair(id: '$i'));
+      final questions = pairs.map((pair) => pair.question).toList();
+      final cards = pairs.map((pair) => pair.card).toList();
       final service = DailyQuestionService();
-
-      final questions = List.generate(
-        8,
-        (i) => Question(
-          id: 'q_$i',
-          category: 'test',
-          difficulty: 'easy',
-          question: 'q$i',
-          choices: ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c',
-          sourceNote: 's',
-          verified: true,
-        ),
-      );
-
       final first = service
-          .generateQuestions('2026-07-08', questions)
-          .map((q) => q.id)
+          .generateQuestions('2026-07-08', questions, allCards: cards)
+          .map((question) => question.id)
           .toList();
       final second = service
-          .generateQuestions('2026-07-08', questions)
-          .map((q) => q.id)
+          .generateQuestions('2026-07-08', questions, allCards: cards)
+          .map((question) => question.id)
           .toList();
       expect(second, first);
     });
 
     test('does not repeat questions on consecutive days', () {
+      final pairs = List.generate(103, (i) => releaseContentPair(id: '$i'));
+      final questions = pairs.map((pair) => pair.question).toList();
+      final cards = pairs.map((pair) => pair.card).toList();
       final service = DailyQuestionService();
-      final questions = List.generate(
-        103,
-        (i) => Question(
-          id: 'q_$i',
-          category: 'test',
-          difficulty: 'easy',
-          question: 'q$i',
-          choices: const ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c_$i',
-          sourceNote: 's',
-          verified: true,
-        ),
-      );
-
       final firstDay = service
-          .generateQuestions('2026-01-04', questions)
-          .map((q) => q.id)
+          .generateQuestions('2026-01-04', questions, allCards: cards)
+          .map((question) => question.id)
           .toSet();
       final nextDay = service
-          .generateQuestions('2026-01-05', questions)
-          .map((q) => q.id)
+          .generateQuestions('2026-01-05', questions, allCards: cards)
+          .map((question) => question.id)
           .toSet();
-
       expect(firstDay.intersection(nextDay), isEmpty);
     });
 
     test('uses a different question set for each play attempt', () {
+      final pairs = List.generate(50, (i) => releaseContentPair(id: '$i'));
+      final questions = pairs.map((pair) => pair.question).toList();
+      final cards = pairs.map((pair) => pair.card).toList();
       final service = DailyQuestionService();
-      final questions = List.generate(
-        50,
-        (i) => Question(
-          id: 'q_$i',
-          category: 'test',
-          difficulty: 'easy',
-          question: 'q$i',
-          choices: const ['A', 'B', 'C', 'D'],
-          answerIndex: 0,
-          explanation: 'e',
-          relatedCardId: 'c_$i',
-          sourceNote: 's',
-          verified: true,
-        ),
-      );
-
       final firstPlay = service
-          .generateQuestions('2026-07-10', questions, rotation: 0, count: 3)
-          .map((q) => q.id)
+          .generateQuestions(
+            '2026-07-10',
+            questions,
+            allCards: cards,
+            rotation: 0,
+            count: 3,
+          )
+          .map((question) => question.id)
           .toSet();
       final secondPlay = service
-          .generateQuestions('2026-07-10', questions, rotation: 1, count: 3)
-          .map((q) => q.id)
+          .generateQuestions(
+            '2026-07-10',
+            questions,
+            allCards: cards,
+            rotation: 1,
+            count: 3,
+          )
+          .map((question) => question.id)
           .toSet();
-
       expect(firstPlay, hasLength(3));
       expect(secondPlay, hasLength(3));
       expect(firstPlay.intersection(secondPlay), isEmpty);
@@ -333,12 +278,18 @@ void main() {
       expect(result.ownedCardIds, ['card_x']);
     });
 
-    test('updatePlayStats increments browse count and manages streak', () {
-      final data = SaveData(totalBrowseCount: 0, streakDays: 0);
-      final result = rewardService.updatePlayStats(data, '2026-07-10');
-      expect(result.totalBrowseCount, 1);
-      expect(result.streakDays, 1);
-      expect(result.lastPlayedDate, '2026-07-10');
+    test('daily answers and card views update separate counters', () {
+      final data = SaveData();
+      final answered = rewardService.recordDailyAnswer(data, '2026-07-10');
+      expect(answered.totalPlayCount, 1);
+      expect(answered.totalBrowseCount, 0);
+      expect(answered.streakDays, 1);
+      expect(answered.lastPlayedDate, '2026-07-10');
+
+      final viewed = rewardService.recordCardView(answered);
+      expect(viewed.totalPlayCount, 1);
+      expect(viewed.totalBrowseCount, 1);
+      expect(viewed.streakDays, 1);
     });
   });
 

@@ -29,10 +29,20 @@ Future<void> main(List<String> arguments) async {
     return;
   }
 
-  final result = const ContentSourceAuditor().auditJsonStrings(
-    questionsJson: await questionsFile.readAsString(),
-    cardsJson: await cardsFile.readAsString(),
+  final questionsJson = await questionsFile.readAsString();
+  final cardsJson = await cardsFile.readAsString();
+  final auditor = const ContentSourceAuditor();
+  final result = auditor.auditJsonStrings(
+    questionsJson: questionsJson,
+    cardsJson: cardsJson,
   );
+  final releaseResult = options.requireApproved
+      ? auditor.auditJsonStrings(
+          questionsJson: questionsJson,
+          cardsJson: cardsJson,
+          releaseOnly: true,
+        )
+      : result;
 
   final outputFile = _resolveFile(root, options.outputPath);
   await outputFile.parent.create(recursive: true);
@@ -51,10 +61,10 @@ Future<void> main(List<String> arguments) async {
     return;
   }
 
-  if (options.requireApproved && !result.allApproved) {
+  if (options.requireApproved && !releaseResult.allApproved) {
     stderr.writeln(
       'Source audit failed because --require-approved was specified and '
-      '${result.pendingCount} items still need review.',
+      '${releaseResult.pendingCount} release items still need review.',
     );
     exitCode = 1;
   }

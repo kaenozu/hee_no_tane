@@ -62,14 +62,12 @@ void main() {
       );
       repository.holdNextSave();
 
-      final cardView = repository.update(
-        (current) => rewardService.updatePlayStats(current, today),
-      );
+      final cardView = repository.update(rewardService.recordCardView);
       await pumpEventQueue();
 
       final dailyAnswer = repository.update((current) {
         if (current.lastDailyQuestionDate == today) return current;
-        var updated = rewardService.updatePlayStats(current, today);
+        var updated = rewardService.recordDailyAnswer(current, today);
         updated = updated.copyWith(lastDailyQuestionDate: today);
         return rewardService.applyReward(updated, card);
       });
@@ -78,7 +76,8 @@ void main() {
       await cardView;
       final result = await dailyAnswer;
 
-      expect(result.totalBrowseCount, 2);
+      expect(result.totalBrowseCount, 1);
+      expect(result.totalPlayCount, 1);
       expect(result.lastDailyQuestionDate, today);
       expect(result.ownedCardIds, [card.id]);
       expect(result.settings.themeMode, ThemeMode.dark);
