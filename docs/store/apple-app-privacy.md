@@ -146,5 +146,4 @@ App Store Connectには、一般公開され、ログイン不要で閲覧可能
 
 ## 8. 公式参照
 
-- Apple Developer: App privacy details on the App Store  
-  https://developer.apple.com/app-store/app-privacy-details/
+- [Apple Developer: App privacy details on the App Store](https://developer.apple.com/app-store/app-privacy-details/)
