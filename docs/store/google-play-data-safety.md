@@ -134,5 +134,4 @@ Google PlayのData safetyガイダンスでは、利用者が明示的に開始�
 
 ## 7. 公式参照
 
-- Google Play Console Help: Provide information for Google Play's Data safety section  
-  https://support.google.com/googleplay/android-developer/answer/10787469
+- [Google Play Console Help: Provide information for Google Play's Data safety section](https://support.google.com/googleplay/android-developer/answer/10787469)
