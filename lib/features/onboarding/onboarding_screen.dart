@@ -9,10 +9,7 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 class OnboardingScreen extends StatefulWidget {
   final Future<void> Function() onComplete;
 
-  const OnboardingScreen({
-    super.key,
-    required this.onComplete,
-  });
+  const OnboardingScreen({super.key, required this.onComplete});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -197,19 +194,15 @@ class _OnboardingPage extends StatelessWidget {
                 color: colorScheme.primaryContainer.withValues(alpha: 0.55),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                data.icon,
-                size: 68,
-                color: colorScheme.primary,
-              ),
+              child: Icon(data.icon, size: 68, color: colorScheme.primary),
             ),
             const SizedBox(height: 36),
             Text(
               data.title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 16),
             ConstrainedBox(

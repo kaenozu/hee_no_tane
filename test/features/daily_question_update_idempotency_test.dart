@@ -68,7 +68,7 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pumpAndSettle();
       expect(find.text('保存エラー'), findsOneWidget);
-      expect(repository.data.totalBrowseCount, 1);
+      expect(repository.data.totalPlayCount, 1);
       expect(repository.data.ownedCardIds, [card.id]);
 
       await tester.tap(find.text('再試行'));
@@ -76,12 +76,14 @@ void main() {
 
       expect(find.text('保存エラー'), findsNothing);
       expect(find.text('新しい知識カードを発見'), findsOneWidget);
-      expect(repository.data.totalBrowseCount, 1);
+      expect(repository.data.totalPlayCount, 1);
       expect(
         repository.data.ownedCardIds.where((id) => id == card.id),
         hasLength(1),
       );
       expect(repository.data.lastDailyQuestionDate, isNotEmpty);
+      expect(repository.data.lastDailyQuestionId, question.id);
+      expect(repository.data.lastDailyCardId, card.id);
       expect(repository.saveCallCount, 2);
     },
   );

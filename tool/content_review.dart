@@ -84,9 +84,7 @@ Future<void> main(List<String> arguments) async {
           );
         }
         final overall = total == 0 ? 0 : approved / total * 100;
-        stdout.writeln(
-          '合計: $approved/$total (${overall.toStringAsFixed(1)}%)',
-        );
+        stdout.writeln('合計: $approved/$total (${overall.toStringAsFixed(1)}%)');
         break;
       case 'risk':
         final output =
@@ -111,8 +109,9 @@ Future<void> main(List<String> arguments) async {
           }
         }
         stdout.writeln('高リスク候補を${risks.length}組抽出しました: $output');
-        for (final entry in counts.entries.toList()
-          ..sort((left, right) => left.key.compareTo(right.key))) {
+        for (final entry
+            in counts.entries.toList()
+              ..sort((left, right) => left.key.compareTo(right.key))) {
           stdout.writeln('- ${entry.key}: ${entry.value}');
         }
         break;
@@ -140,7 +139,8 @@ Map<String, String> _parseOptions(List<String> arguments) {
       options[key] = 'true';
       continue;
     }
-    if (index + 1 >= arguments.length || arguments[index + 1].startsWith('--')) {
+    if (index + 1 >= arguments.length ||
+        arguments[index + 1].startsWith('--')) {
       throw ContentReviewException('$argument requires a value');
     }
     options[key] = arguments[++index];

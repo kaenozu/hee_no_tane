@@ -7,9 +7,7 @@ void main() {
     tester,
   ) async {
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
-    addTearDown(
-      tester.platformDispatcher.clearPlatformBrightnessTestValue,
-    );
+    addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
 
     await tester.pumpWidget(
       const StartupErrorApp(details: '保存データを読み込めませんでした。'),
@@ -27,9 +25,6 @@ void main() {
     await tester.pump();
 
     expect(find.text('起動できませんでした'), findsOneWidget);
-    expect(
-      find.text('データの読み込みに失敗しました。もう一度お試しください。'),
-      findsOneWidget,
-    );
+    expect(find.text('データの読み込みに失敗しました。もう一度お試しください。'), findsOneWidget);
   });
 }

@@ -34,7 +34,7 @@ jobs:
         run: dart run tool/validate_content.dart
 
       - name: Audit content sources
-        run: dart run tool/audit_content_sources.dart
+        run: dart run tool/audit_content_sources.dart --require-approved
 
       - name: Upload content source audit
         if: always()
@@ -150,3 +150,32 @@ jobs:
 
       - name: Build Android debug APK
         run: flutter build apk --debug
+
+      - name: Create ephemeral Android release signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          keytool -genkeypair \
+            -keystore android/app/ci-release-key.jks \
+            -storepass android \
+            -keypass android \
+            -alias ci-release \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 1 \
+            -dname "CN=CI, OU=CI, O=hee-no-tane, L=Tokyo, ST=Tokyo, C=JP"
+          cat > android/app/keystore.properties <<'EOF'
+          storeFile=ci-release-key.jks
+          storePassword=android
+          keyAlias=ci-release
+          keyPassword=android
+          EOF
+
+      - name: Build Android release AAB
+        run: flutter build appbundle --release
+
+      - name: Remove ephemeral Android release signing
+        if: always()
+        shell: bash
+        run: |
+          rm -f android/app/ci-release-key.jks android/app/keystore.properties

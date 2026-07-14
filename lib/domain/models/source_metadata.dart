@@ -1,6 +1,8 @@
 /// Structured source and verification metadata for knowledge content.
 library;
 
+import 'package:hee_no_tane_app/content_validation/content_fingerprint.dart';
+
 class SourceMetadata {
   static const allowedVerificationLevels = <String>{
     'primary',
@@ -21,6 +23,8 @@ class SourceMetadata {
   final String? verifiedAt;
   final String verificationLevel;
   final String reviewStatus;
+  final String? reviewNote;
+  final String? contentHash;
 
   const SourceMetadata({
     required this.title,
@@ -29,6 +33,8 @@ class SourceMetadata {
     required this.verifiedAt,
     required this.verificationLevel,
     required this.reviewStatus,
+    this.reviewNote,
+    this.contentHash,
   });
 
   const SourceMetadata.legacy(String sourceNote)
@@ -37,7 +43,9 @@ class SourceMetadata {
       url = null,
       verifiedAt = null,
       verificationLevel = 'unverified',
-      reviewStatus = 'legacy';
+      reviewStatus = 'legacy',
+      reviewNote = null,
+      contentHash = null;
 
   factory SourceMetadata.fromJson(Map<String, dynamic> json) {
     final title = _requiredString(json, 'title');
@@ -46,6 +54,8 @@ class SourceMetadata {
     final verifiedAt = _optionalString(json, 'verifiedAt');
     final verificationLevel = _requiredString(json, 'verificationLevel');
     final reviewStatus = _requiredString(json, 'reviewStatus');
+    final reviewNote = _optionalString(json, 'reviewNote');
+    final contentHash = _optionalString(json, 'contentHash');
 
     if (!allowedVerificationLevels.contains(verificationLevel)) {
       throw FormatException(
@@ -56,10 +66,15 @@ class SourceMetadata {
       throw FormatException('Unknown source reviewStatus: $reviewStatus');
     }
     if (url != null && tryParseSourceUri(url) == null) {
-      throw FormatException('Source URL must use http or https: $url');
+      throw FormatException('Source URL must use https: $url');
     }
     if (verifiedAt != null && !isIsoDate(verifiedAt)) {
-      throw FormatException('Source verifiedAt must use YYYY-MM-DD: $verifiedAt');
+      throw FormatException(
+        'Source verifiedAt must use YYYY-MM-DD: $verifiedAt',
+      );
+    }
+    if (contentHash != null && !ContentFingerprint.isSha256(contentHash)) {
+      throw FormatException('Source contentHash must be a lowercase SHA-256.');
     }
 
     return SourceMetadata(
@@ -69,14 +84,11 @@ class SourceMetadata {
       verifiedAt: verifiedAt,
       verificationLevel: verificationLevel,
       reviewStatus: reviewStatus,
+      reviewNote: reviewNote,
+      contentHash: contentHash,
     );
   }
 
-  /// Parses optional runtime content without allowing one malformed source
-  /// object to prevent the rest of the bundled content from loading.
-  ///
-  /// Release tooling must continue to use [fromJson] so invalid metadata is
-  /// rejected by CI instead of being silently accepted for publication.
   static SourceMetadata? tryFromJson(Object? value) {
     if (value is! Map) return null;
     try {
@@ -101,6 +113,9 @@ class SourceMetadata {
         isIsoDate(verifiedAt!);
   }
 
+  bool get isReleaseApproved =>
+      isApproved && ContentFingerprint.isSha256(contentHash);
+
   bool get isLegacy => reviewStatus == 'legacy';
 
   String get displayLabel {
@@ -108,10 +123,20 @@ class SourceMetadata {
     return '$publisher「$title」';
   }
 
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'title': title,
+    'publisher': publisher,
+    if (url != null) 'url': url,
+    if (verifiedAt != null) 'verifiedAt': verifiedAt,
+    'verificationLevel': verificationLevel,
+    'reviewStatus': reviewStatus,
+    if (reviewNote != null && reviewNote!.isNotEmpty) 'reviewNote': reviewNote,
+    if (contentHash != null) 'contentHash': contentHash,
+  };
+
   static Uri? tryParseSourceUri(String value) {
     final uri = Uri.tryParse(value);
-    if (uri == null || !uri.hasAuthority) return null;
-    if (uri.scheme != 'https' && uri.scheme != 'http') return null;
+    if (uri == null || !uri.hasAuthority || uri.scheme != 'https') return null;
     return uri;
   }
 

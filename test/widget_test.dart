@@ -1,11 +1,11 @@
 import 'package:hee_no_tane_app/app.dart';
-import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'helpers/release_content.dart';
 
 void main() {
   testWidgets('App starts without error', (WidgetTester tester) async {
@@ -31,34 +31,21 @@ void main() {
   ) async {
     SharedPreferences.setMockInitialValues({});
 
-    final questions = List.generate(
+    final pairs = List.generate(
       5,
-      (index) => Question(
-        id: 'q$index',
-        category: 'test',
-        difficulty: 'easy',
-        question: '問題$index',
-        choices: const ['正解', 'B', 'C', 'D'],
-        answerIndex: 0,
-        explanation: '解説$index',
-        relatedCardId: 'card$index',
-        sourceNote: 'test',
-        verified: true,
-      ),
-    );
-    final cards = List.generate(
-      5,
-      (index) => HeeCard(
-        id: 'card$index',
-        title: 'カード$index',
+      (index) => releaseContentPair(
+        id: 'widget_$index',
         category: 'nature_geography',
+        questionText: '問題$index',
+        choices: const ['正解', 'B', 'C', 'D'],
+        explanation: '解説$index',
+        title: 'カード$index',
         shortText: '説明$index',
         detailText: '詳細$index',
-        imageAsset: '',
-        rarity: 'normal',
-        sourceNote: 'test',
       ),
     );
+    final questions = pairs.map((pair) => pair.question).toList();
+    final cards = pairs.map((pair) => pair.card).toList();
 
     await tester.pumpWidget(
       HeeNoTaneApp(

@@ -4,21 +4,25 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/content_validation/content_validator.dart';
 
+import '../helpers/release_content.dart';
+
 void main() {
   const validator = ContentValidator();
 
   group('ContentValidator', () {
-    test('valid content passes', () {
+    test('release-approved content and matching manifest pass', () {
+      final content = _releaseJson();
       final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([_question()]),
-        cardsJson: jsonEncode([_card()]),
+        questionsJson: jsonEncode(content.questions),
+        cardsJson: jsonEncode(content.cards),
+        manifestJson: jsonEncode(_manifest()),
         assetExists: (path) => path == 'assets/images/cards/card_001.png',
       );
 
-      expect(result.isValid, isTrue);
+      expect(result.isValid, isTrue, reason: _messages(result).join('\n'));
       expect(result.questionCount, 1);
       expect(result.cardCount, 1);
-      expect(result.issues, isEmpty);
+      expect(result.playableQuestionCount, 1);
     });
 
     test('invalid JSON and non-array roots are reported together', () {
@@ -29,229 +33,127 @@ void main() {
       );
 
       expect(result.isValid, isFalse);
-      expect(_messages(result), contains(startsWith('questions: invalid JSON')));
       expect(
         _messages(result),
-        contains('cards: root must be a JSON array'),
+        contains(startsWith('questions: invalid JSON')),
+      );
+      expect(_messages(result), contains('cards: root must be a JSON array'));
+    });
+
+    test('empty arrays are rejected even without a release gate', () {
+      final result = validator.validateJsonStrings(
+        questionsJson: '[]',
+        cardsJson: '[]',
+        assetExists: (_) => true,
+        requirePlayable: false,
+      );
+
+      expect(
+        _messages(result),
+        contains('questions: must contain at least one question'),
+      );
+      expect(
+        _messages(result),
+        contains('cards: must contain at least one card'),
       );
     });
 
-    test('required fields, object types, and duplicate ids are reported', () {
-      final duplicateQuestion = _question();
-      final duplicateCard = _card();
-      final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([
-          duplicateQuestion,
-          duplicateQuestion,
-          'not-an-object',
-          {'id': ''},
-        ]),
-        cardsJson: jsonEncode([
-          duplicateCard,
-          duplicateCard,
-          42,
-          {'id': ''},
-        ]),
+    test('pending content may be reviewed but is not release playable', () {
+      final content = _releaseJson();
+      final question = Map<String, dynamic>.from(content.questions.single)
+        ..['verified'] = false
+        ..remove('source');
+      final card = Map<String, dynamic>.from(content.cards.single)
+        ..remove('source');
+
+      final reviewResult = validator.validateJsonStrings(
+        questionsJson: jsonEncode([question]),
+        cardsJson: jsonEncode([card]),
+        assetExists: (_) => true,
+        requirePlayable: false,
+      );
+      final releaseResult = validator.validateJsonStrings(
+        questionsJson: jsonEncode([question]),
+        cardsJson: jsonEncode([card]),
         assetExists: (_) => true,
       );
 
-      final messages = _messages(result);
-      expect(messages, contains('questions[1].id: duplicate id "q_001"'));
-      expect(messages, contains('cards[1].id: duplicate id "card_001"'));
-      expect(messages, contains('questions[2]: must be a JSON object'));
-      expect(messages, contains('cards[2]: must be a JSON object'));
-      expect(messages, contains('questions[3].category: is required'));
-      expect(messages, contains('cards[3].title: is required'));
-    });
-
-    test('question value constraints are validated', () {
-      final invalidQuestion = _question(
-        overrides: {
-          'category': 'unknown',
-          'difficulty': 'impossible',
-          'question': '',
-          'choices': ['same', 'same', '', 3],
-          'answerIndex': 4,
-          'explanation': '',
-          'sourceNote': '',
-          'verified': false,
-        },
-      );
-      final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([invalidQuestion]),
-        cardsJson: jsonEncode([_card()]),
-        assetExists: (_) => true,
-      );
-
-      final messages = _messages(result);
       expect(
-        messages,
+        reviewResult.isValid,
+        isTrue,
+        reason: _messages(reviewResult).join('\n'),
+      );
+      expect(
+        _messages(releaseResult),
         contains(
-          'questions[0].category: must be one of '
-          'nature_geography, living_things, history, science, food, '
-          'language, daily_life, got "unknown"',
-        ),
-      );
-      expect(
-        messages,
-        contains(
-          'questions[0].difficulty: must be one of easy, normal, hard, '
-          'got "impossible"',
-        ),
-      );
-      expect(messages, contains('questions[0].question: must not be empty'));
-      expect(messages, contains('questions[0].choices[2]: must not be empty'));
-      expect(messages, contains('questions[0].choices[3]: must be a string'));
-      expect(
-        messages,
-        contains('questions[0].choices: must not contain duplicates'),
-      );
-      expect(
-        messages,
-        contains('questions[0].answerIndex: expected 0..3, got 4'),
-      );
-      expect(
-        messages,
-        contains(
-          'questions[0].verified: must be true for bundled production content',
+          'questions: must contain at least one release-approved playable question',
         ),
       );
     });
 
-    test('choice count and answer type are validated', () {
+    test('changed reviewed text invalidates its content hash', () {
+      final content = _releaseJson();
+      final question = Map<String, dynamic>.from(content.questions.single)
+        ..['question'] = '承認後に書き換えた問題';
       final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([
-          _question(overrides: {'choices': ['A', 'B'], 'answerIndex': '0'}),
-        ]),
-        cardsJson: jsonEncode([_card()]),
+        questionsJson: jsonEncode([question]),
+        cardsJson: jsonEncode(content.cards),
         assetExists: (_) => true,
       );
 
       expect(
         _messages(result),
         contains(
-          'questions[0].choices: must contain exactly 4 choices, got 2',
-        ),
-      );
-      expect(
-        _messages(result),
-        contains('questions[0].answerIndex: must be an int'),
-      );
-    });
-
-    test('card constraints and missing image assets are validated', () {
-      final invalidCard = _card(
-        overrides: {
-          'category': 'unknown',
-          'title': '',
-          'shortText': '',
-          'detailText': '',
-          'rarity': 'legendary',
-          'sourceNote': '',
-          'imageAsset': 'assets/images/cards/missing.png',
-        },
-      );
-      final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([_question()]),
-        cardsJson: jsonEncode([invalidCard]),
-        assetExists: (_) => false,
-      );
-
-      final messages = _messages(result);
-      expect(messages, contains('cards[0].title: must not be empty'));
-      expect(messages, contains('cards[0].shortText: must not be empty'));
-      expect(messages, contains('cards[0].detailText: must not be empty'));
-      expect(messages, contains('cards[0].sourceNote: must not be empty'));
-      expect(
-        messages,
-        contains(
-          'cards[0].rarity: must be one of normal, rare, got "legendary"',
-        ),
-      );
-      expect(
-        messages,
-        contains(
-          'cards[0].imageAsset: file does not exist: '
-          '"assets/images/cards/missing.png"',
+          'questions[0].source.contentHash: does not match the current reviewed question/card content',
         ),
       );
     });
 
-    test('missing references, category mismatches, and unused cards fail', () {
+    test('missing image review and invalid relationships are rejected', () {
+      final content = _releaseJson();
+      final question = Map<String, dynamic>.from(content.questions.single)
+        ..['relatedCardId'] = 'missing';
+      final card = Map<String, dynamic>.from(content.cards.single)
+        ..remove('imageReview');
       final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([
-          _question(overrides: {'relatedCardId': 'missing'}),
-          _question(
-            overrides: {
-              'id': 'q_002',
-              'category': 'history',
-              'relatedCardId': 'card_001',
-            },
-          ),
-        ]),
-        cardsJson: jsonEncode([
-          _card(),
-          _card(overrides: {'id': 'card_unused'}),
-        ]),
+        questionsJson: jsonEncode([question]),
+        cardsJson: jsonEncode([card]),
         assetExists: (_) => true,
       );
 
-      final messages = _messages(result);
       expect(
-        messages,
-        contains(
-          'questions[0].relatedCardId: card "missing" does not exist',
-        ),
+        _messages(result),
+        contains('cards[0].imageReview: must be persisted'),
       );
       expect(
-        messages,
+        _messages(result),
         contains(
-          'questions[1].category: must match cards[0].category "science"',
-        ),
-      );
-      expect(
-        messages,
-        contains(
-          'cards[1].id: card "card_unused" is not referenced by any question',
+          'questions[0].relatedCardId: references missing card "missing"',
         ),
       );
     });
 
-    test('length limits and several errors are collected in one result', () {
+    test('manifest counts must match validated content', () {
+      final content = _releaseJson();
       final result = validator.validateJsonStrings(
-        questionsJson: jsonEncode([
-          _question(
-            overrides: {
-              'question': List.filled(101, 'q').join(),
-              'explanation': List.filled(241, 'e').join(),
-              'sourceNote': List.filled(121, 's').join(),
-            },
-          ),
-        ]),
-        cardsJson: jsonEncode([
-          _card(
-            overrides: {
-              'title': List.filled(61, 't').join(),
-              'shortText': List.filled(141, 's').join(),
-              'detailText': List.filled(501, 'd').join(),
-            },
-          ),
-        ]),
+        questionsJson: jsonEncode(content.questions),
+        cardsJson: jsonEncode(content.cards),
+        manifestJson: jsonEncode({
+          'schemaVersion': 1,
+          'questionCount': 2,
+          'cardCount': 1,
+          'playableQuestionCount': 0,
+        }),
         assetExists: (_) => true,
       );
 
-      expect(result.issues.length, greaterThanOrEqualTo(6));
       expect(
         _messages(result),
-        contains(
-          'questions[0].question: must be at most 100 characters, got 101',
-        ),
+        contains('manifest.questionCount: expected 2 but found 1'),
       );
       expect(
         _messages(result),
-        contains(
-          'cards[0].detailText: must be at most 500 characters, got 501',
-        ),
+        contains('manifest.playableQuestionCount: expected 0 but found 1'),
       );
     });
   });
@@ -267,65 +169,72 @@ void main() {
       await imageDirectory.create(recursive: true);
       await File('${imageDirectory.path}/card_001.png').writeAsBytes([1, 2, 3]);
 
+      final content = _releaseJson();
       final questionsFile = File('${dataDirectory.path}/questions.json');
-      final cardsFile = File('${dataDirectory.path}/cards.json');
-      await questionsFile.writeAsString(jsonEncode([_question()]));
-      await cardsFile.writeAsString(jsonEncode([_card()]));
+      await questionsFile.writeAsString(jsonEncode(content.questions));
+      await File(
+        '${dataDirectory.path}/cards.json',
+      ).writeAsString(jsonEncode(content.cards));
+      await File(
+        '${dataDirectory.path}/content_manifest.json',
+      ).writeAsString(jsonEncode(_manifest()));
 
       final success = await _runCli(root.path);
-      expect(success.exitCode, 0, reason: '${success.stdout}\n${success.stderr}');
       expect(
-        success.stdout,
-        contains('Content validation passed: 1 questions, 1 cards'),
+        success.exitCode,
+        0,
+        reason: '${success.stdout}\n${success.stderr}',
       );
+      expect(success.stdout, contains('1 questions, 1 cards, 1 playable'));
 
-      await questionsFile.writeAsString(
-        jsonEncode([_question(overrides: {'answerIndex': 9})]),
-      );
+      final invalid = Map<String, dynamic>.from(content.questions.single)
+        ..['answerIndex'] = 9;
+      await questionsFile.writeAsString(jsonEncode([invalid]));
       final failure = await _runCli(root.path);
       expect(failure.exitCode, 1);
       expect(failure.stderr, contains('Content validation failed'));
       expect(
         failure.stderr,
-        contains('questions[0].answerIndex: expected 0..3, got 9'),
+        contains('questions[0].answerIndex: must point to an existing choice'),
       );
     });
   });
 }
 
-Map<String, dynamic> _question({Map<String, dynamic> overrides = const {}}) {
-  return {
-    'id': 'q_001',
-    'category': 'science',
-    'difficulty': 'easy',
-    'question': '空気の中で一番多い成分は？',
-    'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
-    'answerIndex': 1,
-    'explanation': '空気の約78%は窒素です。',
-    'relatedCardId': 'card_001',
-    'sourceNote': '気象庁',
-    'verified': true,
-    ...overrides,
-  };
+_ReleaseJson _releaseJson() {
+  final pair = releaseContentPair(
+    id: '001',
+    questionText: '空気の中で一番多い成分は？',
+    choices: const ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+    answerIndex: 1,
+    explanation: '空気の約78%は窒素です。',
+    title: '大気の成分',
+    shortText: '空気の約78%は窒素。',
+    detailText: '地球の大気は窒素、酸素などで構成されています。',
+    imageAsset: 'assets/images/cards/card_001.png',
+  );
+  return _ReleaseJson(
+    questions: [pair.question.toJson()],
+    cards: [pair.card.toJson()],
+  );
 }
 
-Map<String, dynamic> _card({Map<String, dynamic> overrides = const {}}) {
-  return {
-    'id': 'card_001',
-    'title': '大気の成分',
-    'category': 'science',
-    'shortText': '空気の約78%は窒素。',
-    'detailText': '地球の大気は窒素、酸素などで構成されています。',
-    'imageAsset': 'assets/images/cards/card_001.png',
-    'rarity': 'normal',
-    'sourceNote': '気象庁',
-    ...overrides,
-  };
+Map<String, dynamic> _manifest() => <String, dynamic>{
+  'schemaVersion': 1,
+  'questionCount': 1,
+  'cardCount': 1,
+  'playableQuestionCount': 1,
+};
+
+class _ReleaseJson {
+  final List<Map<String, dynamic>> questions;
+  final List<Map<String, dynamic>> cards;
+
+  const _ReleaseJson({required this.questions, required this.cards});
 }
 
-List<String> _messages(ContentValidationResult result) {
-  return result.issues.map((issue) => issue.toString()).toList();
-}
+List<String> _messages(ContentValidationResult result) =>
+    result.issues.map((issue) => issue.toString()).toList();
 
 Future<ProcessResult> _runCli(String rootPath) {
   final flutterRoot = Platform.environment['FLUTTER_ROOT'];
@@ -335,9 +244,10 @@ Future<ProcessResult> _runCli(String rootPath) {
       ? '$flutterRoot\\bin\\dart.bat'
       : '$flutterRoot/bin/dart';
 
-  return Process.run(
-    executable,
-    ['run', 'tool/validate_content.dart', '--root', rootPath],
-    workingDirectory: Directory.current.path,
-  );
+  return Process.run(executable, [
+    'run',
+    'tool/validate_content.dart',
+    '--root',
+    rootPath,
+  ], workingDirectory: Directory.current.path);
 }

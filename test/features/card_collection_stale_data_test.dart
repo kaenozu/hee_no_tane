@@ -10,6 +10,7 @@ import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/fake_save_repository.dart';
+import '../helpers/release_content.dart';
 
 String _today() {
   final now = DateTime.now();
@@ -288,12 +289,14 @@ void main() {
     testWidgets('B4. Home injects the app repository into CardList', (
       tester,
     ) async {
-      repository.setLoadedData(SaveData(ownedCardIds: [cardA.id]));
+      final pairA = releaseContentPair(id: 'home_a', title: 'カードA');
+      final pairB = releaseContentPair(id: 'home_b', title: 'カードB');
+      repository.setLoadedData(SaveData(ownedCardIds: [pairA.card.id]));
 
       await tester.pumpWidget(
         HeeNoTaneApp(
-          allQuestions: const [],
-          allCards: [cardA, cardB],
+          allQuestions: [pairA.question, pairB.question],
+          allCards: [pairA.card, pairB.card],
           saveData: SaveData(onboardingCompleted: true),
           saveRepository: repository,
           rewardService: rewardService,
@@ -383,14 +386,15 @@ void main() {
       );
     });
 
-    test('D3. best-effort load retains the legacy empty fallback', () async {
+    test('D3. load uses the same strict contract as loadOrThrow', () async {
       SharedPreferences.setMockInitialValues({
         'hee_no_tane_save_data': '{not valid json',
       });
       final realRepository = SaveRepository();
-      final loaded = await realRepository.load();
-      expect(loaded.ownedCardIds, isEmpty);
-      expect(loaded.totalBrowseCount, 0);
+      await expectLater(
+        realRepository.load(),
+        throwsA(isA<SaveLoadException>()),
+      );
     });
   });
 }

@@ -29,14 +29,14 @@ void main() {
       ),
     ]);
     final enhanced = classifier.enhanceReviewCsv(
-      baseCsv: workflow.exportCsv(
-        questionsJson: questions,
-        cardsJson: cards,
-      ),
+      baseCsv: workflow.exportCsv(questionsJson: questions, cardsJson: cards),
       cardsJson: cards,
     );
 
-    expect(enhanced.split('\r\n').first, enhancedContentReviewColumns.join(','));
+    expect(
+      enhanced.split('\r\n').first,
+      enhancedContentReviewColumns.join(','),
+    );
     expect(enhanced, contains('assets/images/cards/card_1.png,unchecked'));
     final stripped = classifier.stripReviewCsv(
       reviewCsv: enhanced,
@@ -44,11 +44,9 @@ void main() {
     );
     expect(stripped.split('\r\n').first, contentReviewColumns.join(','));
     expect(
-      workflow.planImport(
-        csv: stripped,
-        questionsJson: questions,
-        cardsJson: cards,
-      ).hasChanges,
+      workflow
+          .planImport(csv: stripped, questionsJson: questions, cardsJson: cards)
+          .hasChanges,
       isFalse,
     );
   });
@@ -255,10 +253,7 @@ void main() {
     );
     final byId = {for (final item in risks) item.questionId: item};
     expect(byId['q_octopus_1']!.reasons, contains('duplicate_fact'));
-    expect(
-      byId['q_octopus_1']!.duplicateQuestionIds,
-      contains('q_octopus_2'),
-    );
+    expect(byId['q_octopus_1']!.duplicateQuestionIds, contains('q_octopus_2'));
     expect(byId['q_sandwich_1']!.reasons, contains('duplicate_fact'));
     expect(
       byId['q_sandwich_1']!.duplicateQuestionIds,
@@ -277,19 +272,18 @@ Map<String, dynamic> _question({
   required String question,
   required String answer,
   required String explanation,
-}) =>
-    {
-      'id': id,
-      'category': category,
-      'difficulty': 'normal',
-      'question': question,
-      'choices': ['別の答え1', answer, '別の答え2', '別の答え3'],
-      'answerIndex': 1,
-      'explanation': explanation,
-      'relatedCardId': cardId,
-      'sourceNote': '未確認',
-      'verified': true,
-    };
+}) => {
+  'id': id,
+  'category': category,
+  'difficulty': 'normal',
+  'question': question,
+  'choices': ['別の答え1', answer, '別の答え2', '別の答え3'],
+  'answerIndex': 1,
+  'explanation': explanation,
+  'relatedCardId': cardId,
+  'sourceNote': '未確認',
+  'verified': false,
+};
 
 Map<String, dynamic> _card({
   required String id,
@@ -297,14 +291,14 @@ Map<String, dynamic> _card({
   required String title,
   required String detail,
   String imageAsset = '',
-}) =>
-    {
-      'id': id,
-      'title': title,
-      'category': category,
-      'shortText': detail,
-      'detailText': detail,
-      'imageAsset': imageAsset,
-      'rarity': 'normal',
-      'sourceNote': '未確認',
-    };
+}) => {
+  'id': id,
+  'title': title,
+  'category': category,
+  'shortText': detail,
+  'detailText': detail,
+  'imageAsset': imageAsset,
+  'rarity': 'normal',
+  'sourceNote': '未確認',
+  'imageReview': <String, dynamic>{'status': 'unchecked', 'reviewedAt': ''},
+};

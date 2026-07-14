@@ -1,34 +1,18 @@
-/// lib/features/question/daily_question_screen.dart
-///
-/// 毎日の1問クイズ画面。
+/// Daily single-question flow.
 library;
 
-/// 3択・4択に回答し、正誤と解説を同じ画面で表示する。
-/// 回答後にカードを獲得し、ホームまたは図鑑へ遷移する。
-///
-/// 関連:
-///   - ../../domain/models/question.dart
-///   - ../../domain/models/hee_card.dart
-///   - ../../domain/models/save_data.dart
-///   - ../../domain/services/reward_service.dart
-///   - ../../data/repositories/save_repository.dart
-
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/domain/models/question.dart';
-import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/core/date_utils.dart';
+import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+import 'package:hee_no_tane_app/domain/models/question.dart';
+import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
+import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
-/// 毎日の1問クイズ画面。
-///
-/// [question] 今日の問題。
-/// [relatedCard] 問題に関連するカード。
-/// [saveRepository] セーブデータ永続化。
-/// [rewardService] カード獲得ロジック。
 class DailyQuestionScreen extends StatefulWidget {
   final Question question;
+  final String? questionDate;
   final HeeCard? relatedCard;
   final SaveRepository saveRepository;
   final RewardService rewardService;
@@ -36,6 +20,7 @@ class DailyQuestionScreen extends StatefulWidget {
   const DailyQuestionScreen({
     super.key,
     required this.question,
+    this.questionDate,
     this.relatedCard,
     required this.saveRepository,
     required this.rewardService,
@@ -46,22 +31,11 @@ class DailyQuestionScreen extends StatefulWidget {
 }
 
 class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
-  /// 選択された選択肢のインデックス。null = 未選択。
   int? _selectedAnswerIndex;
-
-  /// 保存処理中か。
   bool _saving = false;
-
-  /// 永続化が成功したか。
   bool _saveSucceeded = false;
-
-  /// 保存エラーメッセージ（null = エラーなし）。
   String? _saveError;
-
-  /// 回答日。保存失敗後の再試行でも同じ日付を使用する。
   String? _answerDate;
-
-  /// 回答処理開始時点で関連カードを所有していたか。
   bool? _cardWasOwnedBeforeAnswer;
 
   bool get _hasAnswered => _selectedAnswerIndex != null;
@@ -70,42 +44,58 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   bool get _canNavigate => _saveSucceeded;
   bool get _canAnswer => !_hasAnswered && !_saving;
 
-  /// 解答を処理し、Repository上の最新データへ回答差分を適用する。
   Future<void> _answer(int index) async {
     if (!_canAnswer) return;
-
     setState(() {
       _selectedAnswerIndex = index;
       _saving = true;
       _saveError = null;
-      _answerDate = todayDateString();
+      _answerDate = widget.questionDate ?? todayDateString();
     });
-
     await _doSave();
   }
 
-  /// 保存を実行する。（初回回答・再試行の共通処理）
   Future<void> _doSave() async {
-    final dateStr = _answerDate;
-    if (dateStr == null) return;
+    final date = _answerDate;
+    if (date == null) return;
+    final cardId = widget.relatedCard?.id ?? widget.question.relatedCardId;
 
     try {
       await widget.saveRepository.update((current) {
+        if (current.lastDailyQuestionDate == date) {
+          final exactMatch = current.hasDailyCompletion(
+            date: date,
+            questionId: widget.question.id,
+            cardId: cardId,
+          );
+          final legacyMatch =
+              current.lastDailyQuestionId.isEmpty &&
+              current.lastDailyCardId.isEmpty &&
+              current.ownedCardIds.contains(cardId);
+          if (exactMatch || legacyMatch) {
+            _cardWasOwnedBeforeAnswer ??= true;
+            return legacyMatch
+                ? current.copyWith(
+                    lastDailyQuestionId: widget.question.id,
+                    lastDailyCardId: cardId,
+                  )
+                : current;
+          }
+          throw const SaveException(
+            '同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。',
+          );
+        }
+
         final card = widget.relatedCard;
+        _cardWasOwnedBeforeAnswer ??=
+            card == null || current.ownedCardIds.contains(card.id);
 
-        // 保存成功後に応答を受け取れなかった場合の再試行を冪等化する。
-        if (current.lastDailyQuestionDate == dateStr) {
-          _cardWasOwnedBeforeAnswer ??= true;
-          return current;
-        }
-
-        if (card != null) {
-          _cardWasOwnedBeforeAnswer ??= current.ownedCardIds.contains(card.id);
-        }
-
-        var updated = widget.rewardService.updatePlayStats(current, dateStr);
-        updated = updated.copyWith(lastDailyQuestionDate: dateStr);
-
+        var updated = widget.rewardService.recordDailyAnswer(current, date);
+        updated = updated.copyWith(
+          lastDailyQuestionDate: date,
+          lastDailyQuestionId: widget.question.id,
+          lastDailyCardId: cardId,
+        );
         if (card != null && !current.ownedCardIds.contains(card.id)) {
           updated = widget.rewardService.applyReward(updated, card);
         }
@@ -118,13 +108,16 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
         _saveSucceeded = true;
         _saveError = null;
       });
-    } catch (e) {
+    } catch (error) {
       if (!mounted) return;
-      final message = e is SaveException
-          ? e.message
-          : e is SaveLoadException
-          ? e.message
-          : '回答の保存に失敗しました。もう一度お試しください。';
+      final String message;
+      if (error is SaveException) {
+        message = error.message;
+      } else if (error is SaveLoadException) {
+        message = error.message;
+      } else {
+        message = '回答の保存に失敗しました。もう一度お試しください。';
+      }
       setState(() {
         _saving = false;
         _saveSucceeded = false;
@@ -133,7 +126,6 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     }
   }
 
-  /// 同じ回答日でupdateを再実行し、保存済みなら差分を適用しない。
   Future<void> _retrySave() async {
     if (_saveSucceeded || _saving || _answerDate == null) return;
     setState(() {
@@ -144,12 +136,13 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   }
 
   Future<void> _openCardDetail() async {
-    if (!_canNavigate || widget.relatedCard == null) return;
+    final card = widget.relatedCard;
+    if (!_canNavigate || card == null) return;
     await Navigator.push<bool>(
       context,
       MaterialPageRoute(
         builder: (_) => CardDetailScreen(
-          card: widget.relatedCard!,
+          card: card,
           isOwned: true,
           relatedQuestion: widget.question,
           rewardService: widget.rewardService,
@@ -159,16 +152,13 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     );
   }
 
-  void _goHome() {
-    Navigator.of(context).pop(true);
-  }
+  void _goHome() => Navigator.of(context).pop(true);
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final q = widget.question;
+    final question = widget.question;
     final card = widget.relatedCard;
-
     return PopScope(
       canPop: _canLeave,
       onPopInvokedWithResult: (didPop, _) {
@@ -184,24 +174,23 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _categoryBadge(q.category, cs),
+              _categoryBadge(question.category),
               const SizedBox(height: 16),
               Text(
-                q.question,
+                question.question,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 24),
-              ...List.generate(q.choices.length, (index) {
-                return _choiceItem(q, index, cs);
-              }),
+              for (var index = 0; index < question.choices.length; index++)
+                _choiceItem(question, index, cs),
               if (_hasAnswered) ...[
                 const SizedBox(height: 8),
-                _explanationBlock(q, cs),
+                _explanationBlock(question, cs),
                 const SizedBox(height: 20),
                 if (_saving) _savingIndicator(),
-                if (_saveError != null) _errorBlock(cs),
+                if (_saveError != null) _errorBlock(),
                 if (_saveSucceeded && card != null) _cardRewardBlock(card, cs),
               ],
             ],
@@ -211,95 +200,109 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     );
   }
 
-  Widget _categoryBadge(String category, ColorScheme cs) {
+  Widget _categoryBadge(String category) {
+    final color = categoryColor(category);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: _categoryColor(category).withValues(alpha: 0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        _categoryLabel(category),
+        categoryLabel(category),
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          color: _categoryColor(category),
+          color: color,
         ),
       ),
     );
   }
 
-  Widget _choiceItem(Question q, int index, ColorScheme cs) {
-    final choice = q.choices[index];
-    final isCorrect = index == q.answerIndex;
+  Widget _choiceItem(Question question, int index, ColorScheme cs) {
+    final choice = question.choices[index];
+    final isCorrect = index == question.answerIndex;
     final isSelected = _selectedAnswerIndex == index;
-    Color? bgColor;
-    Color? borderColor;
+    Color? background;
+    Color? border;
     Color? textColor;
     String? suffix;
-
     if (_hasAnswered) {
       if (isCorrect) {
-        bgColor = Colors.green.withValues(alpha: 0.1);
-        borderColor = Colors.green;
+        background = Colors.green.withValues(alpha: 0.1);
+        border = Colors.green;
         textColor = Colors.green.shade800;
-        suffix = '  ✓ 正解';
+        suffix = '✓ 正解';
       } else if (isSelected) {
-        bgColor = Colors.red.withValues(alpha: 0.08);
-        borderColor = Colors.red.withValues(alpha: 0.5);
+        background = Colors.red.withValues(alpha: 0.08);
+        border = Colors.red.withValues(alpha: 0.5);
         textColor = Colors.red.shade700;
-        suffix = '  ✗';
+        suffix = '✗';
       }
     }
 
+    final semantics = _hasAnswered
+        ? '$choice${isCorrect
+              ? '、正解'
+              : isSelected
+              ? '、選択した不正解'
+              : ''}'
+        : choice;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: GestureDetector(
-        onTap: _canAnswer ? () => _answer(index) : null,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            color: bgColor ?? cs.surface,
+      child: Semantics(
+        button: true,
+        enabled: _canAnswer,
+        selected: isSelected,
+        label: semantics,
+        child: Material(
+          color: background ?? cs.surface,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color:
-                  borderColor ??
-                  (isSelected && !_hasAnswered
-                      ? cs.primary
-                      : cs.outlineVariant.withValues(alpha: 0.5)),
+            side: BorderSide(
+              color: border ?? cs.outlineVariant.withValues(alpha: 0.5),
               width: isSelected && !_hasAnswered ? 1.5 : 1,
             ),
           ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  choice,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: textColor ?? cs.onSurface,
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+          child: InkWell(
+            key: ValueKey('answer-choice-$index'),
+            onTap: _canAnswer ? () => _answer(index) : null,
+            borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      choice,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: textColor ?? cs.onSurface,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.w400,
+                      ),
+                    ),
                   ),
-                ),
+                  if (suffix != null)
+                    Text(
+                      suffix,
+                      style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                      ),
+                    ),
+                ],
               ),
-              if (suffix != null)
-                Text(
-                  suffix,
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
-                  ),
-                ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _explanationBlock(Question q, ColorScheme cs) {
+  Widget _explanationBlock(Question question, ColorScheme cs) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -326,7 +329,7 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            q.explanation,
+            question.explanation,
             style: TextStyle(
               height: 1.6,
               color: cs.onSurface.withValues(alpha: 0.8),
@@ -334,84 +337,11 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Icon(
-                Icons.source_outlined,
-                size: 14,
-                color: cs.onSurface.withValues(alpha: 0.4),
-              ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  '出典: ${q.sourceNote}',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: cs.onSurface.withValues(alpha: 0.4),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _savingIndicator() {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 8),
-            Text('回答を保存しています...'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _errorBlock(ColorScheme cs) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.red.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.error_outline, size: 18, color: Colors.red),
-              const SizedBox(width: 8),
-              Text(
-                '保存エラー',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
           Text(
-            _saveError!,
-            style: TextStyle(color: Colors.red.shade700, fontSize: 13),
-          ),
-          const SizedBox(height: 12),
-          FilledButton.icon(
-            onPressed: _retrySave,
-            icon: const Icon(Icons.refresh, size: 18),
-            label: const Text('再試行'),
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
+            '出典: ${question.sourceNote}',
+            style: TextStyle(
+              fontSize: 12,
+              color: cs.onSurface.withValues(alpha: 0.55),
             ),
           ),
         ],
@@ -419,41 +349,61 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     );
   }
 
-  /// カード獲得ブロックを表示する。
-  /// 保存成功後にのみ表示される。
+  Widget _savingIndicator() => const Center(
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(height: 8),
+          Text('回答を保存しています...'),
+        ],
+      ),
+    ),
+  );
+
+  Widget _errorBlock() => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.red.withValues(alpha: 0.1),
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          '保存エラー',
+          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.red),
+        ),
+        const SizedBox(height: 8),
+        Text(_saveError!, style: TextStyle(color: Colors.red.shade700)),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          onPressed: _retrySave,
+          icon: const Icon(Icons.refresh, size: 18),
+          label: const Text('再試行'),
+        ),
+      ],
+    ),
+  );
+
   Widget _cardRewardBlock(HeeCard card, ColorScheme cs) {
     final isNew = !(_cardWasOwnedBeforeAnswer ?? true);
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: cs.surfaceContainerHighest.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(
-                isNew ? Icons.auto_stories : Icons.check_circle_outline,
-                size: 18,
-                color: isNew ? cs.primary : cs.onSurface.withValues(alpha: 0.5),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                isNew ? '新しい知識カードを発見' : 'このカードは発見済みです',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: isNew
-                      ? cs.primary
-                      : cs.onSurface.withValues(alpha: 0.6),
-                  fontSize: 14,
-                ),
-              ),
-            ],
+          Text(
+            isNew ? '新しい知識カードを発見' : 'このカードは発見済みです',
+            style: TextStyle(fontWeight: FontWeight.w600, color: cs.primary),
           ),
           const SizedBox(height: 8),
           Text(
@@ -468,14 +418,6 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
               Expanded(
                 child: OutlinedButton(
                   onPressed: _canNavigate ? _openCardDetail : null,
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: cs.primary,
-                    side: BorderSide(color: cs.primary.withValues(alpha: 0.3)),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
                   child: Text(isNew ? '図鑑で見る' : 'カードを読む'),
                 ),
               ),
@@ -483,12 +425,6 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
               Expanded(
                 child: FilledButton(
                   onPressed: _canNavigate ? _goHome : null,
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
                   child: const Text('ホームへ戻る'),
                 ),
               ),
@@ -499,26 +435,3 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     );
   }
 }
-
-const Map<String, String> _categoryLabels = {
-  'nature_geography': '自然・地理',
-  'living_things': '生き物',
-  'history': '歴史',
-  'science': '科学',
-  'food': '食べ物',
-  'language': 'ことば',
-  'daily_life': '生活',
-};
-
-const Map<String, Color> _categoryColors = {
-  'nature_geography': Color(0xFF4CAF50),
-  'living_things': Color(0xFFFF9800),
-  'history': Color(0xFF795548),
-  'science': Color(0xFF2196F3),
-  'food': Color(0xFFE91E63),
-  'language': Color(0xFF9C27B0),
-  'daily_life': Color(0xFF607D8B),
-};
-
-String _categoryLabel(String cat) => _categoryLabels[cat] ?? cat;
-Color _categoryColor(String cat) => _categoryColors[cat] ?? Colors.grey;

@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
+import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/home/home_screen.dart';
@@ -10,6 +11,7 @@ import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../helpers/fake_save_repository.dart';
+import '../helpers/release_content.dart';
 
 String _todayDateString() {
   final now = DateTime.now();
@@ -91,6 +93,24 @@ Future<void> pushDailyQuestionScreen(
   await tester.pumpAndSettle();
 }
 
+TestContentPair _selectedTodayPair(
+  List<Question> questions,
+  List<HeeCard> cards,
+) {
+  final selected = DailyQuestionService()
+      .generateQuestions(
+        _todayDateString(),
+        questions,
+        allCards: cards,
+        count: 1,
+      )
+      .single;
+  return TestContentPair(
+    question: selected,
+    card: cards.firstWhere((card) => card.id == selected.relatedCardId),
+  );
+}
+
 void main() {
   late List<Question> questions;
   late List<HeeCard> cards;
@@ -101,34 +121,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     rewardService = RewardService();
     fakeRepo = FakeSaveRepository();
-    questions = List.generate(
-      10,
-      (i) => Question(
-        id: 'q_$i',
-        category: 'science',
-        difficulty: 'easy',
-        question: 'テスト問題$i',
-        choices: ['A', 'B', 'C', 'D'],
-        answerIndex: 0,
-        explanation: '解説$i',
-        relatedCardId: 'card_$i',
-        sourceNote: '出典$i',
-        verified: true,
-      ),
-    );
-    cards = List.generate(
-      10,
-      (i) => HeeCard(
-        id: 'card_$i',
-        title: 'テストカード$i',
-        category: 'science',
-        shortText: '短いテキスト$i',
-        detailText: '詳細テキスト$i',
-        imageAsset: '',
-        rarity: 'normal',
-        sourceNote: '出典$i',
-      ),
-    );
+    final pairs = List.generate(10, (i) => releaseContentPair(id: '$i'));
+    questions = pairs.map((pair) => pair.question).toList();
+    cards = pairs.map((pair) => pair.card).toList();
   });
 
   // ──────────────────────────────────────────────
@@ -158,7 +153,7 @@ void main() {
     final saved = fakeRepo.lastSavedData!;
     expect(saved.ownedCardIds, contains('card_0'));
     expect(saved.lastDailyQuestionDate, isNotEmpty);
-    expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
+    expect(saved.totalPlayCount, greaterThanOrEqualTo(1));
   });
 
   testWidgets('R2. already owned card still saves date and stats', (
@@ -183,7 +178,7 @@ void main() {
     expect(fakeRepo.saveCallCount, 1);
     final saved = fakeRepo.lastSavedData!;
     expect(saved.lastDailyQuestionDate, isNotEmpty);
-    expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
+    expect(saved.totalPlayCount, greaterThanOrEqualTo(1));
     final cardCount = saved.ownedCardIds.where((id) => id == 'card_0').length;
     expect(cardCount, 1);
   });
@@ -217,13 +212,19 @@ void main() {
     expect(fakeRepo.saveCallCount, 1);
     final saved = fakeRepo.lastSavedData!;
     expect(saved.lastDailyQuestionDate, isNotEmpty);
-    expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
+    expect(saved.totalPlayCount, greaterThanOrEqualTo(1));
   });
 
   testWidgets('R4. cannot answer again on same day via home', (tester) async {
     final todayStr = _todayDateString();
+    final selected = _selectedTodayPair(questions, cards);
     fakeRepo.setLoadedData(
-      SaveData(lastDailyQuestionDate: todayStr, ownedCardIds: ['card_0']),
+      SaveData(
+        lastDailyQuestionDate: todayStr,
+        lastDailyQuestionId: selected.question.id,
+        lastDailyCardId: selected.card.id,
+        ownedCardIds: [selected.card.id],
+      ),
     );
 
     await tester.pumpWidget(
@@ -242,8 +243,14 @@ void main() {
 
   testWidgets('R5. card to read opens CardDetailScreen', (tester) async {
     final todayStr = _todayDateString();
+    final selected = _selectedTodayPair(questions, cards);
     fakeRepo.setLoadedData(
-      SaveData(lastDailyQuestionDate: todayStr, ownedCardIds: ['card_0']),
+      SaveData(
+        lastDailyQuestionDate: todayStr,
+        lastDailyQuestionId: selected.question.id,
+        lastDailyCardId: selected.card.id,
+        ownedCardIds: [selected.card.id],
+      ),
     );
 
     await tester.pumpWidget(
@@ -287,7 +294,7 @@ void main() {
       final todayStr = _todayDateString();
       expect(saved.lastDailyQuestionDate, todayStr);
       expect(saved.ownedCardIds, contains('card_0'));
-      expect(saved.totalBrowseCount, greaterThanOrEqualTo(1));
+      expect(saved.totalPlayCount, greaterThanOrEqualTo(1));
 
       // 新しいHomeScreenを構築して再起動後の状態を確認
       await tester.pumpWidget(
@@ -616,6 +623,7 @@ void main() {
       );
       expect(secondCallData.ownedCardIds, firstCallData.ownedCardIds);
       expect(secondCallData.totalBrowseCount, firstCallData.totalBrowseCount);
+      expect(secondCallData.totalPlayCount, firstCallData.totalPlayCount);
       expect(secondCallData.streakDays, firstCallData.streakDays);
       expect(
         secondCallData.lastDailyQuestionDate,
@@ -665,54 +673,35 @@ void main() {
 
   group('C. card missing on home', () {
     testWidgets(
-      'C1. answered without card - completed display, no start button',
+      'C1. inconsistent completion without its card shows a recoverable error',
       (tester) async {
         final todayStr = _todayDateString();
-        // 回答済みだが、今日の問題のrelatedCardIdに一致するカードがない
         fakeRepo.setLoadedData(
           SaveData(
             lastDailyQuestionDate: todayStr,
-            ownedCardIds: ['card_0'],
-            totalBrowseCount: 1,
+            lastDailyQuestionId: questions[0].id,
+            lastDailyCardId: cards[0].id,
+            ownedCardIds: [cards[0].id],
+            totalPlayCount: 1,
             streakDays: 1,
             lastPlayedDate: todayStr,
           ),
         );
 
-        // cardMap に今日の問題のカードがない
-        // questions[0].relatedCardId = 'card_0' は cards[0] に存在するので、
-        // カードが存在しない状態を作るには cards から card_0 を除外
-        // さらに問題は questions[0] だけを使う（DailyQuestionServiceが他の問題を選ばないように）
-        final cardsWithoutFirst = cards.sublist(1);
-
         await tester.pumpWidget(
           buildHomeScreen(
             allQuestions: [questions[0]],
-            allCards: cardsWithoutFirst,
+            allCards: cards.sublist(1),
             saveRepository: fakeRepo,
             rewardService: rewardService,
           ),
         );
         await tester.pumpAndSettle();
 
-        // 開始ボタンがない
+        expect(find.text('保存データを読み込めませんでした'), findsOneWidget);
+        expect(find.text('再試行'), findsOneWidget);
         expect(find.text('今日の1問を始める'), findsNothing);
-
-        // 完了表示
-        expect(find.text('今日の1問は完了しました'), findsOneWidget);
-
-        // カード読込エラー表示
-        expect(find.text('カード情報を読み込めませんでした'), findsOneWidget);
-
-        // カードを読むボタンがない
-        expect(find.text('カードを読む'), findsNothing);
-
-        // save() が呼ばれていない（HomeScreen表示だけで保存しない）
         expect(fakeRepo.saveCallCount, 0);
-
-        // lastDailyQuestionDate が変更されていない
-        final loaded = await fakeRepo.load();
-        expect(loaded.lastDailyQuestionDate, todayStr);
       },
     );
 

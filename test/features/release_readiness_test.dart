@@ -17,9 +17,7 @@ void main() {
   testWidgets('legal screen explains local storage and data deletion', (
     tester,
   ) async {
-    await tester.pumpWidget(
-      const MaterialApp(home: LegalInformationScreen()),
-    );
+    await tester.pumpWidget(const MaterialApp(home: LegalInformationScreen()));
 
     expect(find.text('データの取り扱い'), findsOneWidget);
     expect(find.textContaining('端末内に保存'), findsWidgets);

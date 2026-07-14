@@ -1,19 +1,12 @@
-/// lib/data/repositories/save_repository.dart
-///
-/// セーブデータの永続化（SharedPreferences）。
+/// SharedPreferences-backed persistent state.
 library;
 
-///
-/// 関連:
-///   - ../../domain/models/save_data.dart
-///   - ../../domain/services/reward_service.dart
-
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hee_no_tane_app/domain/models/save_data.dart';
 
-/// セーブデータ読込時の例外。
+import 'package:flutter/foundation.dart';
+import 'package:hee_no_tane_app/domain/models/save_data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class SaveLoadException implements Exception {
   final String message;
   final Object? cause;
@@ -23,7 +16,6 @@ class SaveLoadException implements Exception {
   String toString() => 'SaveLoadException: $message (cause: $cause)';
 }
 
-/// セーブデータ保存時の例外。
 class SaveException implements Exception {
   final String message;
   final Object? cause;
@@ -35,92 +27,82 @@ class SaveException implements Exception {
 
 class SaveRepository {
   static const _key = 'hee_no_tane_save_data';
+  Future<void>? _operationTail;
 
-  /// Pending serialized update. Null when no update is running or queued.
-  Future<void>? _updateTail;
+  /// Kept for API compatibility; loading is intentionally strict.
+  Future<SaveData> load() => loadOrThrow();
 
-  /// 既存画面向けのベストエフォート読込。
-  ///
-  /// 読込に失敗した場合は従来どおり空のSaveDataを返す。
-  Future<SaveData> load() async {
-    try {
-      return await loadOrThrow();
-    } on SaveLoadException {
-      return SaveData();
-    }
-  }
-
-  /// 読込失敗を呼び出し側へ通知する厳格な読込。
-  ///
-  /// 保存データが存在しない場合は正常な初期状態として空のSaveDataを返す。
   Future<SaveData> loadOrThrow() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_key);
       if (raw == null || raw.isEmpty) return SaveData();
-      return SaveData.fromJson(json.decode(raw) as Map<String, dynamic>);
-    } catch (e, stackTrace) {
-      debugPrint('Failed to load save data: $e');
+      final decoded = jsonDecode(raw);
+      if (decoded is! Map) {
+        throw const FormatException('Save data root must be an object.');
+      }
+      return SaveData.fromJson(Map<String, dynamic>.from(decoded));
+    } catch (error, stackTrace) {
+      debugPrint('Failed to load save data: $error');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: e);
+      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: error);
     }
   }
 
   Future<void> save(SaveData data) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final succeeded = await prefs.setString(_key, json.encode(data.toJson()));
+      final succeeded = await prefs.setString(_key, jsonEncode(data.toJson()));
       if (!succeeded) {
         throw const SaveException('データの保存に失敗しました。もう一度お試しください。');
       }
     } on SaveException {
       rethrow;
-    } catch (e, stackTrace) {
-      debugPrint('Failed to save data: $e');
+    } catch (error, stackTrace) {
+      debugPrint('Failed to save data: $error');
       debugPrintStack(stackTrace: stackTrace);
-      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: e);
+      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: error);
     }
   }
 
-  /// Atomically applies [updater] to the latest save data.
-  ///
-  /// Calls on the same repository instance run in FIFO order. A failed update
-  /// is reported to its caller but does not block later updates.
   Future<SaveData> update(SaveData Function(SaveData current) updater) {
-    final previous = _updateTail;
-    final operation = previous == null
-        ? _runUpdate(updater)
-        : previous.then((_) => _runUpdate(updater));
+    return _enqueue<SaveData>(() async {
+      final current = await loadOrThrow();
+      final updated = updater(current);
+      await save(updated);
+      return updated;
+    });
+  }
 
-    final tail = operation.then<void>(
+  Future<void> reset() => _enqueue<void>(() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final succeeded = await prefs.remove(_key);
+      if (!succeeded && prefs.containsKey(_key)) {
+        throw const SaveException('データの初期化に失敗しました。もう一度お試しください。');
+      }
+    } on SaveException {
+      rethrow;
+    } catch (error, stackTrace) {
+      debugPrint('Failed to reset save data: $error');
+      debugPrintStack(stackTrace: stackTrace);
+      throw SaveException('データの初期化に失敗しました。もう一度お試しください。', cause: error);
+    }
+  });
+
+  Future<T> _enqueue<T>(Future<T> Function() operation) {
+    final previous = _operationTail;
+    final future = previous == null
+        ? operation()
+        : previous.then<T>((_) => operation());
+    final tail = future.then<void>(
       (_) {},
       onError: (Object _, StackTrace _) {},
     );
-    _updateTail = tail;
+    _operationTail = tail;
     tail.whenComplete(() {
-      if (identical(_updateTail, tail)) {
-        _updateTail = null;
-      }
+      if (identical(_operationTail, tail)) _operationTail = null;
     });
-    return operation;
-  }
-
-  Future<SaveData> _runUpdate(
-    SaveData Function(SaveData current) updater,
-  ) async {
-    final current = await loadOrThrow();
-    final updated = updater(current);
-    await save(updated);
-    return updated;
-  }
-
-  Future<void> reset() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_key);
-    } catch (e, stackTrace) {
-      debugPrint('Failed to reset save data: $e');
-      debugPrintStack(stackTrace: stackTrace);
-    }
+    return future;
   }
 }

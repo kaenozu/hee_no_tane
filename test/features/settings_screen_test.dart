@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +16,6 @@ void main() {
       MaterialApp(
         home: SettingsScreen(
           saveRepository: repository,
-          rewardService: RewardService(),
           onDataReset: () async {
             refreshed = true;
           },

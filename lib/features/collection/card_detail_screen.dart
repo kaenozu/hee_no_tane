@@ -13,7 +13,6 @@ library;
 ///   - ../../data/repositories/save_repository.dart
 
 import 'package:flutter/material.dart';
-import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
@@ -61,10 +60,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (!widget.isOwned) return;
 
     try {
-      await widget.saveRepository.update(
-        (current) =>
-            widget.rewardService.updatePlayStats(current, todayDateString()),
-      );
+      await widget.saveRepository.update(widget.rewardService.recordCardView);
     } on SaveLoadException catch (e, stackTrace) {
       debugPrint('Failed to load current save data for card view: $e');
       debugPrintStack(stackTrace: stackTrace);
@@ -89,7 +85,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Future<void> _openSource() async {
     final source = widget.card.effectiveSource;
-    if (!widget.isOwned || !source.isApproved) return;
+    if (!widget.isOwned || !source.isReleaseApproved) return;
     final uri = source.sourceUri!;
 
     try {
@@ -231,7 +227,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   ),
                 ],
               ),
-              if (source.isApproved) ...[
+              if (source.isReleaseApproved) ...[
                 const SizedBox(height: 4),
                 TextButton.icon(
                   key: const ValueKey('card-source-open-action'),
@@ -250,7 +246,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  'このカードはまだ発見されていません。今日のダンジョンをクリアして発見しよう。',
+                  'このカードはまだ発見されていません。今日の1問に答えて発見しよう。',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: cs.onSurface.withValues(alpha: 0.5),
                   ),
@@ -334,25 +330,25 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 }
               }
 
+              final semanticsLabel = _answered
+                  ? '$choice${isCorrect
+                        ? '、正解'
+                        : isSelected
+                        ? '、選択した不正解'
+                        : ''}'
+                  : choice;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: GestureDetector(
-                  onTap: _answered
-                      ? null
-                      : () => setState(() {
-                          _selectedChoice = index;
-                          _answered = true;
-                        }),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      color: bgColor ?? cs.surface,
+                child: Semantics(
+                  button: true,
+                  enabled: !_answered,
+                  selected: isSelected,
+                  label: semanticsLabel,
+                  child: Material(
+                    color: bgColor ?? cs.surface,
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
+                      side: BorderSide(
                         color:
                             borderColor ??
                             (isSelected
@@ -361,29 +357,45 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         width: isSelected && !_answered ? 1.5 : 1,
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            choice,
-                            style: TextStyle(
-                              color: textColor ?? cs.onSurface,
-                              fontWeight: isSelected
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                            ),
-                          ),
+                    child: InkWell(
+                      key: ValueKey('card-quiz-choice-$index'),
+                      onTap: _answered
+                          ? null
+                          : () => setState(() {
+                              _selectedChoice = index;
+                              _answered = true;
+                            }),
+                      borderRadius: BorderRadius.circular(10),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 12,
                         ),
-                        if (suffix != null)
-                          Text(
-                            suffix,
-                            style: TextStyle(
-                              color: textColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                choice,
+                                style: TextStyle(
+                                  color: textColor ?? cs.onSurface,
+                                  fontWeight: isSelected
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
+                                ),
+                              ),
                             ),
-                          ),
-                      ],
+                            if (suffix != null)
+                              Text(
+                                suffix,
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -45,10 +45,7 @@ void main() {
   late FakeSaveRepository repository;
   late RewardService rewardService;
 
-  Widget buildScreen({
-    required SaveData saveData,
-    List<HeeCard>? allCards,
-  }) {
+  Widget buildScreen({required SaveData saveData, List<HeeCard>? allCards}) {
     repository.setLoadedData(saveData);
     return MaterialApp(
       home: CardListScreen(

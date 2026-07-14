@@ -1,7 +1,11 @@
-/// Validation for the bundled question and card JSON content.
+/// Validation for bundled question/card JSON content.
 library;
 
 import 'dart:convert';
+
+import 'package:hee_no_tane_app/content_validation/content_fingerprint.dart';
+import 'package:hee_no_tane_app/domain/models/image_review_metadata.dart';
+import 'package:hee_no_tane_app/domain/models/source_metadata.dart';
 
 typedef AssetExists = bool Function(String path);
 
@@ -19,11 +23,13 @@ class ContentValidationResult {
   final List<ContentValidationIssue> issues;
   final int questionCount;
   final int cardCount;
+  final int playableQuestionCount;
 
   const ContentValidationResult({
     required this.issues,
     required this.questionCount,
     required this.cardCount,
+    this.playableQuestionCount = 0,
   });
 
   bool get isValid => issues.isEmpty;
@@ -39,7 +45,6 @@ class ContentValidator {
     'language',
     'daily_life',
   };
-
   static const allowedDifficulties = <String>{'easy', 'normal', 'hard'};
   static const allowedRarities = <String>{'normal', 'rare'};
 
@@ -49,23 +54,61 @@ class ContentValidator {
     required String questionsJson,
     required String cardsJson,
     required AssetExists assetExists,
+    String? manifestJson,
+    bool requirePlayable = true,
   }) {
     final issues = <ContentValidationIssue>[];
-    final questionRoot = _decodeRoot(questionsJson, 'questions', issues);
-    final cardRoot = _decodeRoot(cardsJson, 'cards', issues);
+    final questions = _decodeObjects(questionsJson, 'questions', issues);
+    final cards = _decodeObjects(cardsJson, 'cards', issues);
+    final manifest = manifestJson == null
+        ? null
+        : _decodeManifest(manifestJson, issues);
 
-    final questions = _validateQuestions(questionRoot, issues);
-    final cards = _validateCards(cardRoot, issues, assetExists);
-    _validateRelationships(questions, cards, issues);
+    if (questions.isEmpty) {
+      issues.add(
+        const ContentValidationIssue(
+          'questions',
+          'must contain at least one question',
+        ),
+      );
+    }
+    if (cards.isEmpty) {
+      issues.add(
+        const ContentValidationIssue('cards', 'must contain at least one card'),
+      );
+    }
+
+    final cardRecords = _validateCards(cards, issues, assetExists);
+    final playableCount = _validateQuestions(questions, cardRecords, issues);
+
+    if (requirePlayable && playableCount == 0) {
+      issues.add(
+        const ContentValidationIssue(
+          'questions',
+          'must contain at least one release-approved playable question',
+        ),
+      );
+    }
+
+    if (manifest != null) {
+      _validateManifest(
+        manifest,
+        questions.length,
+        cards.length,
+        playableCount,
+        issues,
+      );
+    }
 
     return ContentValidationResult(
-      issues: List.unmodifiable(issues),
+      issues: List<ContentValidationIssue>.unmodifiable(issues),
       questionCount: questions.length,
       cardCount: cards.length,
+      playableQuestionCount: playableCount,
     );
   }
 
-  List<dynamic>? _decodeRoot(
+  List<Map<String, dynamic>> _decodeObjects(
     String source,
     String label,
     List<ContentValidationIssue> issues,
@@ -77,172 +120,79 @@ class ContentValidator {
       issues.add(
         ContentValidationIssue(label, 'invalid JSON: ${error.message}'),
       );
-      return null;
+      return const <Map<String, dynamic>>[];
     }
-
-    if (decoded is! List<dynamic>) {
+    if (decoded is! List) {
       issues.add(ContentValidationIssue(label, 'root must be a JSON array'));
-      return null;
+      return const <Map<String, dynamic>>[];
     }
-    return decoded;
-  }
-
-  List<_QuestionRecord> _validateQuestions(
-    List<dynamic>? root,
-    List<ContentValidationIssue> issues,
-  ) {
-    if (root == null) return const [];
-
-    final records = <_QuestionRecord>[];
-    final seenIds = <String>{};
-
-    for (var index = 0; index < root.length; index++) {
-      final path = 'questions[$index]';
-      final item = root[index];
-      if (item is! Map<String, dynamic>) {
-        issues.add(ContentValidationIssue(path, 'must be a JSON object'));
+    final result = <Map<String, dynamic>>[];
+    for (var index = 0; index < decoded.length; index++) {
+      final value = decoded[index];
+      if (value is! Map) {
+        issues.add(
+          ContentValidationIssue('$label[$index]', 'must be an object'),
+        );
         continue;
       }
-
-      final id = _requiredString(item, 'id', path, issues, maxLength: 80);
-      final category = _requiredString(
-        item,
-        'category',
-        path,
-        issues,
-        maxLength: 40,
-      );
-      final difficulty = _requiredString(
-        item,
-        'difficulty',
-        path,
-        issues,
-        maxLength: 20,
-      );
-      _requiredString(item, 'question', path, issues, maxLength: 100);
-      _requiredString(item, 'explanation', path, issues, maxLength: 240);
-      final relatedCardId = _requiredString(
-        item,
-        'relatedCardId',
-        path,
-        issues,
-        maxLength: 80,
-      );
-      _requiredString(item, 'sourceNote', path, issues, maxLength: 120);
-
-      if (id != null && !seenIds.add(id)) {
-        issues.add(ContentValidationIssue('$path.id', 'duplicate id "$id"'));
-      }
-      if (category != null && !allowedCategories.contains(category)) {
-        issues.add(
-          ContentValidationIssue(
-            '$path.category',
-            'must be one of ${allowedCategories.join(', ')}, got "$category"',
-          ),
-        );
-      }
-      if (difficulty != null && !allowedDifficulties.contains(difficulty)) {
-        issues.add(
-          ContentValidationIssue(
-            '$path.difficulty',
-            'must be one of ${allowedDifficulties.join(', ')}, got "$difficulty"',
-          ),
-        );
-      }
-
-      _validateChoices(item['choices'], path, issues);
-      _validateAnswerIndex(item['answerIndex'], path, issues);
-
-      final verified = item['verified'];
-      if (verified is! bool) {
-        issues.add(ContentValidationIssue('$path.verified', 'must be a boolean'));
-      } else if (!verified) {
-        issues.add(
-          ContentValidationIssue(
-            '$path.verified',
-            'must be true for bundled production content',
-          ),
-        );
-      }
-
-      records.add(
-        _QuestionRecord(
-          index: index,
-          category: category,
-          relatedCardId: relatedCardId,
-        ),
-      );
+      result.add(Map<String, dynamic>.from(value));
     }
-
-    return records;
+    return result;
   }
 
-  List<_CardRecord> _validateCards(
-    List<dynamic>? root,
+  Map<String, dynamic>? _decodeManifest(
+    String source,
+    List<ContentValidationIssue> issues,
+  ) {
+    try {
+      final decoded = jsonDecode(source);
+      if (decoded is Map) return Map<String, dynamic>.from(decoded);
+      issues.add(
+        const ContentValidationIssue('manifest', 'root must be a JSON object'),
+      );
+    } on FormatException catch (error) {
+      issues.add(
+        ContentValidationIssue('manifest', 'invalid JSON: ${error.message}'),
+      );
+    }
+    return null;
+  }
+
+  Map<String, _CardRecord> _validateCards(
+    List<Map<String, dynamic>> cards,
     List<ContentValidationIssue> issues,
     AssetExists assetExists,
   ) {
-    if (root == null) return const [];
-
-    final records = <_CardRecord>[];
-    final seenIds = <String>{};
-
-    for (var index = 0; index < root.length; index++) {
+    final result = <String, _CardRecord>{};
+    for (var index = 0; index < cards.length; index++) {
+      final card = cards[index];
       final path = 'cards[$index]';
-      final item = root[index];
-      if (item is! Map<String, dynamic>) {
-        issues.add(ContentValidationIssue(path, 'must be a JSON object'));
-        continue;
-      }
+      final id = _requiredString(card, 'id', path, issues, 80);
+      final category = _requiredString(card, 'category', path, issues, 40);
+      _requiredString(card, 'title', path, issues, 60);
+      _requiredString(card, 'shortText', path, issues, 140);
+      _requiredString(card, 'detailText', path, issues, 500);
+      final imageAsset = _requiredString(card, 'imageAsset', path, issues, 240);
+      final rarity = _requiredString(card, 'rarity', path, issues, 20);
+      _requiredString(card, 'sourceNote', path, issues, 180);
 
-      final id = _requiredString(item, 'id', path, issues, maxLength: 80);
-      final category = _requiredString(
-        item,
-        'category',
-        path,
-        issues,
-        maxLength: 40,
-      );
-      _requiredString(item, 'title', path, issues, maxLength: 60);
-      _requiredString(item, 'shortText', path, issues, maxLength: 140);
-      _requiredString(item, 'detailText', path, issues, maxLength: 500);
-      final imageAsset = _stringField(
-        item,
-        'imageAsset',
-        path,
-        issues,
-        allowEmpty: true,
-        maxLength: 240,
-      );
-      final rarity = _requiredString(
-        item,
-        'rarity',
-        path,
-        issues,
-        maxLength: 20,
-      );
-      _requiredString(item, 'sourceNote', path, issues, maxLength: 120);
-
-      if (id != null && !seenIds.add(id)) {
+      if (id != null && result.containsKey(id)) {
         issues.add(ContentValidationIssue('$path.id', 'duplicate id "$id"'));
       }
       if (category != null && !allowedCategories.contains(category)) {
         issues.add(
           ContentValidationIssue(
             '$path.category',
-            'must be one of ${allowedCategories.join(', ')}, got "$category"',
+            'unknown category "$category"',
           ),
         );
       }
       if (rarity != null && !allowedRarities.contains(rarity)) {
         issues.add(
-          ContentValidationIssue(
-            '$path.rarity',
-            'must be one of ${allowedRarities.join(', ')}, got "$rarity"',
-          ),
+          ContentValidationIssue('$path.rarity', 'unknown rarity "$rarity"'),
         );
       }
-      if (imageAsset != null && imageAsset.isNotEmpty && !assetExists(imageAsset)) {
+      if (imageAsset != null && !assetExists(imageAsset)) {
         issues.add(
           ContentValidationIssue(
             '$path.imageAsset',
@@ -251,22 +201,212 @@ class ContentValidator {
         );
       }
 
-      records.add(_CardRecord(index: index, id: id, category: category));
-    }
+      final source = _parseSource(card['source'], '$path.source', issues);
+      final imageReview = _parseImageReview(
+        card['imageReview'],
+        '$path.imageReview',
+        issues,
+      );
+      if (source?.reviewStatus == 'approved' &&
+          source?.isReleaseApproved != true) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.source',
+            'approved source must include valid HTTPS metadata and contentHash',
+          ),
+        );
+      }
 
-    return records;
+      if (id != null) {
+        result[id] = _CardRecord(
+          json: card,
+          category: category,
+          source: source,
+          imageReview: imageReview,
+        );
+      }
+    }
+    return result;
   }
 
-  void _validateChoices(
+  int _validateQuestions(
+    List<Map<String, dynamic>> questions,
+    Map<String, _CardRecord> cards,
+    List<ContentValidationIssue> issues,
+  ) {
+    final seenIds = <String>{};
+    final seenCardIds = <String>{};
+    var playable = 0;
+    for (var index = 0; index < questions.length; index++) {
+      final question = questions[index];
+      final path = 'questions[$index]';
+      final id = _requiredString(question, 'id', path, issues, 80);
+      final category = _requiredString(question, 'category', path, issues, 40);
+      final difficulty = _requiredString(
+        question,
+        'difficulty',
+        path,
+        issues,
+        20,
+      );
+      _requiredString(question, 'question', path, issues, 140);
+      _requiredString(question, 'explanation', path, issues, 500);
+      final relatedCardId = _requiredString(
+        question,
+        'relatedCardId',
+        path,
+        issues,
+        80,
+      );
+      _requiredString(question, 'sourceNote', path, issues, 180);
+
+      if (id != null && !seenIds.add(id)) {
+        issues.add(ContentValidationIssue('$path.id', 'duplicate id "$id"'));
+      }
+      if (category != null && !allowedCategories.contains(category)) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.category',
+            'unknown category "$category"',
+          ),
+        );
+      }
+      if (difficulty != null && !allowedDifficulties.contains(difficulty)) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.difficulty',
+            'unknown difficulty "$difficulty"',
+          ),
+        );
+      }
+
+      final choices = _validateChoices(question['choices'], path, issues);
+      final answerIndex = question['answerIndex'];
+      if (answerIndex is! int) {
+        issues.add(
+          ContentValidationIssue('$path.answerIndex', 'must be an integer'),
+        );
+      } else if (answerIndex < 0 || answerIndex >= choices.length) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.answerIndex',
+            'must point to an existing choice',
+          ),
+        );
+      }
+
+      final verified = question['verified'];
+      if (verified is! bool) {
+        issues.add(
+          ContentValidationIssue('$path.verified', 'must be a boolean'),
+        );
+      }
+      final source = _parseSource(question['source'], '$path.source', issues);
+      if (source?.reviewStatus == 'approved' &&
+          source?.isReleaseApproved != true) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.source',
+            'approved source must include valid HTTPS metadata and contentHash',
+          ),
+        );
+      }
+
+      final card = relatedCardId == null ? null : cards[relatedCardId];
+      if (relatedCardId != null && card == null) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.relatedCardId',
+            'references missing card "$relatedCardId"',
+          ),
+        );
+      } else if (relatedCardId != null && !seenCardIds.add(relatedCardId)) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.relatedCardId',
+            'card "$relatedCardId" is paired with more than one question',
+          ),
+        );
+      }
+      if (card != null && category != null && card.category != category) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.category',
+            'must match related card category "${card.category}"',
+          ),
+        );
+      }
+
+      if (verified == true) {
+        playable++;
+        if (source?.isReleaseApproved != true) {
+          issues.add(
+            ContentValidationIssue(
+              '$path.source',
+              'verified question must have release-approved source metadata',
+            ),
+          );
+        }
+        if (card?.source?.isReleaseApproved != true) {
+          issues.add(
+            ContentValidationIssue(
+              '$path.relatedCardId',
+              'verified question requires a release-approved related card',
+            ),
+          );
+        }
+        if (card?.imageReview?.isReleaseReady != true) {
+          issues.add(
+            ContentValidationIssue(
+              'cards[$relatedCardId].imageReview',
+              'playable card image must be approved or generic_placeholder',
+            ),
+          );
+        }
+        if (source != null && card?.source != null) {
+          if (source.url != card!.source!.url) {
+            issues.add(
+              ContentValidationIssue(
+                '$path.source.url',
+                'must match related card source URL',
+              ),
+            );
+          }
+          if (source.contentHash != card.source!.contentHash) {
+            issues.add(
+              ContentValidationIssue(
+                '$path.source.contentHash',
+                'must match related card contentHash',
+              ),
+            );
+          }
+          final expected = ContentFingerprint.forPair(
+            question: question,
+            card: card.json,
+          );
+          if (source.contentHash != expected) {
+            issues.add(
+              ContentValidationIssue(
+                '$path.source.contentHash',
+                'does not match the current reviewed question/card content',
+              ),
+            );
+          }
+        }
+      }
+    }
+    return playable;
+  }
+
+  List<String> _validateChoices(
     Object? value,
     String path,
     List<ContentValidationIssue> issues,
   ) {
-    if (value is! List<dynamic>) {
+    if (value is! List) {
       issues.add(ContentValidationIssue('$path.choices', 'must be an array'));
-      return;
+      return const <String>[];
     }
-
     if (value.length != 4) {
       issues.add(
         ContentValidationIssue(
@@ -275,106 +415,108 @@ class ContentValidator {
         ),
       );
     }
-
-    final normalized = <String>[];
+    final result = <String>[];
+    final normalized = <String>{};
     for (var index = 0; index < value.length; index++) {
-      final choicePath = '$path.choices[$index]';
       final choice = value[index];
-      if (choice is! String) {
-        issues.add(ContentValidationIssue(choicePath, 'must be a string'));
+      if (choice is! String || choice.trim().isEmpty) {
+        issues.add(
+          ContentValidationIssue(
+            '$path.choices[$index]',
+            'must be a non-empty string',
+          ),
+        );
         continue;
       }
       final trimmed = choice.trim();
-      if (trimmed.isEmpty) {
-        issues.add(ContentValidationIssue(choicePath, 'must not be empty'));
-        continue;
-      }
-      if (trimmed.length > 60) {
+      if (!normalized.add(trimmed)) {
         issues.add(
           ContentValidationIssue(
-            choicePath,
-            'must be at most 60 characters, got ${trimmed.length}',
+            '$path.choices[$index]',
+            'must not duplicate another choice',
           ),
         );
       }
-      normalized.add(trimmed);
+      result.add(trimmed);
     }
-
-    if (normalized.toSet().length != normalized.length) {
-      issues.add(
-        ContentValidationIssue('$path.choices', 'must not contain duplicates'),
-      );
-    }
+    return result;
   }
 
-  void _validateAnswerIndex(
+  SourceMetadata? _parseSource(
     Object? value,
     String path,
     List<ContentValidationIssue> issues,
   ) {
-    if (value is! int) {
-      issues.add(ContentValidationIssue('$path.answerIndex', 'must be an int'));
-      return;
+    if (value == null) return null;
+    if (value is! Map) {
+      issues.add(ContentValidationIssue(path, 'must be an object'));
+      return null;
     }
-    if (value < 0 || value > 3) {
-      issues.add(
-        ContentValidationIssue(
-          '$path.answerIndex',
-          'expected 0..3, got $value',
-        ),
-      );
+    try {
+      return SourceMetadata.fromJson(Map<String, dynamic>.from(value));
+    } on FormatException catch (error) {
+      issues.add(ContentValidationIssue(path, error.message));
+      return null;
     }
   }
 
-  void _validateRelationships(
-    List<_QuestionRecord> questions,
-    List<_CardRecord> cards,
+  ImageReviewMetadata? _parseImageReview(
+    Object? value,
+    String path,
     List<ContentValidationIssue> issues,
   ) {
-    final cardsById = <String, _CardRecord>{};
-    for (final card in cards) {
-      final id = card.id;
-      if (id != null) cardsById.putIfAbsent(id, () => card);
+    if (value == null) {
+      issues.add(ContentValidationIssue(path, 'must be persisted'));
+      return null;
     }
-
-    final referencedCardIds = <String>{};
-    for (final question in questions) {
-      final relatedCardId = question.relatedCardId;
-      if (relatedCardId == null) continue;
-      final card = cardsById[relatedCardId];
-      if (card == null) {
-        issues.add(
-          ContentValidationIssue(
-            'questions[${question.index}].relatedCardId',
-            'card "$relatedCardId" does not exist',
-          ),
-        );
-        continue;
-      }
-
-      referencedCardIds.add(relatedCardId);
-      if (question.category != null &&
-          card.category != null &&
-          question.category != card.category) {
-        issues.add(
-          ContentValidationIssue(
-            'questions[${question.index}].category',
-            'must match cards[${card.index}].category "${card.category}"',
-          ),
-        );
-      }
+    if (value is! Map) {
+      issues.add(ContentValidationIssue(path, 'must be an object'));
+      return null;
     }
+    try {
+      return ImageReviewMetadata.fromJson(Map<String, dynamic>.from(value));
+    } on FormatException catch (error) {
+      issues.add(ContentValidationIssue(path, error.message));
+      return null;
+    }
+  }
 
-    for (final card in cards) {
-      final id = card.id;
-      if (id != null && !referencedCardIds.contains(id)) {
-        issues.add(
-          ContentValidationIssue(
-            'cards[${card.index}].id',
-            'card "$id" is not referenced by any question',
-          ),
-        );
-      }
+  void _validateManifest(
+    Map<String, dynamic> manifest,
+    int questionCount,
+    int cardCount,
+    int playableCount,
+    List<ContentValidationIssue> issues,
+  ) {
+    final schemaVersion = manifest['schemaVersion'];
+    if (schemaVersion != 1) {
+      issues.add(
+        const ContentValidationIssue('manifest.schemaVersion', 'must be 1'),
+      );
+    }
+    _expectCount(manifest, 'questionCount', questionCount, issues);
+    _expectCount(manifest, 'cardCount', cardCount, issues);
+    _expectCount(manifest, 'playableQuestionCount', playableCount, issues);
+  }
+
+  void _expectCount(
+    Map<String, dynamic> manifest,
+    String field,
+    int actual,
+    List<ContentValidationIssue> issues,
+  ) {
+    final expected = manifest[field];
+    if (expected is! int) {
+      issues.add(
+        ContentValidationIssue('manifest.$field', 'must be an integer'),
+      );
+    } else if (expected != actual) {
+      issues.add(
+        ContentValidationIssue(
+          'manifest.$field',
+          'expected $expected but found $actual',
+        ),
+      );
     }
   }
 
@@ -382,48 +524,20 @@ class ContentValidator {
     Map<String, dynamic> item,
     String field,
     String path,
-    List<ContentValidationIssue> issues, {
-    required int maxLength,
-  }) {
-    return _stringField(
-      item,
-      field,
-      path,
-      issues,
-      allowEmpty: false,
-      maxLength: maxLength,
-    );
-  }
-
-  String? _stringField(
-    Map<String, dynamic> item,
-    String field,
-    String path,
-    List<ContentValidationIssue> issues, {
-    required bool allowEmpty,
-    required int maxLength,
-  }) {
-    if (!item.containsKey(field)) {
-      issues.add(ContentValidationIssue('$path.$field', 'is required'));
-      return null;
-    }
-
+    List<ContentValidationIssue> issues,
+    int maxLength,
+  ) {
     final value = item[field];
-    if (value is! String) {
+    if (value is! String || value.trim().isEmpty) {
       issues.add(ContentValidationIssue('$path.$field', 'must be a string'));
       return null;
     }
-
     final trimmed = value.trim();
-    if (!allowEmpty && trimmed.isEmpty) {
-      issues.add(ContentValidationIssue('$path.$field', 'must not be empty'));
-      return null;
-    }
     if (trimmed.length > maxLength) {
       issues.add(
         ContentValidationIssue(
           '$path.$field',
-          'must be at most $maxLength characters, got ${trimmed.length}',
+          'must be at most $maxLength characters',
         ),
       );
     }
@@ -431,26 +545,16 @@ class ContentValidator {
   }
 }
 
-class _QuestionRecord {
-  final int index;
-  final String? category;
-  final String? relatedCardId;
-
-  const _QuestionRecord({
-    required this.index,
-    required this.category,
-    required this.relatedCardId,
-  });
-}
-
 class _CardRecord {
-  final int index;
-  final String? id;
+  final Map<String, dynamic> json;
   final String? category;
+  final SourceMetadata? source;
+  final ImageReviewMetadata? imageReview;
 
   const _CardRecord({
-    required this.index,
-    required this.id,
+    required this.json,
     required this.category,
+    required this.source,
+    required this.imageReview,
   });
 }

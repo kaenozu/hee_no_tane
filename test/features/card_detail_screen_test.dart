@@ -44,7 +44,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('???'), findsOneWidget);
-    expect(find.text('このカードはまだ発見されていません。今日のダンジョンをクリアして発見しよう。'), findsOneWidget);
+    expect(find.text('このカードはまだ発見されていません。今日の1問に答えて発見しよう。'), findsOneWidget);
     expect(find.text('テストカード'), findsNothing);
     expect(find.text('短い知識'), findsNothing);
     expect(find.text('くわしい知識'), findsNothing);

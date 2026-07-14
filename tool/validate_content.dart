@@ -16,6 +16,7 @@ Future<void> main(List<String> arguments) async {
   final root = Directory(options.root).absolute;
   final questionsFile = _resolveFile(root, options.questionsPath);
   final cardsFile = _resolveFile(root, options.cardsPath);
+  final manifestFile = _resolveFile(root, 'assets/data/content_manifest.json');
 
   final inputErrors = <String>[];
   if (!questionsFile.existsSync()) {
@@ -23,6 +24,9 @@ Future<void> main(List<String> arguments) async {
   }
   if (!cardsFile.existsSync()) {
     inputErrors.add('cards: file does not exist: ${cardsFile.path}');
+  }
+  if (!manifestFile.existsSync()) {
+    inputErrors.add('manifest: file does not exist: ${manifestFile.path}');
   }
   if (inputErrors.isNotEmpty) {
     _printFailure(inputErrors);
@@ -36,7 +40,9 @@ Future<void> main(List<String> arguments) async {
     questionsJson = await questionsFile.readAsString();
     cardsJson = await cardsFile.readAsString();
   } on FileSystemException catch (error) {
-    _printFailure(['input: ${error.message} (${error.path ?? 'unknown path'})']);
+    _printFailure([
+      'input: ${error.message} (${error.path ?? 'unknown path'})',
+    ]);
     exitCode = 1;
     return;
   }
@@ -45,12 +51,14 @@ Future<void> main(List<String> arguments) async {
     questionsJson: questionsJson,
     cardsJson: cardsJson,
     assetExists: (path) => _resolveFile(root, path).existsSync(),
+    manifestJson: await manifestFile.readAsString(),
   );
 
   if (result.isValid) {
     stdout.writeln(
       'Content validation passed: '
-      '${result.questionCount} questions, ${result.cardCount} cards',
+      '${result.questionCount} questions, ${result.cardCount} cards, '
+      '${result.playableQuestionCount} playable',
     );
     return;
   }

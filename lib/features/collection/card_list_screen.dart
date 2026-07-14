@@ -70,11 +70,15 @@ class _CardListScreenState extends State<CardListScreen> {
     }
   }
 
+  List<HeeCard> get _availableCards =>
+      List<HeeCard>.unmodifiable(widget.allCards);
+
   List<HeeCard> get _displayCards {
     final saveData = _saveData ?? SaveData();
+    final availableCards = _availableCards;
     final filtered = _selectedCategory.isEmpty
-        ? List<HeeCard>.from(widget.allCards)
-        : widget.allCards
+        ? List<HeeCard>.from(availableCards)
+        : availableCards
               .where((card) => card.category == _selectedCategory)
               .toList();
     filtered.sort((a, b) {
@@ -87,7 +91,8 @@ class _CardListScreenState extends State<CardListScreen> {
     return filtered;
   }
 
-  Set<String> get _categories => widget.allCards.map((c) => c.category).toSet();
+  Set<String> get _categories =>
+      _availableCards.map((card) => card.category).toSet();
 
   Future<void> _openCard(HeeCard card) async {
     final saveData = _saveData;
@@ -129,10 +134,7 @@ class _CardListScreenState extends State<CardListScreen> {
               children: [
                 const Icon(Icons.error_outline, size: 36),
                 const SizedBox(height: 12),
-                const Text(
-                  '図鑑データを読み込めませんでした',
-                  textAlign: TextAlign.center,
-                ),
+                const Text('図鑑データを読み込めませんでした', textAlign: TextAlign.center),
                 const SizedBox(height: 6),
                 Text(
                   _loadError!,
@@ -154,8 +156,11 @@ class _CardListScreenState extends State<CardListScreen> {
 
     final saveData = _saveData ?? SaveData();
     final cs = Theme.of(context).colorScheme;
-    final owned = saveData.ownedCardIds.length;
-    final total = widget.allCards.length;
+    final availableCards = _availableCards;
+    final owned = availableCards
+        .where((card) => saveData.ownedCardIds.contains(card.id))
+        .length;
+    final total = availableCards.length;
 
     return Scaffold(
       appBar: AppBar(title: Text('へぇ図鑑 ($owned/$total)')),
@@ -213,71 +218,78 @@ class _CardListScreenState extends State<CardListScreen> {
   Widget _cardTile(HeeCard card, SaveData saveData, ColorScheme cs) {
     final isOwned = saveData.ownedCardIds.contains(card.id);
     final catColor = categoryColor(card.category);
+    final label = isOwned ? card.title : '未発見のカード';
 
-    return GestureDetector(
-      key: ValueKey('card-tile-${card.id}'),
-      onTap: () => _openCard(card),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isOwned
-              ? cs.surfaceContainerHighest.withValues(alpha: 0.3)
-              : Colors.grey.withValues(alpha: 0.08),
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        key: ValueKey('card-tile-${card.id}'),
+        color: isOwned
+            ? cs.surfaceContainerHighest.withValues(alpha: 0.3)
+            : Colors.grey.withValues(alpha: 0.08),
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
+          side: BorderSide(
             color: isOwned
                 ? catColor.withValues(alpha: 0.3)
                 : Colors.grey.withValues(alpha: 0.15),
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: isOwned
-                    ? catColor.withValues(alpha: 0.15)
-                    : Colors.grey.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
+        child: InkWell(
+          onTap: () => _openCard(card),
+          borderRadius: BorderRadius.circular(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: isOwned
+                      ? catColor.withValues(alpha: 0.15)
+                      : Colors.grey.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Icon(
                   isOwned ? Icons.auto_stories : Icons.lock_outline,
                   color: isOwned ? catColor : Colors.grey[400],
                   size: 24,
                 ),
               ),
-            ),
-            const SizedBox(height: 6),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                isOwned ? card.title : '???',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color: isOwned ? cs.onSurface : Colors.grey[400],
-                ),
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            if (isOwned)
-              Container(
-                margin: const EdgeInsets.only(top: 3),
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-                decoration: BoxDecoration(
-                  color: catColor.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Text(
-                  card.rarity == 'rare' ? '★' : '●',
-                  style: TextStyle(fontSize: 10, color: catColor),
+                  isOwned ? card.title : '???',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: isOwned ? cs.onSurface : Colors.grey[400],
+                  ),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-          ],
+              if (isOwned)
+                Container(
+                  margin: const EdgeInsets.only(top: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 1,
+                  ),
+                  decoration: BoxDecoration(
+                    color: catColor.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    card.rarity == 'rare' ? '★' : '●',
+                    style: TextStyle(fontSize: 10, color: catColor),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

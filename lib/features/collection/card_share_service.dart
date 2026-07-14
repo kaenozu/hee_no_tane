@@ -51,14 +51,10 @@ class SharePlusCardShareGateway implements CardShareGateway {
 }
 
 abstract interface class CardShareImageRenderer {
-  Future<Uint8List> render(
-    GlobalKey boundaryKey, {
-    double pixelRatio = 3.0,
-  });
+  Future<Uint8List> render(GlobalKey boundaryKey, {double pixelRatio = 3.0});
 }
 
-class RepaintBoundaryCardShareImageRenderer
-    implements CardShareImageRenderer {
+class RepaintBoundaryCardShareImageRenderer implements CardShareImageRenderer {
   const RepaintBoundaryCardShareImageRenderer();
 
   @override

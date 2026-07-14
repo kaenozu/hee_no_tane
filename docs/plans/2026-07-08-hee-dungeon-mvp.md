@@ -1,3 +1,5 @@
+> **履歴資料:** この計画は旧「へぇダンジョン」案の記録です。現行仕様ではありません。現行の正本は`README.md`、`docs/02_*`、`docs/03_*`です。
+
 # へぇダンジョン MVP Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.

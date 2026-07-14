@@ -5,18 +5,15 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/settings/legal_information_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   final SaveRepository saveRepository;
-  final RewardService rewardService;
   final Future<void> Function() onDataReset;
 
   const SettingsScreen({
     super.key,
     required this.saveRepository,
-    required this.rewardService,
     required this.onDataReset,
   });
 
@@ -107,9 +104,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   )
                 : Icon(Icons.delete_outline, color: Colors.red[300]),
             title: const Text('データリセット'),
-            subtitle: Text(
-              _resetting ? '削除しています…' : 'すべてのデータを初期状態に戻す',
-            ),
+            subtitle: Text(_resetting ? '削除しています…' : 'すべてのデータを初期状態に戻す'),
             enabled: !_resetting,
             onTap: _confirmReset,
           ),

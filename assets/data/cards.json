@@ -7,7 +7,12 @@
     "detailText": "バイカル湖はロシアのシベリアにある湖で、最大深度は約1,642m。深さだけでなく透明度の高さや多数の固有種でも知られている。",
     "imageAsset": "assets/images/cards/card_geo_001.png",
     "rarity": "normal",
-    "sourceNote": "Wikipedia: Lake Baikal"
+    "sourceNote": "Wikipedia: Lake Baikal",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_geo_002",
@@ -17,7 +22,12 @@
     "detailText": "北海道の面積は約83,424km²で、2位の岩手県の約2倍。日本の総面積の約22%を占める。",
     "imageAsset": "assets/images/cards/card_geo_002.png",
     "rarity": "normal",
-    "sourceNote": "国土地理院"
+    "sourceNote": "国土地理院",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_bio_001",
@@ -27,7 +37,12 @@
     "detailText": "カンガルーの赤ちゃんは「ジョーイ」と呼ばれる。生まれた時の大きさはわずか2cmほどで、母親の袋の中で育つ。",
     "imageAsset": "assets/images/cards/card_bio_001.png",
     "rarity": "normal",
-    "sourceNote": "Australian Museum"
+    "sourceNote": "Australian Museum",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_bio_002",
@@ -44,7 +59,13 @@
       "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "fa048fcdaf21e7dcf8ba1ae027e926bd45d05ebfae8c8a9b1dc6bdda54fa2b00"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -55,7 +76,12 @@
     "detailText": "俳句は「五・七・五」の17音で詠む日本発祥の詩。江戸時代に松尾芭蕉によって芸術として確立され、庶民文化として広まった。",
     "imageAsset": "assets/images/cards/card_his_001.png",
     "rarity": "normal",
-    "sourceNote": "文化庁 日本文化紹介"
+    "sourceNote": "文化庁 日本文化紹介",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_his_002",
@@ -65,7 +91,12 @@
     "detailText": "東大寺の盧舎那仏像（奈良の大仏）は高さ約15m。752年の開眼供養には多くの人々が集まった。",
     "imageAsset": "assets/images/cards/card_his_002.png",
     "rarity": "rare",
-    "sourceNote": "東大寺公式サイト"
+    "sourceNote": "東大寺公式サイト",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_sci_001",
@@ -75,7 +106,12 @@
     "detailText": "地球の大気は窒素約78%、酸素約21%、アルゴン約0.9%、二酸化炭素約0.04%で構成されている。",
     "imageAsset": "assets/images/cards/card_sci_001.png",
     "rarity": "normal",
-    "sourceNote": "気象庁 大気成分"
+    "sourceNote": "気象庁 大気成分",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_sci_002",
@@ -85,7 +121,12 @@
     "detailText": "光の速度は秒速約299,792km。地球1周が約4万kmなので、1秒で7.5周できる計算になる。",
     "imageAsset": "assets/images/cards/card_sci_002.png",
     "rarity": "normal",
-    "sourceNote": "国立天文台"
+    "sourceNote": "国立天文台",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_001",
@@ -95,7 +136,12 @@
     "detailText": "塩は日本で最も古い調味料で、縄文時代には海水から作っていた。必須ミネラルの補給源としても重要だった。",
     "imageAsset": "assets/images/cards/card_food_001.png",
     "rarity": "normal",
-    "sourceNote": "国立歴史民俗博物館"
+    "sourceNote": "国立歴史民俗博物館",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_002",
@@ -112,7 +158,13 @@
       "url": "https://www.nature.com/articles/ng.654",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "d5b9b95d4aaf141a64cf5a9567daa5ada1dea72c70d475b8afe9797b9c5c2e79"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -123,7 +175,12 @@
     "detailText": "「ありがとう」の語源は「有り難し」。元々は「存在することが難しい→めったにない→貴重だ」という意味だった。",
     "imageAsset": "assets/images/cards/card_lang_001.png",
     "rarity": "normal",
-    "sourceNote": "日本国語大辞典"
+    "sourceNote": "日本国語大辞典",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_lang_002",
@@ -133,7 +190,12 @@
     "detailText": "「一瞬」はサンスクリット語「ksana（刹那）」の訳語。まばたきするほんのわずかな時間を表す。",
     "imageAsset": "assets/images/cards/card_lang_002.png",
     "rarity": "normal",
-    "sourceNote": "岩波 仏教辞典"
+    "sourceNote": "岩波 仏教辞典",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_life_001",
@@ -143,7 +205,12 @@
     "detailText": "丸いマンホールのふたは、どの向きにしても穴より大きいので落ちない。四角いふただと対角線が辺より長いため落ちる危険がある。",
     "imageAsset": "assets/images/cards/card_life_001.png",
     "rarity": "normal",
-    "sourceNote": "日本下水道協会"
+    "sourceNote": "日本下水道協会",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_life_002",
@@ -153,7 +220,12 @@
     "detailText": "赤は波長が長く遠くまで届くため「止まれ」に採用された。青（実際は緑）はその中間。信号機の3色は光の性質に基づいて選ばれている。",
     "imageAsset": "assets/images/cards/card_life_002.png",
     "rarity": "normal",
-    "sourceNote": "警察庁 交通規制"
+    "sourceNote": "警察庁 交通規制",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_geo_003",
@@ -163,7 +235,12 @@
     "detailText": "エベレストはヒマラヤ山脈にある世界最高峰。ネパールと中国（チベット）の国境に位置する。",
     "imageAsset": "assets/images/cards/card_geo_003.png",
     "rarity": "rare",
-    "sourceNote": "USGS"
+    "sourceNote": "USGS",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_bio_003",
@@ -173,7 +250,12 @@
     "detailText": "タコは3つの心臓を持つ。全身用の心臓1つと、エラ用の心臓2つ。不思議な循環器系を持っている。",
     "imageAsset": "assets/images/cards/card_bio_003.png",
     "rarity": "rare",
-    "sourceNote": "National Geographic"
+    "sourceNote": "National Geographic",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_his_003",
@@ -183,7 +265,12 @@
     "detailText": "日本で初めて肖像画が使われた紙幣は1885年発行の日本銀行券。神功皇后の肖像が描かれていた。",
     "imageAsset": "assets/images/cards/card_his_003.png",
     "rarity": "normal",
-    "sourceNote": "日本銀行 貨幣博物館"
+    "sourceNote": "日本銀行 貨幣博物館",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_sci_003",
@@ -193,7 +280,12 @@
     "detailText": "絶対零度は-273.15℃。この温度では原子の動きが理論上停止する。これより低い温度は存在しないとされている。",
     "imageAsset": "assets/images/cards/card_sci_003.png",
     "rarity": "rare",
-    "sourceNote": "国立科学博物館"
+    "sourceNote": "国立科学博物館",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_003",
@@ -203,7 +295,12 @@
     "detailText": "本わさびはアブラナ科の植物「山葵」の根茎から作られる。一般のチューブわさびは「西洋わさび」（ホースラディッシュ）が主原料。",
     "imageAsset": "assets/images/cards/card_food_003.png",
     "rarity": "normal",
-    "sourceNote": "農林水産省"
+    "sourceNote": "農林水産省",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_lang_003",
@@ -213,7 +310,12 @@
     "detailText": "サンドイッチは18世紀イギリスの第4代サンドイッチ伯爵が、トランプに夢中で食事を頼んだことが始まりと言われている。",
     "imageAsset": "assets/images/cards/card_lang_003.png",
     "rarity": "normal",
-    "sourceNote": "オックスフォード英語辞典"
+    "sourceNote": "オックスフォード英語辞典",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_life_003",
@@ -223,7 +325,12 @@
     "detailText": "消しゴムが鉛筆の字を消せるのは、摩擦で紙の表面ごと黒鉛を削り取っているから。消しかすは紙と黒鉛のカスなんだ。",
     "imageAsset": "assets/images/cards/card_life_003.png",
     "rarity": "normal",
-    "sourceNote": "文具メーカー資料"
+    "sourceNote": "文具メーカー資料",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_geo_004",
@@ -240,7 +347,13 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "c287a5ca5263d64c8ba843f473983063c31b69dd2be46edcc87a76474edaddb9"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -251,7 +364,12 @@
     "detailText": "人間の骨は大人で約206本。赤ちゃんの時は約350本あるが、成長とともに骨が癒合して減っていく。",
     "imageAsset": "assets/images/cards/card_bio_004.png",
     "rarity": "normal",
-    "sourceNote": "医学書"
+    "sourceNote": "医学書",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_his_004",
@@ -261,7 +379,12 @@
     "detailText": "姫路城、松本城、犬山城、彦根城、松江城の5つが国宝に指定されている現存天守。いずれも江戸時代以前から残る貴重な建造物。",
     "imageAsset": "assets/images/cards/card_his_004.png",
     "rarity": "rare",
-    "sourceNote": "文化庁 国宝・重要文化財"
+    "sourceNote": "文化庁 国宝・重要文化財",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_sci_004",
@@ -271,7 +394,12 @@
     "detailText": "地球表面の約70%は海で覆われている。このため「水の惑星」とも呼ばれる。生命の存在が確認されている唯一の惑星。",
     "imageAsset": "assets/images/cards/card_sci_004.png",
     "rarity": "normal",
-    "sourceNote": "NASA"
+    "sourceNote": "NASA",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_004",
@@ -281,7 +409,12 @@
     "detailText": "日本にカレーが伝わったのは明治時代。イギリス経由で「西洋料理」の一つとして紹介され、独自の進化を遂げた。",
     "imageAsset": "assets/images/cards/card_food_004.png",
     "rarity": "normal",
-    "sourceNote": "カレー博物館"
+    "sourceNote": "カレー博物館",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_lang_004",
@@ -291,7 +424,12 @@
     "detailText": "上古日本語には語頭に「r」音（ら行）が来る言葉を避ける傾向があった。これは多くの言語に見られる傾向で、日本語の特徴の一つ。",
     "imageAsset": "assets/images/cards/card_lang_004.png",
     "rarity": "normal",
-    "sourceNote": "日本語学研究"
+    "sourceNote": "日本語学研究",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_life_004",
@@ -308,7 +446,13 @@
       "url": "https://www.access-board.gov/ada/chapter/ch04/",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "43c903ec5373a1523495fc023f602d4b27ad090b6addb457c0277ade7b2fd6ba"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -326,7 +470,13 @@
       "url": "https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "e5dbc7052fdd711b9a8576ef2ba7abea296135b55400938da433eb5f72c4e873"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -344,7 +494,13 @@
       "url": "https://www.worldwildlife.org/species/giant-panda/",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "secondary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "1c7e0080509afd261728ee6ad7a897732967aebcf058f03769fb2326081b26d4"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -355,7 +511,12 @@
     "detailText": "日本最高峰の富士山は、静岡県と山梨県の両方に属しています。山頂付近は富士山本宮浅間大社の土地とされ、県境未定地となっています。",
     "imageAsset": "assets/images/cards/card_nature_geography_001.png",
     "rarity": "normal",
-    "sourceNote": "静岡県および山梨県公式ホームページ"
+    "sourceNote": "静岡県および山梨県公式ホームページ",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_001",
@@ -365,7 +526,12 @@
     "detailText": "プカプカと海に浮かんで眠るラッコ。海藻を命綱のように体に巻き付けることで、眠っている間に遠くへ流されるのを防いでいます。",
     "imageAsset": "assets/images/cards/card_living_things_001.png",
     "rarity": "normal",
-    "sourceNote": "サンシャイン水族館 飼育コラム"
+    "sourceNote": "サンシャイン水族館 飼育コラム",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_001",
@@ -375,7 +541,12 @@
     "detailText": "当初は20年で解体される予定でしたが、無線通信のアンテナとして利用価値が認められたことで、現在まで保存されることになりました。",
     "imageAsset": "assets/images/cards/card_history_001.png",
     "rarity": "rare",
-    "sourceNote": "エッフェル塔公式サイト 歴史解説"
+    "sourceNote": "エッフェル塔公式サイト 歴史解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_001",
@@ -385,7 +556,12 @@
     "detailText": "最も硬いダイヤモンドと、紙にこすると削れるほど柔らかい黒鉛。構成元素はどちらも「炭素」ですが、結晶の構造が大きく異なります。",
     "imageAsset": "assets/images/cards/card_science_001.png",
     "rarity": "normal",
-    "sourceNote": "日本化学会 化学百科"
+    "sourceNote": "日本化学会 化学百科",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_005",
@@ -395,7 +571,12 @@
     "detailText": "赤い部分は果実ではなく、花の一部が変化した「偽果」です。表面の粒の中に種が入っており、一粒一粒が植物学上の果実にあたります。",
     "imageAsset": "assets/images/cards/card_food_005.png",
     "rarity": "normal",
-    "sourceNote": "農林水産省 植物の雑学"
+    "sourceNote": "農林水産省 植物の雑学",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_001",
@@ -412,7 +593,13 @@
       "url": "https://www.cnrtl.fr/definition/saboter",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "secondary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "cc197214156c132bb1381d398c7858dc009895e1258708ab26e2f2a1aa7c11ce"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -430,7 +617,13 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "b3c9ca44034e6961a3d6378dbc57ebad0489f5f4593128797e4e26770c61f3b7"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -441,7 +634,12 @@
     "detailText": "ヨルダンとイスラエルの境に位置する死海は、非常に高い塩分濃度のせいで魚などの生物が住めないことからその名がつきました。観光客が新聞を読みながら浮かぶ光景が有名です。",
     "imageAsset": "assets/images/cards/card_nature_geography_002.png",
     "rarity": "normal",
-    "sourceNote": "イスラエル政府観光局 公式サイト"
+    "sourceNote": "イスラエル政府観光局 公式サイト",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_002",
@@ -458,7 +656,13 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "248cbde8c90031a2bc5924d53ececc3606031ec837341fad3d8f384c009a9ffa"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -469,7 +673,12 @@
     "detailText": "ハワイの挨拶Alohaは、愛、平和、慈しみなど多くの意味を持ちます。特に語尾の「Ha」は生命の源である「呼吸」を指し、命そのものを分かち合うという敬意が込められています。",
     "imageAsset": "assets/images/cards/card_history_002.png",
     "rarity": "normal",
-    "sourceNote": "ハワイ州観光局公式ポータルサイト"
+    "sourceNote": "ハワイ州観光局公式ポータルサイト",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_002",
@@ -479,7 +688,12 @@
     "detailText": "太陽の光には虹の七色が含まれていますが、そのうち青い光が空気の粒にぶつかって空全体に広がります。夕焼けが赤いのは、光の進む距離が長くなり、青い光が届かなくなるためです。",
     "imageAsset": "assets/images/cards/card_science_002.png",
     "rarity": "normal",
-    "sourceNote": "気象庁 はれるんライブラリー"
+    "sourceNote": "気象庁 はれるんライブラリー",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_006",
@@ -489,7 +703,12 @@
     "detailText": "イギリスのサンドイッチ伯爵が、食事の時間さえ惜しんでトランプに熱中したために考案されたという逸話があります。現在では世界中で愛される合理的な食事の代名詞となりました。",
     "imageAsset": "assets/images/cards/card_food_006.png",
     "rarity": "normal",
-    "sourceNote": "英国政府観光庁（VisitBritain）"
+    "sourceNote": "英国政府観光庁（VisitBritain）",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_002",
@@ -499,7 +718,12 @@
     "detailText": "現代では単に複数の仕事をこなす意味ですが、元々は「捕まえる側」と「捕まる側」の両方を一人が演じる奇妙な状況を指しました。江戸時代の闇と裏事情が透けて見える言葉です。",
     "imageAsset": "assets/images/cards/card_language_002.png",
     "rarity": "rare",
-    "sourceNote": "小学館 精選版 日本国語大辞典"
+    "sourceNote": "小学館 精選版 日本国語大辞典",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_002",
@@ -509,7 +733,12 @@
     "detailText": "何気なく付いているキャップの穴は、もしもの時に空気が通るよう計算されています。小さな文房具の一つひとつに、事故を防ぐためのメーカーの知恵と配慮が隠されているのです。",
     "imageAsset": "assets/images/cards/card_daily_life_002.png",
     "rarity": "normal",
-    "sourceNote": "一般社団法人 日本筆記具工業会"
+    "sourceNote": "一般社団法人 日本筆記具工業会",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_006",
@@ -519,7 +748,12 @@
     "detailText": "1988年以降、日本で最も面積が小さい都道府県は香川県です。それまでは大阪府が最下位でしたが、埋め立てによる領土拡大で順位が逆転しました。",
     "imageAsset": "assets/images/cards/card_nature_geography_006.png",
     "rarity": "normal",
-    "sourceNote": "国土地理院「全国都道府県市区町村別面積調」"
+    "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_006",
@@ -529,7 +763,12 @@
     "detailText": "海中で生き抜くタコには、主心臓のほかにエラへ血液を送る心臓が2つあり、合計3つの心臓で力強く血液を循環させています。",
     "imageAsset": "assets/images/cards/card_living_things_006.png",
     "rarity": "rare",
-    "sourceNote": "生物学事典「軟体動物の循環系」"
+    "sourceNote": "生物学事典「軟体動物の循環系」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_005",
@@ -546,7 +785,13 @@
       "url": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "f7419bff3e154a74e4c0276aa1cea31bb50e535276bd312786abc695117768bc"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -557,7 +802,12 @@
     "detailText": "液体の表面が縮まろうとする「表面張力」の影響で、シャボン玉は最も表面積が小さくて安定した形である「球体」へと変化します。",
     "imageAsset": "assets/images/cards/card_science_005.png",
     "rarity": "normal",
-    "sourceNote": "物理学基礎「界面動態と表面張力」"
+    "sourceNote": "物理学基礎「界面動態と表面張力」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_007",
@@ -567,7 +817,12 @@
     "detailText": "世界三大珍味のキャビアはチョウザメの卵。チョウザメは名前に反してサメの仲間ではなく、ウロコがサメに似ているだけの古代魚です。",
     "imageAsset": "assets/images/cards/card_food_007.png",
     "rarity": "normal",
-    "sourceNote": "水産庁「世界の水産資源解説」"
+    "sourceNote": "水産庁「世界の水産資源解説」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_005",
@@ -577,7 +832,12 @@
     "detailText": "将棋の「詰み」が連想されがちな「大詰」ですが、実は歌舞伎の最終幕を指す言葉がルーツで、物語の結末から転じた言葉です。",
     "imageAsset": "assets/images/cards/card_language_005.png",
     "rarity": "normal",
-    "sourceNote": "日本国語大辞典「大詰の項」"
+    "sourceNote": "日本国語大辞典「大詰の項」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_005",
@@ -587,7 +847,12 @@
     "detailText": "食品の容器に印字される賞味期限には、誤って口に入っても無害な「イカ墨インク」が広く採用されており、生活の安全を支えています。",
     "imageAsset": "assets/images/cards/card_daily_life_005.png",
     "rarity": "rare",
-    "sourceNote": "日本缶詰びん詰レトルト食品協会資料"
+    "sourceNote": "日本缶詰びん詰レトルト食品協会資料",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_007",
@@ -597,7 +862,12 @@
     "detailText": "広大な国土を持つ中国とロシアは、それぞれ14もの国々と陸の国境を接しており、世界で最も隣国が多い国となっています。",
     "imageAsset": "assets/images/cards/card_nature_geography_007.png",
     "rarity": "normal",
-    "sourceNote": "国連データ「世界の国境線長と隣接国」"
+    "sourceNote": "国連データ「世界の国境線長と隣接国」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_007",
@@ -607,7 +877,12 @@
     "detailText": "ペンギンの足元には、温かい血液と冷たい血液の間で熱を効率よく循環させる天然の床暖房のような血管網システムが備わっています。",
     "imageAsset": "assets/images/cards/card_living_things_007.png",
     "rarity": "rare",
-    "sourceNote": "動物生理学「鳥類の体温調節機構」"
+    "sourceNote": "動物生理学「鳥類の体温調節機構」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_006",
@@ -617,7 +892,12 @@
     "detailText": "天体を観測して日本の正確な時間を支配した「天文方」。彼らの正確な計算によって、江戸時代の太陰暦カレンダーが作られていました。",
     "imageAsset": "assets/images/cards/card_history_006.png",
     "rarity": "normal",
-    "sourceNote": "日本史辞典「江戸幕府の職制」"
+    "sourceNote": "日本史辞典「江戸幕府の職制」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_008",
@@ -634,7 +914,13 @@
       "url": "https://www.gsi.go.jp/sokuchikijun/suijun-genten.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "ef258b035470da0347462cd4029a814c659d9bba5cfd3b89e4e295b367da8da5"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -645,7 +931,12 @@
     "detailText": "夏は日射で地面近くの空気が暖まり、上昇して積乱雲が育つため雷が起こりやすい。",
     "imageAsset": "assets/images/cards/card_nature_geography_009.png",
     "rarity": "normal",
-    "sourceNote": "気象庁・雷検知数の季節解説"
+    "sourceNote": "気象庁・雷検知数の季節解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_008",
@@ -655,7 +946,12 @@
     "detailText": "頭足類の心臓は役割分担型。二つがえらへ、一つが全身へ血液を送る。",
     "imageAsset": "assets/images/cards/card_living_things_008.png",
     "rarity": "normal",
-    "sourceNote": "スミソニアン海洋・頭足類解説"
+    "sourceNote": "スミソニアン海洋・頭足類解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_009",
@@ -665,7 +961,12 @@
     "detailText": "ヘモシアニンは銅を含む酸素運搬タンパク質で、鉄を含む人の血と色が違う。",
     "imageAsset": "assets/images/cards/card_living_things_009.png",
     "rarity": "rare",
-    "sourceNote": "英国自然史博物館・タコの血解説"
+    "sourceNote": "英国自然史博物館・タコの血解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_007",
@@ -675,7 +976,12 @@
     "detailText": "かつて日本標準時とは別に西部標準時があり、台湾や沖縄の一部で使われた時期がある。",
     "imageAsset": "assets/images/cards/card_history_007.png",
     "rarity": "rare",
-    "sourceNote": "国立公文書館・標準時の歴史資料"
+    "sourceNote": "国立公文書館・標準時の歴史資料",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_006",
@@ -692,7 +998,13 @@
       "url": "https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "370ec2e6e8c075d6ac2a17e76e2855953e9486d961bf34bd6c3c4018462ef6e1"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -703,7 +1015,12 @@
     "detailText": "和食のだしは、昆布とかつお節の成分を合わせることで、単独より強くうま味を感じやすい。",
     "imageAsset": "assets/images/cards/card_food_008.png",
     "rarity": "normal",
-    "sourceNote": "農林水産省・だしうま味解説"
+    "sourceNote": "農林水産省・だしうま味解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_009",
@@ -713,7 +1030,12 @@
     "detailText": "細胞が壊れることで酵素反応が進み、目を刺激する揮発性の物質が作られる。",
     "imageAsset": "assets/images/cards/card_food_009.png",
     "rarity": "normal",
-    "sourceNote": "Poison Control・タマネギ解説"
+    "sourceNote": "Poison Control・タマネギ解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_006",
@@ -723,7 +1045,12 @@
     "detailText": "カステラはポルトガル経由で伝わったが、名はカスティーリャ地方に由来する説が有力。",
     "imageAsset": "assets/images/cards/card_language_006.png",
     "rarity": "rare",
-    "sourceNote": "国立国会図書館レファレンス事例"
+    "sourceNote": "国立国会図書館レファレンス事例",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_006",
@@ -733,7 +1060,12 @@
     "detailText": "PETボトルの識別表示にある数字は、素材を区別するコード体系に由来する。",
     "imageAsset": "assets/images/cards/card_daily_life_006.png",
     "rarity": "rare",
-    "sourceNote": "環境省・環境ラベルデータベース"
+    "sourceNote": "環境省・環境ラベルデータベース",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_010",
@@ -743,7 +1075,12 @@
     "detailText": "長さ約6,400キロメートルにおよぶアマゾン川ですが、本流をまたぐ橋はゼロ。自然環境の過酷さと船社会の文化を象徴しています。",
     "imageAsset": "assets/images/cards/card_nature_geography_010.png",
     "rarity": "rare",
-    "sourceNote": "地理学講義「世界の河川とインフラ」"
+    "sourceNote": "地理学講義「世界の河川とインフラ」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_010",
@@ -753,7 +1090,12 @@
     "detailText": "のんびり歩くカタツムリですが、口の中には1万本を超える微細な歯がぎっしり。コンクリートすら削る強靭な食事システムです。",
     "imageAsset": "assets/images/cards/card_living_things_010.png",
     "rarity": "rare",
-    "sourceNote": "軟体動物生態誌「歯舌の構造と進化」"
+    "sourceNote": "軟体動物生態誌「歯舌の構造と進化」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_008",
@@ -763,7 +1105,12 @@
     "detailText": "動けないほど重いイメージのある西洋の鎧ですが、実際は約25kg程度。優れた設計により、戦場を自在に駆け回る機動性がありました。",
     "imageAsset": "assets/images/cards/card_history_008.png",
     "rarity": "normal",
-    "sourceNote": "軍事史博物館「西洋甲冑の歴史と構造」"
+    "sourceNote": "軍事史博物館「西洋甲冑の歴史と構造」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_007",
@@ -773,7 +1120,12 @@
     "detailText": "世界で最も硬い宝石のダイヤモンドですが、正体は炭素の塊。火をつければ二酸化炭素となって、跡形もなく空気中に消え去ります。",
     "imageAsset": "assets/images/cards/card_science_007.png",
     "rarity": "normal",
-    "sourceNote": "基礎化学「炭素同素体の燃焼実験」"
+    "sourceNote": "基礎化学「炭素同素体の燃焼実験」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_010",
@@ -790,7 +1142,13 @@
       "url": "https://www.fisheries.noaa.gov/species/alaska-pollock",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "e4e741986da542f85c6368aaef1941eab69741b1280273d7cf4ba16a896f74cb"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -801,7 +1159,12 @@
     "detailText": "慣用句で使われる「うだつ」は、火災から家を守るための建築設備のこと。お金持ちしか建てられなかったことが語源です。",
     "imageAsset": "assets/images/cards/card_language_007.png",
     "rarity": "normal",
-    "sourceNote": "建築意匠辞典「うだつ・町家の装飾」"
+    "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_007",
@@ -818,7 +1181,13 @@
       "url": "https://www.metmuseum.org/art/collection/search/475513",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "e46963ca2972cc2aad8aa2aa56854dd25b8667862428d779d71a0605f71a2de8"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -829,7 +1198,12 @@
     "detailText": "大都市同士の譲れないプライド論争を解決するため、何もない荒野に計画都市として建設されたのが、現在の首都キャンベラです。",
     "imageAsset": "assets/images/cards/card_nature_geography_011.png",
     "rarity": "normal",
-    "sourceNote": "オーストラリア政府公式ウェブサイト"
+    "sourceNote": "オーストラリア政府公式ウェブサイト",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_011",
@@ -839,7 +1213,12 @@
     "detailText": "もふもふの体を持つペットたち。彼らが唯一汗を流せるのがチャームポイントの肉球です。緊張すると足跡が湿ることもあります。",
     "imageAsset": "assets/images/cards/card_living_things_011.png",
     "rarity": "normal",
-    "sourceNote": "獣医解剖学「伴侶動物の皮膚生理」"
+    "sourceNote": "獣医解剖学「伴侶動物の皮膚生理」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_008",
@@ -849,7 +1228,12 @@
     "detailText": "文学史に残る名フレーズに隠されたまさかの事実。言葉の美しさを優先した結果、唐揚げがサラダへと大変身を遂げていました。",
     "imageAsset": "assets/images/cards/card_language_008.png",
     "rarity": "rare",
-    "sourceNote": "俵万智エッセイ集「サラダのそのあと」"
+    "sourceNote": "俵万智エッセイ集「サラダのそのあと」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_012",
@@ -859,7 +1243,12 @@
     "detailText": "アフリカの赤道直下でありながら、標高約6,000メートルの山頂には氷河が広がります。世紀を超えて登山家を魅了する大自然の奇跡です。",
     "imageAsset": "assets/images/cards/card_nature_geography_012.png",
     "rarity": "rare",
-    "sourceNote": "国連環境計画（UNEP）気候変動報告書"
+    "sourceNote": "国連環境計画（UNEP）気候変動報告書",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_012",
@@ -869,7 +1258,12 @@
     "detailText": "ウサギが食べるのは、普段見るコロコロした糞ではなく、栄養が詰まった特別な柔らかい糞。健康を維持するための本能的な行動です。",
     "imageAsset": "assets/images/cards/card_living_things_012.png",
     "rarity": "normal",
-    "sourceNote": "小動物臨床医学「草食哺乳類の消化生理」"
+    "sourceNote": "小動物臨床医学「草食哺乳類の消化生理」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_009",
@@ -886,7 +1280,13 @@
       "url": "https://www.britishmuseum.org/collection/object/Y_EA24",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "f65e18f7950bd9bad4eb9cd621851b934371752555576b6d9148d2c48f77a3cc"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -904,7 +1304,13 @@
       "url": "https://www.mint.go.jp/eng/kids-eng/eng_kids_circulating_c.html",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "d75c2c2c9278a7a7fc844eeee71d31397ad460527c956bcfeb00c6b1bd4d3f34"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -915,7 +1321,12 @@
     "detailText": "実は赤い部分は果物ではなく、ツブツブのほうが本物の「果実」。1粒のイチゴを食べることは、数百個の果実を一度に食べるのと同じです。",
     "imageAsset": "assets/images/cards/card_food_011.png",
     "rarity": "normal",
-    "sourceNote": "植物分類学「偽果と真果の構造」"
+    "sourceNote": "植物分類学「偽果と真果の構造」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_language_009",
@@ -925,7 +1336,12 @@
     "detailText": "日常的に使う「サボる」ですが、もともとはフランスの労働運動がルーツ。立派な外来語と日本語がミックスされてできた言葉です。",
     "imageAsset": "assets/images/cards/card_language_009.png",
     "rarity": "normal",
-    "sourceNote": "新明解国語辞典「サボるの項」"
+    "sourceNote": "新明解国語辞典「サボるの項」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_008",
@@ -942,7 +1358,13 @@
       "url": "https://www.hse.gov.uk/pubns/priced/l64.pdf",
       "verifiedAt": "2026-07-13",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "e4cb2fbd02ff2b01c06c29828b5e02dc87f0404387a7d566afe0f5a09fbef06d"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -953,7 +1375,12 @@
     "detailText": "佐渡島や奄美大島を抑えて人口トップを誇る淡路島。玉ねぎの特産やテーマパークも多く、島でありながら大都市並みの活気があります。",
     "imageAsset": "assets/images/cards/card_nature_geography_013.png",
     "rarity": "normal",
-    "sourceNote": "総務省「国勢調査・離島振興解説」"
+    "sourceNote": "総務省「国勢調査・離島振興解説」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_013",
@@ -963,7 +1390,12 @@
     "detailText": "花の蜜を吸うために進化したハチドリの羽は、肩の関節が自由に回転する特殊な構造をしており、バックギアを入れたような後退飛行が可能です。",
     "imageAsset": "assets/images/cards/card_living_things_013.png",
     "rarity": "normal",
-    "sourceNote": "鳥類構造学「ハチドリの飛行メカニズム」"
+    "sourceNote": "鳥類構造学「ハチドリの飛行メカニズム」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_010",
@@ -973,7 +1405,12 @@
     "detailText": "闘技場を丸ごとプールに変えてしまうローマ人の圧倒的な土木技術。国家の威信をかけた、血湧き肉躍る驚天動地劇が開催されていました。",
     "imageAsset": "assets/images/cards/card_history_010.png",
     "rarity": "rare",
-    "sourceNote": "ローマ帝国史「コロッセオの構造と祝祭」"
+    "sourceNote": "ローマ帝国史「コロッセオの構造と祝祭」",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_014",
@@ -990,7 +1427,13 @@
       "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "6d13ce449a47f461b8560d1cff5d16c5f6348a379e5ac0048e0eb31e28fefd2b"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1001,7 +1444,12 @@
     "detailText": "津波は普通の波と違い、海底の急な変形などで海水の柱全体が動かされることで広がっていく。",
     "imageAsset": "assets/images/cards/card_nature_geography_015.png",
     "rarity": "normal",
-    "sourceNote": "NOAA・津波発生の解説"
+    "sourceNote": "NOAA・津波発生の解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_nature_geography_016",
@@ -1018,7 +1466,13 @@
       "url": "https://science.nasa.gov/moon/eclipses/",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "d528fc4fe5d704bc2a5cb00e5d4d07d7154ab1f3aef2c6ecf4643f8b3c638053"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1036,7 +1490,13 @@
       "url": "https://www.nps.gov/subjects/bats/echolocation.htm",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "b87ee5673f4b62d6fa42c3efc8f8587d4ded88a10a63428bce97db8c58d7698e"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1047,7 +1507,12 @@
     "detailText": "ラクダが砂漠で強いのは、こぶに水を持つからではなく、水分を節約する体の仕組みと脂肪の蓄えによる。",
     "imageAsset": "assets/images/cards/card_living_things_015.png",
     "rarity": "normal",
-    "sourceNote": "米国議会図書館・ラクダ解説"
+    "sourceNote": "米国議会図書館・ラクダ解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_016",
@@ -1057,7 +1522,12 @@
     "detailText": "ホタルの発光は熱い炎ではなく、体内の化学反応で効率よく光を生み出す生物発光の一種。",
     "imageAsset": "assets/images/cards/card_living_things_016.png",
     "rarity": "rare",
-    "sourceNote": "JST・ホタル発光研究発表"
+    "sourceNote": "JST・ホタル発光研究発表",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_living_things_017",
@@ -1074,7 +1544,13 @@
       "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "73a70f3cc743a56c147498ab6994c683a76fb41169a68c70f3dfafd2698f3335"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1092,7 +1568,13 @@
       "url": "https://oceanservice.noaa.gov/facts/seahorse.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "5cfca17fc79ecd874def176093409744320098e570b2fa3b5003f39fdedb1cb1"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1103,7 +1585,12 @@
     "detailText": "ペニー・ブラックは郵便料金を前払いする仕組みを広め、近代郵便制度の象徴的な存在になった。",
     "imageAsset": "assets/images/cards/card_history_011.png",
     "rarity": "normal",
-    "sourceNote": "英国郵便博物館・ペニー黒切手"
+    "sourceNote": "英国郵便博物館・ペニー黒切手",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_history_012",
@@ -1120,7 +1607,13 @@
       "url": "https://www.tomioka-silk.jp/_tomioka-silk-mill/about/",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "4262af63f4eefd766b3ee2b5c2189da30af1b6d7335be3dcf1bb6b8c3e7d6732"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1138,7 +1631,13 @@
       "url": "https://www.bipm.org/en/countries/jp",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "fe7a8fa782a2daf18f756e778b05b8ece61e4ffbdc99af848265604e4c877246"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1149,7 +1648,12 @@
     "detailText": "スマホの現在地表示の裏側では、衛星からの信号が届く時間差を精密に測る仕組みが働いている。",
     "imageAsset": "assets/images/cards/card_science_009.png",
     "rarity": "normal",
-    "sourceNote": "NASA・原子時計とGPS解説"
+    "sourceNote": "NASA・原子時計とGPS解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_010",
@@ -1159,7 +1663,12 @@
     "detailText": "飛行機の翼は単に上面が長いから飛ぶのではなく、空気の流れと圧力差を含む複数の要因で揚力を得る。",
     "imageAsset": "assets/images/cards/card_science_010.png",
     "rarity": "normal",
-    "sourceNote": "NASAグレン研究所・揚力解説"
+    "sourceNote": "NASAグレン研究所・揚力解説",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_science_011",
@@ -1169,7 +1678,12 @@
     "detailText": "油は水だけでは落ちにくいが、石けんは油側と水側の両方に働きかけ、汚れを浮かせやすくする。",
     "imageAsset": "assets/images/cards/card_science_011.png",
     "rarity": "normal",
-    "sourceNote": "イェール医学部・石けんの仕組み"
+    "sourceNote": "イェール医学部・石けんの仕組み",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_food_012",
@@ -1186,7 +1700,13 @@
       "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms204_250331_01.pdf",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "277d3f37cdfc16c408db018dc317446fb67fd76db13b85e3e892f5a168f9869a"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1204,7 +1724,13 @@
       "url": "https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "beb05b916ae94ab025925372e71b7f88d698e313a2d718261b193fac8b7c61d4"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1215,7 +1741,12 @@
     "detailText": "パンは英語由来と思われがちだが、日本語としてはポルトガル語から入った古い外来語とされる。",
     "imageAsset": "assets/images/cards/card_language_010.png",
     "rarity": "normal",
-    "sourceNote": "国立国語研究所・外来語資料"
+    "sourceNote": "国立国語研究所・外来語資料",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   },
   {
     "id": "card_daily_life_009",
@@ -1232,7 +1763,13 @@
       "url": "https://www.env.go.jp/recycle/3r/en/outline.html",
       "verifiedAt": "2026-07-12",
       "verificationLevel": "primary",
-      "reviewStatus": "approved"
+      "reviewStatus": "approved",
+      "contentHash": "424661125c34574839381e2fa95c2235f4f4083cb8899d4c4f8ebbf65c8df6ee"
+    },
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     }
   },
   {
@@ -1243,6 +1780,11 @@
     "detailText": "119番は最初から当然だったわけではなく、電話の仕組みや誤接続の問題を受けて選ばれた番号だった。",
     "imageAsset": "assets/images/cards/card_daily_life_010.png",
     "rarity": "rare",
-    "sourceNote": "日本大百科全書・緊急通報番号"
+    "sourceNote": "日本大百科全書・緊急通報番号",
+    "imageReview": {
+      "status": "generic_placeholder",
+      "reviewedAt": "2026-07-14",
+      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    }
   }
 ]

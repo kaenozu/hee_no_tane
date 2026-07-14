@@ -55,9 +55,7 @@ class StartupErrorApp extends StatelessWidget {
                         Text(
                           '起動できませんでした',
                           textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
+                          style: Theme.of(context).textTheme.headlineSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 16),
@@ -71,7 +69,8 @@ class StartupErrorApp extends StatelessWidget {
                           Text(
                             safeDetails,
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
                                   color: colorScheme.error,
                                   fontWeight: FontWeight.w600,
                                 ),
