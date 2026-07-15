@@ -121,10 +121,7 @@ jobs:
                   text = data.decode('utf-8')
               except UnicodeDecodeError:
                   continue
-              lines = text.splitlines()
-              normalized = '\n'.join(line.rstrip(' \t\r') for line in lines)
-              if text.endswith(('\n', '\r')):
-                  normalized += '\n'
+              normalized = text.rstrip(' \t\r\n') + '\n'
               if normalized != text:
                   path.write_text(normalized, encoding='utf-8')
           PY
