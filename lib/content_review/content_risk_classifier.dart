@@ -52,6 +52,8 @@ class _RiskCandidate {
   final String cardDetail;
   final String text;
   final List<String> reasons;
+  final Set<String> questionPairs;
+  final Set<String> evidencePairs;
   final Set<String> duplicateQuestionIds = <String>{};
 
   _RiskCandidate({
@@ -65,6 +67,8 @@ class _RiskCandidate {
     required this.cardDetail,
     required this.text,
     required this.reasons,
+    required this.questionPairs,
+    required this.evidencePairs,
   });
 }
 
@@ -166,6 +170,8 @@ class ContentRiskClassifier {
         card['shortText'],
         cardDetail,
       ].whereType<String>().join(' ');
+      final evidenceText =
+          '$questionText $explanation $cardTitle $cardDetail';
       candidates.add(
         _RiskCandidate(
           questionId: questionId,
@@ -178,6 +184,8 @@ class ContentRiskClassifier {
           cardDetail: cardDetail,
           text: text,
           reasons: _riskReasons(text, category),
+          questionPairs: _characterPairs(_normalizeFactText(questionText)),
+          evidencePairs: _characterPairs(_normalizeFactText(evidenceText)),
         ),
       );
     }
@@ -317,12 +325,13 @@ class ContentRiskClassifier {
   }
 
   bool _isDuplicateFact(_RiskCandidate first, _RiskCandidate second) {
-    final questionSimilarity = _textSimilarity(first.question, second.question);
-    final evidenceSimilarity = _textSimilarity(
-      '${first.question} ${first.explanation} '
-          '${first.cardTitle} ${first.cardDetail}',
-      '${second.question} ${second.explanation} '
-          '${second.cardTitle} ${second.cardDetail}',
+    final questionSimilarity = _similarity(
+      first.questionPairs,
+      second.questionPairs,
+    );
+    final evidenceSimilarity = _similarity(
+      first.evidencePairs,
+      second.evidencePairs,
     );
 
     // Correct answers are intentionally excluded from duplicate evidence. Generic
@@ -331,12 +340,10 @@ class ContentRiskClassifier {
         (questionSimilarity >= 0.40 && evidenceSimilarity >= 0.38);
   }
 
-  double _textSimilarity(String left, String right) {
-    final leftPairs = _characterPairs(_normalizeFactText(left));
-    final rightPairs = _characterPairs(_normalizeFactText(right));
-    if (leftPairs.isEmpty || rightPairs.isEmpty) return 0;
-    final overlap = leftPairs.intersection(rightPairs).length;
-    return (2 * overlap) / (leftPairs.length + rightPairs.length);
+  double _similarity(Set<String> left, Set<String> right) {
+    if (left.isEmpty || right.isEmpty) return 0;
+    final overlap = left.intersection(right).length;
+    return (2 * overlap) / (left.length + right.length);
   }
 
   Set<String> _characterPairs(String value) {
