@@ -33,16 +33,15 @@ void main() {
       cardsJson: cards,
     );
 
-    expect(
-      enhanced.split('\r\n').first,
-      enhancedContentReviewColumns.join(','),
-    );
+    expect(enhanced.split('\n').first, enhancedContentReviewColumns.join(','));
     expect(enhanced, contains('assets/images/cards/card_1.png,unchecked'));
     final stripped = classifier.stripReviewCsv(
       reviewCsv: enhanced,
       cardsJson: cards,
     );
-    expect(stripped.split('\r\n').first, contentReviewColumns.join(','));
+    expect(stripped.split('\n').first, contentReviewColumns.join(','));
+    expect(enhanced, isNot(contains('\r')));
+    expect(stripped, isNot(contains('\r')));
     expect(
       workflow
           .planImport(csv: stripped, questionsJson: questions, cardsJson: cards)

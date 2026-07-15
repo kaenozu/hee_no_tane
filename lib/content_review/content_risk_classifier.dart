@@ -170,8 +170,7 @@ class ContentRiskClassifier {
         card['shortText'],
         cardDetail,
       ].whereType<String>().join(' ');
-      final evidenceText =
-          '$questionText $explanation $cardTitle $cardDetail';
+      final evidenceText = '$questionText $explanation $cardTitle $cardDetail';
       candidates.add(
         _RiskCandidate(
           questionId: questionId,
@@ -420,7 +419,7 @@ class ContentRiskClassifier {
   }
 
   String _encodeCsv(List<List<String>> rows) {
-    return '${rows.map((row) => row.map(_escapeCsv).join(',')).join('\r\n')}\r\n';
+    return '${rows.map((row) => row.map(_escapeCsv).join(',')).join('\n')}\n';
   }
 
   String _escapeCsv(String value) {

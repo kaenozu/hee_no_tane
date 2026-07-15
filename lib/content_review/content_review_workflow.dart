@@ -658,7 +658,7 @@ class ContentReviewWorkflow {
       '${const JsonEncoder.withIndent('  ').convert(value)}\n';
 
   String _encodeCsv(List<List<String>> rows) =>
-      '${rows.map((row) => row.map(_escapeCsv).join(',')).join('\r\n')}\r\n';
+      '${rows.map((row) => row.map(_escapeCsv).join(',')).join('\n')}\n';
 
   String _escapeCsv(String value) {
     if (!value.contains(RegExp(r'[,"\r\n]'))) return value;

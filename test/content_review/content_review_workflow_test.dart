@@ -18,7 +18,8 @@ void main() {
       cardsJson: _cardsJson(),
     );
 
-    expect(csv.split('\r\n').first, contentReviewColumns.join(','));
+    expect(csv.split('\n').first, contentReviewColumns.join(','));
+    expect(csv, isNot(contains('\r')));
     expect(csv, contains('choice0,choice1,choice2,choice3,answerIndex'));
     expect(csv, contains('cardTitle,cardShortText,cardDetailText,cardRarity'));
     expect(csv, contains('imageReviewStatus,imageReviewedAt,imageReviewNote'));
@@ -322,7 +323,7 @@ List<List<String>> _parseCsv(String source) {
 }
 
 String _encodeCsv(List<List<String>> rows) =>
-    '${rows.map((row) => row.map(_csvValue).join(',')).join('\r\n')}\r\n';
+    '${rows.map((row) => row.map(_csvValue).join(',')).join('\n')}\n';
 
 String _csvValue(String value) {
   if (!value.contains(RegExp(r'[,"\r\n]'))) return value;
