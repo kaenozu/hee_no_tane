@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - master
-  push:
-    branches:
-      - agent/known-duplicate-content-cleanup
 
 permissions:
   contents: write
@@ -102,8 +99,36 @@ jobs:
       - name: Test
         run: flutter test
 
-      - name: Check whitespace
-        run: git diff --check
+      - name: Normalize changed text and check whitespace
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          changed = subprocess.check_output(
+              ['git', 'diff', '--name-only', '--diff-filter=ACM'],
+              text=True,
+          ).splitlines()
+          for name in changed:
+              path = Path(name)
+              if not path.is_file():
+                  continue
+              data = path.read_bytes()
+              if b'\0' in data:
+                  continue
+              try:
+                  text = data.decode('utf-8')
+              except UnicodeDecodeError:
+                  continue
+              lines = text.splitlines()
+              normalized = '\n'.join(line.rstrip(' \t\r') for line in lines)
+              if text.endswith(('\n', '\r')):
+                  normalized += '\n'
+              if normalized != text:
+                  path.write_text(normalized, encoding='utf-8')
+          PY
+          git diff --check
 
       - name: Remove temporary automation files
         shell: bash
