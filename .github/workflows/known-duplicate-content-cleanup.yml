@@ -1,6 +1,9 @@
 name: Known duplicate content cleanup
 
 on:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - agent/known-duplicate-content-cleanup
