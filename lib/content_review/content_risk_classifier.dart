@@ -318,30 +318,17 @@ class ContentRiskClassifier {
 
   bool _isDuplicateFact(_RiskCandidate first, _RiskCandidate second) {
     final questionSimilarity = _textSimilarity(first.question, second.question);
-    final combinedSimilarity = _textSimilarity(
-      '${first.question} ${first.answer} ${first.explanation} '
+    final evidenceSimilarity = _textSimilarity(
+      '${first.question} ${first.explanation} '
           '${first.cardTitle} ${first.cardDetail}',
-      '${second.question} ${second.answer} ${second.explanation} '
+      '${second.question} ${second.explanation} '
           '${second.cardTitle} ${second.cardDetail}',
     );
-    final firstAnswer = _normalizeFactText(first.answer);
-    final secondAnswer = _normalizeFactText(second.answer);
-    final sameAnswer = firstAnswer == secondAnswer;
-    final shorterAnswer = firstAnswer.length <= secondAnswer.length
-        ? firstAnswer
-        : secondAnswer;
-    final longerAnswer = firstAnswer.length <= secondAnswer.length
-        ? secondAnswer
-        : firstAnswer;
-    final compatibleAnswer =
-        sameAnswer ||
-        (shorterAnswer.length >= 2 && longerAnswer.contains(shorterAnswer));
-    if (compatibleAnswer &&
-        questionSimilarity >= 0.28 &&
-        combinedSimilarity >= 0.20) {
-      return true;
-    }
-    return questionSimilarity >= 0.45 && combinedSimilarity >= 0.30;
+
+    // Correct answers are intentionally excluded from duplicate evidence. Generic
+    // answers such as an era, number, or title can be shared by unrelated facts.
+    return (questionSimilarity >= 0.50 && evidenceSimilarity >= 0.25) ||
+        (questionSimilarity >= 0.40 && evidenceSimilarity >= 0.38);
   }
 
   double _textSimilarity(String left, String right) {
