@@ -43,3 +43,13 @@
 - No question text, choices, answer indexes, explanations, card text, rarity, image path, or image review metadata is intentionally changed.
 - Unselected question/card objects must remain semantically identical.
 - Selected pairs must retain only `image_generic_placeholder` in the release blocker manifest.
+
+## Known duplicate cleanup — 2026-07-15
+
+| Group | Keep | Replace | Delete / scope reduction |
+| --- | --- | --- | --- |
+| Strawberry fruit structure | `q_food_005` | `q_food_011` → capsaicin receptor TRPV1 | Original strawberry claim removed from `q_food_011` |
+| Octopus hearts | `q_living_things_008` | `q_bio_003` → cuttlebone buoyancy; `q_living_things_006` → vampire squid detritivory | Two duplicate octopus-heart claims removed |
+| Sandwich name origin | `q_food_006` | `q_lang_003` → Hepburn `SHI` spelling | Card-playing anecdote removed from maintained question/card copy |
+
+The four replacement claims were checked against directly accessible original research or an official government table. The generated risk CSV must contain no duplicate edge for these groups.

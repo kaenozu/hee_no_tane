@@ -244,17 +244,27 @@
   },
   {
     "id": "card_bio_003",
-    "title": "タコの心臓",
+    "title": "コウイカの浮力装置",
     "category": "living_things",
-    "shortText": "タコには心臓が3つある。",
-    "detailText": "タコは3つの心臓を持つ。全身用の心臓1つと、エラ用の心臓2つ。不思議な循環器系を持っている。",
+    "shortText": "体内の甲が浮力を調節する。",
+    "detailText": "コウイカの甲（カトルボーン）は多数の小部屋を持つ軽量な内部構造で、研究論文では高度な浮力装置と説明されている。",
     "imageAsset": "assets/images/cards/card_bio_003.png",
     "rarity": "rare",
-    "sourceNote": "National Geographic",
+    "sourceNote": "Checaほか（2015）Scientific Reports",
     "imageReview": {
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "title": "The cuttlefish Sepia officinalis (Sepiidae, Cephalopoda) constructs cuttlebone from a liquid-crystal precursor",
+      "publisher": "Scientific Reports",
+      "url": "https://www.nature.com/articles/srep11513",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "The original research article identifies cuttlebone as the sophisticated buoyancy device of cuttlefish.",
+      "contentHash": "b740629b9ebd0bea7b475259b8114ce4a65b7becd5a66d1986f03e0f39eec7fe"
     }
   },
   {
@@ -304,17 +314,27 @@
   },
   {
     "id": "card_lang_003",
-    "title": "サンドイッチ伯爵",
+    "title": "ヘボン式の「し」",
     "category": "language",
-    "shortText": "伯爵の名前が由来。",
-    "detailText": "サンドイッチは18世紀イギリスの第4代サンドイッチ伯爵が、トランプに夢中で食事を頼んだことが始まりと言われている。",
+    "shortText": "外務省の表記はSHI。",
+    "detailText": "外務省の旅券用ヘボン式ローマ字綴方表では、ひらがなの「し」をSHIと表記する。SIとする方式とは綴りが異なる。",
     "imageAsset": "assets/images/cards/card_lang_003.png",
     "rarity": "normal",
-    "sourceNote": "オックスフォード英語辞典",
+    "sourceNote": "外務省「ヘボン式ローマ字綴方表」",
     "imageReview": {
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "title": "ヘボン式ローマ字綴方表",
+      "publisher": "外務省",
+      "url": "https://www.mofa.go.jp/mofaj/toko/passport/download/romaji.html",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "外務省の旅券用ヘボン式ローマ字綴方表は、ひらがなの「し」をSHIと示している。",
+      "contentHash": "f150d1c4ad250c4000fd26437a2635ab33657e81905ffcf058b8cc0b94fade5b"
     }
   },
   {
@@ -707,13 +727,13 @@
   },
   {
     "id": "card_food_006",
-    "title": "伯爵のサンドイッチ",
+    "title": "サンドイッチ伯爵と料理名",
     "category": "food",
-    "shortText": "カード遊びから生まれた世界的な軽食。",
-    "detailText": "イギリスのサンドイッチ伯爵が、食事の時間さえ惜しんでトランプに熱中したために考案されたという逸話があります。現在では世界中で愛される合理的な食事の代名詞となりました。",
+    "shortText": "料理名は第4代伯爵の爵位名に由来。",
+    "detailText": "「sandwich」という料理名は、第4代サンドイッチ伯爵ジョン・モンタギューの爵位名に由来する。料理名は個人名ではなく、爵位名の「Sandwich」から広まった。",
     "imageAsset": "assets/images/cards/card_food_006.png",
     "rarity": "normal",
-    "sourceNote": "英国政府観光庁（VisitBritain）",
+    "sourceNote": "Oxford English Dictionary「sandwich」",
     "imageReview": {
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
@@ -767,17 +787,27 @@
   },
   {
     "id": "card_living_things_006",
-    "title": "タコのトリプルハート",
+    "title": "コウモリダコの食事",
     "category": "living_things",
-    "shortText": "タコの体に隠された心臓の数の秘密",
-    "detailText": "海中で生き抜くタコには、主心臓のほかにエラへ血液を送る心臓が2つあり、合計3つの心臓で力強く血液を循環させています。",
+    "shortText": "沈降する有機物を集めて食べる。",
+    "detailText": "コウモリダコは長い感覚糸で、死んだ生物の破片や糞粒などのデトリタスを集め、粘液でまとめて食べる。",
     "imageAsset": "assets/images/cards/card_living_things_006.png",
     "rarity": "rare",
-    "sourceNote": "生物学事典「軟体動物の循環系」",
+    "sourceNote": "Hoving・Robison（2012）Proceedings B",
     "imageReview": {
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "title": "Vampire squid: detritivores in the oxygen minimum zone",
+      "publisher": "Proceedings of the Royal Society B",
+      "url": "https://royalsocietypublishing.org/doi/10.1098/rspb.2012.1357",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "Hoving and Robison documented vampire squid collecting detrital material with retractile filaments and consuming it with mucus.",
+      "contentHash": "2043cad131be18b3895525e1d1ce0b717e1a9cb117a829aeca4bd8c259d22d11"
     }
   },
   {
@@ -1325,17 +1355,27 @@
   },
   {
     "id": "card_food_011",
-    "title": "イチゴのツブツブの正体",
+    "title": "辛さと熱を感じるTRPV1",
     "category": "food",
-    "shortText": "種だと思っていた部分の意外な事実",
-    "detailText": "実は赤い部分は果物ではなく、ツブツブのほうが本物の「果実」。1粒のイチゴを食べることは、数百個の果実を一度に食べるのと同じです。",
+    "shortText": "カプサイシンはTRPV1を活性化する。",
+    "detailText": "1997年の原著論文は、カプサイシン受容体を熱でも活性化するイオンチャネルとして報告した。この受容体は現在TRPV1と呼ばれる。",
     "imageAsset": "assets/images/cards/card_food_011.png",
     "rarity": "normal",
-    "sourceNote": "植物分類学「偽果と真果の構造」",
+    "sourceNote": "Caterinaほか（1997）Nature",
     "imageReview": {
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "title": "The capsaicin receptor: a heat-activated ion channel in the pain pathway",
+      "publisher": "Nature",
+      "url": "https://www.nature.com/articles/389816a0",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "Caterina et al. cloned the capsaicin receptor and showed that it is a heat-activated ion channel; the receptor is now designated TRPV1.",
+      "contentHash": "3488f2651dd32217ee3ce6e9e2468ba930ee0261dd3bd7819b3760a8037b0de7"
     }
   },
   {

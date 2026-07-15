@@ -14,9 +14,7 @@ void main() {
       ).readAsStringSync(),
       cardsJson: _projectFile('assets/data/cards.json').readAsStringSync(),
     );
-    risksByQuestionId = {
-      for (final risk in risks) risk.questionId: risk,
-    };
+    risksByQuestionId = {for (final risk in risks) risk.questionId: risk};
   });
 
   List<String> duplicateIds(String questionId) =>
@@ -33,48 +31,28 @@ void main() {
     return edges;
   }
 
-  test('same answer alone does not make unrelated facts duplicates', () {
-    expect(duplicateIds('q_his_003'), isNot(contains('q_food_004')));
-    expect(duplicateIds('q_food_004'), isNot(contains('q_his_003')));
-  });
-
-  test('all three octopus-heart questions remain duplicate candidates', () {
-    const ids = <String>[
+  test('known duplicate groups are resolved in project data', () {
+    const cleanedIds = <String>[
       'q_bio_003',
       'q_living_things_006',
       'q_living_things_008',
+      'q_food_005',
+      'q_food_011',
+      'q_food_006',
+      'q_lang_003',
     ];
 
-    for (final id in ids) {
+    for (final id in cleanedIds) {
       expect(
         duplicateIds(id),
-        containsAll(ids.where((otherId) => otherId != id)),
-        reason: '$id should link to the other octopus-heart questions',
+        isEmpty,
+        reason: '$id must not remain connected to a duplicate fact',
       );
     }
   });
 
-  test('strawberry fruit-structure questions remain duplicate candidates', () {
-    expect(duplicateIds('q_food_005'), contains('q_food_011'));
-    expect(duplicateIds('q_food_011'), contains('q_food_005'));
-  });
-
-  test('sandwich-origin questions remain duplicate candidates', () {
-    expect(duplicateIds('q_lang_003'), contains('q_food_006'));
-    expect(duplicateIds('q_food_006'), contains('q_lang_003'));
-  });
-
-  test('real data duplicate edges remain the five known pairs', () {
-    expect(
-      duplicateEdges(),
-      equals(const <String>{
-        'q_bio_003|q_living_things_006',
-        'q_bio_003|q_living_things_008',
-        'q_living_things_006|q_living_things_008',
-        'q_food_005|q_food_011',
-        'q_food_006|q_lang_003',
-      }),
-    );
+  test('real project data has no duplicate fact edges after cleanup', () {
+    expect(duplicateEdges(), isEmpty);
   });
 }
 
