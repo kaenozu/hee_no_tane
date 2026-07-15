@@ -52,6 +52,7 @@ void main() {
     }
   });
 
+  // Keep the committed project data free from any future duplicate edge.
   test('real project data has no duplicate fact edges after cleanup', () {
     expect(duplicateEdges(), isEmpty);
   });
