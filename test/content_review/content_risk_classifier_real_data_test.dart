@@ -31,6 +31,7 @@ void main() {
     return edges;
   }
 
+  // These IDs previously formed the three known duplicate-content groups.
   test('known duplicate groups are resolved in project data', () {
     const cleanedIds = <String>[
       'q_bio_003',
