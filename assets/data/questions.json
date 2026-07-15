@@ -646,7 +646,17 @@
     "explanation": "イチゴの表面にある粒は一つ一つが「果実」です。赤い部分は「花托」という茎の先端が膨らんだもので、正確には果実ではありません。",
     "relatedCardId": "card_food_005",
     "sourceNote": "農林水産省 植物の雑学",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "The Strawberry: A Multiple Fruit",
+      "publisher": "Carnegie Museums",
+      "url": "https://carnegiemuseums.org/magazine-archive/1997/mayjun/dept4.htm",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "Carnegie Museums explains that the fleshy portion is a receptacle and each surface achene is a true fruit containing a seed.",
+      "contentHash": "18e56d30323883c2ad3c06877a552a1e5db7c786c2dfb33521aa50e7f2197433"
+    }
   },
   {
     "id": "q_language_001",
@@ -1621,7 +1631,17 @@
     "explanation": "津波は海水全体が急に動かされることで起こる。多くは海底や海の近くで起きる大地震により、海底が変形することで発生する。",
     "relatedCardId": "card_nature_geography_015",
     "sourceNote": "NOAA・津波発生の解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "What is a tsunami?",
+      "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://oceanservice.noaa.gov/facts/tsunami.html",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "NOAA identifies undersea earthquakes as a principal cause of tsunamis and describes their propagation across the ocean.",
+      "contentHash": "03f0723e52850637d8fe40ef6391fe90bca05e83b2023d1f81a3db9d9e3832f3"
+    }
   },
   {
     "id": "q_nature_geography_016",
@@ -1690,7 +1710,17 @@
     "explanation": "ラクダのこぶは水袋ではなく、主に脂肪を蓄える場所。食べ物が少ない時、その脂肪をエネルギーとして利用する。",
     "relatedCardId": "card_living_things_015",
     "sourceNote": "米国議会図書館・ラクダ解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "How much water does a camel's hump hold?",
+      "publisher": "Library of Congress",
+      "url": "https://www.loc.gov/everyday-mysteries/categories/zoology/item/how-much-water-does-a-camels-hump-hold/",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "The Library of Congress states that camel humps store fat, not water, and that the fat is used as nourishment when food is scarce.",
+      "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9"
+    }
   },
   {
     "id": "q_living_things_016",
@@ -1776,7 +1806,17 @@
     "explanation": "1840年にイギリスで発行されたペニー・ブラックは、世界初の粘着式郵便切手として知られる。ビクトリア女王の横顔が描かれた。",
     "relatedCardId": "card_history_011",
     "sourceNote": "英国郵便博物館・ペニー黒切手",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "The 1840 Penny Black",
+      "publisher": "Smithsonian National Postal Museum",
+      "url": "https://postalmuseum.si.edu/exhibition/the-queen%E2%80%99s-own-postal-reforms-that-transformed-the-mail-the-worlds-first-postage-stamps",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "The Smithsonian National Postal Museum identifies the 1840 Penny Black among the world's first postage stamps and documents first-day use.",
+      "contentHash": "2ad95a4e913a5ee9adb54dc2d2cc1d07d6a9bf0a23006324cd9f6885bc5b6434"
+    }
   },
   {
     "id": "q_history_012",
@@ -1862,7 +1902,17 @@
     "explanation": "翼まわりの空気の流れによって圧力差が生まれ、それが揚力に関係する。迎え角や空気の向きの変化も重要な要素である。",
     "relatedCardId": "card_science_010",
     "sourceNote": "NASAグレン研究所・揚力解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "Bernoulli and Newton",
+      "publisher": "NASA Glenn Research Center",
+      "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+      "verifiedAt": "2026-07-15",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "NASA explains lift through pressure variation and flow turning, and explicitly rejects the oversimplified equal-transit explanation.",
+      "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f"
+    }
   },
   {
     "id": "q_science_011",
