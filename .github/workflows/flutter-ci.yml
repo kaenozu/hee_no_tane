@@ -199,6 +199,19 @@ jobs:
         if: steps.test.outcome == 'failure'
         run: exit 1
 
+      - name: Install Linux integration test toolchain
+        shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            clang \
+            cmake \
+            ninja-build \
+            pkg-config \
+            libgtk-3-dev \
+            libstdc++-12-dev \
+            xvfb
+
       - name: Run Linux integration flow tests
         id: integration
         continue-on-error: true
