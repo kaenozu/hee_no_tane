@@ -34,7 +34,7 @@ void main(List<String> arguments) {
     final bundleText = '${encoder.convert(bundle.toJson())}\n';
     final manifestText =
         '${encoder.convert(<String, dynamic>{
-          'schemaVersion': 2,
+          'schemaVersion': 1,
           'questionCount': questions.length,
           'cardCount': cards.length,
           'playableQuestionCount': bundle.entries.length,
