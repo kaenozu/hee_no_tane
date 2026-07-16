@@ -1,6 +1,8 @@
 /// Daily single-question flow.
 library;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
@@ -10,12 +12,17 @@ import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
 
+typedef QuestionDateProvider = DateTime Function();
+
+DateTime _systemDateProvider() => DateTime.now();
+
 class DailyQuestionScreen extends StatefulWidget {
   final Question question;
   final String? questionDate;
   final HeeCard? relatedCard;
   final SaveRepository saveRepository;
   final RewardService rewardService;
+  final QuestionDateProvider dateProvider;
 
   const DailyQuestionScreen({
     super.key,
@@ -24,6 +31,7 @@ class DailyQuestionScreen extends StatefulWidget {
     this.relatedCard,
     required this.saveRepository,
     required this.rewardService,
+    this.dateProvider = _systemDateProvider,
   });
 
   @override
@@ -46,11 +54,25 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
 
   Future<void> _answer(int index) async {
     if (!_canAnswer) return;
+
+    final currentDate = calendarDateString(widget.dateProvider());
+    final expectedDate = widget.questionDate;
+    if (expectedDate != null && expectedDate != currentDate) {
+      setState(() {
+        _selectedAnswerIndex = index;
+        _saving = false;
+        _saveSucceeded = false;
+        _answerDate = null;
+        _saveError = '日付が変わりました。回答は保存されていません。ホームへ戻って今日の問題を開いてください。';
+      });
+      return;
+    }
+
     setState(() {
       _selectedAnswerIndex = index;
       _saving = true;
       _saveError = null;
-      _answerDate = widget.questionDate ?? todayDateString();
+      _answerDate = expectedDate ?? currentDate;
     });
     await _doSave();
   }
@@ -58,6 +80,21 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   Future<void> _doSave() async {
     final date = _answerDate;
     if (date == null) return;
+
+    final expectedDate = widget.questionDate;
+    final currentDate = calendarDateString(widget.dateProvider());
+    if (expectedDate != null &&
+        (expectedDate != currentDate || date != currentDate)) {
+      if (!mounted) return;
+      setState(() {
+        _saving = false;
+        _saveSucceeded = false;
+        _answerDate = null;
+        _saveError = '日付が変わりました。回答は保存されていません。ホームへ戻って今日の問題を開いてください。';
+      });
+      return;
+    }
+
     final cardId = widget.relatedCard?.id ?? widget.question.relatedCardId;
 
     try {
@@ -135,6 +172,28 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     await _doSave();
   }
 
+  Future<void> _confirmDiscardAndLeave() async {
+    if (_saving || !_hasUnsavedAnswer) return;
+    final discard = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('回答を破棄しますか？'),
+        content: const Text('回答結果は保存されていません。破棄してホームへ戻りますか？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('キャンセル'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('破棄して戻る'),
+          ),
+        ],
+      ),
+    );
+    if (discard == true && mounted) _goHome();
+  }
+
   Future<void> _openCardDetail() async {
     final card = widget.relatedCard;
     if (!_canNavigate || card == null) return;
@@ -162,12 +221,14 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     return PopScope(
       canPop: _canLeave,
       onPopInvokedWithResult: (didPop, _) {
-        if (!didPop && _canLeave) _goHome();
+        if (!didPop && !_saving && _hasUnsavedAnswer) {
+          unawaited(_confirmDiscardAndLeave());
+        }
       },
       child: Scaffold(
         appBar: AppBar(
           title: const Text('今日の1問'),
-          automaticallyImplyLeading: _canLeave,
+          automaticallyImplyLeading: !_saving,
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -380,10 +441,22 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
         const SizedBox(height: 8),
         Text(_saveError!, style: TextStyle(color: Colors.red.shade700)),
         const SizedBox(height: 12),
-        FilledButton.icon(
-          onPressed: _retrySave,
-          icon: const Icon(Icons.refresh, size: 18),
-          label: const Text('再試行'),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            if (_answerDate != null)
+              FilledButton.icon(
+                onPressed: _retrySave,
+                icon: const Icon(Icons.refresh, size: 18),
+                label: const Text('再試行'),
+              ),
+            OutlinedButton.icon(
+              onPressed: _confirmDiscardAndLeave,
+              icon: const Icon(Icons.home_outlined, size: 18),
+              label: const Text('破棄してホームへ戻る'),
+            ),
+          ],
         ),
       ],
     ),
