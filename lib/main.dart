@@ -3,7 +3,7 @@
 /// アプリのエントリポイント。
 library;
 
-/// JSONデータ（問題・カード）とセーブデータを読み込み、依存関係を注入する。
+/// 公開用コンテンツbundleとセーブデータを読み込み、依存関係を注入する。
 ///
 /// 関連:
 ///   - app.dart
@@ -13,13 +13,9 @@ library;
 import 'package:flutter/foundation.dart' hide debugPrint, debugPrintStack;
 import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
 import 'package:hee_no_tane_app/app.dart';
-import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
 import 'package:hee_no_tane_app/core/app_log.dart';
-import 'package:hee_no_tane_app/data/repositories/card_repository.dart';
-import 'package:hee_no_tane_app/data/repositories/question_repository.dart';
+import 'package:hee_no_tane_app/data/repositories/content_bundle_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
-import 'package:hee_no_tane_app/domain/models/hee_card.dart';
-import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
@@ -43,23 +39,18 @@ Future<void> main() async {
   try {
     await SaveRepository.migrateLegacyStorage();
 
-    final questionRepository = QuestionRepository();
-    final cardRepository = CardRepository();
+    final contentRepository = ContentBundleRepository();
     final saveRepository = SaveRepository();
     const dailyQuestionService = DailyQuestionService();
     final rewardService = RewardService();
 
-    final questions = await questionRepository.loadAll();
-    final cards = await cardRepository.loadAll();
-
-    _requirePlayableContent(questions, cards);
-
+    final contentBundle = await contentRepository.load();
     final saveData = await saveRepository.loadOrThrow();
 
     runApp(
       HeeNoTaneApp(
-        allQuestions: questions,
-        allCards: cards,
+        allQuestions: contentBundle.questions,
+        allCards: contentBundle.cards,
         saveData: saveData,
         saveRepository: saveRepository,
         rewardService: rewardService,
@@ -74,20 +65,6 @@ Future<void> main() async {
   }
 }
 
-void _requirePlayableContent(List<Question> questions, List<HeeCard> cards) {
-  final cardsById = <String, HeeCard>{for (final card in cards) card.id: card};
-
-  final hasPlayablePair = questions.any((question) {
-    final card = cardsById[question.relatedCardId];
-
-    return card != null && ContentReleasePolicy.isPlayablePair(question, card);
-  });
-
-  if (!hasPlayablePair) {
-    throw const ContentLoadException('公開可能な問題データが見つかりませんでした。');
-  }
-}
-
 String _safeStartupErrorDetails(Object error) {
   if (error is SaveLoadException) {
     return error.message;
@@ -97,7 +74,7 @@ String _safeStartupErrorDetails(Object error) {
     return error.message;
   }
 
-  if (error is ContentLoadException) {
+  if (error is ContentBundleLoadException) {
     return error.message;
   }
 
