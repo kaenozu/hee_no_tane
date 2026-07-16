@@ -336,7 +336,8 @@ class ContentRiskClassifier {
     // Correct answers are intentionally excluded from duplicate evidence. Generic
     // answers such as an era, number, or title can be shared by unrelated facts.
     return (questionSimilarity >= 0.50 && evidenceSimilarity >= 0.25) ||
-        (questionSimilarity >= 0.40 && evidenceSimilarity >= 0.38);
+        (questionSimilarity >= 0.40 && evidenceSimilarity >= 0.38) ||
+        (questionSimilarity >= 0.30 && evidenceSimilarity >= 0.36);
   }
 
   double _similarity(Set<String> left, Set<String> right) {
