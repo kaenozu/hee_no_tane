@@ -248,7 +248,9 @@ final class _PinnedDailyQuestionService extends DailyQuestionService {
     int count = 3,
     DateTime? dateTime,
   }) {
-    final date = delegate.currentDateSeed(dateTime ?? delegate.currentDateTime());
+    final date = delegate.currentDateSeed(
+      dateTime ?? delegate.currentDateTime(),
+    );
     if (date == assignedDate && count > 0) {
       return <Question>[assignedQuestion];
     }

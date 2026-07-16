@@ -34,12 +34,15 @@ void main() {
       contentVersion: '1.0.0+1',
     );
 
-    expect(
-      bundle.entries.map((entry) => entry.question.id),
-      <String>['q_a', 'q_b'],
-    );
+    expect(bundle.entries.map((entry) => entry.question.id), <String>[
+      'q_a',
+      'q_b',
+    ]);
     expect(bundle.bundleHash, hasLength(64));
-    expect(ContentBundle.fromJson(bundle.toJson()).bundleHash, bundle.bundleHash);
+    expect(
+      ContentBundle.fromJson(bundle.toJson()).bundleHash,
+      bundle.bundleHash,
+    );
   });
 
   test('bundle parser rejects payload changes without a new hash', () {
@@ -55,10 +58,7 @@ void main() {
     final question = entry['question'] as Map<String, dynamic>;
     question['question'] = '改ざんされた質問';
 
-    expect(
-      () => ContentBundle.fromJson(json),
-      throwsA(isA<FormatException>()),
-    );
+    expect(() => ContentBundle.fromJson(json), throwsA(isA<FormatException>()));
   });
 }
 

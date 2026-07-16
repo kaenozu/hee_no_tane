@@ -225,9 +225,7 @@ class SaveRepository {
           questionId: completionQuestionId,
           cardId: completionCardId,
         )) {
-      throw const SaveException(
-        '今日の問題の割り当てと回答履歴が一致していません。',
-      );
+      throw const SaveException('今日の問題の割り当てと回答履歴が一致していません。');
     }
 
     if (proposedHasAssignmentForDate) return proposed;

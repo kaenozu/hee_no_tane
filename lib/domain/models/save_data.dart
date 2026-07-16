@@ -184,8 +184,7 @@ class SaveData {
     dailyAssignmentDate: dailyAssignmentDate ?? this.dailyAssignmentDate,
     dailyAssignmentQuestionId:
         dailyAssignmentQuestionId ?? this.dailyAssignmentQuestionId,
-    dailyAssignmentCardId:
-        dailyAssignmentCardId ?? this.dailyAssignmentCardId,
+    dailyAssignmentCardId: dailyAssignmentCardId ?? this.dailyAssignmentCardId,
     ownedCardIds: ownedCardIds ?? this.ownedCardIds,
     settings: settings ?? this.settings,
     onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,

@@ -33,14 +33,7 @@ void main(List<String> arguments) {
     const encoder = JsonEncoder.withIndent('  ');
     final bundleText = '${encoder.convert(bundle.toJson())}\n';
     final manifestText =
-        '${encoder.convert(<String, dynamic>{
-          'schemaVersion': 1,
-          'questionCount': questions.length,
-          'cardCount': cards.length,
-          'playableQuestionCount': bundle.entries.length,
-          'contentVersion': bundle.contentVersion,
-          'bundleHash': bundle.bundleHash,
-        })}\n';
+        '${encoder.convert(<String, dynamic>{'schemaVersion': 1, 'questionCount': questions.length, 'cardCount': cards.length, 'playableQuestionCount': bundle.entries.length, 'contentVersion': bundle.contentVersion, 'bundleHash': bundle.bundleHash})}\n';
 
     if (checkOnly) {
       final mismatches = <String>[];

@@ -33,16 +33,11 @@ class ContentBundleRepository {
         throw const FormatException('Content bundle root must be an object.');
       }
 
-      final bundle = ContentBundle.fromJson(
-        Map<String, dynamic>.from(decoded),
-      );
+      final bundle = ContentBundle.fromJson(Map<String, dynamic>.from(decoded));
       _validateEntries(bundle);
       return bundle;
     } catch (error) {
-      throw ContentBundleLoadException(
-        '公開用コンテンツの読み込みに失敗しました。',
-        cause: error,
-      );
+      throw ContentBundleLoadException('公開用コンテンツの読み込みに失敗しました。', cause: error);
     }
   }
 

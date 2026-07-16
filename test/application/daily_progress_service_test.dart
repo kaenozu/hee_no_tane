@@ -7,85 +7,91 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 
 void main() {
-  test('daily assignment is persisted and cannot change on the same date', () async {
-    final repository = SaveRepository(store: _MemoryPreferenceStore());
-    final service = DailyProgressService(
-      saveRepository: repository,
-      rewardService: RewardService(),
-    );
+  test(
+    'daily assignment is persisted and cannot change on the same date',
+    () async {
+      final repository = SaveRepository(store: _MemoryPreferenceStore());
+      final service = DailyProgressService(
+        saveRepository: repository,
+        rewardService: RewardService(),
+      );
 
-    final assigned = await service.ensureAssignment(
-      date: '2026-07-17',
-      questionId: 'q_1',
-      cardId: 'c_1',
-    );
-
-    expect(
-      assigned.hasDailyAssignment(
+      final assigned = await service.ensureAssignment(
         date: '2026-07-17',
         questionId: 'q_1',
         cardId: 'c_1',
-      ),
-      isTrue,
-    );
-    await expectLater(
-      service.ensureAssignment(
-        date: '2026-07-17',
-        questionId: 'q_2',
-        cardId: 'c_2',
-      ),
-      throwsA(isA<SaveException>()),
-    );
-  });
+      );
 
-  test('daily answer update is idempotent and keeps assignment identity', () async {
-    final repository = SaveRepository(store: _MemoryPreferenceStore());
-    final service = DailyProgressService(
-      saveRepository: repository,
-      rewardService: RewardService(),
-    );
-    final question = _question();
-    final card = _card();
+      expect(
+        assigned.hasDailyAssignment(
+          date: '2026-07-17',
+          questionId: 'q_1',
+          cardId: 'c_1',
+        ),
+        isTrue,
+      );
+      await expectLater(
+        service.ensureAssignment(
+          date: '2026-07-17',
+          questionId: 'q_2',
+          cardId: 'c_2',
+        ),
+        throwsA(isA<SaveException>()),
+      );
+    },
+  );
 
-    await service.ensureAssignment(
-      date: '2026-07-17',
-      questionId: question.id,
-      cardId: card.id,
-    );
-    final first = await service.submitAnswer(
-      date: '2026-07-17',
-      question: question,
-      card: card,
-    );
-    final second = await service.submitAnswer(
-      date: '2026-07-17',
-      question: question,
-      card: card,
-    );
+  test(
+    'daily answer update is idempotent and keeps assignment identity',
+    () async {
+      final repository = SaveRepository(store: _MemoryPreferenceStore());
+      final service = DailyProgressService(
+        saveRepository: repository,
+        rewardService: RewardService(),
+      );
+      final question = _question();
+      final card = _card();
 
-    expect(first.alreadyCompleted, isFalse);
-    expect(first.cardWasOwnedBeforeAnswer, isFalse);
-    expect(second.alreadyCompleted, isTrue);
-    expect(second.saveData.totalPlayCount, 1);
-    expect(second.saveData.streakDays, 1);
-    expect(second.saveData.ownedCardIds, <String>[card.id]);
-    expect(
-      second.saveData.hasDailyAssignment(
+      await service.ensureAssignment(
         date: '2026-07-17',
         questionId: question.id,
         cardId: card.id,
-      ),
-      isTrue,
-    );
-    expect(
-      second.saveData.hasDailyCompletion(
+      );
+      final first = await service.submitAnswer(
         date: '2026-07-17',
-        questionId: question.id,
-        cardId: card.id,
-      ),
-      isTrue,
-    );
-  });
+        question: question,
+        card: card,
+      );
+      final second = await service.submitAnswer(
+        date: '2026-07-17',
+        question: question,
+        card: card,
+      );
+
+      expect(first.alreadyCompleted, isFalse);
+      expect(first.cardWasOwnedBeforeAnswer, isFalse);
+      expect(second.alreadyCompleted, isTrue);
+      expect(second.saveData.totalPlayCount, 1);
+      expect(second.saveData.streakDays, 1);
+      expect(second.saveData.ownedCardIds, <String>[card.id]);
+      expect(
+        second.saveData.hasDailyAssignment(
+          date: '2026-07-17',
+          questionId: question.id,
+          cardId: card.id,
+        ),
+        isTrue,
+      );
+      expect(
+        second.saveData.hasDailyCompletion(
+          date: '2026-07-17',
+          questionId: question.id,
+          cardId: card.id,
+        ),
+        isTrue,
+      );
+    },
+  );
 
   test('version 3 completion fields migrate into the assignment fields', () {
     final data = SaveData.fromJson(<String, dynamic>{

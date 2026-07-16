@@ -15,10 +15,7 @@ class ContentBundleBuilder {
       values: questions.map((question) => question.id),
       label: 'question',
     );
-    _requireUniqueIds(
-      values: cards.map((card) => card.id),
-      label: 'card',
-    );
+    _requireUniqueIds(values: cards.map((card) => card.id), label: 'card');
 
     final cardsById = <String, HeeCard>{
       for (final card in cards) card.id: card,

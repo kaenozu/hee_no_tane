@@ -117,19 +117,19 @@ class ContentBundle {
       bundleHash: bundleHash,
     );
     if (bundle.calculateHash() != bundle.bundleHash) {
-      throw const FormatException('Content bundle hash does not match payload.');
+      throw const FormatException(
+        'Content bundle hash does not match payload.',
+      );
     }
 
     return bundle;
   }
 
-  List<Question> get questions => List<Question>.unmodifiable(
-    entries.map((entry) => entry.question),
-  );
+  List<Question> get questions =>
+      List<Question>.unmodifiable(entries.map((entry) => entry.question));
 
-  List<HeeCard> get cards => List<HeeCard>.unmodifiable(
-    entries.map((entry) => entry.card),
-  );
+  List<HeeCard> get cards =>
+      List<HeeCard>.unmodifiable(entries.map((entry) => entry.card));
 
   Map<String, dynamic> payloadToJson() => <String, dynamic>{
     'schemaVersion': schemaVersion,
@@ -143,9 +143,8 @@ class ContentBundle {
     'bundleHash': bundleHash,
   };
 
-  String calculateHash() => sha256
-      .convert(utf8.encode(jsonEncode(payloadToJson())))
-      .toString();
+  String calculateHash() =>
+      sha256.convert(utf8.encode(jsonEncode(payloadToJson()))).toString();
 
   static String _requiredString(Map<String, dynamic> json, String key) {
     final value = json[key];
