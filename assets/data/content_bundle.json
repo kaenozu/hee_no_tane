@@ -1,0 +1,2492 @@
+{
+  "schemaVersion": 2,
+  "contentVersion": "1.0.0+1",
+  "entryCount": 47,
+  "entries": [
+    {
+      "question": {
+        "id": "q_bio_002",
+        "category": "living_things",
+        "difficulty": "normal",
+        "question": "2017年、Royal Ontario Museumの実物シロナガスクジラ心臓標本がドイツで受けた保存処理は？",
+        "choices": [
+          "プラスティネーション",
+          "凍結乾燥",
+          "液浸保存",
+          "樹脂製レプリカの作製"
+        ],
+        "answerIndex": 0,
+        "explanation": "Royal Ontario Museumの公式発表によると、この実物標本はドイツのグーベンでプラスティネーション処理を受け、2017年5月15日にトロントへ到着した。",
+        "relatedCardId": "card_bio_002",
+        "sourceNote": "Royal Ontario Museum（2017）",
+        "verified": true,
+        "source": {
+          "title": "Blue Whale Heart Arrives at the ROM",
+          "publisher": "Royal Ontario Museum",
+          "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "fa048fcdaf21e7dcf8ba1ae027e926bd45d05ebfae8c8a9b1dc6bdda54fa2b00"
+        }
+      },
+      "card": {
+        "id": "card_bio_002",
+        "title": "保存されたシロナガスクジラの心臓",
+        "category": "living_things",
+        "shortText": "実物標本はプラスティネーションで保存された。",
+        "detailText": "Royal Ontario Museumの2017年公式発表によると、実物の心臓標本はドイツのグーベンでプラスティネーション処理を受けた。2017年5月15日にトロントへ到着し、5月18日に展示へ設置された。",
+        "imageAsset": "assets/images/cards/card_bio_002.png",
+        "rarity": "rare",
+        "sourceNote": "Royal Ontario Museum（2017）",
+        "source": {
+          "title": "Blue Whale Heart Arrives at the ROM",
+          "publisher": "Royal Ontario Museum",
+          "url": "https://www.rom.on.ca/en/about-us/newsroom/press-releases/blue-whale-heart-arrives-at-the-rom",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "fa048fcdaf21e7dcf8ba1ae027e926bd45d05ebfae8c8a9b1dc6bdda54fa2b00"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_bio_005",
+        "category": "living_things",
+        "difficulty": "easy",
+        "question": "ジャイアントパンダが主に食べるものは？",
+        "choices": [
+          "果物",
+          "竹",
+          "肉",
+          "魚"
+        ],
+        "answerIndex": 1,
+        "explanation": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
+        "relatedCardId": "card_bio_005",
+        "sourceNote": "WWF「Giant pandas」",
+        "verified": true,
+        "source": {
+          "title": "Giant pandas",
+          "publisher": "World Wildlife Fund (WWF)",
+          "url": "https://www.worldwildlife.org/species/giant-panda/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "secondary",
+          "reviewStatus": "approved",
+          "contentHash": "1c7e0080509afd261728ee6ad7a897732967aebcf058f03769fb2326081b26d4"
+        }
+      },
+      "card": {
+        "id": "card_bio_005",
+        "title": "パンダと竹",
+        "category": "living_things",
+        "shortText": "ほぼ竹だけを食べて暮らす。",
+        "detailText": "ジャイアントパンダは、ほぼ竹だけを食べて暮らしている。WWFによると、竹の部位に応じて1日に約12〜38kgを食べる。",
+        "imageAsset": "assets/images/cards/card_bio_005.png",
+        "rarity": "normal",
+        "sourceNote": "WWF「Giant pandas」",
+        "source": {
+          "title": "Giant pandas",
+          "publisher": "World Wildlife Fund (WWF)",
+          "url": "https://www.worldwildlife.org/species/giant-panda/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "secondary",
+          "reviewStatus": "approved",
+          "contentHash": "1c7e0080509afd261728ee6ad7a897732967aebcf058f03769fb2326081b26d4"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_daily_life_001",
+        "category": "daily_life",
+        "difficulty": "normal",
+        "question": "2013年に発表された日本の駅ホームの青色灯に関する観察研究で、分析対象となった駅は合計何駅？",
+        "choices": [
+          "11駅",
+          "60駅",
+          "71駅",
+          "100駅"
+        ],
+        "answerIndex": 2,
+        "explanation": "この研究は、ある鉄道会社の2000〜2010年のデータを使い、青色灯を導入した11駅と導入していない60駅、計71駅を比較した。観察研究であり、青色灯が作用する仕組みは調べていない。",
+        "relatedCardId": "card_daily_life_001",
+        "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+        "verified": true,
+        "source": {
+          "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+          "publisher": "Journal of Affective Disorders (Elsevier)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "b3c9ca44034e6961a3d6378dbc57ebad0489f5f4593128797e4e26770c61f3b7"
+        }
+      },
+      "card": {
+        "id": "card_daily_life_001",
+        "title": "駅ホームの青色灯研究",
+        "category": "daily_life",
+        "shortText": "2013年の観察研究は71駅を比較。",
+        "detailText": "2013年の研究は、ある鉄道会社の2000〜2010年のデータを用い、青色灯を導入した11駅と導入していない60駅を比較した。論文は、単一の鉄道会社のデータに基づくことと、青色灯が作用する仕組みを検討していないことを限界としている。",
+        "imageAsset": "assets/images/cards/card_daily_life_001.png",
+        "rarity": "normal",
+        "sourceNote": "Matsubayashiほか（2013）Journal of Affective Disorders",
+        "source": {
+          "title": "Does the installation of blue lights on train platforms prevent suicide? A before-and-after observational study from Japan",
+          "publisher": "Journal of Affective Disorders (Elsevier)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22980401/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "b3c9ca44034e6961a3d6378dbc57ebad0489f5f4593128797e4e26770c61f3b7"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_daily_life_006",
+        "category": "daily_life",
+        "difficulty": "hard",
+        "question": "PETボトル識別マークの『1』の由来は？",
+        "choices": [
+          "米国のSPIコード",
+          "日本の郵便番号制度",
+          "容器の製造年月",
+          "洗いやすさの等級"
+        ],
+        "answerIndex": 0,
+        "explanation": "PETボトルの識別表示にある「1」は、米国プラスチック産業協会のSPIコードに由来する。分別ではこのマーク確認が確実とされる。",
+        "relatedCardId": "card_daily_life_006",
+        "sourceNote": "環境省・環境ラベルデータベース",
+        "verified": true,
+        "source": {
+          "title": "容器包装の識別表示マーク",
+          "publisher": "PETボトルリサイクル推進協議会",
+          "url": "https://www.petbottle-rec.gr.jp/basic/mark.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "82ddf437860baf3b5f92b0e8bfff26116b977625cdadabf9a573d77bc70d6a7d"
+        }
+      },
+      "card": {
+        "id": "card_daily_life_006",
+        "title": "PETマークの1",
+        "category": "daily_life",
+        "shortText": "分別マークの数字の由来",
+        "detailText": "PETボトルの識別表示にある数字は、素材を区別するコード体系に由来する。",
+        "imageAsset": "assets/images/cards/card_daily_life_006.png",
+        "rarity": "rare",
+        "sourceNote": "環境省・環境ラベルデータベース",
+        "source": {
+          "title": "容器包装の識別表示マーク",
+          "publisher": "PETボトルリサイクル推進協議会",
+          "url": "https://www.petbottle-rec.gr.jp/basic/mark.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "82ddf437860baf3b5f92b0e8bfff26116b977625cdadabf9a573d77bc70d6a7d"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_daily_life_007",
+        "category": "daily_life",
+        "difficulty": "normal",
+        "question": "メトロポリタン美術館の「The Cloisters Playing Cards」は何枚そろった一組？",
+        "choices": [
+          "40枚",
+          "48枚",
+          "52枚",
+          "54枚"
+        ],
+        "answerIndex": 2,
+        "explanation": "メトロポリタン美術館の作品解説によると、この15世紀のカード一組は52枚で、4つのスートから成る。",
+        "relatedCardId": "card_daily_life_007",
+        "sourceNote": "The Metropolitan Museum of Art",
+        "verified": true,
+        "source": {
+          "title": "The Cloisters Playing Cards",
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/475513",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e46963ca2972cc2aad8aa2aa56854dd25b8667862428d779d71a0605f71a2de8"
+        }
+      },
+      "card": {
+        "id": "card_daily_life_007",
+        "title": "15世紀の52枚のカード",
+        "category": "daily_life",
+        "shortText": "メトロポリタン美術館所蔵の一組は52枚。",
+        "detailText": "メトロポリタン美術館の「The Cloisters Playing Cards」は、15世紀の通常のプレイングカードとして唯一知られる完全な一組で、52枚・4スートから成る。",
+        "imageAsset": "assets/images/cards/card_daily_life_007.png",
+        "rarity": "normal",
+        "sourceNote": "The Metropolitan Museum of Art",
+        "source": {
+          "title": "The Cloisters Playing Cards",
+          "publisher": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/art/collection/search/475513",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e46963ca2972cc2aad8aa2aa56854dd25b8667862428d779d71a0605f71a2de8"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_daily_life_008",
+        "category": "daily_life",
+        "difficulty": "easy",
+        "question": "英国HSEの安全標識ガイダンスL64で、緑色が示す用途は？",
+        "choices": [
+          "非常口・避難経路や応急手当",
+          "消火設備",
+          "禁止行為",
+          "注意・警告"
+        ],
+        "answerIndex": 0,
+        "explanation": "HSEのL64表1は、緑を非常脱出・応急手当の標識に割り当て、扉、出口、避難経路、設備、施設を示すとしている。",
+        "relatedCardId": "card_daily_life_008",
+        "sourceNote": "HSE L64 Safety signs and signals",
+        "verified": true,
+        "source": {
+          "title": "Safety signs and signals: Guidance on Regulations L64",
+          "publisher": "UK Health and Safety Executive (HSE)",
+          "url": "https://www.hse.gov.uk/pubns/priced/l64.pdf",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e4cb2fbd02ff2b01c06c29828b5e02dc87f0404387a7d566afe0f5a09fbef06d"
+        }
+      },
+      "card": {
+        "id": "card_daily_life_008",
+        "title": "安全標識の緑色",
+        "category": "daily_life",
+        "shortText": "非常口・避難経路と応急手当を示す色。",
+        "detailText": "英国HSEの安全標識ガイダンスL64表1では、緑色は非常脱出・応急手当の標識に使われ、扉、出口、避難経路、設備、施設を示す。",
+        "imageAsset": "assets/images/cards/card_daily_life_008.png",
+        "rarity": "normal",
+        "sourceNote": "HSE L64 Safety signs and signals",
+        "source": {
+          "title": "Safety signs and signals: Guidance on Regulations L64",
+          "publisher": "UK Health and Safety Executive (HSE)",
+          "url": "https://www.hse.gov.uk/pubns/priced/l64.pdf",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e4cb2fbd02ff2b01c06c29828b5e02dc87f0404387a7d566afe0f5a09fbef06d"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_daily_life_009",
+        "category": "daily_life",
+        "difficulty": "easy",
+        "question": "3Rで最初に取り組むとされるRはどれ？",
+        "choices": [
+          "Recycle",
+          "Reuse",
+          "Reduce",
+          "Restart"
+        ],
+        "answerIndex": 2,
+        "explanation": "3RはReduce、Reuse、Recycleの順番で取り組むことが求められる。まずはごみや資源消費を発生段階で減らす考え方。",
+        "relatedCardId": "card_daily_life_009",
+        "sourceNote": "経済産業省・3R政策解説",
+        "verified": true,
+        "source": {
+          "title": "The 3R Initiative",
+          "publisher": "Ministry of the Environment, Japan",
+          "url": "https://www.env.go.jp/recycle/3r/en/outline.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "424661125c34574839381e2fa95c2235f4f4083cb8899d4c4f8ebbf65c8df6ee"
+        }
+      },
+      "card": {
+        "id": "card_daily_life_009",
+        "title": "3Rの最初",
+        "category": "daily_life",
+        "shortText": "まず減らすのが基本",
+        "detailText": "リサイクルは大切だが、3Rではまず発生を抑えるReduce、次に繰り返し使うReuseが重視される。",
+        "imageAsset": "assets/images/cards/card_daily_life_009.png",
+        "rarity": "normal",
+        "sourceNote": "経済産業省・3R政策解説",
+        "source": {
+          "title": "The 3R Initiative",
+          "publisher": "Ministry of the Environment, Japan",
+          "url": "https://www.env.go.jp/recycle/3r/en/outline.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "424661125c34574839381e2fa95c2235f4f4083cb8899d4c4f8ebbf65c8df6ee"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_001",
+        "category": "food",
+        "difficulty": "easy",
+        "question": "日本で、約3000年前の縄文時代にはすでに作られていたと考えられる調味料は？",
+        "choices": [
+          "砂糖",
+          "みそ",
+          "塩",
+          "しょうゆ"
+        ],
+        "answerIndex": 2,
+        "explanation": "製塩に使われた土器の出土から、日本では縄文時代後期後葉には塩が作られていたと考えられています。",
+        "relatedCardId": "card_food_001",
+        "sourceNote": "国立歴史民俗博物館",
+        "verified": true,
+        "source": {
+          "title": "広畑貝塚",
+          "publisher": "茨城県教育委員会",
+          "url": "https://kyoiku.pref.ibaraki.jp/bunkazai/kuni-106/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "7f97754e56b1d5e4ee4163361f3dcc9131c65739f06367c54c347a56de93f2e9"
+        }
+      },
+      "card": {
+        "id": "card_food_001",
+        "title": "縄文時代に始まっていた塩づくり",
+        "category": "food",
+        "shortText": "製塩土器は、縄文時代の人々が塩を作っていたことを示す手がかりです。",
+        "detailText": "霞ヶ浦沿岸などの遺跡から製塩に使われたと考えられる土器が出土しており、縄文時代後期後葉には塩づくりが行われていたと考えられています。ただし、人が日本で塩を使い始めた正確な時期は分かっていないため、「日本最古の調味料」と断定することはできません。",
+        "imageAsset": "assets/images/cards/card_food_001.png",
+        "rarity": "normal",
+        "sourceNote": "国立歴史民俗博物館",
+        "source": {
+          "title": "広畑貝塚",
+          "publisher": "茨城県教育委員会",
+          "url": "https://kyoiku.pref.ibaraki.jp/bunkazai/kuni-106/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "7f97754e56b1d5e4ee4163361f3dcc9131c65739f06367c54c347a56de93f2e9"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_002",
+        "category": "food",
+        "difficulty": "normal",
+        "question": "2010年の原著論文が、栽培リンゴの祖先種として同定したのは？",
+        "choices": [
+          "Malus sieversii",
+          "Malus sylvestris",
+          "Malus baccata",
+          "Malus floribunda"
+        ],
+        "answerIndex": 0,
+        "explanation": "2010年にNature Geneticsで公表された原著論文は、バラ科の主要分類群と比較した系統再構築により、栽培リンゴの祖先種をMalus sieversiiと同定した。",
+        "relatedCardId": "card_food_002",
+        "sourceNote": "Nature Genetics（2010）",
+        "verified": true,
+        "source": {
+          "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+          "publisher": "Nature Genetics (Springer Nature)",
+          "url": "https://www.nature.com/articles/ng.654",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d5b9b95d4aaf141a64cf5a9567daa5ada1dea72c70d475b8afe9797b9c5c2e79"
+        }
+      },
+      "card": {
+        "id": "card_food_002",
+        "title": "栽培リンゴの祖先種",
+        "category": "food",
+        "shortText": "2010年の系統解析ではMalus sieversiiと同定された。",
+        "detailText": "2010年にNature Geneticsで公表された原著論文は、栽培リンゴの高品質ドラフトゲノム配列を報告し、バラ科の主要分類群と比較した系統再構築により、その祖先種をMalus sieversiiと同定した。",
+        "imageAsset": "assets/images/cards/card_food_002.png",
+        "rarity": "normal",
+        "sourceNote": "Nature Genetics（2010）",
+        "source": {
+          "title": "The genome of the domesticated apple (Malus × domestica Borkh.)",
+          "publisher": "Nature Genetics (Springer Nature)",
+          "url": "https://www.nature.com/articles/ng.654",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d5b9b95d4aaf141a64cf5a9567daa5ada1dea72c70d475b8afe9797b9c5c2e79"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_003",
+        "category": "food",
+        "difficulty": "normal",
+        "question": "本わさびは、植物の分類では何科に属する？",
+        "choices": [
+          "ショウガ科",
+          "セリ科",
+          "ユリ科",
+          "アブラナ科"
+        ],
+        "answerIndex": 3,
+        "explanation": "本わさびはアブラナ科の植物です。分類上の学名はEutrema japonicumとされています。",
+        "relatedCardId": "card_food_003",
+        "sourceNote": "農林水産省",
+        "verified": true,
+        "source": {
+          "title": "Eutrema japonicum (Miq.) Koidz.",
+          "publisher": "Royal Botanic Gardens, Kew",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:284345-1",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "2eb08e26d5c6d52abb953167b86d9ed308338d2b68e301a9f1bbc512cf44a979"
+        }
+      },
+      "card": {
+        "id": "card_food_003",
+        "title": "本わさびはアブラナ科",
+        "category": "food",
+        "shortText": "本わさびは、植物分類ではアブラナ科に属する多年草です。",
+        "detailText": "本わさびの学名はEutrema japonicumで、アブラナ目アブラナ科に分類されます。日本のほか、朝鮮半島やサハリンにも自然分布する多年草です。香辛料としての名前をそのまま答えさせるのではなく、植物としての分類を問うことで知識が深まります。",
+        "imageAsset": "assets/images/cards/card_food_003.png",
+        "rarity": "normal",
+        "sourceNote": "農林水産省",
+        "source": {
+          "title": "Eutrema japonicum (Miq.) Koidz.",
+          "publisher": "Royal Botanic Gardens, Kew",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:284345-1",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "2eb08e26d5c6d52abb953167b86d9ed308338d2b68e301a9f1bbc512cf44a979"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_008",
+        "category": "food",
+        "difficulty": "normal",
+        "question": "蜂蜜を食べると、血糖値には一般にどのような影響がありますか？",
+        "choices": [
+          "互いに打ち消し合って弱くなる",
+          "グルタミン酸とイノシン酸の相乗効果で強くなる",
+          "塩味だけが強くなる",
+          "うま味が酸味に変わる"
+        ],
+        "answerIndex": 1,
+        "explanation": "蜂蜜には糖質が含まれるため、摂取すると一般に血糖値は上がります。上がり方は摂取量や個人の状態によって異なります。",
+        "relatedCardId": "card_food_008",
+        "sourceNote": "農林水産省・だしうま味解説",
+        "verified": true,
+        "source": {
+          "title": "Diabetes foods: Can I substitute honey for sugar?",
+          "publisher": "Mayo Clinic",
+          "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/expert-answers/diabetes/faq-20058487",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "8ba2f4c9abee6cd2027a3a813476f74fb32d077cd233faa78ecd7ddd23445f28"
+        }
+      },
+      "card": {
+        "id": "card_food_008",
+        "title": "だしの相乗効果",
+        "category": "food",
+        "shortText": "昆布とかつおでうま味増幅",
+        "detailText": "和食のだしは、昆布とかつお節の成分を合わせることで、単独より強くうま味を感じやすい。",
+        "imageAsset": "assets/images/cards/card_food_008.png",
+        "rarity": "normal",
+        "sourceNote": "農林水産省・だしうま味解説",
+        "source": {
+          "title": "Diabetes foods: Can I substitute honey for sugar?",
+          "publisher": "Mayo Clinic",
+          "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/expert-answers/diabetes/faq-20058487",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "8ba2f4c9abee6cd2027a3a813476f74fb32d077cd233faa78ecd7ddd23445f28"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_010",
+        "category": "food",
+        "difficulty": "easy",
+        "question": "NOAA Fisheriesがアラスカスケトウダラ製品の一つとして挙げる、カニ肉を模した食品は？",
+        "choices": [
+          "すり身（イミテーションクラブ）",
+          "ツナ缶",
+          "かつお節",
+          "アンチョビ"
+        ],
+        "answerIndex": 0,
+        "explanation": "NOAA Fisheriesは、アラスカスケトウダラの製品の一つとして、すり身（imitation crab）を挙げている。",
+        "relatedCardId": "card_food_010",
+        "sourceNote": "NOAA Fisheries Alaska Pollock",
+        "verified": true,
+        "source": {
+          "title": "Alaska Pollock",
+          "publisher": "NOAA Fisheries",
+          "url": "https://www.fisheries.noaa.gov/species/alaska-pollock",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e4e741986da542f85c6368aaef1941eab69741b1280273d7cf4ba16a896f74cb"
+        }
+      },
+      "card": {
+        "id": "card_food_010",
+        "title": "スケトウダラとすり身",
+        "category": "food",
+        "shortText": "アラスカスケトウダラはイミテーションクラブにも加工される。",
+        "detailText": "NOAA Fisheriesは、アラスカスケトウダラの製品の一つとして、すり身（imitation crab）を挙げている。",
+        "imageAsset": "assets/images/cards/card_food_010.png",
+        "rarity": "normal",
+        "sourceNote": "NOAA Fisheries Alaska Pollock",
+        "source": {
+          "title": "Alaska Pollock",
+          "publisher": "NOAA Fisheries",
+          "url": "https://www.fisheries.noaa.gov/species/alaska-pollock",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e4e741986da542f85c6368aaef1941eab69741b1280273d7cf4ba16a896f74cb"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_011",
+        "category": "food",
+        "difficulty": "easy",
+        "question": "イチゴの表面にある粒々は、植物学上何に当たりますか？",
+        "choices": [
+          "種子そのもの",
+          "一つ一つが痩果と呼ばれる果実",
+          "花粉を蓄える器官",
+          "成長しなかった小さな葉"
+        ],
+        "answerIndex": 1,
+        "explanation": "粒々の一つ一つが「痩果」と呼ばれる果実で、その中に種子があります。赤い部分は花托が大きくなったものです。",
+        "relatedCardId": "card_food_011",
+        "sourceNote": "植物分類学「偽果と真果の構造」",
+        "verified": true,
+        "source": {
+          "title": "Fragaria virginiana - Plant Finder",
+          "publisher": "Missouri Botanical Garden",
+          "url": "https://www.missouribotanicalgarden.org/plantfinder/PlantFinderDetails.aspx?taxonid=291715",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b147982fdd3617128a1ec7614dcefd41eb35ced887a206870aba8c1d051e1b53"
+        }
+      },
+      "card": {
+        "id": "card_food_011",
+        "title": "イチゴのツブツブの正体",
+        "category": "food",
+        "shortText": "種だと思っていた部分の意外な事実",
+        "detailText": "実は赤い部分は果物ではなく、ツブツブのほうが本物の「果実」。1粒のイチゴを食べることは、数百個の果実を一度に食べるのと同じです。",
+        "imageAsset": "assets/images/cards/card_food_011.png",
+        "rarity": "normal",
+        "sourceNote": "植物分類学「偽果と真果の構造」",
+        "source": {
+          "title": "Fragaria virginiana - Plant Finder",
+          "publisher": "Missouri Botanical Garden",
+          "url": "https://www.missouribotanicalgarden.org/plantfinder/PlantFinderDetails.aspx?taxonid=291715",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b147982fdd3617128a1ec7614dcefd41eb35ced887a206870aba8c1d051e1b53"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_012",
+        "category": "food",
+        "difficulty": "easy",
+        "question": "食品の消費期限に最も近い意味はどれ？",
+        "choices": [
+          "おいしさの目安",
+          "安全に食べられる期限",
+          "値引きが始まる日",
+          "製造者の休日"
+        ],
+        "answerIndex": 1,
+        "explanation": "消費期限は安全に食べられる期限の目安。賞味期限はおいしく食べられる期限なので、意味が異なる。",
+        "relatedCardId": "card_food_012",
+        "sourceNote": "消費者庁・食品期限表示資料",
+        "verified": true,
+        "source": {
+          "title": "期限表示とは",
+          "publisher": "消費者庁",
+          "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms204_250331_01.pdf",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "277d3f37cdfc16c408db018dc317446fb67fd76db13b85e3e892f5a168f9869a"
+        }
+      },
+      "card": {
+        "id": "card_food_012",
+        "title": "消費期限と賞味期限",
+        "category": "food",
+        "shortText": "安全とおいしさは別",
+        "detailText": "消費期限は傷みやすい食品で特に重要。賞味期限と混同せず、表示の意味を分けて考える必要がある。",
+        "imageAsset": "assets/images/cards/card_food_012.png",
+        "rarity": "normal",
+        "sourceNote": "消費者庁・食品期限表示資料",
+        "source": {
+          "title": "期限表示とは",
+          "publisher": "消費者庁",
+          "url": "https://www.caa.go.jp/policies/policy/food_labeling/food_sanitation/expiration_date/assets/food_labeling_cms204_250331_01.pdf",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "277d3f37cdfc16c408db018dc317446fb67fd76db13b85e3e892f5a168f9869a"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_food_013",
+        "category": "food",
+        "difficulty": "normal",
+        "question": "ジャガイモの芽に多い天然毒素はどれ？",
+        "choices": [
+          "カフェイン",
+          "ソラニンやチャコニン",
+          "グルテン",
+          "リコピン"
+        ],
+        "answerIndex": 1,
+        "explanation": "ジャガイモの芽や緑色になった部分には、ソラニンやチャコニンが多く含まれる。食中毒予防には十分に取り除くことが大切。",
+        "relatedCardId": "card_food_013",
+        "sourceNote": "農林水産省・ジャガイモ毒素解説",
+        "verified": true,
+        "source": {
+          "title": "じゃがいもに含まれる天然毒素「ソラニン」や「チャコニン」に関するQ&A",
+          "publisher": "農林水産省",
+          "url": "https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "beb05b916ae94ab025925372e71b7f88d698e313a2d718261b193fac8b7c61d4"
+        }
+      },
+      "card": {
+        "id": "card_food_013",
+        "title": "芽の毒に注意",
+        "category": "food",
+        "shortText": "芽と緑色部分は取り除く",
+        "detailText": "家庭菜園や長期保存のジャガイモでは、芽や緑色の皮に天然毒素が増えることがある。",
+        "imageAsset": "assets/images/cards/card_food_013.png",
+        "rarity": "normal",
+        "sourceNote": "農林水産省・ジャガイモ毒素解説",
+        "source": {
+          "title": "じゃがいもに含まれる天然毒素「ソラニン」や「チャコニン」に関するQ&A",
+          "publisher": "農林水産省",
+          "url": "https://www.maff.go.jp/j/syouan/seisaku/solanine/potato_alkaloid_QA.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "beb05b916ae94ab025925372e71b7f88d698e313a2d718261b193fac8b7c61d4"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_geo_004",
+        "category": "nature_geography",
+        "difficulty": "hard",
+        "question": "2009年、火星を想定した掘削調査で生命検出チップが試験された砂漠は？",
+        "choices": [
+          "サハラ砂漠",
+          "アタカマ砂漠",
+          "ゴビ砂漠",
+          "モハーベ砂漠"
+        ],
+        "answerIndex": 1,
+        "explanation": "研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。この技術は、火星で生命を探すための惑星探査技術として評価された。",
+        "relatedCardId": "card_geo_004",
+        "sourceNote": "Parroほか（2011）Astrobiology",
+        "verified": true,
+        "source": {
+          "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+          "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "c287a5ca5263d64c8ba843f473983063c31b69dd2be46edcc87a76474edaddb9"
+        }
+      },
+      "card": {
+        "id": "card_geo_004",
+        "title": "火星探査とアタカマ砂漠",
+        "category": "nature_geography",
+        "shortText": "火星の生命探査技術が試験された。",
+        "detailText": "2009年、研究チームはチリのアタカマ砂漠で火星を想定した掘削調査を行い、生命検出チップを現地で試験した。検出技術は、火星で生命を探すための惑星探査技術として評価された。",
+        "imageAsset": "assets/images/cards/card_geo_004.png",
+        "rarity": "rare",
+        "sourceNote": "Parroほか（2011）Astrobiology",
+        "source": {
+          "title": "A microbial oasis in the hypersaline Atacama subsurface discovered by a life detector chip: implications for the search for life on Mars",
+          "publisher": "Astrobiology (Mary Ann Liebert, Inc.)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22149750/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "c287a5ca5263d64c8ba843f473983063c31b69dd2be46edcc87a76474edaddb9"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_geo_005",
+        "category": "nature_geography",
+        "difficulty": "easy",
+        "question": "日本でいちばん長い川は？",
+        "choices": [
+          "信濃川",
+          "利根川",
+          "石狩川",
+          "筑後川"
+        ],
+        "answerIndex": 0,
+        "explanation": "日本最長の川は信濃川。長さは約367kmで、新潟県から長野県を流れているよ。",
+        "relatedCardId": "card_geo_005",
+        "sourceNote": "国土交通省",
+        "verified": true,
+        "source": {
+          "title": "日本の川 - 北陸 - 信濃川",
+          "publisher": "国土交通省 水管理・国土保全局",
+          "url": "https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e5dbc7052fdd711b9a8576ef2ba7abea296135b55400938da433eb5f72c4e873"
+        }
+      },
+      "card": {
+        "id": "card_geo_005",
+        "title": "信濃川",
+        "category": "nature_geography",
+        "shortText": "日本最長の川。長さは約367km。",
+        "detailText": "信濃川は新潟県から長野県を流れる日本最長の川。長野県内では千曲川と呼ばれ、新潟県に入って信濃川と呼ばれる。",
+        "imageAsset": "assets/images/cards/card_geo_005.png",
+        "rarity": "normal",
+        "sourceNote": "国土交通省",
+        "source": {
+          "title": "日本の川 - 北陸 - 信濃川",
+          "publisher": "国土交通省 水管理・国土保全局",
+          "url": "https://www.mlit.go.jp/river/toukei_chousa/kasen/jiten/nihon_kawa/0405_shinano/0405_shinano_00.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "e5dbc7052fdd711b9a8576ef2ba7abea296135b55400938da433eb5f72c4e873"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_his_001",
+        "category": "history",
+        "difficulty": "easy",
+        "question": "五・七・五の17音を基本とし、季語を詠み込むことを伝統的な特徴とする日本の詩は？",
+        "choices": [
+          "短歌",
+          "俳句",
+          "川柳",
+          "連歌"
+        ],
+        "answerIndex": 1,
+        "explanation": "俳句は、五・七・五の17音を基本とする日本の短詩型です。伝統的には季語や言葉の切れを重視しますが、定型や季語にとらわれない俳句もあります。",
+        "relatedCardId": "card_his_001",
+        "sourceNote": "文化庁 日本文化紹介",
+        "verified": true,
+        "source": {
+          "title": "俳句入門",
+          "publisher": "一般社団法人現代俳句協会",
+          "url": "https://gendaihaiku.gr.jp/create/guide/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b343b0bef598d311dfaefb46e6964c6e0beb3dfd1103c898a51aed3f9ba11477"
+        }
+      },
+      "card": {
+        "id": "card_his_001",
+        "title": "俳句",
+        "category": "history",
+        "shortText": "17音に情景を込める俳句。",
+        "detailText": "俳句は、五・七・五の17音を基本とする日本の短詩型です。伝統的には季語や言葉の切れを重視し、短い言葉で季節や情景、感情を表現します。「世界一短い詩」と紹介されることもありますが、これは厳密な世界記録ではなく、その簡潔さを表す呼び方です。",
+        "imageAsset": "assets/images/cards/card_his_001.png",
+        "rarity": "normal",
+        "sourceNote": "文化庁 日本文化紹介",
+        "source": {
+          "title": "俳句入門",
+          "publisher": "一般社団法人現代俳句協会",
+          "url": "https://gendaihaiku.gr.jp/create/guide/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b343b0bef598d311dfaefb46e6964c6e0beb3dfd1103c898a51aed3f9ba11477"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_his_002",
+        "category": "history",
+        "difficulty": "normal",
+        "question": "奈良の大仏を作るのに使われた主な材料は？",
+        "choices": [
+          "金",
+          "銅",
+          "鉄",
+          "木"
+        ],
+        "answerIndex": 1,
+        "explanation": "奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。",
+        "relatedCardId": "card_his_002",
+        "sourceNote": "東大寺公式サイト",
+        "verified": true,
+        "source": {
+          "title": "大仏さまができるまで",
+          "publisher": "華厳宗大本山 東大寺",
+          "url": "https://www.todaiji.or.jp/kids/kids2-2.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "64edf5b5384be1499fdd4e80f360c1b110acae4b789deb3744a919abd1c96098"
+        }
+      },
+      "card": {
+        "id": "card_his_002",
+        "title": "奈良の大仏",
+        "category": "history",
+        "shortText": "約500トンの銅で作られた巨大仏像。",
+        "detailText": "東大寺の盧舎那仏像（奈良の大仏）は高さ約15m。752年の開眼供養には多くの人々が集まった。",
+        "imageAsset": "assets/images/cards/card_his_002.png",
+        "rarity": "rare",
+        "sourceNote": "東大寺公式サイト",
+        "source": {
+          "title": "大仏さまができるまで",
+          "publisher": "華厳宗大本山 東大寺",
+          "url": "https://www.todaiji.or.jp/kids/kids2-2.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "64edf5b5384be1499fdd4e80f360c1b110acae4b789deb3744a919abd1c96098"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_history_005",
+        "category": "history",
+        "difficulty": "normal",
+        "question": "スミソニアン国立航空宇宙博物館によると、1903年12月17日のライト・フライヤー初飛行を操縦したのは？",
+        "choices": [
+          "オーヴィル・ライト",
+          "ウィルバー・ライト",
+          "チャールズ・リンドバーグ",
+          "グレン・カーチス"
+        ],
+        "answerIndex": 0,
+        "explanation": "国立航空宇宙博物館によると、ライト・フライヤーは1903年12月17日にノースカロライナ州キティホークで初飛行した。最初の飛行はオーヴィルの操縦で12秒間、120フィート（約36m）進んだ。",
+        "relatedCardId": "card_history_005",
+        "sourceNote": "Smithsonian National Air and Space Museum",
+        "verified": true,
+        "source": {
+          "title": "1903 Wright Flyer",
+          "publisher": "Smithsonian National Air and Space Museum",
+          "url": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "f7419bff3e154a74e4c0276aa1cea31bb50e535276bd312786abc695117768bc"
+        }
+      },
+      "card": {
+        "id": "card_history_005",
+        "title": "ライト・フライヤーの初飛行",
+        "category": "history",
+        "shortText": "1903年12月17日、最初の飛行はオーヴィルが操縦した。",
+        "detailText": "スミソニアン国立航空宇宙博物館によると、ライト兄弟の1903年型フライヤーはキティホークで初飛行した。最初の飛行はオーヴィルの操縦で12秒間、36m進んだ。",
+        "imageAsset": "assets/images/cards/card_history_005.png",
+        "rarity": "rare",
+        "sourceNote": "Smithsonian National Air and Space Museum",
+        "source": {
+          "title": "1903 Wright Flyer",
+          "publisher": "Smithsonian National Air and Space Museum",
+          "url": "https://airandspace.si.edu/collection-objects/1903-wright-flyer/nasm_A19610048000",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "f7419bff3e154a74e4c0276aa1cea31bb50e535276bd312786abc695117768bc"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_history_009",
+        "category": "history",
+        "difficulty": "normal",
+        "question": "大英博物館のロゼッタ・ストーンに刻まれた3種類の文字に含まれないものは？",
+        "choices": [
+          "ヒエログリフ",
+          "デモティック",
+          "ギリシャ文字",
+          "ラテン文字"
+        ],
+        "answerIndex": 3,
+        "explanation": "大英博物館の作品記録によると、ロゼッタ・ストーンにはヒエログリフ、デモティック、ギリシャ文字の3つの文字体系で同じ勅令が刻まれている。ラテン文字は含まれない。",
+        "relatedCardId": "card_history_009",
+        "sourceNote": "The British Museum — The Rosetta Stone",
+        "verified": true,
+        "source": {
+          "title": "The Rosetta Stone (EA24)",
+          "publisher": "The British Museum",
+          "url": "https://www.britishmuseum.org/collection/object/Y_EA24",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "f65e18f7950bd9bad4eb9cd621851b934371752555576b6d9148d2c48f77a3cc"
+        }
+      },
+      "card": {
+        "id": "card_history_009",
+        "title": "ロゼッタ・ストーンの3種類の文字",
+        "category": "history",
+        "shortText": "ヒエログリフ、デモティック、ギリシャ文字が刻まれている。",
+        "detailText": "大英博物館の作品記録によると、紀元前196年のロゼッタ・ストーンには、ヒエログリフ14行、デモティック32行、ギリシャ文字54行で勅令が刻まれている。ラテン文字ではない。",
+        "imageAsset": "assets/images/cards/card_history_009.png",
+        "rarity": "normal",
+        "sourceNote": "The British Museum — The Rosetta Stone",
+        "source": {
+          "title": "The Rosetta Stone (EA24)",
+          "publisher": "The British Museum",
+          "url": "https://www.britishmuseum.org/collection/object/Y_EA24",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "f65e18f7950bd9bad4eb9cd621851b934371752555576b6d9148d2c48f77a3cc"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_history_011",
+        "category": "history",
+        "difficulty": "normal",
+        "question": "ニューヨークの自由の女神像は、どの国からアメリカへ贈られましたか？",
+        "choices": [
+          "竜文切手",
+          "ペニー・ブラック",
+          "ブルー・モーリシャス",
+          "桜切手"
+        ],
+        "answerIndex": 1,
+        "explanation": "フランスです。アメリカ独立100周年と米仏の友好を記念する贈り物として構想されました。",
+        "relatedCardId": "card_history_011",
+        "sourceNote": "英国郵便博物館・ペニー黒切手",
+        "verified": true,
+        "source": {
+          "title": "Statue of Liberty Facts",
+          "publisher": "U.S. National Park Service",
+          "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "baa7d70bc0d6959d71af4ea17180d150885f6783720d830ba69905da3aa68125"
+        }
+      },
+      "card": {
+        "id": "card_history_011",
+        "title": "世界初の切手",
+        "category": "history",
+        "shortText": "黒い一ペニー切手",
+        "detailText": "ペニー・ブラックは郵便料金を前払いする仕組みを広め、近代郵便制度の象徴的な存在になった。",
+        "imageAsset": "assets/images/cards/card_history_011.png",
+        "rarity": "normal",
+        "sourceNote": "英国郵便博物館・ペニー黒切手",
+        "source": {
+          "title": "Statue of Liberty Facts",
+          "publisher": "U.S. National Park Service",
+          "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "baa7d70bc0d6959d71af4ea17180d150885f6783720d830ba69905da3aa68125"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_history_012",
+        "category": "history",
+        "difficulty": "normal",
+        "question": "富岡製糸場が操業を始めた年として正しいのは？",
+        "choices": [
+          "1603年",
+          "1776年",
+          "1872年",
+          "1945年"
+        ],
+        "answerIndex": 2,
+        "explanation": "富岡製糸場は1872年に設立された、日本初期の本格的な器械製糸工場。明治の近代化と生糸輸出を支えた。",
+        "relatedCardId": "card_history_012",
+        "sourceNote": "群馬県公式・富岡製糸場案内",
+        "verified": true,
+        "source": {
+          "title": "富岡製糸場を知る",
+          "publisher": "富岡市観光協会",
+          "url": "https://www.tomioka-silk.jp/_tomioka-silk-mill/about/",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "4262af63f4eefd766b3ee2b5c2189da30af1b6d7335be3dcf1bb6b8c3e7d6732"
+        }
+      },
+      "card": {
+        "id": "card_history_012",
+        "title": "近代製糸の出発点",
+        "category": "history",
+        "shortText": "明治日本の工場遺産",
+        "detailText": "富岡製糸場は、近代的な機械製糸を日本に導入した重要な施設で、世界遺産にも登録されている。",
+        "imageAsset": "assets/images/cards/card_history_012.png",
+        "rarity": "normal",
+        "sourceNote": "群馬県公式・富岡製糸場案内",
+        "source": {
+          "title": "富岡製糸場を知る",
+          "publisher": "富岡市観光協会",
+          "url": "https://www.tomioka-silk.jp/_tomioka-silk-mill/about/",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "4262af63f4eefd766b3ee2b5c2189da30af1b6d7335be3dcf1bb6b8c3e7d6732"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_history_013",
+        "category": "history",
+        "difficulty": "hard",
+        "question": "日本がメートル条約に正式加盟した年は？",
+        "choices": [
+          "1868年",
+          "1885年",
+          "1905年",
+          "1949年"
+        ],
+        "answerIndex": 1,
+        "explanation": "日本は1885年にメートル条約へ正式加盟し、国際的な計量の枠組みに加わった。のちの度量衡整備にもつながる。",
+        "relatedCardId": "card_history_013",
+        "sourceNote": "産総研NMIJ・メートル条約史",
+        "verified": true,
+        "source": {
+          "title": "Member State: Japan",
+          "publisher": "International Bureau of Weights and Measures (BIPM)",
+          "url": "https://www.bipm.org/en/countries/jp",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "fe7a8fa782a2daf18f756e778b05b8ece61e4ffbdc99af848265604e4c877246"
+        }
+      },
+      "card": {
+        "id": "card_history_013",
+        "title": "メートル法への参加",
+        "category": "history",
+        "shortText": "日本は1885年に加盟",
+        "detailText": "メートル条約への加盟は、日本が長さや質量の国際基準を共有する近代的な計量制度へ進む一歩だった。",
+        "imageAsset": "assets/images/cards/card_history_013.png",
+        "rarity": "rare",
+        "sourceNote": "産総研NMIJ・メートル条約史",
+        "source": {
+          "title": "Member State: Japan",
+          "publisher": "International Bureau of Weights and Measures (BIPM)",
+          "url": "https://www.bipm.org/en/countries/jp",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "fe7a8fa782a2daf18f756e778b05b8ece61e4ffbdc99af848265604e4c877246"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_lang_003",
+        "category": "language",
+        "difficulty": "hard",
+        "question": "食べ物の「サンドイッチ」という名前の直接の由来は？",
+        "choices": [
+          "発祥地とされるフランスの町名",
+          "イギリスの「サンドイッチ伯爵」という爵位名",
+          "考案したパン職人の姓",
+          "砂を意味する英単語"
+        ],
+        "answerIndex": 1,
+        "explanation": "「サンドイッチ」は、18世紀の第4代サンドイッチ伯爵ジョン・モンタギューの爵位名に由来します。",
+        "relatedCardId": "card_lang_003",
+        "sourceNote": "文化庁 日本文化紹介",
+        "verified": true,
+        "source": {
+          "title": "Sandwich",
+          "publisher": "Oxford University Press",
+          "url": "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803100440490",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "02789bc7a08d38841cbc8c4b2ea83aef62a16c2144d7433ec882211a59ece66c"
+        }
+      },
+      "card": {
+        "id": "card_lang_003",
+        "title": "料理名になったサンドイッチ伯爵",
+        "category": "language",
+        "shortText": "サンドイッチの名称は、イギリスの爵位「サンドイッチ伯爵」に由来します。",
+        "detailText": "英語のsandwichは、第4代サンドイッチ伯爵ジョン・モンタギューにちなんだ名称です。伯爵がカード遊びを続けながら食べるため、肉をパンに挟ませたという逸話が有名ですが、その具体的な状況や伯爵が料理自体を発明したかどうかには不確かな点があります。",
+        "imageAsset": "assets/images/cards/card_lang_003.png",
+        "rarity": "normal",
+        "sourceNote": "オックスフォード英語辞典",
+        "source": {
+          "title": "Sandwich",
+          "publisher": "Oxford University Press",
+          "url": "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803100440490",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "02789bc7a08d38841cbc8c4b2ea83aef62a16c2144d7433ec882211a59ece66c"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_language_001",
+        "category": "language",
+        "difficulty": "hard",
+        "question": "フランス語の「sabotage（サボタージュ）」と語源的につながる履物「sabot」は何？",
+        "choices": [
+          "木靴",
+          "サンダル",
+          "革靴",
+          "布の靴"
+        ],
+        "answerIndex": 0,
+        "explanation": "「sabotage」はフランス語の動詞saboterから派生し、saboterは木靴を表すsabotに由来する。CNRTLには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。",
+        "relatedCardId": "card_language_001",
+        "sourceNote": "CNRTL「SABOTER」の語義・語源",
+        "verified": true,
+        "source": {
+          "title": "SABOTER : Définition de SABOTER",
+          "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+          "url": "https://www.cnrtl.fr/definition/saboter",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "secondary",
+          "reviewStatus": "approved",
+          "contentHash": "cc197214156c132bb1381d398c7858dc009895e1258708ab26e2f2a1aa7c11ce"
+        }
+      },
+      "card": {
+        "id": "card_language_001",
+        "title": "サボタージュと木靴",
+        "category": "language",
+        "shortText": "語源のsabotは木靴",
+        "detailText": "フランス語saboterには、木靴で音を立てることや、仕事を速く粗雑に行うことなどの古い用法が記録されている。sabotageはこの動詞から派生した語。",
+        "imageAsset": "assets/images/cards/card_language_001.png",
+        "rarity": "rare",
+        "sourceNote": "CNRTL「SABOTER」の語義・語源",
+        "source": {
+          "title": "SABOTER : Définition de SABOTER",
+          "publisher": "Centre National de Ressources Textuelles et Lexicales (CNRTL)",
+          "url": "https://www.cnrtl.fr/definition/saboter",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "secondary",
+          "reviewStatus": "approved",
+          "contentHash": "cc197214156c132bb1381d398c7858dc009895e1258708ab26e2f2a1aa7c11ce"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_language_006",
+        "category": "language",
+        "difficulty": "hard",
+        "question": "「カステラ」という名前は、何に由来するとされますか？",
+        "choices": [
+          "ポルトガル語で「カスティーリャの菓子」を意味する呼び名",
+          "長崎の菓子職人カステラ氏の名字",
+          "焼き型が城の形に似ていたこと",
+          "原料の砂糖を表すラテン語"
+        ],
+        "answerIndex": 0,
+        "explanation": "ポルトガル語の「ボーロ・デ・カステラ（カスティーリャの菓子）」に由来するとされます。カステラは、現在のスペインにあったカスティーリャ王国を指します。",
+        "relatedCardId": "card_language_006",
+        "sourceNote": "国立国会図書館レファレンス事例",
+        "verified": true,
+        "source": {
+          "title": "長崎名物「カステラ」の名前の由来は？",
+          "publisher": "長崎市",
+          "url": "https://www.city.nagasaki.lg.jp/site/kodomo/60691.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "f90c7ac3b19669ac78eda02f547c0dd4f38b84cbf92c6ee46f0c08225d036999"
+        }
+      },
+      "card": {
+        "id": "card_language_006",
+        "title": "カステラの名前",
+        "category": "language",
+        "shortText": "地名が菓子名になった説",
+        "detailText": "カステラはポルトガル経由で伝わったが、名はカスティーリャ地方に由来する説が有力。",
+        "imageAsset": "assets/images/cards/card_language_006.png",
+        "rarity": "rare",
+        "sourceNote": "国立国会図書館レファレンス事例",
+        "source": {
+          "title": "長崎名物「カステラ」の名前の由来は？",
+          "publisher": "長崎市",
+          "url": "https://www.city.nagasaki.lg.jp/site/kodomo/60691.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "f90c7ac3b19669ac78eda02f547c0dd4f38b84cbf92c6ee46f0c08225d036999"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_language_007",
+        "category": "language",
+        "difficulty": "normal",
+        "question": "「立つが如し」の「如し（ごとし）」は、どのような意味ですか？",
+        "choices": [
+          "町家の屋根付近に設けられた防火用の袖壁",
+          "商家の入口に掲げられた屋号の看板",
+          "井戸水をくみ上げるための滑車",
+          "蔵の床下に設けられた通風口"
+        ],
+        "answerIndex": 0,
+        "explanation": "「～のようだ」「～に似ている」という比況を表します。この場合は「立っているようだ」という意味です。",
+        "relatedCardId": "card_language_007",
+        "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
+        "verified": true,
+        "source": {
+          "title": "如し（ゴトシ）とは？ 意味や使い方",
+          "publisher": "小学館",
+          "url": "https://kotobank.jp/word/如し-503074",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "c16d4adacb6b4e4e7a291c72c9382e586065b61087c7d62d91e3e28df4aba6e7"
+        }
+      },
+      "card": {
+        "id": "card_language_007",
+        "title": "うだつが上がらないの正体",
+        "category": "language",
+        "shortText": "出世の証とされた歴史的な建築物",
+        "detailText": "慣用句で使われる「うだつ」は、火災から家を守るための建築設備のこと。お金持ちしか建てられなかったことが語源です。",
+        "imageAsset": "assets/images/cards/card_language_007.png",
+        "rarity": "normal",
+        "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
+        "source": {
+          "title": "如し（ゴトシ）とは？ 意味や使い方",
+          "publisher": "小学館",
+          "url": "https://kotobank.jp/word/如し-503074",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "c16d4adacb6b4e4e7a291c72c9382e586065b61087c7d62d91e3e28df4aba6e7"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_life_002",
+        "category": "daily_life",
+        "difficulty": "easy",
+        "question": "信号機で「止まれ」を示す色に赤が使われる理由として、最も適切なものは？",
+        "choices": [
+          "赤色光は波長が長く、空気中で散乱されにくいから",
+          "赤色光は可視光の中で最も明るく見えるから",
+          "赤色光は霧や雨にまったく遮られないから",
+          "赤色光はほかの色より消費電力が少ないから"
+        ],
+        "answerIndex": 0,
+        "explanation": "赤色光は青色光などより波長が長く、大気中で散乱されにくいため、遠くから識別する停止信号に適しています。",
+        "relatedCardId": "card_life_002",
+        "sourceNote": "警察庁 交通規制",
+        "verified": true,
+        "source": {
+          "title": "信号機はなぜ、「赤・黄・青」の3色なのか。",
+          "publisher": "国立国会図書館 レファレンス協同データベース",
+          "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000026860&page=ref_view",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "28f56ce236b899ec79b88e1b6eb95a861eb485021b95ecf19a294a9825a2d472"
+        }
+      },
+      "card": {
+        "id": "card_life_002",
+        "title": "停止信号が赤い理由",
+        "category": "daily_life",
+        "shortText": "赤色光は波長が長く、短い波長の光より大気中で散乱されにくい性質があります。",
+        "detailText": "大気中では、青や紫など波長の短い光ほど強く散乱されます。赤色光はそれらより波長が長く、比較的まっすぐ届きやすいため、遠方から注意を引く必要がある停止信号に向いています。信号の3色すべてが同じように遠くまで届くわけではありません。",
+        "imageAsset": "assets/images/cards/card_life_002.png",
+        "rarity": "normal",
+        "sourceNote": "警察庁 交通規制",
+        "source": {
+          "title": "信号機はなぜ、「赤・黄・青」の3色なのか。",
+          "publisher": "国立国会図書館 レファレンス協同データベース",
+          "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000026860&page=ref_view",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "28f56ce236b899ec79b88e1b6eb95a861eb485021b95ecf19a294a9825a2d472"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_life_003",
+        "category": "daily_life",
+        "difficulty": "normal",
+        "question": "消しゴムで鉛筆の線が消える主な仕組みは？",
+        "choices": [
+          "黒鉛を透明な物質に変える",
+          "紙の表面を溶かして作り直す",
+          "黒鉛の粒子を紙からはがし、消しゴム側に取り込む",
+          "黒鉛を空気中へ蒸発させる"
+        ],
+        "answerIndex": 2,
+        "explanation": "こする力で紙に付着した黒鉛粒子がはがれ、紙よりも消しゴムの素材に付きやすいため、線が取り除かれます。",
+        "relatedCardId": "card_life_003",
+        "sourceNote": "文具の企画・開発メモ",
+        "verified": true,
+        "source": {
+          "title": "消しゴムで文字を消す仕組み",
+          "publisher": "株式会社トンボ鉛筆",
+          "url": "https://www.tombow.com/mamechishiki/e68/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "cc9f660993a21667435755f4f3caf71da7cc0c3de87b59e2b88b10b8a7ea792c"
+        }
+      },
+      "card": {
+        "id": "card_life_003",
+        "title": "黒鉛をつかまえる消しゴム",
+        "category": "daily_life",
+        "shortText": "消しゴムは黒鉛粒子を紙からはがし、自分の側へ取り込んで線を消します。",
+        "detailText": "鉛筆の線は、紙の繊維に細かな黒鉛粒子が付着してできています。消しゴムでこすると、摩擦によって黒鉛粒子が紙からゆるみ、消しゴムの素材へ移ります。製品によっては軽い研磨作用もありますが、単純に紙の表面を削っているだけではありません。",
+        "imageAsset": "assets/images/cards/card_life_003.png",
+        "rarity": "normal",
+        "sourceNote": "文具メーカー資料",
+        "source": {
+          "title": "消しゴムで文字を消す仕組み",
+          "publisher": "株式会社トンボ鉛筆",
+          "url": "https://www.tombow.com/mamechishiki/e68/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "cc9f660993a21667435755f4f3caf71da7cc0c3de87b59e2b88b10b8a7ea792c"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_life_004",
+        "category": "daily_life",
+        "difficulty": "hard",
+        "question": "米国のADA Accessibility Standards 407.3.5で、かご呼びに応答したエレベーターの扉が完全に開いた状態を保つ最低時間は？",
+        "choices": [
+          "1秒",
+          "3秒",
+          "5秒",
+          "20秒"
+        ],
+        "answerIndex": 1,
+        "explanation": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと規定している。米国の特定規定であり、すべての国・機種の閉ボタンの挙動を示すものではない。",
+        "relatedCardId": "card_life_004",
+        "sourceNote": "U.S. Access Board ADA 407.3.5",
+        "verified": true,
+        "source": {
+          "title": "Chapter 4: Accessible Routes",
+          "publisher": "U.S. Access Board",
+          "url": "https://www.access-board.gov/ada/chapter/ch04/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "43c903ec5373a1523495fc023f602d4b27ad090b6addb457c0277ade7b2fd6ba"
+        }
+      },
+      "card": {
+        "id": "card_life_004",
+        "title": "ADAのエレベーター扉遅延",
+        "category": "daily_life",
+        "shortText": "かご呼びでは完全に開いた状態を最低3秒保つ。",
+        "detailText": "U.S. Access BoardのADA Accessibility Standards 407.3.5は、かご呼びに応答したエレベーターの扉を完全に開いた状態で最低3秒保つと定めている。この規定だけから、他国や全機種で閉ボタンが無効だとは判断できない。",
+        "imageAsset": "assets/images/cards/card_life_004.png",
+        "rarity": "normal",
+        "sourceNote": "U.S. Access Board ADA 407.3.5",
+        "source": {
+          "title": "Chapter 4: Accessible Routes",
+          "publisher": "U.S. Access Board",
+          "url": "https://www.access-board.gov/ada/chapter/ch04/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "43c903ec5373a1523495fc023f602d4b27ad090b6addb457c0277ade7b2fd6ba"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_living_things_002",
+        "category": "living_things",
+        "difficulty": "normal",
+        "question": "1996年に発表されたキリンの行動睡眠研究で、観察場所として題名に示されているのは？",
+        "choices": [
+          "動物園",
+          "野生のサバンナ",
+          "大学の睡眠実験室",
+          "海洋公園"
+        ],
+        "answerIndex": 0,
+        "explanation": "ToblerとSchwierinが1996年に発表した論文の題名は「動物園におけるキリンの行動睡眠」で、観察場所として動物園が示されている。",
+        "relatedCardId": "card_living_things_002",
+        "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+        "verified": true,
+        "source": {
+          "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+          "publisher": "Journal of Sleep Research",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "248cbde8c90031a2bc5924d53ececc3606031ec837341fad3d8f384c009a9ffa"
+        }
+      },
+      "card": {
+        "id": "card_living_things_002",
+        "title": "動物園で調べたキリンの睡眠",
+        "category": "living_things",
+        "shortText": "1996年の行動睡眠研究は動物園が対象。",
+        "detailText": "ToblerとSchwierinは、動物園におけるキリンの行動睡眠を報告した。論文は1996年にJournal of Sleep Researchへ掲載された。",
+        "imageAsset": "assets/images/cards/card_living_things_002.png",
+        "rarity": "rare",
+        "sourceNote": "Tobler・Schwierin（1996）Journal of Sleep Research",
+        "source": {
+          "title": "Behavioural sleep in the giraffe (Giraffa camelopardalis) in a zoological garden",
+          "publisher": "Journal of Sleep Research",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8795798/",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "248cbde8c90031a2bc5924d53ececc3606031ec837341fad3d8f384c009a9ffa"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_living_things_006",
+        "category": "living_things",
+        "difficulty": "normal",
+        "question": "タコの3つの心臓のうち、えらへ血液を送る心臓はいくつある？",
+        "choices": [
+          "1つ",
+          "2つ",
+          "3つ",
+          "0個"
+        ],
+        "answerIndex": 1,
+        "explanation": "タコには3つの心臓があり、そのうち2つがそれぞれのえらへ血液を送ります。残る1つは、酸素を受け取った血液を全身へ送ります。",
+        "relatedCardId": "card_living_things_006",
+        "sourceNote": "生物学事典「軟体動物の循環系」",
+        "verified": true,
+        "source": {
+          "title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus",
+          "publisher": "Smithsonian Ocean",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50"
+        }
+      },
+      "card": {
+        "id": "card_living_things_006",
+        "title": "役割を分担するタコの3つの心臓",
+        "category": "living_things",
+        "shortText": "タコには、2つのえら用心臓と1つの全身用心臓があります。",
+        "detailText": "タコの心臓は合計3つです。左右のえらの近くにある2つの「えら心臓」が血液をえらへ送り、残る1つの主心臓が、酸素を受け取った血液を全身へ送り出します。心臓の個数だけでなく役割を問うことで、既存問題との重複を避けられます。",
+        "imageAsset": "assets/images/cards/card_living_things_006.png",
+        "rarity": "rare",
+        "sourceNote": "生物学事典「軟体動物の循環系」",
+        "source": {
+          "title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus",
+          "publisher": "Smithsonian Ocean",
+          "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_living_things_014",
+        "category": "living_things",
+        "difficulty": "easy",
+        "question": "コウモリが暗闇で虫を探す主な方法は？",
+        "choices": [
+          "体温を光らせる",
+          "超音波の反響を使う",
+          "磁石のように引き寄せる",
+          "羽で匂いを集める"
+        ],
+        "answerIndex": 1,
+        "explanation": "多くのコウモリは、人間には聞こえにくい高い音を出し、物体に当たって返る反響を聞いて位置や距離を知る。",
+        "relatedCardId": "card_living_things_014",
+        "sourceNote": "米国国立公園局・コウモリ解説",
+        "verified": true,
+        "source": {
+          "title": "Echolocation",
+          "publisher": "U.S. National Park Service",
+          "url": "https://www.nps.gov/subjects/bats/echolocation.htm",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "b87ee5673f4b62d6fa42c3efc8f8587d4ded88a10a63428bce97db8c58d7698e"
+        }
+      },
+      "card": {
+        "id": "card_living_things_014",
+        "title": "音で見るコウモリ",
+        "category": "living_things",
+        "shortText": "反響で虫や障害物を知る",
+        "detailText": "反響定位は、暗闇でも周囲の形や獲物の位置を把握できる、コウモリの代表的な能力。",
+        "imageAsset": "assets/images/cards/card_living_things_014.png",
+        "rarity": "normal",
+        "sourceNote": "米国国立公園局・コウモリ解説",
+        "source": {
+          "title": "Echolocation",
+          "publisher": "U.S. National Park Service",
+          "url": "https://www.nps.gov/subjects/bats/echolocation.htm",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "b87ee5673f4b62d6fa42c3efc8f8587d4ded88a10a63428bce97db8c58d7698e"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_living_things_017",
+        "category": "living_things",
+        "difficulty": "normal",
+        "question": "サンゴの白化で体内から失われやすいものは？",
+        "choices": [
+          "共生藻",
+          "骨のカルシウム",
+          "海水の塩分",
+          "砂の粒"
+        ],
+        "answerIndex": 0,
+        "explanation": "水温が高すぎるなどのストレスで、サンゴは体内に共生する藻類を放出することがある。これにより白く見える。",
+        "relatedCardId": "card_living_things_017",
+        "sourceNote": "NOAA・サンゴ白化の基礎解説",
+        "verified": true,
+        "source": {
+          "title": "What is coral bleaching?",
+          "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "73a70f3cc743a56c147498ab6994c683a76fb41169a68c70f3dfafd2698f3335"
+        }
+      },
+      "card": {
+        "id": "card_living_things_017",
+        "title": "サンゴ白化の正体",
+        "category": "living_things",
+        "shortText": "白さは共生藻の喪失",
+        "detailText": "白化したサンゴはすぐ死んだとは限らないが、共生藻を失って強いストレス状態に置かれている。",
+        "imageAsset": "assets/images/cards/card_living_things_017.png",
+        "rarity": "rare",
+        "sourceNote": "NOAA・サンゴ白化の基礎解説",
+        "source": {
+          "title": "What is coral bleaching?",
+          "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "73a70f3cc743a56c147498ab6994c683a76fb41169a68c70f3dfafd2698f3335"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_living_things_018",
+        "category": "living_things",
+        "difficulty": "normal",
+        "question": "タツノオトシゴで妊娠し子を産むのはどちら？",
+        "choices": [
+          "メス",
+          "オス",
+          "両方同時",
+          "子は卵から直接出るだけ"
+        ],
+        "answerIndex": 1,
+        "explanation": "タツノオトシゴや近縁のシードラゴンでは、オスが育児嚢で卵を受け取り、妊娠して子を産む珍しい繁殖を行う。",
+        "relatedCardId": "card_living_things_018",
+        "sourceNote": "NOAA・タツノオトシゴ解説",
+        "verified": true,
+        "source": {
+          "title": "How do seahorses differ from all other animals?",
+          "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://oceanservice.noaa.gov/facts/seahorse.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "5cfca17fc79ecd874def176093409744320098e570b2fa3b5003f39fdedb1cb1"
+        }
+      },
+      "card": {
+        "id": "card_living_things_018",
+        "title": "産むオス",
+        "category": "living_things",
+        "shortText": "タツノオトシゴはオスが出産",
+        "detailText": "動物界でも珍しく、タツノオトシゴではメスが卵を渡し、オスが育児嚢で育てて出産する。",
+        "imageAsset": "assets/images/cards/card_living_things_018.png",
+        "rarity": "rare",
+        "sourceNote": "NOAA・タツノオトシゴ解説",
+        "source": {
+          "title": "How do seahorses differ from all other animals?",
+          "publisher": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://oceanservice.noaa.gov/facts/seahorse.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "5cfca17fc79ecd874def176093409744320098e570b2fa3b5003f39fdedb1cb1"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_001",
+        "category": "nature_geography",
+        "difficulty": "easy",
+        "question": "日本で最も高い山、富士山がまたがっている2つの県はどこでしょうか？",
+        "choices": [
+          "静岡県と山梨県",
+          "長野県と静岡県",
+          "山梨県と長野県",
+          "神奈川県と静岡県"
+        ],
+        "answerIndex": 0,
+        "explanation": "富士山は静岡県と山梨県にまたがる独立峰です。山梨県側と静岡県側の両方に登山口があります。",
+        "relatedCardId": "card_nature_geography_001",
+        "sourceNote": "静岡県および山梨県公式ホームページ",
+        "verified": true,
+        "source": {
+          "title": "富士登山オフィシャルサイト",
+          "publisher": "富士山における適正利用推進協議会",
+          "url": "https://www.fujisan-climb.jp/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b6aa6875f2605c9aa6610ba067a4b9754ea58fe86a22ab3f45b33f8529d3df35"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_001",
+        "title": "富士山の県境",
+        "category": "nature_geography",
+        "shortText": "富士山が位置する2つの県について",
+        "detailText": "日本最高峰の富士山は、静岡県と山梨県の両方に属しています。山頂付近は富士山本宮浅間大社の土地とされ、県境未定地となっています。",
+        "imageAsset": "assets/images/cards/card_nature_geography_001.png",
+        "rarity": "normal",
+        "sourceNote": "静岡県および山梨県公式ホームページ",
+        "source": {
+          "title": "富士登山オフィシャルサイト",
+          "publisher": "富士山における適正利用推進協議会",
+          "url": "https://www.fujisan-climb.jp/",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b6aa6875f2605c9aa6610ba067a4b9754ea58fe86a22ab3f45b33f8529d3df35"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_006",
+        "category": "nature_geography",
+        "difficulty": "easy",
+        "question": "2026年4月1日時点で、日本で面積が最も小さい都道府県は？",
+        "choices": [
+          "東京都",
+          "大阪府",
+          "沖縄県",
+          "香川県"
+        ],
+        "answerIndex": 3,
+        "explanation": "国土地理院の2026年4月1日時点の資料では、香川県が47都道府県で最も小さく、面積は参考値で約1876.83平方キロメートルです。",
+        "relatedCardId": "card_nature_geography_006",
+        "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
+        "verified": true,
+        "source": {
+          "title": "全国都道府県市区町村別面積調",
+          "publisher": "国土地理院",
+          "url": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "491f2be65177b7daec3a86224f637243f00ce963ca16a5734b330fc94808d5d9"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_006",
+        "title": "日本で最も小さい香川県",
+        "category": "nature_geography",
+        "shortText": "2026年4月1日時点の国土地理院資料では、香川県が面積最小の都道府県です。",
+        "detailText": "香川県の面積は、2026年4月1日時点の参考値で約1876.83平方キロメートルです。都道府県の面積は完全な固定値ではなく、海面の埋め立て、海岸の侵食や堆積、地図データの高精度化などによって変動します。そのため、面積を扱う問題では基準時点を示すとより正確です。",
+        "imageAsset": "assets/images/cards/card_nature_geography_006.png",
+        "rarity": "normal",
+        "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
+        "source": {
+          "title": "全国都道府県市区町村別面積調",
+          "publisher": "国土地理院",
+          "url": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "491f2be65177b7daec3a86224f637243f00ce963ca16a5734b330fc94808d5d9"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_008",
+        "category": "nature_geography",
+        "difficulty": "normal",
+        "question": "地図で使う日本の標高0メートルの基準はどこ？",
+        "choices": [
+          "東京湾の平均海面",
+          "大阪湾の満潮面",
+          "富士山頂の標石",
+          "太平洋の最低潮位"
+        ],
+        "answerIndex": 0,
+        "explanation": "日本の標高は、測量法上、東京湾の平均海面を0mとする。実際の測量では東京・三宅坂の日本水準原点も高さの基準として使われる。",
+        "relatedCardId": "card_nature_geography_008",
+        "sourceNote": "国土地理院・日本水準原点資料",
+        "verified": true,
+        "source": {
+          "title": "日本水準原点",
+          "publisher": "国土地理院",
+          "url": "https://www.gsi.go.jp/sokuchikijun/suijun-genten.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "ef258b035470da0347462cd4029a814c659d9bba5cfd3b89e4e295b367da8da5"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_008",
+        "title": "標高ゼロの出発点",
+        "category": "nature_geography",
+        "shortText": "標高の基準は東京湾",
+        "detailText": "日本の地図や測量で使う高さは、東京湾平均海面を0mとする考え方を土台にしている。",
+        "imageAsset": "assets/images/cards/card_nature_geography_008.png",
+        "rarity": "normal",
+        "sourceNote": "国土地理院・日本水準原点資料",
+        "source": {
+          "title": "日本水準原点",
+          "publisher": "国土地理院",
+          "url": "https://www.gsi.go.jp/sokuchikijun/suijun-genten.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "ef258b035470da0347462cd4029a814c659d9bba5cfd3b89e4e295b367da8da5"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_013",
+        "category": "nature_geography",
+        "difficulty": "normal",
+        "question": "2020年国勢調査で、淡路島本島の人口はおよそ何万人でしたか？",
+        "choices": [
+          "淡路島（兵庫県）",
+          "佐渡島（新潟県）",
+          "奄美大島（鹿児島県）",
+          "対馬（長崎県）"
+        ],
+        "answerIndex": 0,
+        "explanation": "126,980人で、約12.7万人です。市町村単位ではなく、淡路島本島の範囲で集計した値です。",
+        "relatedCardId": "card_nature_geography_013",
+        "sourceNote": "総務省「国勢調査・離島振興解説」",
+        "verified": true,
+        "source": {
+          "title": "淡路島の情報",
+          "publisher": "NPO法人離島経済新聞社",
+          "url": "https://ritokei.com/shima/hyogo/hyogo_awajishima",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b5a56e986afd5a1018a63cfe92fd438b47e4cf38f7d9258ca095b4f33e5bf32b"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_013",
+        "title": "人口最多の有人島・淡路島",
+        "category": "nature_geography",
+        "shortText": "主要5島を除くと、2020年国勢調査で人口が最も多い有人島は淡路島です。",
+        "detailText": "淡路島は兵庫県に属し、淡路市・洲本市・南あわじ市の3市にまたがっています。本州や四国とは橋で結ばれていますが、地理的には島です。2020年国勢調査では、主要5島を除く日本の有人島の中で最も多い人口を持っていました。島の人口を比較するときは、調査年や島の範囲をそろえる必要があります。",
+        "imageAsset": "assets/images/cards/card_nature_geography_013.png",
+        "rarity": "normal",
+        "sourceNote": "総務省「国勢調査・離島振興解説」",
+        "source": {
+          "title": "淡路島の情報",
+          "publisher": "NPO法人離島経済新聞社",
+          "url": "https://ritokei.com/shima/hyogo/hyogo_awajishima",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "b5a56e986afd5a1018a63cfe92fd438b47e4cf38f7d9258ca095b4f33e5bf32b"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_014",
+        "category": "nature_geography",
+        "difficulty": "normal",
+        "question": "日本で霧ともやを分ける気象上の目安は何？",
+        "choices": [
+          "風速",
+          "気温",
+          "視程",
+          "湿度"
+        ],
+        "answerIndex": 2,
+        "explanation": "気象庁では、霧は微小な水滴で視程が1km未満の状態、もやは視程が1km以上10km未満の状態として区別している。",
+        "relatedCardId": "card_nature_geography_014",
+        "sourceNote": "気象庁・天気用語の霧ともや",
+        "verified": true,
+        "source": {
+          "title": "氷、霜、霧、雷、日照時間",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "6d13ce449a47f461b8560d1cff5d16c5f6348a379e5ac0048e0eb31e28fefd2b"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_014",
+        "title": "霧ともやの境目",
+        "category": "nature_geography",
+        "shortText": "違いは見通せる距離",
+        "detailText": "霧ともやは雰囲気ではなく、気象上は水平方向にどれだけ見通せるかで区別される。",
+        "imageAsset": "assets/images/cards/card_nature_geography_014.png",
+        "rarity": "normal",
+        "sourceNote": "気象庁・天気用語の霧ともや",
+        "source": {
+          "title": "氷、霜、霧、雷、日照時間",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/yougo_hp/kori.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "6d13ce449a47f461b8560d1cff5d16c5f6348a379e5ac0048e0eb31e28fefd2b"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_015",
+        "category": "nature_geography",
+        "difficulty": "easy",
+        "question": "津波が沿岸に近づくと、波高が高くなる主な理由は何ですか？",
+        "choices": [
+          "海底下の大地震に伴う海底の急な上下変動",
+          "強い海風が長時間吹き続けること",
+          "満潮と干潮が同時に起こること",
+          "川の水が大量に海へ流れ込むこと"
+        ],
+        "answerIndex": 0,
+        "explanation": "水深が浅くなると津波の速度が落ち、後方の波が前方に追いつくため、波高が高くなります。",
+        "relatedCardId": "card_nature_geography_015",
+        "sourceNote": "NOAA・津波発生の解説",
+        "verified": true,
+        "source": {
+          "title": "津波発生と伝播のしくみ",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/jishin/tsunami/generation.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "f83dc3072157d80fd025f86725021e720d6f96f65ae4674fe798c78dc718d406"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_015",
+        "title": "津波の始まり",
+        "category": "nature_geography",
+        "shortText": "海底の動きが波を生む",
+        "detailText": "津波は普通の波と違い、海底の急な変形などで海水の柱全体が動かされることで広がっていく。",
+        "imageAsset": "assets/images/cards/card_nature_geography_015.png",
+        "rarity": "normal",
+        "sourceNote": "NOAA・津波発生の解説",
+        "source": {
+          "title": "津波発生と伝播のしくみ",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/jishin/tsunami/generation.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "f83dc3072157d80fd025f86725021e720d6f96f65ae4674fe798c78dc718d406"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_nature_geography_016",
+        "category": "nature_geography",
+        "difficulty": "normal",
+        "question": "皆既月食の月が赤っぽく見える主な理由は？",
+        "choices": [
+          "月面が熱で赤くなる",
+          "地球の大気を通った光が届く",
+          "月が火山活動を起こす",
+          "太陽が一時的に赤くなる"
+        ],
+        "answerIndex": 1,
+        "explanation": "皆既月食では、地球の大気を通った太陽光が曲げられて月に届く。大気中で青い光が散乱され、赤い光が目立つ。",
+        "relatedCardId": "card_nature_geography_016",
+        "sourceNote": "NASA・月食と月の色の解説",
+        "verified": true,
+        "source": {
+          "title": "The Moon & Eclipses",
+          "publisher": "NASA",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d528fc4fe5d704bc2a5cb00e5d4d07d7154ab1f3aef2c6ecf4643f8b3c638053"
+        }
+      },
+      "card": {
+        "id": "card_nature_geography_016",
+        "title": "赤い月の理由",
+        "category": "nature_geography",
+        "shortText": "地球の大気が色を変える",
+        "detailText": "月食中の赤い月は、月自身が光るのではなく、地球の大気を通過した太陽光の色が関係している。",
+        "imageAsset": "assets/images/cards/card_nature_geography_016.png",
+        "rarity": "rare",
+        "sourceNote": "NASA・月食と月の色の解説",
+        "source": {
+          "title": "The Moon & Eclipses",
+          "publisher": "NASA",
+          "url": "https://science.nasa.gov/moon/eclipses/",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d528fc4fe5d704bc2a5cb00e5d4d07d7154ab1f3aef2c6ecf4643f8b3c638053"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_science_005",
+        "category": "science",
+        "difficulty": "easy",
+        "question": "空中のシャボン玉がほぼ球形になるのはなぜ？",
+        "choices": [
+          "膜の表面張力が表面積をできるだけ小さくしようとするから",
+          "空気が上向きに流れて泡を押し上げるから",
+          "石けん水が重力を打ち消すから",
+          "膜の内側だけが冷えて縮むから"
+        ],
+        "answerIndex": 0,
+        "explanation": "表面張力によって膜が表面積をできるだけ小さくしようとするためです。同じ体積では球の表面積が最小になります。",
+        "relatedCardId": "card_science_005",
+        "sourceNote": "物理学基礎「界面動態と表面張力」",
+        "verified": true,
+        "source": {
+          "title": "Bubble Tray: Chemistry & Waves Science Activity",
+          "publisher": "Exploratorium",
+          "url": "https://www.exploratorium.edu/snacks/bubble-tray",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "56503e660c787b9bcf93eac597b7476db3d5625d121aff93789d0a5ff70b69ab"
+        }
+      },
+      "card": {
+        "id": "card_science_005",
+        "title": "シャボン玉が丸い理由",
+        "category": "science",
+        "shortText": "泡が綺麗な球体になる科学の力",
+        "detailText": "液体の表面が縮まろうとする「表面張力」の影響で、シャボン玉は最も表面積が小さくて安定した形である「球体」へと変化します。",
+        "imageAsset": "assets/images/cards/card_science_005.png",
+        "rarity": "normal",
+        "sourceNote": "物理学基礎「界面動態と表面張力」",
+        "source": {
+          "title": "Bubble Tray: Chemistry & Waves Science Activity",
+          "publisher": "Exploratorium",
+          "url": "https://www.exploratorium.edu/snacks/bubble-tray",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "56503e660c787b9bcf93eac597b7476db3d5625d121aff93789d0a5ff70b69ab"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_science_006",
+        "category": "science",
+        "difficulty": "easy",
+        "question": "雷そのものの正体として最も近いものは？",
+        "choices": [
+          "雲がこすれて出る火花",
+          "大気中で起きる放電現象",
+          "太陽風が地面に当たる現象",
+          "雨粒が爆発する現象"
+        ],
+        "answerIndex": 1,
+        "explanation": "気象庁は、雷を大気中で電荷分離が起こり放電する現象と説明している。音が雷鳴、光が電光である。",
+        "relatedCardId": "card_science_006",
+        "sourceNote": "気象庁・雷とはの基礎解説",
+        "verified": true,
+        "source": {
+          "title": "雷とは？",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "370ec2e6e8c075d6ac2a17e76e2855953e9486d961bf34bd6c3c4018462ef6e1"
+        }
+      },
+      "card": {
+        "id": "card_science_006",
+        "title": "雷は空の放電",
+        "category": "science",
+        "shortText": "音と光は放電のサイン",
+        "detailText": "雷は雲内や雲と地上の間で電荷が偏り、放電するときに光や音を生む現象。",
+        "imageAsset": "assets/images/cards/card_science_006.png",
+        "rarity": "normal",
+        "sourceNote": "気象庁・雷とはの基礎解説",
+        "source": {
+          "title": "雷とは？",
+          "publisher": "気象庁",
+          "url": "https://www.jma.go.jp/jma/kishou/know/toppuu/thunder1-0.html",
+          "verifiedAt": "2026-07-12",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "370ec2e6e8c075d6ac2a17e76e2855953e9486d961bf34bd6c3c4018462ef6e1"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_science_008",
+        "category": "science",
+        "difficulty": "easy",
+        "question": "造幣局の「Circulating Coin Designs」で、現在の1円硬貨の素材は？",
+        "choices": [
+          "純アルミニウム",
+          "純銅",
+          "鉄",
+          "ニッケル"
+        ],
+        "answerIndex": 0,
+        "explanation": "造幣局は、1円硬貨の素材をアルミニウム、組成を純アルミニウム、重さを1.0g、直径を20.0mmと示している。",
+        "relatedCardId": "card_science_008",
+        "sourceNote": "造幣局 Circulating Coin Designs",
+        "verified": true,
+        "source": {
+          "title": "Circulating Coin Designs",
+          "publisher": "造幣局（Japan Mint）",
+          "url": "https://www.mint.go.jp/eng/kids-eng/eng_kids_circulating_c.html",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d75c2c2c9278a7a7fc844eeee71d31397ad460527c956bcfeb00c6b1bd4d3f34"
+        }
+      },
+      "card": {
+        "id": "card_science_008",
+        "title": "1円アルミニウム硬貨",
+        "category": "science",
+        "shortText": "素材は純アルミニウム、重さは1.0g。",
+        "detailText": "造幣局の「Circulating Coin Designs」は、現在の1円硬貨を純アルミニウム製、重さ1.0g、直径20.0mmとしている。",
+        "imageAsset": "assets/images/cards/card_science_008.png",
+        "rarity": "normal",
+        "sourceNote": "造幣局 Circulating Coin Designs",
+        "source": {
+          "title": "Circulating Coin Designs",
+          "publisher": "造幣局（Japan Mint）",
+          "url": "https://www.mint.go.jp/eng/kids-eng/eng_kids_circulating_c.html",
+          "verifiedAt": "2026-07-13",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "contentHash": "d75c2c2c9278a7a7fc844eeee71d31397ad460527c956bcfeb00c6b1bd4d3f34"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    },
+    {
+      "question": {
+        "id": "q_science_011",
+        "category": "science",
+        "difficulty": "easy",
+        "question": "生石灰（酸化カルシウム）に水を加えると、何が起こりますか？",
+        "choices": [
+          "石けん分子が水になじむ部分と油になじむ部分の両方を持つ",
+          "油を高温にして蒸発させる",
+          "油を化学反応で砂糖に変える",
+          "水の温度を必ず100度まで上げる"
+        ],
+        "answerIndex": 0,
+        "explanation": "水と反応して消石灰（水酸化カルシウム）になり、熱を放出します。単に水へ溶けるのではなく、化学反応です。",
+        "relatedCardId": "card_science_011",
+        "sourceNote": "イェール医学部・石けんの仕組み",
+        "verified": true,
+        "source": {
+          "title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide",
+          "publisher": "CDC/NIOSH",
+          "url": "https://www.cdc.gov/niosh/npg/npgd0093.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "9668f2940358381f9de0650048bfd6d104fbbf23d1a4e29d9571cd170b5b248d"
+        }
+      },
+      "card": {
+        "id": "card_science_011",
+        "title": "石けんの二面性",
+        "category": "science",
+        "shortText": "水と油をつなぐ分子",
+        "detailText": "油は水だけでは落ちにくいが、石けんは油側と水側の両方に働きかけ、汚れを浮かせやすくする。",
+        "imageAsset": "assets/images/cards/card_science_011.png",
+        "rarity": "normal",
+        "sourceNote": "イェール医学部・石けんの仕組み",
+        "source": {
+          "title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide",
+          "publisher": "CDC/NIOSH",
+          "url": "https://www.cdc.gov/niosh/npg/npgd0093.html",
+          "verifiedAt": "2026-07-16",
+          "verificationLevel": "primary",
+          "reviewStatus": "approved",
+          "reviewNote": "ChatGPTによる内容確認済み",
+          "contentHash": "9668f2940358381f9de0650048bfd6d104fbbf23d1a4e29d9571cd170b5b248d"
+        },
+        "imageReview": {
+          "status": "generic_placeholder",
+          "reviewedAt": "2026-07-14",
+          "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+        }
+      }
+    }
+  ],
+  "bundleHash": "93f0df38c07dfcb807a3878e5e597ba263d8b67654a291cce79231055d8db8dd"
+}

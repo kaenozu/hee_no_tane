@@ -2,5 +2,7 @@
   "schemaVersion": 1,
   "questionCount": 103,
   "cardCount": 103,
-  "playableQuestionCount": 47
+  "playableQuestionCount": 47,
+  "contentVersion": "1.0.0+1",
+  "bundleHash": "93f0df38c07dfcb807a3878e5e597ba263d8b67654a291cce79231055d8db8dd"
 }
