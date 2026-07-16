@@ -1,0 +1,47 @@
+name: Generate approved content bundle
+
+on:
+  pull_request:
+    branches:
+      - agent/fix-full-source-review
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check Dart formatting
+        run: dart format --output=none --set-exit-if-changed lib test integration_test tool
+
+      - name: Generate approved content bundle
+        run: dart run tool/generate_content_bundle.dart
+
+      - name: Upload generated content
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: approved-content-bundle-${{ github.run_id }}
+          path: |
+            assets/data/content_bundle.json
+            assets/data/content_manifest.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
