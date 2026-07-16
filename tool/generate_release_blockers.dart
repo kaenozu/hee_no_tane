@@ -6,11 +6,7 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 
-const _reviewStatuses = <String>[
-  'approved',
-  'pending',
-  'correction_required',
-];
+const _reviewStatuses = <String>['approved', 'pending', 'correction_required'];
 
 Future<void> main(List<String> arguments) async {
   exitCode = await runGenerateReleaseBlockers(arguments);
@@ -114,10 +110,11 @@ Future<Map<String, Object?>> generateReleaseBlockerManifest({
       .map((entry) => entry.key)
       .toSet();
   final referencedCardIds = cardReferenceCounts.keys.toSet();
-  final unreferencedCardIds = cardById.keys
-      .where((cardId) => !referencedCardIds.contains(cardId))
-      .toList()
-    ..sort();
+  final unreferencedCardIds =
+      cardById.keys
+          .where((cardId) => !referencedCardIds.contains(cardId))
+          .toList()
+        ..sort();
 
   final imageAggregation = await _aggregateImages(root: root, cards: cards);
   final imageByPath = <String, Map<String, Object?>>{};
@@ -203,9 +200,8 @@ Future<Map<String, Object?>> generateReleaseBlockerManifest({
   }
 
   pairs.sort(
-    (left, right) => (left['pairId']! as String).compareTo(
-      right['pairId']! as String,
-    ),
+    (left, right) =>
+        (left['pairId']! as String).compareTo(right['pairId']! as String),
   );
 
   final structuralBlockers = <String>[];
@@ -333,11 +329,12 @@ Future<ImageAggregation> _aggregateImages({
     final references = referencesByPath[imagePath]!;
     final cardIds = references.map((reference) => reference['cardId']!).toList()
       ..sort();
-    final classifications = references
-        .map((reference) => reference['imageClassification']!)
-        .toSet()
-        .toList()
-      ..sort();
+    final classifications =
+        references
+            .map((reference) => reference['imageClassification']!)
+            .toSet()
+            .toList()
+          ..sort();
     paths.add({
       'imagePath': imagePath,
       'exists': exists,
@@ -361,22 +358,23 @@ Future<ImageAggregation> _aggregateImages({
   final sortedHashes = pathsByHash.keys.toList()..sort();
   for (final hash in sortedHashes) {
     final matchingPaths = pathsByHash[hash]!;
-    final imagePaths = matchingPaths
-        .map((path) => path['imagePath']! as String)
-        .toList()
-      ..sort();
-    final cardIds = matchingPaths
-        .expand((path) => (path['cardIds']! as List).cast<String>())
-        .toSet()
-        .toList()
-      ..sort();
-    final classifications = matchingPaths
-        .expand(
-          (path) => (path['imageClassifications']! as List).cast<String>(),
-        )
-        .toSet()
-        .toList()
-      ..sort();
+    final imagePaths =
+        matchingPaths.map((path) => path['imagePath']! as String).toList()
+          ..sort();
+    final cardIds =
+        matchingPaths
+            .expand((path) => (path['cardIds']! as List).cast<String>())
+            .toSet()
+            .toList()
+          ..sort();
+    final classifications =
+        matchingPaths
+            .expand(
+              (path) => (path['imageClassifications']! as List).cast<String>(),
+            )
+            .toSet()
+            .toList()
+          ..sort();
     final referenceCount = matchingPaths.fold<int>(
       0,
       (sum, path) => sum + (path['referenceCount']! as int),
@@ -440,9 +438,7 @@ String _buildMarkdown(Map<String, Object?> manifest) {
     ..writeln()
     ..writeln('## verified × reviewStatus')
     ..writeln()
-    ..writeln(
-      '| verified | approved | pending | correction_required | total |',
-    )
+    ..writeln('| verified | approved | pending | correction_required | total |')
     ..writeln('|---|---:|---:|---:|---:|');
 
   for (final rawRow in crossTabulation['rows']! as List) {

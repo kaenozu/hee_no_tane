@@ -12,7 +12,8 @@ library;
 ///   - ../../domain/services/reward_service.dart
 ///   - ../../data/repositories/save_repository.dart
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
+import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';

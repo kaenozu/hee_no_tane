@@ -4,17 +4,23 @@ library;
 import 'package:hee_no_tane_app/content_validation/content_fingerprint.dart';
 
 class SourceMetadata {
+  static const approvedStatus = 'approved';
+  static const pendingStatus = 'pending';
+  static const correctionRequiredStatus = 'correction_required';
+  static const legacyStatus = 'legacy';
+
   static const allowedVerificationLevels = <String>{
     'primary',
     'secondary',
     'unverified',
   };
 
+  /// Persisted structured review states shared by the CSV workflow and release
+  /// blocker tools. Legacy metadata is represented only by [SourceMetadata.legacy].
   static const allowedReviewStatuses = <String>{
-    'approved',
-    'pending',
-    'rejected',
-    'legacy',
+    approvedStatus,
+    pendingStatus,
+    correctionRequiredStatus,
   };
 
   final String title;
@@ -43,7 +49,7 @@ class SourceMetadata {
       url = null,
       verifiedAt = null,
       verificationLevel = 'unverified',
-      reviewStatus = 'legacy',
+      reviewStatus = legacyStatus,
       reviewNote = null,
       contentHash = null;
 
@@ -104,7 +110,7 @@ class SourceMetadata {
   }
 
   bool get isApproved {
-    return reviewStatus == 'approved' &&
+    return reviewStatus == approvedStatus &&
         verificationLevel != 'unverified' &&
         title.isNotEmpty &&
         publisher.isNotEmpty &&
@@ -116,7 +122,7 @@ class SourceMetadata {
   bool get isReleaseApproved =>
       isApproved && ContentFingerprint.isSha256(contentHash);
 
-  bool get isLegacy => reviewStatus == 'legacy';
+  bool get isLegacy => reviewStatus == legacyStatus;
 
   String get displayLabel {
     if (publisher.isEmpty || publisher == title) return title;

@@ -2,12 +2,23 @@
 library;
 
 class ImageReviewMetadata {
+  static const approvedStatus = 'approved';
+  static const genericPlaceholderStatus = 'generic_placeholder';
+  static const replaceRequiredStatus = 'replace_required';
+  static const uncheckedStatus = 'unchecked';
+
+  /// `fit` was used by an earlier review CSV. It remains accepted as an input
+  /// alias, but is always persisted as [approvedStatus].
+  static const fitAlias = 'fit';
+
   static const allowedStatuses = <String>{
-    'approved',
-    'generic_placeholder',
-    'replace_required',
-    'unchecked',
+    approvedStatus,
+    genericPlaceholderStatus,
+    replaceRequiredStatus,
+    uncheckedStatus,
   };
+
+  static const acceptedInputStatuses = <String>{...allowedStatuses, fitAlias};
 
   final String status;
   final String reviewedAt;
@@ -20,19 +31,20 @@ class ImageReviewMetadata {
   });
 
   const ImageReviewMetadata.unchecked()
-    : status = 'unchecked',
+    : status = uncheckedStatus,
       reviewedAt = '',
       note = '';
 
   factory ImageReviewMetadata.fromJson(Map<String, dynamic> json) {
-    final status = _requiredString(json, 'status');
+    final rawStatus = _requiredString(json, 'status');
+    if (!acceptedInputStatuses.contains(rawStatus)) {
+      throw FormatException('Unknown image review status: $rawStatus');
+    }
+    final status = rawStatus == fitAlias ? approvedStatus : rawStatus;
     final reviewedAtValue = json['reviewedAt'];
     final reviewedAt = reviewedAtValue is String ? reviewedAtValue.trim() : '';
     final note = _optionalString(json, 'note') ?? '';
-    if (!allowedStatuses.contains(status)) {
-      throw FormatException('Unknown image review status: $status');
-    }
-    if (status == 'unchecked') {
+    if (status == uncheckedStatus) {
       if (reviewedAt.isNotEmpty) {
         _validateDate(reviewedAt);
       }
@@ -52,7 +64,7 @@ class ImageReviewMetadata {
   }
 
   bool get isReleaseReady =>
-      status == 'approved' || status == 'generic_placeholder';
+      status == approvedStatus || status == genericPlaceholderStatus;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'status': status,

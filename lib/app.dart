@@ -60,9 +60,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
 
   Future<void> _completeOnboarding() async {
     await widget.saveRepository.update(
-      (current) => current.copyWith(
-        onboardingCompleted: true,
-      ),
+      (current) => current.copyWith(onboardingCompleted: true),
     );
 
     if (!mounted) return;
@@ -104,9 +102,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
                   dailyQuestionService: widget.dailyQuestionService,
                   onDataReset: _handleDataReset,
                 )
-              : OnboardingScreen(
-                  onComplete: _completeOnboarding,
-                ),
+              : OnboardingScreen(onComplete: _completeOnboarding),
         );
       },
     );
@@ -132,17 +128,13 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
         tertiary: const Color(0xFF8B7E74),
         onTertiary: Colors.white,
         surface: surface,
-        onSurface: isDark
-            ? const Color(0xFFE8E0D8)
-            : const Color(0xFF2C2416),
+        onSurface: isDark ? const Color(0xFFE8E0D8) : const Color(0xFF2C2416),
         error: const Color(0xFFBA1A1A),
         onError: Colors.white,
         surfaceContainerHighest: isDark
             ? const Color(0xFF2C2C2C)
             : const Color(0xFFE8E0D5),
-        outline: isDark
-            ? const Color(0xFF9E9E9E)
-            : const Color(0xFF8C8178),
+        outline: isDark ? const Color(0xFF9E9E9E) : const Color(0xFF8C8178),
         outlineVariant: isDark
             ? const Color(0xFF616161)
             : const Color(0xFFD0C5B8),
@@ -151,13 +143,9 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
       textTheme: _textTheme(isDark),
       cardTheme: CardThemeData(
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         clipBehavior: Clip.antiAlias,
-        color: isDark
-            ? const Color(0xFF2C2416)
-            : const Color(0xFFFFF8F0),
+        color: isDark ? const Color(0xFF2C2416) : const Color(0xFFFFF8F0),
       ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
@@ -167,21 +155,15 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
             ? const Color(0xFF2C2416)
             : const Color(0xFFFBF6ED).withValues(alpha: 0.9),
       ),
-      scaffoldBackgroundColor: isDark
-          ? const Color(0xFF1A1A1A)
-          : null,
+      scaffoldBackgroundColor: isDark ? const Color(0xFF1A1A1A) : null,
       dividerTheme: DividerThemeData(
-        color: isDark
-            ? const Color(0xFF3D3A36)
-            : const Color(0xFFDCD4C8),
+        color: isDark ? const Color(0xFF3D3A36) : const Color(0xFFDCD4C8),
       ),
     );
   }
 
   TextTheme _textTheme(bool isDark) {
-    final color = isDark
-        ? const Color(0xFFE8E0D8)
-        : const Color(0xFF2C2416);
+    final color = isDark ? const Color(0xFFE8E0D8) : const Color(0xFF2C2416);
 
     return TextTheme(
       headlineLarge: TextStyle(

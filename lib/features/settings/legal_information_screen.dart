@@ -2,19 +2,18 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/core/app_version_info.dart';
 
-enum LegalInformationSection {
-  privacyPolicy,
-  support,
-  version,
-}
+enum LegalInformationSection { privacyPolicy, support, version }
 
 class LegalInformationScreen extends StatelessWidget {
   final LegalInformationSection initialSection;
+  final AppVersionInfo versionInfo;
 
   const LegalInformationScreen({
     super.key,
     this.initialSection = LegalInformationSection.privacyPolicy,
+    this.versionInfo = const AppVersionInfo.unavailable(),
   });
 
   @override
@@ -58,11 +57,7 @@ class LegalInformationScreen extends StatelessWidget {
           '共有を実行しない限り、画像が外部へ送られることはありません。'
           '共有先でのデータの取り扱いは、そのサービスの規約とプライバシーポリシーに従います。',
     ),
-    _Section(
-      title: '第三者提供',
-      body:
-          '法令に基づく場合を除き、個人情報を第三者に提供することはありません。',
-    ),
+    _Section(title: '第三者提供', body: '法令に基づく場合を除き、個人情報を第三者に提供することはありません。'),
     _Section(
       title: '保存期間と削除',
       body:
@@ -99,40 +94,42 @@ class LegalInformationScreen extends StatelessWidget {
     ),
   ];
 
-  List<Widget> _versionSections() => const [
-    _Section(
-      title: 'アプリ情報',
-      body:
-          'へぇのタネ\n'
-          'バージョン 1.0.0 (1)\n'
-          'ビルド番号 1\n'
-          '最終更新日 2026年7月16日',
-    ),
-    _Section(
-      title: 'v1.0の機能',
-      body:
-          '- 1日1問の日替わりクイズ\n'
-          '- 解説と知識カードの獲得\n'
-          '- カード図鑑・共有・統計\n'
-          '- 端末内保存、テーマ設定\n'
-          '- Android、iOS、Web対応',
-    ),
-    _Section(
-      title: 'v1.0に含まれない機能',
-      body:
-          '- 広告\n'
-          '- 課金\n'
-          '- アカウント・ログイン\n'
-          '- クラウド同期\n'
-          '- プッシュ通知',
-    ),
-    _Section(
-      title: '対象年齢',
-      body:
-          '本アプリは幅広い年齢層が利用できますが、児童向けサービスとして個人情報を収集する設計ではありません。'
-          '保護者の管理が必要な端末では、端末側の機能をご利用ください。',
-    ),
-  ];
+  List<Widget> _versionSections() {
+    final versionLabel = versionInfo.isAvailable
+        ? versionInfo.displayValue
+        : '取得できません';
+    final featureTitle = versionInfo.version.isEmpty
+        ? '主な機能'
+        : 'v${versionInfo.version}の機能';
+
+    return [
+      _Section(title: 'アプリ情報', body: 'へぇのタネ\nバージョン $versionLabel'),
+      _Section(
+        title: featureTitle,
+        body:
+            '- 1日1問の日替わりクイズ\n'
+            '- 解説と知識カードの獲得\n'
+            '- カード図鑑・共有・統計\n'
+            '- 端末内保存、テーマ設定\n'
+            '- Android、iOS、Web対応',
+      ),
+      const _Section(
+        title: '含まれない機能',
+        body:
+            '- 広告\n'
+            '- 課金\n'
+            '- アカウント・ログイン\n'
+            '- クラウド同期\n'
+            '- プッシュ通知',
+      ),
+      const _Section(
+        title: '対象年齢',
+        body:
+            '本アプリは幅広い年齢層が利用できますが、児童向けサービスとして個人情報を収集する設計ではありません。'
+            '保護者の管理が必要な端末では、端末側の機能をご利用ください。',
+      ),
+    ];
+  }
 }
 
 class _Section extends StatelessWidget {

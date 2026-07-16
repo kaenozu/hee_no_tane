@@ -3,7 +3,7 @@ library;
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/util/legacy_to_async_migration_util.dart';
@@ -26,9 +26,8 @@ abstract interface class PreferenceStore {
 final class SharedPreferencesAsyncStore implements PreferenceStore {
   final SharedPreferencesAsync _preferences;
 
-  SharedPreferencesAsyncStore({
-    SharedPreferencesAsync? preferences,
-  }) : _preferences = preferences ?? SharedPreferencesAsync();
+  SharedPreferencesAsyncStore({SharedPreferencesAsync? preferences})
+    : _preferences = preferences ?? SharedPreferencesAsync();
 
   @override
   Future<String?> getString(String key) => _preferences.getString(key);
@@ -78,9 +77,8 @@ class SaveRepository {
 
   Future<void>? _operationTail;
 
-  SaveRepository({
-    PreferenceStore? store,
-  }) : _store = store ?? SharedPreferencesAsyncStore();
+  SaveRepository({PreferenceStore? store})
+    : _store = store ?? SharedPreferencesAsyncStore();
 
   /// Migrates values from the legacy [SharedPreferences] API to
   /// [SharedPreferencesAsync].
@@ -89,8 +87,7 @@ class SaveRepository {
   /// migration utility checks [migrationCompletedKey] before copying data.
   static Future<void> migrateLegacyStorage({
     SharedPreferences? legacyPreferences,
-    SharedPreferencesOptions asyncOptions =
-        const SharedPreferencesOptions(),
+    SharedPreferencesOptions asyncOptions = const SharedPreferencesOptions(),
   }) async {
     try {
       final preferences =
@@ -105,10 +102,7 @@ class SaveRepository {
       debugPrint('Failed to migrate legacy save data: $error');
       debugPrintStack(stackTrace: stackTrace);
 
-      throw SaveException(
-        '保存データの移行に失敗しました。もう一度お試しください。',
-        cause: error,
-      );
+      throw SaveException('保存データの移行に失敗しました。もう一度お試しください。', cause: error);
     }
   }
 
@@ -129,17 +123,12 @@ class SaveRepository {
         throw const FormatException('Save data root must be an object.');
       }
 
-      return SaveData.fromJson(
-        Map<String, dynamic>.from(decoded),
-      );
+      return SaveData.fromJson(Map<String, dynamic>.from(decoded));
     } catch (error, stackTrace) {
       debugPrint('Failed to load save data: $error');
       debugPrintStack(stackTrace: stackTrace);
 
-      throw SaveLoadException(
-        'データの読み込みに失敗しました。もう一度お試しください。',
-        cause: error,
-      );
+      throw SaveLoadException('データの読み込みに失敗しました。もう一度お試しください。', cause: error);
     }
   }
 
@@ -153,16 +142,11 @@ class SaveRepository {
       debugPrint('Failed to save data: $error');
       debugPrintStack(stackTrace: stackTrace);
 
-      throw SaveException(
-        'データの保存に失敗しました。もう一度お試しください。',
-        cause: error,
-      );
+      throw SaveException('データの保存に失敗しました。もう一度お試しください。', cause: error);
     }
   }
 
-  Future<SaveData> update(
-    SaveData Function(SaveData current) updater,
-  ) {
+  Future<SaveData> update(SaveData Function(SaveData current) updater) {
     return _enqueue<SaveData>(() async {
       final current = await loadOrThrow();
       final updated = updater(current);
@@ -180,9 +164,7 @@ class SaveRepository {
 
         final stillExists = await _store.containsKey(_key);
         if (stillExists) {
-          throw const SaveException(
-            'データの初期化に失敗しました。もう一度お試しください。',
-          );
+          throw const SaveException('データの初期化に失敗しました。もう一度お試しください。');
         }
       } on SaveException {
         rethrow;
@@ -190,17 +172,12 @@ class SaveRepository {
         debugPrint('Failed to reset save data: $error');
         debugPrintStack(stackTrace: stackTrace);
 
-        throw SaveException(
-          'データの初期化に失敗しました。もう一度お試しください。',
-          cause: error,
-        );
+        throw SaveException('データの初期化に失敗しました。もう一度お試しください。', cause: error);
       }
     });
   }
 
-  Future<T> _enqueue<T>(
-    Future<T> Function() operation,
-  ) {
+  Future<T> _enqueue<T>(Future<T> Function() operation) {
     final previous = _operationTail;
 
     final future = previous == null

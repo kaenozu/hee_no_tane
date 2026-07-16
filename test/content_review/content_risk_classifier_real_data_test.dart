@@ -14,9 +14,7 @@ void main() {
       ).readAsStringSync(),
       cardsJson: _projectFile('assets/data/cards.json').readAsStringSync(),
     );
-    risksByQuestionId = {
-      for (final risk in risks) risk.questionId: risk,
-    };
+    risksByQuestionId = {for (final risk in risks) risk.questionId: risk};
   });
 
   List<String> duplicateIds(String questionId) =>

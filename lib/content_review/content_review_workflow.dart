@@ -47,6 +47,45 @@ class ContentReviewException implements Exception {
   String toString() => message;
 }
 
+abstract interface class ContentReviewFileStore {
+  Future<String> readAsString(String path);
+
+  Future<void> writeAsString(String path, String content, {bool flush = false});
+
+  Future<void> rename(String sourcePath, String targetPath);
+
+  Future<bool> exists(String path);
+
+  Future<void> delete(String path);
+}
+
+final class IoContentReviewFileStore implements ContentReviewFileStore {
+  const IoContentReviewFileStore();
+
+  @override
+  Future<String> readAsString(String path) => File(path).readAsString();
+
+  @override
+  Future<void> writeAsString(
+    String path,
+    String content, {
+    bool flush = false,
+  }) async {
+    await File(path).writeAsString(content, flush: flush);
+  }
+
+  @override
+  Future<void> rename(String sourcePath, String targetPath) async {
+    await File(sourcePath).rename(targetPath);
+  }
+
+  @override
+  Future<bool> exists(String path) async => File(path).exists();
+
+  @override
+  Future<void> delete(String path) => File(path).delete();
+}
+
 class ContentReviewChange {
   final String questionId;
   final String cardId;
@@ -169,7 +208,7 @@ class ContentReviewWorkflow {
         source?.url ?? '',
         source?.verifiedAt ?? '',
         source?.verificationLevel ?? 'unverified',
-        source?.reviewStatus ?? 'pending',
+        source?.reviewStatus ?? SourceMetadata.pendingStatus,
         source?.reviewNote ?? '',
         fingerprint,
       ]);
@@ -259,8 +298,10 @@ class ContentReviewWorkflow {
       final nextSource = _sourceFromRow(row, questionId, expectedHash);
       final nextImage = _imageReviewFromRow(row, cardId);
       final previousStatus = _statusOf(question['source']);
-      final nextStatus = nextSource?['reviewStatus'] as String? ?? 'pending';
-      final nextVerified = nextStatus == 'approved';
+      final nextStatus =
+          nextSource?['reviewStatus'] as String? ??
+          SourceMetadata.pendingStatus;
+      final nextVerified = nextStatus == SourceMetadata.approvedStatus;
       final oldQuestionSource = _canonical(question['source']);
       final oldCardSource = _canonical(card['source']);
       final oldImage = _canonical(card['imageReview']);
@@ -319,23 +360,128 @@ class ContentReviewWorkflow {
     required String questionsPath,
     required String cardsPath,
     required bool write,
+    ContentReviewFileStore fileStore = const IoContentReviewFileStore(),
   }) async {
-    final questionsFile = File(questionsPath);
-    final cardsFile = File(cardsPath);
     final plan = planImport(
       csv: csv,
-      questionsJson: await questionsFile.readAsString(),
-      cardsJson: await cardsFile.readAsString(),
+      questionsJson: await fileStore.readAsString(questionsPath),
+      cardsJson: await fileStore.readAsString(cardsPath),
     );
     if (write && plan.hasChanges) {
-      final tempQuestions = File('$questionsPath.tmp');
-      final tempCards = File('$cardsPath.tmp');
-      await tempQuestions.writeAsString(plan.questionsJson, flush: true);
-      await tempCards.writeAsString(plan.cardsJson, flush: true);
-      await tempQuestions.rename(questionsPath);
-      await tempCards.rename(cardsPath);
+      await _replacePairRecoverably(
+        fileStore: fileStore,
+        questionsPath: questionsPath,
+        cardsPath: cardsPath,
+        questionsJson: plan.questionsJson,
+        cardsJson: plan.cardsJson,
+      );
     }
     return plan;
+  }
+
+  Future<void> _replacePairRecoverably({
+    required ContentReviewFileStore fileStore,
+    required String questionsPath,
+    required String cardsPath,
+    required String questionsJson,
+    required String cardsJson,
+  }) async {
+    final tempQuestions = '$questionsPath.tmp';
+    final tempCards = '$cardsPath.tmp';
+    final backupQuestions = '$questionsPath.bak';
+    final backupCards = '$cardsPath.bak';
+
+    if (await fileStore.exists(backupQuestions) ||
+        await fileStore.exists(backupCards)) {
+      throw const ContentReviewException(
+        'A previous content update backup exists. Restore or remove the .bak files before retrying.',
+      );
+    }
+
+    await _deleteIfExists(fileStore, tempQuestions);
+    await _deleteIfExists(fileStore, tempCards);
+    await fileStore.writeAsString(tempQuestions, questionsJson, flush: true);
+    await fileStore.writeAsString(tempCards, cardsJson, flush: true);
+
+    var questionsBackedUp = false;
+    var cardsBackedUp = false;
+    var questionsInstalled = false;
+    var cardsInstalled = false;
+    var committed = false;
+
+    try {
+      await fileStore.rename(questionsPath, backupQuestions);
+      questionsBackedUp = true;
+      await fileStore.rename(cardsPath, backupCards);
+      cardsBackedUp = true;
+      await fileStore.rename(tempQuestions, questionsPath);
+      questionsInstalled = true;
+      await fileStore.rename(tempCards, cardsPath);
+      cardsInstalled = true;
+      committed = true;
+    } catch (error, stackTrace) {
+      final rollbackErrors = <Object>[];
+      try {
+        if (questionsInstalled && await fileStore.exists(questionsPath)) {
+          await fileStore.delete(questionsPath);
+        }
+      } catch (rollbackError) {
+        rollbackErrors.add(rollbackError);
+      }
+      try {
+        if (cardsInstalled && await fileStore.exists(cardsPath)) {
+          await fileStore.delete(cardsPath);
+        }
+      } catch (rollbackError) {
+        rollbackErrors.add(rollbackError);
+      }
+      try {
+        if (cardsBackedUp && await fileStore.exists(backupCards)) {
+          await fileStore.rename(backupCards, cardsPath);
+          cardsBackedUp = false;
+        }
+      } catch (rollbackError) {
+        rollbackErrors.add(rollbackError);
+      }
+      try {
+        if (questionsBackedUp && await fileStore.exists(backupQuestions)) {
+          await fileStore.rename(backupQuestions, questionsPath);
+          questionsBackedUp = false;
+        }
+      } catch (rollbackError) {
+        rollbackErrors.add(rollbackError);
+      }
+
+      if (rollbackErrors.isNotEmpty) {
+        throw ContentReviewException(
+          'Content update failed and rollback was incomplete. Preserve the .bak files and restore them manually. Original error: $error',
+        );
+      }
+      Error.throwWithStackTrace(error, stackTrace);
+    } finally {
+      await _tryDelete(fileStore, tempQuestions);
+      await _tryDelete(fileStore, tempCards);
+      if (committed) {
+        await _tryDelete(fileStore, backupQuestions);
+        await _tryDelete(fileStore, backupCards);
+      }
+    }
+  }
+
+  Future<void> _deleteIfExists(
+    ContentReviewFileStore fileStore,
+    String path,
+  ) async {
+    if (await fileStore.exists(path)) await fileStore.delete(path);
+  }
+
+  Future<void> _tryDelete(ContentReviewFileStore fileStore, String path) async {
+    try {
+      await _deleteIfExists(fileStore, path);
+    } catch (_) {
+      // Cleanup failures leave recoverable temp/backup files and must not turn a
+      // successfully committed pair into a reported failed transaction.
+    }
   }
 
   List<CategoryApprovalProgress> progress({
@@ -473,7 +619,7 @@ class ContentReviewWorkflow {
             url: questionSource.url,
             verifiedAt: questionSource.verifiedAt,
             verificationLevel: questionSource.verificationLevel,
-            reviewStatus: 'pending',
+            reviewStatus: SourceMetadata.pendingStatus,
             reviewNote: 'QUESTION_CARD_SOURCE_METADATA_DIFF',
           );
   }
@@ -488,8 +634,7 @@ class ContentReviewWorkflow {
     String expectedHash,
   ) {
     final status = row['reviewStatus']!.trim();
-    if (!SourceMetadata.allowedReviewStatuses.contains(status) ||
-        status == 'legacy') {
+    if (!SourceMetadata.allowedReviewStatuses.contains(status)) {
       throw ContentReviewException(
         '$questionId has invalid reviewStatus: $status',
       );
@@ -500,7 +645,7 @@ class ContentReviewWorkflow {
     final verifiedAt = row['verifiedAt']!.trim();
     final level = row['verificationLevel']!.trim();
     final note = row['reviewNote']!.trim();
-    if (status != 'approved' &&
+    if (status != SourceMetadata.approvedStatus &&
         title.isEmpty &&
         publisher.isEmpty &&
         url.isEmpty &&
@@ -516,14 +661,17 @@ class ContentReviewWorkflow {
       verificationLevel: level,
       reviewStatus: status,
       reviewNote: note.isEmpty ? null : note,
-      contentHash: status == 'approved' ? expectedHash : null,
+      contentHash: status == SourceMetadata.approvedStatus
+          ? expectedHash
+          : null,
     );
     if (!SourceMetadata.allowedVerificationLevels.contains(level)) {
       throw ContentReviewException(
         '$questionId has invalid verificationLevel: $level',
       );
     }
-    if (status == 'approved' && !metadata.isReleaseApproved) {
+    if (status == SourceMetadata.approvedStatus &&
+        !metadata.isReleaseApproved) {
       throw ContentReviewException(
         '$questionId approved source is missing required evidence',
       );
@@ -637,7 +785,7 @@ class ContentReviewWorkflow {
   }
 
   String _statusOf(Object? source) =>
-      _trySource(source)?.reviewStatus ?? 'pending';
+      _trySource(source)?.reviewStatus ?? SourceMetadata.pendingStatus;
 
   String _canonical(Object? value) => value == null ? '' : jsonEncode(value);
 

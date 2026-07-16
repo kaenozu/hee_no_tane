@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hee_no_tane_app/core/app_version_info.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 
 import '../helpers/fake_save_repository.dart';
+
+Future<AppVersionInfo> _loadTestVersion() async =>
+    const AppVersionInfo(version: '9.8.7', buildNumber: '42');
+
+SettingsScreen _screen({
+  required SaveRepository repository,
+  required Future<void> Function() onDataReset,
+}) {
+  return SettingsScreen(
+    saveRepository: repository,
+    onDataReset: onDataReset,
+    versionInfoLoader: _loadTestVersion,
+  );
+}
 
 void main() {
   testWidgets('reset data clears all saved data and refreshes parent', (
@@ -15,8 +30,8 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
+        home: _screen(
+          repository: repository,
           onDataReset: () async {
             refreshed = true;
           },
@@ -40,10 +55,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -58,10 +70,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -70,22 +79,21 @@ void main() {
     expect(find.text('不具合報告・お問い合わせ'), findsOneWidget);
   });
 
-  testWidgets('settings shows version info', (tester) async {
+  testWidgets('settings shows version info from package metadata', (
+    tester,
+  ) async {
     final store = InMemoryPreferenceStore();
     final repository = SaveRepository(store: store);
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('バージョン情報'), findsOneWidget);
-    expect(find.text('へぇのタネ v1.0.0 (1)'), findsOneWidget);
+    expect(find.text('へぇのタネ v9.8.7 (42)'), findsOneWidget);
   });
 
   testWidgets('tapping privacy policy navigates to privacy screen', (
@@ -96,10 +104,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -117,10 +122,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -131,24 +133,24 @@ void main() {
     expect(find.text('お問い合わせ'), findsOneWidget);
   });
 
-  testWidgets('tapping version navigates to version screen', (tester) async {
+  testWidgets('tapping version navigates to dynamic version screen', (
+    tester,
+  ) async {
     final store = InMemoryPreferenceStore();
     final repository = SaveRepository(store: store);
 
     await tester.pumpWidget(
       MaterialApp(
-        home: SettingsScreen(
-          saveRepository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     await tester.tap(find.text('バージョン情報'));
     await tester.pumpAndSettle();
 
     expect(find.text('アプリ情報'), findsOneWidget);
-    expect(find.text('v1.0の機能'), findsOneWidget);
+    expect(find.text('へぇのタネ\nバージョン 9.8.7 (42)'), findsOneWidget);
+    expect(find.text('v9.8.7の機能'), findsOneWidget);
   });
 }

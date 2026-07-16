@@ -1,7 +1,8 @@
 /// Shareable card image preview and export dialog.
 library;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
+import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/features/collection/card_share_service.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
