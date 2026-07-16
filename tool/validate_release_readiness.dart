@@ -4,6 +4,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
+import 'package:hee_no_tane_app/domain/models/hee_card.dart';
+import 'package:hee_no_tane_app/domain/models/question.dart';
+
 typedef ReleaseReadinessEvaluation =
     ({bool success, Map<String, Object?> report});
 
@@ -139,6 +143,7 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
   final duplicateCardIds = <String>{};
   final questionIds = <String>{};
   final cardById = <String, Map<String, dynamic>>{};
+  final parsedCards = <String, HeeCard>{};
 
   for (final card in cards) {
     final id = _nonEmptyString(card['id']);
@@ -147,6 +152,8 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
       duplicateCardIds.add(id);
     } else {
       cardById[id] = card;
+      final parsed = _tryParseCard(card);
+      if (parsed != null) parsedCards[id] = parsed;
     }
   }
 
@@ -161,24 +168,26 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
   var approvedPairCount = 0;
 
   for (var index = 0; index < questions.length; index++) {
-    final question = questions[index];
-    final questionId = _recordLabel(question, index, prefix: 'question');
-    final rawQuestionId = _nonEmptyString(question['id']);
+    final questionJson = questions[index];
+    final questionId = _recordLabel(questionJson, index, prefix: 'question');
+    final rawQuestionId = _nonEmptyString(questionJson['id']);
     if (rawQuestionId != null && !questionIds.add(rawQuestionId)) {
       duplicateQuestionIds.add(rawQuestionId);
     }
-    if (question['verified'] != true) {
+    if (questionJson['verified'] != true) {
       unverifiedQuestionIds.add(questionId);
     }
 
-    final questionApproved = _reviewStatus(question) == 'approved';
+    final parsedQuestion = _tryParseQuestion(questionJson);
+    final questionApproved = parsedQuestion?.isSourceReleaseApproved == true;
     if (!questionApproved) {
       unapprovedQuestionIds.add(questionId);
     }
 
-    final relatedCardId = _nonEmptyString(question['relatedCardId']);
-    final card = relatedCardId == null ? null : cardById[relatedCardId];
-    if (card == null) {
+    final relatedCardId = _nonEmptyString(questionJson['relatedCardId']);
+    final cardJson = relatedCardId == null ? null : cardById[relatedCardId];
+    final parsedCard = relatedCardId == null ? null : parsedCards[relatedCardId];
+    if (cardJson == null) {
       missingRelatedCardIds.add(relatedCardId ?? '$questionId:<missing>');
       unapprovedPairIds.add(questionId);
       continue;
@@ -190,11 +199,16 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
     }
 
     matchedPairCount++;
-    final cardApproved = _reviewStatus(card) == 'approved';
+    final cardApproved = parsedCard?.isSourceReleaseApproved == true;
     if (!cardApproved) {
       unapprovedCardIds.add(relatedCardId);
     }
-    if (questionApproved && cardApproved) {
+
+    final pairApproved =
+        parsedQuestion != null &&
+        parsedCard != null &&
+        ContentReleasePolicy.isPlayablePair(parsedQuestion, parsedCard);
+    if (pairApproved) {
       approvedPairCount++;
     } else {
       unapprovedPairIds.add(questionId);
@@ -202,7 +216,7 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
   }
 
   for (final entry in cardById.entries) {
-    if (_reviewStatus(entry.value) != 'approved' &&
+    if (parsedCards[entry.key]?.isSourceReleaseApproved != true &&
         !unapprovedCardIds.contains(entry.key)) {
       unapprovedCardIds.add(entry.key);
     }
@@ -335,6 +349,22 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
       },
     },
   );
+}
+
+Question? _tryParseQuestion(Map<String, dynamic> json) {
+  try {
+    return Question.fromJson(json);
+  } catch (_) {
+    return null;
+  }
+}
+
+HeeCard? _tryParseCard(Map<String, dynamic> json) {
+  try {
+    return HeeCard.fromJson(json);
+  } catch (_) {
+    return null;
+  }
 }
 
 class ReleaseReadinessOptions {
@@ -481,12 +511,6 @@ String _recordLabel(
   required String prefix,
 }) {
   return _nonEmptyString(record['id']) ?? '$prefix[$index]';
-}
-
-String? _reviewStatus(Map<String, dynamic> record) {
-  final source = record['source'];
-  if (source is! Map) return null;
-  return _nonEmptyString(source['reviewStatus']);
 }
 
 File _resolveFile(Directory root, String path) {
