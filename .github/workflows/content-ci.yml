@@ -1,0 +1,45 @@
+name: Content CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check generated bundle
+        run: dart run tool/generate_content_bundle.dart --check
+
+      - name: Validate runtime content boundary
+        run: dart run tool/validate_runtime_content.dart
+
+      - name: Validate editable content sources
+        run: dart run tool/validate_content.dart
+
+      - name: Audit approved sources
+        run: dart run tool/audit_content_sources.dart --require-approved
+
+      - name: Run content and assignment tests
+        run: >-
+          flutter test
+          test/content_validation/content_bundle_builder_test.dart
+          test/application/daily_progress_service_test.dart
