@@ -1,15 +1,5 @@
-/// lib/app.dart
-///
-/// アプリのルートウィジェット。
+/// Application root and Material theme.
 library;
-
-/// Material 3 テーマ定義（暖色系・紙/木/植物モチーフ）、画面遷移の起点。
-///
-/// 関連:
-///   - main.dart
-///   - features/home/home_screen.dart
-///   - features/onboarding/onboarding_screen.dart
-///   - domain/models/save_data.dart
 
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
@@ -18,7 +8,7 @@ import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:hee_no_tane_app/features/home/home_screen.dart';
+import 'package:hee_no_tane_app/features/home/daily_assignment_gate.dart';
 import 'package:hee_no_tane_app/features/onboarding/onboarding_screen.dart';
 
 final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(
@@ -53,7 +43,6 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
   @override
   void initState() {
     super.initState();
-
     themeModeNotifier.value = widget.saveData.settings.themeMode;
     _onboardingCompleted = widget.saveData.onboardingCompleted;
   }
@@ -64,7 +53,6 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
     );
 
     if (!mounted) return;
-
     setState(() {
       _onboardingCompleted = true;
     });
@@ -74,7 +62,6 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
     themeModeNotifier.value = ThemeMode.system;
 
     if (!mounted) return;
-
     setState(() {
       _onboardingCompleted = false;
     });
@@ -94,7 +81,7 @@ class _HeeNoTaneAppState extends State<HeeNoTaneApp> {
           darkTheme: _buildDarkTheme(),
           themeMode: mode,
           home: _onboardingCompleted
-              ? HomeScreen(
+              ? DailyAssignmentGate(
                   allQuestions: widget.allQuestions,
                   allCards: widget.allCards,
                   saveRepository: widget.saveRepository,
