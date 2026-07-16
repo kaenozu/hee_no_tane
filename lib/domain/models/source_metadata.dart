@@ -7,7 +7,6 @@ class SourceMetadata {
   static const approvedStatus = 'approved';
   static const pendingStatus = 'pending';
   static const correctionRequiredStatus = 'correction_required';
-  static const rejectedStatus = 'rejected';
   static const legacyStatus = 'legacy';
 
   static const allowedVerificationLevels = <String>{
@@ -16,12 +15,12 @@ class SourceMetadata {
     'unverified',
   };
 
+  /// Persisted structured review states shared by the CSV workflow and release
+  /// blocker tools. Legacy metadata is represented only by [SourceMetadata.legacy].
   static const allowedReviewStatuses = <String>{
     approvedStatus,
     pendingStatus,
     correctionRequiredStatus,
-    rejectedStatus,
-    legacyStatus,
   };
 
   final String title;
