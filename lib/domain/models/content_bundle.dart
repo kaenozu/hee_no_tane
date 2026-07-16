@@ -52,10 +52,10 @@ class ContentBundle {
   }) {
     final normalizedVersion = contentVersion.trim();
     if (normalizedVersion.isEmpty) {
-      throw const ArgumentError('contentVersion must not be empty.');
+      throw ArgumentError('contentVersion must not be empty.');
     }
     if (entries.isEmpty) {
-      throw const ArgumentError('Content bundle must not be empty.');
+      throw ArgumentError('Content bundle must not be empty.');
     }
 
     final sortedEntries = List<ContentBundleEntry>.from(entries)
