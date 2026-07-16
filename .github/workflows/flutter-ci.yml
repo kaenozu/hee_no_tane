@@ -15,24 +15,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
         with:
           channel: stable
           cache: true
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Check Dart formatting
+        run: dart format --output=none --set-exit-if-changed lib test integration_test tool
 
       - name: Generate release blocker report
         run: dart run tool/generate_release_blockers.dart
@@ -69,7 +72,7 @@ jobs:
 
       - name: Upload release blocker reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: release-blockers-${{ github.run_id }}
           path: |
@@ -86,7 +89,7 @@ jobs:
 
       - name: Upload content source audit
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: content-source-audit
           path: build/reports/content_source_audit.md
@@ -108,7 +111,7 @@ jobs:
 
       - name: Upload content review artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: content-review-artifacts
           path: |
@@ -144,7 +147,7 @@ jobs:
 
       - name: Upload whitespace diagnostics
         if: steps.whitespace.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: whitespace-diagnostics
           path: build/reports/whitespace.log
@@ -165,7 +168,7 @@ jobs:
 
       - name: Upload analyzer diagnostics
         if: steps.analyze.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: flutter-analyze-diagnostics
           path: build/reports/flutter_analyze.log
@@ -186,7 +189,7 @@ jobs:
 
       - name: Upload test diagnostics
         if: steps.test.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: flutter-test-diagnostics
           path: build/reports/flutter_test.log
@@ -195,6 +198,9 @@ jobs:
       - name: Fail on test errors
         if: steps.test.outcome == 'failure'
         run: exit 1
+
+      - name: Run integration flow tests
+        run: flutter test integration_test/app_flow_test.dart
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
@@ -236,10 +242,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
         with:
           channel: stable
           cache: true
@@ -247,12 +253,15 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Check Dart formatting
+        run: dart format --output=none --set-exit-if-changed lib test integration_test tool
+
       - name: Generate release blocker report
         run: dart run tool/generate_release_blockers.dart
 
       - name: Upload release blocker reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: release-blockers-final-${{ github.run_id }}
           path: |
@@ -270,7 +279,7 @@ jobs:
 
       - name: Upload release readiness result
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: release-readiness-${{ github.run_id }}
           path: build/release-readiness.json
