@@ -17,14 +17,13 @@ class DailyAnswerResult {
 }
 
 class DailyProgressService {
-  final SaveRepository _saveRepository;
-  final RewardService _rewardService;
+  final SaveRepository saveRepository;
+  final RewardService rewardService;
 
   const DailyProgressService({
-    required SaveRepository saveRepository,
-    required RewardService rewardService,
-  }) : _saveRepository = saveRepository,
-       _rewardService = rewardService;
+    required this.saveRepository,
+    required this.rewardService,
+  });
 
   Future<SaveData> ensureAssignment({
     required String date,
@@ -32,7 +31,7 @@ class DailyProgressService {
     required String cardId,
   }) {
     _requireAssignmentValues(date, questionId, cardId);
-    return _saveRepository.update((current) {
+    return saveRepository.update((current) {
       final exactCompletion = current.hasDailyCompletion(
         date: date,
         questionId: questionId,
@@ -85,7 +84,7 @@ class DailyProgressService {
 
     var cardWasOwnedBeforeAnswer = true;
     var alreadyCompleted = false;
-    final updated = await _saveRepository.update((current) {
+    final updated = await saveRepository.update((current) {
       final hasStoredAssignmentIds =
           current.dailyAssignmentQuestionId.isNotEmpty ||
           current.dailyAssignmentCardId.isNotEmpty;
@@ -134,19 +133,21 @@ class DailyProgressService {
                 )
               : assigned;
         }
-        throw const SaveException('同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。');
+        throw const SaveException(
+          '同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。',
+        );
       }
 
       cardWasOwnedBeforeAnswer =
           card == null || assigned.ownedCardIds.contains(card.id);
-      var result = _rewardService.recordDailyAnswer(assigned, date);
+      var result = rewardService.recordDailyAnswer(assigned, date);
       result = result.copyWith(
         lastDailyQuestionDate: date,
         lastDailyQuestionId: question.id,
         lastDailyCardId: cardId,
       );
       if (card != null && !assigned.ownedCardIds.contains(card.id)) {
-        result = _rewardService.applyReward(result, card);
+        result = rewardService.applyReward(result, card);
       }
       return result;
     });
