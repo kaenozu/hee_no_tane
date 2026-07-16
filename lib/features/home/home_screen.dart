@@ -1,6 +1,8 @@
 /// Home screen for the daily question and card collection.
 library;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
@@ -44,11 +46,27 @@ class _HomeScreenState extends State<HomeScreen> {
   String _todayDate = '';
   bool _loading = true;
   String? _loadError;
+  late final AppLifecycleListener _lifecycleListener;
 
   @override
   void initState() {
     super.initState();
+    _lifecycleListener = AppLifecycleListener(onResume: _handleResume);
     _load();
+  }
+
+  @override
+  void dispose() {
+    _lifecycleListener.dispose();
+    super.dispose();
+  }
+
+  void _handleResume() {
+    if (!mounted || _loading) return;
+    final currentDate = widget.dailyQuestionService.currentDateSeed();
+    if (_todayDate != currentDate || _loadError != null) {
+      unawaited(_load());
+    }
   }
 
   Future<void> _load() async {
@@ -63,14 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // Capture the provider value only once so the displayed date and the
       // generated question cannot differ if midnight is crossed during load.
-      final currentDateTime =
-          widget.dailyQuestionService.currentDateTime();
-      final date = widget.dailyQuestionService.currentDateSeed(
-        currentDateTime,
-      );
+      final currentDateTime = widget.dailyQuestionService.currentDateTime();
+      final date = widget.dailyQuestionService.currentDateSeed(currentDateTime);
 
-      final generated =
-          widget.dailyQuestionService.generateTodayQuestions(
+      final generated = widget.dailyQuestionService.generateTodayQuestions(
         widget.allQuestions,
         allCards: widget.allCards,
         count: 1,
@@ -172,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
           relatedCard: _todayCard,
           saveRepository: widget.saveRepository,
           rewardService: widget.rewardService,
+          dateProvider: widget.dailyQuestionService.currentDateTime,
         ),
       ),
     );
