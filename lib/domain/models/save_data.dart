@@ -43,12 +43,15 @@ class SaveData {
   final String lastDailyQuestionDate;
   final String lastDailyQuestionId;
   final String lastDailyCardId;
+  final String dailyAssignmentDate;
+  final String dailyAssignmentQuestionId;
+  final String dailyAssignmentCardId;
   final List<String> ownedCardIds;
   final GameSettings settings;
   final bool onboardingCompleted;
 
   SaveData({
-    this.version = 3,
+    this.version = 4,
     this.totalBrowseCount = 0,
     this.totalPlayCount = 0,
     this.streakDays = 0,
@@ -57,6 +60,9 @@ class SaveData {
     this.lastDailyQuestionDate = '',
     this.lastDailyQuestionId = '',
     this.lastDailyCardId = '',
+    this.dailyAssignmentDate = '',
+    this.dailyAssignmentQuestionId = '',
+    this.dailyAssignmentCardId = '',
     List<String>? ownedCardIds,
     GameSettings? settings,
     this.onboardingCompleted = false,
@@ -71,6 +77,11 @@ class SaveData {
         (owned is! List || owned.any((item) => item is! String))) {
       throw const FormatException('ownedCardIds must be a string array.');
     }
+
+    final completionDate = json['lastDailyQuestionDate'] as String? ?? '';
+    final completionQuestionId = json['lastDailyQuestionId'] as String? ?? '';
+    final completionCardId = json['lastDailyCardId'] as String? ?? '';
+
     return SaveData(
       version: json['version'] as int? ?? 2,
       totalBrowseCount:
@@ -80,9 +91,15 @@ class SaveData {
       streakDays: json['streakDays'] as int? ?? 0,
       lastPlayedDate: json['lastPlayedDate'] as String? ?? '',
       lastRewardDate: json['lastRewardDate'] as String? ?? '',
-      lastDailyQuestionDate: json['lastDailyQuestionDate'] as String? ?? '',
-      lastDailyQuestionId: json['lastDailyQuestionId'] as String? ?? '',
-      lastDailyCardId: json['lastDailyCardId'] as String? ?? '',
+      lastDailyQuestionDate: completionDate,
+      lastDailyQuestionId: completionQuestionId,
+      lastDailyCardId: completionCardId,
+      dailyAssignmentDate:
+          json['dailyAssignmentDate'] as String? ?? completionDate,
+      dailyAssignmentQuestionId:
+          json['dailyAssignmentQuestionId'] as String? ?? completionQuestionId,
+      dailyAssignmentCardId:
+          json['dailyAssignmentCardId'] as String? ?? completionCardId,
       ownedCardIds: owned == null ? const <String>[] : List<String>.from(owned),
       settings: json['settings'] is Map
           ? GameSettings.fromJson(
@@ -107,8 +124,22 @@ class SaveData {
       lastDailyQuestionId.isNotEmpty &&
       lastDailyCardId.isNotEmpty;
 
+  bool hasDailyAssignment({
+    required String date,
+    required String questionId,
+    required String cardId,
+  }) =>
+      dailyAssignmentDate == date &&
+      dailyAssignmentQuestionId == questionId &&
+      dailyAssignmentCardId == cardId;
+
+  bool get hasIdentifiedDailyAssignment =>
+      dailyAssignmentDate.isNotEmpty &&
+      dailyAssignmentQuestionId.isNotEmpty &&
+      dailyAssignmentCardId.isNotEmpty;
+
   Map<String, dynamic> toJson() => {
-    'version': 3,
+    'version': 4,
     'totalBrowseCount': totalBrowseCount,
     'totalPlayCount': totalPlayCount,
     'streakDays': streakDays,
@@ -117,6 +148,9 @@ class SaveData {
     'lastDailyQuestionDate': lastDailyQuestionDate,
     'lastDailyQuestionId': lastDailyQuestionId,
     'lastDailyCardId': lastDailyCardId,
+    'dailyAssignmentDate': dailyAssignmentDate,
+    'dailyAssignmentQuestionId': dailyAssignmentQuestionId,
+    'dailyAssignmentCardId': dailyAssignmentCardId,
     'ownedCardIds': ownedCardIds,
     'settings': settings.toJson(),
     'onboardingCompleted': onboardingCompleted,
@@ -131,11 +165,14 @@ class SaveData {
     String? lastDailyQuestionDate,
     String? lastDailyQuestionId,
     String? lastDailyCardId,
+    String? dailyAssignmentDate,
+    String? dailyAssignmentQuestionId,
+    String? dailyAssignmentCardId,
     List<String>? ownedCardIds,
     GameSettings? settings,
     bool? onboardingCompleted,
   }) => SaveData(
-    version: 3,
+    version: 4,
     totalBrowseCount: totalBrowseCount ?? this.totalBrowseCount,
     totalPlayCount: totalPlayCount ?? this.totalPlayCount,
     streakDays: streakDays ?? this.streakDays,
@@ -144,6 +181,11 @@ class SaveData {
     lastDailyQuestionDate: lastDailyQuestionDate ?? this.lastDailyQuestionDate,
     lastDailyQuestionId: lastDailyQuestionId ?? this.lastDailyQuestionId,
     lastDailyCardId: lastDailyCardId ?? this.lastDailyCardId,
+    dailyAssignmentDate: dailyAssignmentDate ?? this.dailyAssignmentDate,
+    dailyAssignmentQuestionId:
+        dailyAssignmentQuestionId ?? this.dailyAssignmentQuestionId,
+    dailyAssignmentCardId:
+        dailyAssignmentCardId ?? this.dailyAssignmentCardId,
     ownedCardIds: ownedCardIds ?? this.ownedCardIds,
     settings: settings ?? this.settings,
     onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
