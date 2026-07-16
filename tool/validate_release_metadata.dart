@@ -99,16 +99,29 @@ void main() {
     'pubspec description is out of date',
     issues,
   );
-  if (!RegExp(
-    r'^version:\s+\d+\.\d+\.\d+\+\d+',
+  final versionMatch = RegExp(
+    r'^version:\s+(\d+\.\d+\.\d+)\+(\d+)',
     multiLine: true,
-  ).hasMatch(pubspec)) {
+  ).firstMatch(pubspec);
+  if (versionMatch == null) {
     issues.add('pubspec version must include a numeric build number');
+  } else {
+    _validateDisplayedVersion(
+      expectedVersion: versionMatch.group(1)!,
+      expectedBuildNumber: versionMatch.group(2)!,
+      issues: issues,
+    );
   }
   _requireContains(
     pubspec,
     'image_path: "assets/app_icon.png"',
     'launcher icon source must be configured',
+    issues,
+  );
+  _requireContains(
+    pubspec,
+    '- assets/data/app_version.json',
+    'app version metadata must be bundled as an asset',
     issues,
   );
   if (!File('assets/app_icon.png').existsSync()) {
@@ -148,6 +161,7 @@ void main() {
   }
 
   for (final requiredPath in [
+    'assets/data/app_version.json',
     'docs/09_プライバシーポリシー.md',
     'docs/10_リリースチェックリスト.md',
     'docs/11_ストア掲載文案.md',
@@ -189,6 +203,36 @@ void main() {
   }
 
   stdout.writeln('Release metadata validation passed.');
+}
+
+void _validateDisplayedVersion({
+  required String expectedVersion,
+  required String expectedBuildNumber,
+  required List<String> issues,
+}) {
+  final raw = _read('assets/data/app_version.json', issues);
+  if (raw.isEmpty) return;
+  try {
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map) {
+      issues.add('assets/data/app_version.json root must be an object');
+      return;
+    }
+    final version = decoded['version'];
+    final buildNumber = decoded['buildNumber'];
+    if (version != expectedVersion) {
+      issues.add(
+        'app version metadata must match pubspec version $expectedVersion',
+      );
+    }
+    if (buildNumber != expectedBuildNumber) {
+      issues.add(
+        'app version metadata must match pubspec build number $expectedBuildNumber',
+      );
+    }
+  } on FormatException catch (error) {
+    issues.add('assets/data/app_version.json is invalid: ${error.message}');
+  }
 }
 
 String _read(String path, List<String> issues) {
