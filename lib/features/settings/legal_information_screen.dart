@@ -3,54 +3,136 @@ library;
 
 import 'package:flutter/material.dart';
 
+enum LegalInformationSection {
+  privacyPolicy,
+  support,
+  version,
+}
+
 class LegalInformationScreen extends StatelessWidget {
-  const LegalInformationScreen({super.key});
+  final LegalInformationSection initialSection;
+
+  const LegalInformationScreen({
+    super.key,
+    this.initialSection = LegalInformationSection.privacyPolicy,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('プライバシーとサポート')),
+      appBar: AppBar(title: _titleForSection(initialSection)),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
-        children: const [
-          _Section(
-            title: 'データの取り扱い',
-            body:
-                'へぇのタネは、クイズの回答状況、獲得カード、閲覧数、連続利用日数、設定を端末内に保存します。現在のバージョンでは、これらの利用データを開発者のサーバーへ送信しません。',
-          ),
-          _Section(
-            title: '外部共有',
-            body:
-                'カード画像を共有するときだけ、利用者が選択した共有先アプリまたはブラウザ機能へ画像を渡します。共有を実行しない限り、画像が外部へ送られることはありません。共有先でのデータの取り扱いは、そのサービスの規約とプライバシーポリシーに従います。',
-          ),
-          _Section(
-            title: '保存データの削除',
-            body:
-                '設定画面の「データリセット」から、端末内に保存されたアプリデータを削除できます。アプリをアンインストールした場合も、通常は端末内の保存データが削除されます。',
-          ),
-          _Section(
-            title: 'コンテンツについて',
-            body:
-                '掲載内容は一般的な知識・娯楽を目的としています。医療、法律、投資などの専門的助言ではありません。誤りを見つけた場合は、ストア掲載ページのサポート窓口からご連絡ください。',
-          ),
-          _Section(
-            title: '免責事項',
-            body:
-                '正確性の維持に努めていますが、すべての情報の完全性や最新性を保証するものではありません。利用によって生じた損害について、法令で認められる範囲を超えて責任を負うものではありません。',
-          ),
-          _Section(
-            title: '対象年齢',
-            body:
-                '本アプリは幅広い年齢層が利用できますが、児童向けサービスとして個人情報を収集する設計ではありません。保護者の管理が必要な端末では、端末側の機能をご利用ください。',
-          ),
-          _Section(
-            title: 'アプリ情報',
-            body: 'へぇのタネ\nバージョン 1.0.0\n最終更新日 2026年7月12日',
-          ),
-        ],
+        children: _sectionsForType(initialSection),
       ),
     );
   }
+
+  Text _titleForSection(LegalInformationSection section) {
+    return switch (section) {
+      LegalInformationSection.privacyPolicy => const Text('プライバシーポリシー'),
+      LegalInformationSection.support => const Text('サポート'),
+      LegalInformationSection.version => const Text('バージョン情報'),
+    };
+  }
+
+  List<Widget> _sectionsForType(LegalInformationSection section) {
+    return switch (section) {
+      LegalInformationSection.privacyPolicy => _privacyPolicySections(),
+      LegalInformationSection.support => _supportSections(),
+      LegalInformationSection.version => _versionSections(),
+    };
+  }
+
+  List<Widget> _privacyPolicySections() => const [
+    _Section(
+      title: '収集する情報',
+      body:
+          'へぇのタネは、クイズの回答状況、獲得カード、閲覧数、連続利用日数、設定を端末内に保存します。'
+          '現在のバージョンでは、これらの利用データを開発者のサーバーへ送信しません。',
+    ),
+    _Section(
+      title: '外部共有',
+      body:
+          'カード画像を共有するときだけ、利用者が選択した共有先アプリまたはブラウザ機能へ画像を渡します。'
+          '共有を実行しない限り、画像が外部へ送られることはありません。'
+          '共有先でのデータの取り扱いは、そのサービスの規約とプライバシーポリシーに従います。',
+    ),
+    _Section(
+      title: '第三者提供',
+      body:
+          '法令に基づく場合を除き、個人情報を第三者に提供することはありません。',
+    ),
+    _Section(
+      title: '保存期間と削除',
+      body:
+          'データは端末内に保存されます。設定画面の「データリセット」から、端末内に保存されたアプリデータを削除できます。'
+          'アプリをアンインストールした場合も、通常は端末内の保存データが削除されます。',
+    ),
+  ];
+
+  List<Widget> _supportSections() => const [
+    _Section(
+      title: 'お問い合わせ',
+      body:
+          '不具合報告やご要望は、ストア掲載ページの開発者連絡先からお知らせください。'
+          '返信には時間がかかる場合があります。',
+    ),
+    _Section(
+      title: '不具合報告時にご協力ください',
+      body:
+          '- 発生した操作手順\n'
+          '- 使用している端末名とOSバージョン\n'
+          '- 画面のスクリーンショット（可能であれば）',
+    ),
+    _Section(
+      title: 'コンテンツについて',
+      body:
+          '掲載内容は一般的な知識・娯楽を目的としています。医療、法律、投資などの専門的助言ではありません。'
+          '誤りを見つけた場合は、上記のお問い合わせからご連絡ください。',
+    ),
+    _Section(
+      title: '免責事項',
+      body:
+          '正確性の維持に努めていますが、すべての情報の完全性や最新性を保証するものではありません。'
+          '利用によって生じた損害について、法令で認められる範囲を超えて責任を負うものではありません。',
+    ),
+  ];
+
+  List<Widget> _versionSections() => const [
+    _Section(
+      title: 'アプリ情報',
+      body:
+          'へぇのタネ\n'
+          'バージョン 1.0.0 (1)\n'
+          'ビルド番号 1\n'
+          '最終更新日 2026年7月16日',
+    ),
+    _Section(
+      title: 'v1.0の機能',
+      body:
+          '- 1日1問の日替わりクイズ\n'
+          '- 解説と知識カードの獲得\n'
+          '- カード図鑑・共有・統計\n'
+          '- 端末内保存、テーマ設定\n'
+          '- Android、iOS、Web対応',
+    ),
+    _Section(
+      title: 'v1.0に含まれない機能',
+      body:
+          '- 広告\n'
+          '- 課金\n'
+          '- アカウント・ログイン\n'
+          '- クラウド同期\n'
+          '- プッシュ通知',
+    ),
+    _Section(
+      title: '対象年齢',
+      body:
+          '本アプリは幅広い年齢層が利用できますが、児童向けサービスとして個人情報を収集する設計ではありません。'
+          '保護者の管理が必要な端末では、端末側の機能をご利用ください。',
+    ),
+  ];
 }
 
 class _Section extends StatelessWidget {

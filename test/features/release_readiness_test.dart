@@ -19,7 +19,7 @@ void main() {
   ) async {
     await tester.pumpWidget(const MaterialApp(home: LegalInformationScreen()));
 
-    expect(find.text('データの取り扱い'), findsOneWidget);
+    expect(find.text('収集する情報'), findsOneWidget);
     expect(find.textContaining('端末内に保存'), findsWidgets);
 
     final listFinder = find.byType(ListView);

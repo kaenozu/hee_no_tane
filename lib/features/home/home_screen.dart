@@ -3,7 +3,6 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
-import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
@@ -21,6 +20,7 @@ class HomeScreen extends StatefulWidget {
   final List<HeeCard> allCards;
   final SaveRepository saveRepository;
   final RewardService rewardService;
+  final DailyQuestionService dailyQuestionService;
   final Future<void> Function()? onDataReset;
 
   const HomeScreen({
@@ -29,6 +29,7 @@ class HomeScreen extends StatefulWidget {
     required this.allCards,
     required this.saveRepository,
     required this.rewardService,
+    this.dailyQuestionService = const DailyQuestionService(),
     this.onDataReset,
   });
 
@@ -59,12 +60,21 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     try {
       final data = await widget.saveRepository.loadOrThrow();
-      final date = todayDateString();
-      final generated = DailyQuestionService().generateQuestions(
-        date,
+
+      // Capture the provider value only once so the displayed date and the
+      // generated question cannot differ if midnight is crossed during load.
+      final currentDateTime =
+          widget.dailyQuestionService.currentDateTime();
+      final date = widget.dailyQuestionService.currentDateSeed(
+        currentDateTime,
+      );
+
+      final generated =
+          widget.dailyQuestionService.generateTodayQuestions(
         widget.allQuestions,
         allCards: widget.allCards,
         count: 1,
+        dateTime: currentDateTime,
       );
       Question? question = generated.isEmpty ? null : generated.first;
       HeeCard? card = question == null

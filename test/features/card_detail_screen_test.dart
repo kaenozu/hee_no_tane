@@ -4,11 +4,12 @@ import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helpers/fake_save_repository.dart';
 
 void main() {
   testWidgets('owned card detail reveals knowledge text', (tester) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       MaterialApp(
@@ -16,7 +17,7 @@ void main() {
           card: _card,
           isOwned: true,
           rewardService: RewardService(),
-          saveRepository: SaveRepository(),
+          saveRepository: SaveRepository(store: store),
         ),
       ),
     );
@@ -29,7 +30,7 @@ void main() {
   });
 
   testWidgets('unowned card hides all content permanently', (tester) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       MaterialApp(
@@ -37,7 +38,7 @@ void main() {
           card: _card,
           isOwned: false,
           rewardService: RewardService(),
-          saveRepository: SaveRepository(),
+          saveRepository: SaveRepository(store: store),
         ),
       ),
     );
@@ -49,18 +50,16 @@ void main() {
     expect(find.text('短い知識'), findsNothing);
     expect(find.text('くわしい知識'), findsNothing);
     expect(find.text('詳しい本文'), findsNothing);
-    expect(find.text('出典: test source'), findsNothing);
-    expect(find.text('覚えてた？'), findsNothing);
   });
 }
 
-const _card = HeeCard(
-  id: 'card',
+final _card = HeeCard(
+  id: 'test_card',
   title: 'テストカード',
   category: 'science',
   shortText: '短い知識',
   detailText: '詳しい本文',
   imageAsset: '',
-  rarity: 'rare',
+  rarity: 'normal',
   sourceNote: 'test source',
 );

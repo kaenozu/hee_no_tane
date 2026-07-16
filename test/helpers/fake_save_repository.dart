@@ -8,6 +8,33 @@ import 'dart:async';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 
+class InMemoryPreferenceStore implements PreferenceStore {
+  final Map<String, String> _values;
+
+  InMemoryPreferenceStore({
+    Map<String, String>? initialValues,
+  }) : _values = Map<String, String>.from(
+          initialValues ?? const <String, String>{},
+        );
+
+  @override
+  Future<String?> getString(String key) async => _values[key];
+
+  @override
+  Future<bool> containsKey(String key) async =>
+      _values.containsKey(key);
+
+  @override
+  Future<void> setString(String key, String value) async {
+    _values[key] = value;
+  }
+
+  @override
+  Future<void> remove(String key) async {
+    _values.remove(key);
+  }
+}
+
 class FakeSaveRepository extends SaveRepository {
   int loadCallCount = 0;
   int saveCallCount = 0;
@@ -16,6 +43,8 @@ class FakeSaveRepository extends SaveRepository {
   SaveData? _loadedData;
   Object? _loadError;
   Completer<void>? _completer;
+
+  FakeSaveRepository() : super(store: InMemoryPreferenceStore());
 
   void setLoadedData(SaveData data) {
     _loadedData = SaveData.fromJson(data.toJson());

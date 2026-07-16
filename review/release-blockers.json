@@ -1,13 +1,13 @@
 {
   "tool": "generate_release_blockers",
-  "generatedAt": "2026-07-14T14:48:02.363557Z",
+  "generatedAt": "2026-07-14T14:52:54.885493Z",
   "configuration": {
     "root": "C:\\gemini-desktop\\hee_no_tane\\.",
     "questionsPath": "assets/data/questions.json",
     "cardsPath": "assets/data/cards.json",
     "expectedPairs": 103,
-    "jsonOutputPath": "build/release-blockers.json",
-    "markdownOutputPath": "build/release-blockers.md"
+    "jsonOutputPath": "review/release-blockers.json",
+    "markdownOutputPath": "review/release-blockers.md"
   },
   "summary": {
     "expectedPairCount": 103,

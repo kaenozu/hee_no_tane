@@ -4,15 +4,15 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../helpers/fake_save_repository.dart';
 import '../helpers/release_content.dart';
 
 void main() {
   testWidgets('approved owned card shows and opens source link', (
     tester,
   ) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
     Uri? openedUri;
 
     await tester.pumpWidget(
@@ -21,7 +21,7 @@ void main() {
           card: _approvedCard,
           isOwned: true,
           rewardService: RewardService(),
-          saveRepository: SaveRepository(),
+          saveRepository: SaveRepository(store: store),
           sourceLauncher: (uri) async {
             openedUri = uri;
             return true;
@@ -39,7 +39,7 @@ void main() {
   });
 
   testWidgets('legacy source does not show source link', (tester) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       MaterialApp(
@@ -47,7 +47,7 @@ void main() {
           card: _legacyCard,
           isOwned: true,
           rewardService: RewardService(),
-          saveRepository: SaveRepository(),
+          saveRepository: SaveRepository(store: store),
         ),
       ),
     );
@@ -57,7 +57,7 @@ void main() {
   });
 
   testWidgets('source launch failure keeps card readable', (tester) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       MaterialApp(
@@ -65,7 +65,7 @@ void main() {
           card: _approvedCard,
           isOwned: true,
           rewardService: RewardService(),
-          saveRepository: SaveRepository(),
+          saveRepository: SaveRepository(store: store),
           sourceLauncher: (_) async => false,
         ),
       ),

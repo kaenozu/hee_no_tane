@@ -7,7 +7,6 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/fake_save_repository.dart';
 import '../helpers/release_content.dart';
@@ -367,18 +366,20 @@ void main() {
 
   group('D. SaveRepository strict load contract', () {
     test('D1. missing data is a valid empty save', () async {
-      SharedPreferences.setMockInitialValues({});
-      final realRepository = SaveRepository();
+      final store = InMemoryPreferenceStore();
+      final realRepository = SaveRepository(store: store);
       final loaded = await realRepository.loadOrThrow();
       expect(loaded.ownedCardIds, isEmpty);
       expect(loaded.totalBrowseCount, 0);
     });
 
     test('D2. malformed data throws from strict load', () async {
-      SharedPreferences.setMockInitialValues({
-        'hee_no_tane_save_data': '{not valid json',
-      });
-      final realRepository = SaveRepository();
+      final store = InMemoryPreferenceStore(
+        initialValues: {
+          'hee_no_tane_save_data': '{not valid json',
+        },
+      );
+      final realRepository = SaveRepository(store: store);
 
       await expectLater(
         realRepository.loadOrThrow(),
@@ -387,10 +388,12 @@ void main() {
     });
 
     test('D3. load uses the same strict contract as loadOrThrow', () async {
-      SharedPreferences.setMockInitialValues({
-        'hee_no_tane_save_data': '{not valid json',
-      });
-      final realRepository = SaveRepository();
+      final store = InMemoryPreferenceStore(
+        initialValues: {
+          'hee_no_tane_save_data': '{not valid json',
+        },
+      );
+      final realRepository = SaveRepository(store: store);
       await expectLater(
         realRepository.load(),
         throwsA(isA<SaveLoadException>()),

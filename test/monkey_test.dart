@@ -8,7 +8,8 @@ import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'helpers/fake_save_repository.dart';
 
 void main() {
   testWidgets('monkey test: random taps and drags do not crash the app', (
@@ -18,14 +19,14 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       HeeNoTaneApp(
         allQuestions: _questions(),
         allCards: _cards(),
         saveData: SaveData(),
-        saveRepository: SaveRepository(),
+        saveRepository: SaveRepository(store: store),
         rewardService: RewardService(),
       ),
     );

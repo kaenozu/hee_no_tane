@@ -19,6 +19,7 @@ import 'package:hee_no_tane_app/data/repositories/question_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
+import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
 
@@ -28,48 +29,76 @@ Future<void> main() async {
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
   };
-  PlatformDispatcher.instance.onError = (error, stackTrace) {
+
+  PlatformDispatcher.instance.onError = (
+    error,
+    stackTrace,
+  ) {
     debugPrint('Uncaught platform error: $error');
     debugPrintStack(stackTrace: stackTrace);
+
     // Returning false keeps the error observable by the host platform instead
     // of claiming it was fully handled by debug-only logging.
     return false;
   };
 
   try {
-    final questionRepo = QuestionRepository();
-    final cardRepo = CardRepository();
-    final saveRepo = SaveRepository();
+    await SaveRepository.migrateLegacyStorage();
 
-    final questions = await questionRepo.loadAll();
-    final cards = await cardRepo.loadAll();
+    final questionRepository = QuestionRepository();
+    final cardRepository = CardRepository();
+    final saveRepository = SaveRepository();
+    const dailyQuestionService = DailyQuestionService();
+    final rewardService = RewardService();
+
+    final questions = await questionRepository.loadAll();
+    final cards = await cardRepository.loadAll();
+
     _requirePlayableContent(questions, cards);
-    final saveData = await saveRepo.loadOrThrow();
+
+    final saveData = await saveRepository.loadOrThrow();
 
     runApp(
       HeeNoTaneApp(
         allQuestions: questions,
         allCards: cards,
         saveData: saveData,
-        saveRepository: saveRepo,
-        rewardService: RewardService(),
+        saveRepository: saveRepository,
+        rewardService: rewardService,
+        dailyQuestionService: dailyQuestionService,
       ),
     );
   } catch (error, stackTrace) {
     debugPrint('Failed to initialize app: $error');
     debugPrintStack(stackTrace: stackTrace);
-    runApp(StartupErrorApp(details: _safeStartupErrorDetails(error)));
+
+    runApp(
+      StartupErrorApp(
+        details: _safeStartupErrorDetails(error),
+      ),
+    );
   }
 }
 
-void _requirePlayableContent(List<Question> questions, List<HeeCard> cards) {
-  final cardsById = <String, HeeCard>{for (final card in cards) card.id: card};
+void _requirePlayableContent(
+  List<Question> questions,
+  List<HeeCard> cards,
+) {
+  final cardsById = <String, HeeCard>{
+    for (final card in cards) card.id: card,
+  };
+
   final hasPlayablePair = questions.any((question) {
     final card = cardsById[question.relatedCardId];
-    return card != null && ContentReleasePolicy.isPlayablePair(question, card);
+
+    return card != null &&
+        ContentReleasePolicy.isPlayablePair(question, card);
   });
+
   if (!hasPlayablePair) {
-    throw const ContentLoadException('公開可能な問題データが見つかりませんでした。');
+    throw const ContentLoadException(
+      '公開可能な問題データが見つかりませんでした。',
+    );
   }
 }
 
@@ -77,11 +106,14 @@ String _safeStartupErrorDetails(Object error) {
   if (error is SaveLoadException) {
     return error.message;
   }
+
   if (error is SaveException) {
     return error.message;
   }
+
   if (error is ContentLoadException) {
     return error.message;
   }
+
   return 'アプリ内データの読み込み中に予期しない問題が発生しました。';
 }

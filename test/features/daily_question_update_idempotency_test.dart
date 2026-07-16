@@ -7,10 +7,14 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
 
+import '../helpers/fake_save_repository.dart';
+
 class CommitThenThrowRepository extends SaveRepository {
   SaveData data = SaveData();
   int saveCallCount = 0;
   bool _throwAfterFirstWrite = true;
+
+  CommitThenThrowRepository() : super(store: InMemoryPreferenceStore());
 
   @override
   Future<SaveData> loadOrThrow() async => SaveData.fromJson(data.toJson());

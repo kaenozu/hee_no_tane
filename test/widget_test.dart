@@ -3,20 +3,20 @@ import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import 'helpers/fake_save_repository.dart';
 import 'helpers/release_content.dart';
 
 void main() {
   testWidgets('App starts without error', (WidgetTester tester) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     await tester.pumpWidget(
       HeeNoTaneApp(
         allQuestions: const [],
         allCards: const [],
         saveData: SaveData(),
-        saveRepository: SaveRepository(),
+        saveRepository: SaveRepository(store: store),
         rewardService: RewardService(),
       ),
     );
@@ -29,7 +29,7 @@ void main() {
   testWidgets('App home shows daily question section', (
     WidgetTester tester,
   ) async {
-    SharedPreferences.setMockInitialValues({});
+    final store = InMemoryPreferenceStore();
 
     final pairs = List.generate(
       5,
@@ -52,7 +52,7 @@ void main() {
         allQuestions: questions,
         allCards: cards,
         saveData: SaveData(onboardingCompleted: true),
-        saveRepository: SaveRepository(),
+        saveRepository: SaveRepository(store: store),
         rewardService: RewardService(),
       ),
     );

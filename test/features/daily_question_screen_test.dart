@@ -9,7 +9,6 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/home/home_screen.dart';
 import 'package:hee_no_tane_app/features/question/daily_question_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../helpers/fake_save_repository.dart';
 import '../helpers/release_content.dart';
 
@@ -118,7 +117,6 @@ void main() {
   late FakeSaveRepository fakeRepo;
 
   setUp(() {
-    SharedPreferences.setMockInitialValues({});
     rewardService = RewardService();
     fakeRepo = FakeSaveRepository();
     final pairs = List.generate(10, (i) => releaseContentPair(id: '$i'));
@@ -272,8 +270,9 @@ void main() {
   testWidgets(
     'R6. answer persists through SaveRepository and survives app restart',
     (tester) async {
-      // 実SaveRepository + SharedPreferences mockで永続化を検証する。
-      final realRepo = SaveRepository();
+      // InMemoryPreferenceStoreで永続化を検証する。
+      final store = InMemoryPreferenceStore();
+      final realRepo = SaveRepository(store: store);
 
       await tester.pumpWidget(
         buildDailyQuestionScreen(
@@ -288,8 +287,8 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pumpAndSettle();
 
-      // 新しいSaveRepositoryインスタンスで保存データを読み込む
-      final freshRepo = SaveRepository();
+      // 同じstoreを使ってSaveRepositoryインスタンスで保存データを読み込む
+      final freshRepo = SaveRepository(store: store);
       final saved = await freshRepo.load();
       final todayStr = _todayDateString();
       expect(saved.lastDailyQuestionDate, todayStr);

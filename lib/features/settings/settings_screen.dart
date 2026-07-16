@@ -110,24 +110,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const Divider(),
           ListTile(
-            key: const ValueKey('settings-legal-information'),
+            key: const ValueKey('settings-privacy-policy'),
             leading: Icon(Icons.privacy_tip_outlined, color: cs.primary),
-            title: const Text('プライバシーとサポート'),
-            subtitle: const Text('データの取り扱い・免責事項・問い合わせ方法'),
+            title: const Text('プライバシーポリシー'),
+            subtitle: const Text('データの取り扱いについて'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
               Navigator.of(context).push<void>(
                 MaterialPageRoute(
-                  builder: (_) => const LegalInformationScreen(),
+                  builder: (_) => const LegalInformationScreen(
+                    initialSection: LegalInformationSection.privacyPolicy,
+                  ),
                 ),
               );
             },
           ),
           const Divider(),
           ListTile(
+            key: const ValueKey('settings-support'),
+            leading: Icon(Icons.support_agent, color: cs.primary),
+            title: const Text('サポート'),
+            subtitle: const Text('不具合報告・お問い合わせ'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (_) => const LegalInformationScreen(
+                    initialSection: LegalInformationSection.support,
+                  ),
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            key: const ValueKey('settings-version'),
             leading: Icon(Icons.info_outline, color: cs.primary),
-            title: const Text('アプリ情報'),
-            subtitle: const Text('へぇのタネ v1.0.0'),
+            title: const Text('バージョン情報'),
+            subtitle: const Text('へぇのタネ v1.0.0 (1)'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (_) => const LegalInformationScreen(
+                    initialSection: LegalInformationSection.version,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
