@@ -3,8 +3,10 @@
 /// 日付フォーマットの共通ユーティリティ。
 library;
 
-/// `yyyy-MM-dd` 形式の日付文字列を返す。
-String todayDateString() {
-  final now = DateTime.now();
-  return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+/// [dateTime]のローカル暦日を`yyyy-MM-dd`形式で返す。
+String calendarDateString(DateTime dateTime) {
+  return '${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}';
 }
+
+/// 現在のローカル暦日を`yyyy-MM-dd`形式で返す。
+String todayDateString() => calendarDateString(DateTime.now());
