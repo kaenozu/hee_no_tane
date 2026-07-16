@@ -4,17 +4,20 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/core/app_version_info.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/settings/legal_information_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   final SaveRepository saveRepository;
   final Future<void> Function() onDataReset;
+  final AppVersionInfoLoader versionInfoLoader;
 
   const SettingsScreen({
     super.key,
     required this.saveRepository,
     required this.onDataReset,
+    this.versionInfoLoader = loadAppVersionInfoSafely,
   });
 
   @override
@@ -23,6 +26,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _resetting = false;
+  late final Future<AppVersionInfo> _versionInfoFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _versionInfoFuture = widget.versionInfoLoader();
+  }
 
   Future<void> _confirmReset() async {
     if (_resetting) return;
@@ -67,9 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (!mounted) return;
     try {
       await widget.onDataReset();
-    } catch (error, stackTrace) {
-      debugPrint('Failed to refresh after data reset: $error');
-      debugPrintStack(stackTrace: stackTrace);
+    } catch (_) {
       if (!mounted) return;
       setState(() => _resetting = false);
       _showError('データは削除されましたが、画面の更新に失敗しました。設定画面を閉じて再度お試しください。');
@@ -84,6 +92,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Future<void> _openVersionInformation() async {
+    final versionInfo = await _versionInfoFuture;
+    if (!mounted) return;
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (_) => LegalInformationScreen(
+          initialSection: LegalInformationSection.version,
+          versionInfo: versionInfo,
+        ),
+      ),
+    );
   }
 
   @override
@@ -147,17 +168,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             key: const ValueKey('settings-version'),
             leading: Icon(Icons.info_outline, color: cs.primary),
             title: const Text('バージョン情報'),
-            subtitle: const Text('へぇのタネ v1.0.0 (1)'),
+            subtitle: FutureBuilder<AppVersionInfo>(
+              future: _versionInfoFuture,
+              builder: (context, snapshot) {
+                final info = snapshot.data;
+                return Text(info?.settingsSubtitle ?? 'へぇのタネ');
+              },
+            ),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              Navigator.of(context).push<void>(
-                MaterialPageRoute(
-                  builder: (_) => const LegalInformationScreen(
-                    initialSection: LegalInformationSection.version,
-                  ),
-                ),
-              );
-            },
+            onTap: _openVersionInformation,
           ),
         ],
       ),
