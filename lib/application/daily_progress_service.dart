@@ -133,9 +133,7 @@ class DailyProgressService {
                 )
               : assigned;
         }
-        throw const SaveException(
-          '同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。',
-        );
+        throw const SaveException('同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。');
       }
 
       cardWasOwnedBeforeAnswer =

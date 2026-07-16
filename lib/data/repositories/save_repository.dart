@@ -204,9 +204,7 @@ class SaveRepository {
           proposed.dailyAssignmentQuestionId.isNotEmpty &&
           proposed.dailyAssignmentCardId.isNotEmpty;
       if (hasAssignmentForCompletionDate) {
-        throw const SaveException(
-          'カード付きで割り当てられた問題をカードなし回答として保存できません。',
-        );
+        throw const SaveException('カード付きで割り当てられた問題をカードなし回答として保存できません。');
       }
       return proposed;
     }
