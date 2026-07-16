@@ -199,8 +199,28 @@ jobs:
         if: steps.test.outcome == 'failure'
         run: exit 1
 
-      - name: Run integration flow tests
-        run: flutter test integration_test/app_flow_test.dart
+      - name: Run Linux integration flow tests
+        id: integration
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p build/reports
+          set -o pipefail
+          flutter config --enable-linux-desktop
+          xvfb-run -a flutter test integration_test/app_flow_test.dart -d linux -r expanded \
+            2>&1 | tee build/reports/flutter_integration_test.log
+
+      - name: Upload integration test diagnostics
+        if: steps.integration.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: flutter-integration-test-diagnostics
+          path: build/reports/flutter_integration_test.log
+          if-no-files-found: error
+
+      - name: Fail on integration test errors
+        if: steps.integration.outcome == 'failure'
+        run: exit 1
 
       - name: Build web
         run: flutter build web --no-web-resources-cdn
