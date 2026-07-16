@@ -136,7 +136,7 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
     } on SaveException catch (error) {
       _showError(error.message);
     } on FormatException catch (error) {
-      _showError(error.message);
+      _showError(error.message.toString());
     }
   }
 
