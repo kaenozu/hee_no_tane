@@ -26,6 +26,6 @@ void main() {
     await tester.drag(listFinder, const Offset(0, -600));
     await tester.pumpAndSettle();
 
-    expect(find.text('保存データの削除'), findsOneWidget);
+    expect(find.text('保存期間と削除'), findsOneWidget);
   });
 }

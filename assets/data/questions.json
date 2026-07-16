@@ -80,18 +80,18 @@
     "id": "q_his_001",
     "category": "history",
     "difficulty": "easy",
-    "question": "江戸時代、庶民の間で流行った「世界一短い手紙」と呼ばれるものは？",
+    "question": "五・七・五の17音を基本とし、季語を詠み込むことを伝統的な特徴とする日本の詩は？",
     "choices": [
-      "一行書簡",
-      "矢立",
-      "早桶",
-      "五七五"
+      "短歌",
+      "俳句",
+      "川柳",
+      "連歌"
     ],
-    "answerIndex": 3,
-    "explanation": "俳句は「五・七・五」の17音で詠む世界一短い詩の形式。江戸時代に庶民文化として大きく広がったんだ。",
+    "answerIndex": 1,
+    "explanation": "俳句は、五・七・五の17音を基本とする日本の短詩型です。伝統的には季語や言葉の切れを重視しますが、定型や季語にとらわれない俳句もあります。",
     "relatedCardId": "card_his_001",
     "sourceNote": "文化庁 日本文化紹介",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_his_002",
@@ -108,7 +108,7 @@
     "explanation": "奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。",
     "relatedCardId": "card_his_002",
     "sourceNote": "東大寺公式サイト",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_sci_001",
@@ -148,18 +148,18 @@
     "id": "q_food_001",
     "category": "food",
     "difficulty": "easy",
-    "question": "日本でいちばん古い調味料と言われているのは？",
+    "question": "日本で、約3000年前の縄文時代にはすでに作られていたと考えられる調味料は？",
     "choices": [
-      "醤油",
-      "味噌",
+      "砂糖",
+      "みそ",
       "塩",
-      "酢"
+      "しょうゆ"
     ],
     "answerIndex": 2,
-    "explanation": "塩は日本で最も古くから使われている調味料。縄文時代には海水から作っていたことがわかっているよ。",
+    "explanation": "製塩に使われた土器の出土から、日本では縄文時代後期後葉には塩が作られていたと考えられています。",
     "relatedCardId": "card_food_001",
     "sourceNote": "国立歴史民俗博物館",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_food_002",
@@ -242,18 +242,18 @@
     "id": "q_life_002",
     "category": "daily_life",
     "difficulty": "easy",
-    "question": "信号機の色が赤・黄・青の3色なのはなぜ？",
+    "question": "信号機で「止まれ」を示す色に赤が使われる理由として、最も適切なものは？",
     "choices": [
-      "光の波長で最も遠くまで届く色だから",
-      "花の色から取ったから",
-      "国旗の色を集めたから",
-      "目に優しい色だから"
+      "赤色光は波長が長く、空気中で散乱されにくいから",
+      "赤色光は可視光の中で最も明るく見えるから",
+      "赤色光は霧や雨にまったく遮られないから",
+      "赤色光はほかの色より消費電力が少ないから"
     ],
     "answerIndex": 0,
-    "explanation": "赤は波長が長く遠くまで届くため「止まれ」に使われる。青（実際は緑）はその中間。黄色は注意を促す色として選ばれたんだ。",
+    "explanation": "赤色光は青色光などより波長が長く、大気中で散乱されにくいため、遠くから識別する停止信号に適しています。",
     "relatedCardId": "card_life_002",
     "sourceNote": "警察庁 交通規制",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_geo_003",
@@ -327,52 +327,52 @@
     "id": "q_food_003",
     "category": "food",
     "difficulty": "normal",
-    "question": "ワサビの本来の原材料は何の植物？",
+    "question": "本わさびは、植物の分類では何科に属する？",
     "choices": [
-      "大根",
-      "山葵",
-      "西洋わさび",
-      "からし菜"
+      "ショウガ科",
+      "セリ科",
+      "ユリ科",
+      "アブラナ科"
     ],
-    "answerIndex": 1,
-    "explanation": "本わさびは「山葵」という植物の根茎をすりおろしたもの。スーパーで売っているチューブわさびの多くは「西洋わさび」が主原料なんだ。",
+    "answerIndex": 3,
+    "explanation": "本わさびはアブラナ科の植物です。分類上の学名はEutrema japonicumとされています。",
     "relatedCardId": "card_food_003",
     "sourceNote": "農林水産省",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_lang_003",
     "category": "language",
     "difficulty": "hard",
-    "question": "「サンドイッチ」の名前の由来は？",
+    "question": "食べ物の「サンドイッチ」という名前の直接の由来は？",
     "choices": [
-      "考案した伯爵の名前",
-      "砂の間という意味",
-      "三枚重ねが語源",
-      "サンドという地名から"
+      "発祥地とされるフランスの町名",
+      "イギリスの「サンドイッチ伯爵」という爵位名",
+      "考案したパン職人の姓",
+      "砂を意味する英単語"
     ],
-    "answerIndex": 0,
-    "explanation": "サンドイッチは18世紀のイギリス、第4代サンドイッチ伯爵ジョン・モンタギューが、食事の手を止めずにトランプを続けられるよう頼んだのが始まりと言われているよ。",
+    "answerIndex": 1,
+    "explanation": "「サンドイッチ」は、18世紀の第4代サンドイッチ伯爵ジョン・モンタギューの爵位名に由来します。",
     "relatedCardId": "card_lang_003",
-    "sourceNote": "オックスフォード英語辞典",
-    "verified": false
+    "sourceNote": "文化庁 日本文化紹介",
+    "verified": true
   },
   {
     "id": "q_life_003",
     "category": "daily_life",
     "difficulty": "normal",
-    "question": "消しゴムで鉛筆の字が消えるのはなぜ？",
+    "question": "消しゴムで鉛筆の線が消える主な仕組みは？",
     "choices": [
-      "摩擦で紙の表面が削れるから",
-      "消しゴムがインクを吸収するから",
-      "熱でインクが蒸発するから",
-      "化学反応で透明になるから"
+      "黒鉛を透明な物質に変える",
+      "紙の表面を溶かして作り直す",
+      "黒鉛の粒子を紙からはがし、消しゴム側に取り込む",
+      "黒鉛を空気中へ蒸発させる"
     ],
-    "answerIndex": 0,
-    "explanation": "消しゴムでこすると、紙の表面ごと鉛筆の黒鉛を削り取っているんだ。消しゴムのかすは削り取られた紙と黒鉛のカスなんだよ。",
+    "answerIndex": 2,
+    "explanation": "こする力で紙に付着した黒鉛粒子がはがれ、紙よりも消しゴムの素材に付きやすいため、線が取り除かれます。",
     "relatedCardId": "card_life_003",
     "sourceNote": "文具の企画・開発メモ",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_geo_004",
@@ -575,10 +575,10 @@
       "神奈川県と静岡県"
     ],
     "answerIndex": 0,
-    "explanation": "富士山は静岡県と山梨県にまたがる独立峰です。実は山頂の大部分は私有地であり、境界線が明確に引かれていない場所も存在します。",
+    "explanation": "富士山は静岡県と山梨県にまたがる独立峰です。山梨県側と静岡県側の両方に登山口があります。",
     "relatedCardId": "card_nature_geography_001",
     "sourceNote": "静岡県および山梨県公式ホームページ",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_living_things_001",
@@ -832,35 +832,35 @@
     "id": "q_nature_geography_006",
     "category": "nature_geography",
     "difficulty": "easy",
-    "question": "日本で一番面積が小さい都道府県はどこ？",
+    "question": "2026年4月1日時点で、日本で面積が最も小さい都道府県は？",
     "choices": [
       "東京都",
       "大阪府",
-      "香川県",
-      "沖縄県"
+      "沖縄県",
+      "香川県"
     ],
-    "answerIndex": 2,
-    "explanation": "日本の都道府県で最も面積が小さいのは香川県です。かつては大阪府が最下位でしたが、関西国際空港の開拓などにより面積が増加したため、1988年以降は香川県が日本で一番小さな都道府県となっています。",
+    "answerIndex": 3,
+    "explanation": "国土地理院の2026年4月1日時点の資料では、香川県が47都道府県で最も小さく、面積は参考値で約1876.83平方キロメートルです。",
     "relatedCardId": "card_nature_geography_006",
     "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_living_things_006",
     "category": "living_things",
     "difficulty": "normal",
-    "question": "タコには心臓がいくつある？",
+    "question": "タコの3つの心臓のうち、えらへ血液を送る心臓はいくつある？",
     "choices": [
       "1つ",
       "2つ",
       "3つ",
-      "4つ"
+      "0個"
     ],
-    "answerIndex": 2,
-    "explanation": "タコには3つの心臓があります。全身に血液を巡らせる主心臓が1つと、左右のエラにそれぞれ血液を送り込むための補助的な心臓（エラ心臓）が2つあります。これにより、酸素を効率よく全身に運ぶことができます。",
+    "answerIndex": 1,
+    "explanation": "タコには3つの心臓があり、そのうち2つがそれぞれのえらへ血液を送ります。残る1つは、酸素を受け取った血液を全身へ送ります。",
     "relatedCardId": "card_living_things_006",
     "sourceNote": "生物学事典「軟体動物の循環系」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_history_005",
@@ -892,18 +892,18 @@
     "id": "q_science_005",
     "category": "science",
     "difficulty": "easy",
-    "question": "シャボンの泡が丸くなる理由に関係する物理現象は？",
+    "question": "シャボン玉が空中でほぼ球形になる主な理由は？",
     "choices": [
-      "表面張力",
-      "毛細管現象",
-      "遠心力",
-      "静電気"
+      "膜の表面張力が表面積をできるだけ小さくしようとするから",
+      "空気が上向きに流れて泡を押し上げるから",
+      "石けん水が重力を打ち消すから",
+      "膜の内側だけが冷えて縮むから"
     ],
     "answerIndex": 0,
-    "explanation": "シャボン玉が丸くなるのは「表面張力」が働くためです。液体の表面はできるだけ面積を小さくしようと収縮します。体積が同じ場合、球体が最も表面積が小さくなるため、空気を含んだシャボン膜は自然と綺麗な丸い形になります。",
+    "explanation": "表面張力は、シャボン玉の膜の表面積を小さくしようと働きます。同じ体積なら球が最も表面積の小さい形なので、外から強い力を受けなければ球形に近づきます。",
     "relatedCardId": "card_science_005",
     "sourceNote": "物理学基礎「界面動態と表面張力」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_food_007",
@@ -1131,18 +1131,18 @@
     "id": "q_food_008",
     "category": "food",
     "difficulty": "normal",
-    "question": "昆布とかつお節を合わせると何が起きる？",
+    "question": "昆布だしとかつお節を組み合わせると、うま味はどうなる？",
     "choices": [
-      "酸味が強くなる",
-      "塩味が消える",
-      "色が透明になる",
-      "うま味の相乗効果が起きる"
+      "互いに打ち消し合って弱くなる",
+      "グルタミン酸とイノシン酸の相乗効果で強くなる",
+      "塩味だけが強くなる",
+      "うま味が酸味に変わる"
     ],
-    "answerIndex": 3,
-    "explanation": "昆布のグルタミン酸と、かつお節のイノシン酸を組み合わせると、うま味の相乗効果が起きる。",
+    "answerIndex": 1,
+    "explanation": "昆布に多いグルタミン酸とかつお節に多いイノシン酸を組み合わせると、うま味の相乗効果が起こり、単独の場合より強く感じられます。",
     "relatedCardId": "card_food_008",
     "sourceNote": "農林水産省・だしうま味解説",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_food_009",
@@ -1165,18 +1165,18 @@
     "id": "q_language_006",
     "category": "language",
     "difficulty": "hard",
-    "question": "『カステラ』の名の有力な由来はどれ？",
+    "question": "菓子名「カステラ」の有力な語源はどれ？",
     "choices": [
-      "オランダの城の名前",
-      "スペインのカスティーリャ地名",
-      "卵を意味するラテン語",
-      "砂糖商人の名字"
+      "ポルトガル語で「カスティーリャの菓子」を意味する呼び名",
+      "長崎の菓子職人カステラ氏の名字",
+      "焼き型が城の形に似ていたこと",
+      "原料の砂糖を表すラテン語"
     ],
-    "answerIndex": 1,
-    "explanation": "カステラの名は、スペインのカスティーリャ地方名に由来するという説が有力。ポルトガル経由で長崎に伝わった。",
+    "answerIndex": 0,
+    "explanation": "ポルトガル語で「カスティーリャの菓子」を意味する「ボロ・デ・カステラ」に由来するとされています。カスティーリャは現在のスペインにある地域名です。",
     "relatedCardId": "card_language_006",
     "sourceNote": "国立国会図書館レファレンス事例",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_daily_life_006",
@@ -1193,7 +1193,7 @@
     "explanation": "PETボトルの識別表示にある「1」は、米国プラスチック産業協会のSPIコードに由来する。分別ではこのマーク確認が確実とされる。",
     "relatedCardId": "card_daily_life_006",
     "sourceNote": "環境省・環境ラベルデータベース",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_nature_geography_010",
@@ -1293,18 +1293,18 @@
     "id": "q_language_007",
     "category": "language",
     "difficulty": "normal",
-    "question": "「うだつが上がらない」の「うだつ（卯建）」の正体は？",
+    "question": "「うだつが上がらない」の「うだつ（卯建）」とは、もともと何？",
     "choices": [
-      "神社の鳥居の飾り",
-      "町家の屋根にある防火壁",
-      "江戸時代の給料袋",
-      "相撲の土俵の柱"
+      "町家の屋根付近に設けられた防火用の袖壁",
+      "商家の入口に掲げられた屋号の看板",
+      "井戸水をくみ上げるための滑車",
+      "蔵の床下に設けられた通風口"
     ],
-    "answerIndex": 1,
-    "explanation": "「うだつ」とは、日本のおもに町家で隣家との境に設置された「防火壁（小さな屋根付きの壁）」のことです。これを作るには多額の費用がかかったため、うだつがある家は出世した裕福な家とされ、そこから「地位が上がらない、冴えない」状態を指す慣用句になりました。",
+    "answerIndex": 0,
+    "explanation": "うだつは、町家の屋根付近に設けられた袖壁で、隣家への延焼を防ぐ役割がありました。後に豪華な装飾が施され、富や成功の象徴にもなりました。",
     "relatedCardId": "card_language_007",
     "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_daily_life_007",
@@ -1475,16 +1475,16 @@
     "difficulty": "easy",
     "question": "イチゴの表面にあるツブツブの、植物学上の正体は？",
     "choices": [
-      "イチゴの種",
-      "イチゴの果実",
-      "イチゴの胞子",
-      "ただの産毛の跡"
+      "種子そのもの",
+      "一つ一つが痩果と呼ばれる果実",
+      "花粉を蓄える器官",
+      "成長しなかった小さな葉"
     ],
     "answerIndex": 1,
-    "explanation": "イチゴの表面にある小さなツブツブは、種ではなく1つひとつが独立した「果実（痩果）」です。それぞれのツブの中に本当の種が入っています。私たちが普段食べている赤い甘い部分は、果実ではなく、茎の先端が膨らんだ「花托（かたく）」という部分です。",
+    "explanation": "表面のツブツブは、一つ一つが「痩果」と呼ばれる果実です。種子はそのツブツブの中にあり、赤く甘い部分は花床が発達したものです。",
     "relatedCardId": "card_food_011",
     "sourceNote": "植物分類学「偽果と真果の構造」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_language_009",
@@ -1533,7 +1533,7 @@
     "id": "q_nature_geography_013",
     "category": "nature_geography",
     "difficulty": "normal",
-    "question": "日本に約400ある有人離島の中で、最も人口が多い島はどこ？",
+    "question": "本州・北海道・四国・九州・沖縄島を除く日本の有人島のうち、2020年国勢調査で人口が最も多い島は？",
     "choices": [
       "淡路島（兵庫県）",
       "佐渡島（新潟県）",
@@ -1541,10 +1541,10 @@
       "対馬（長崎県）"
     ],
     "answerIndex": 0,
-    "explanation": "沖縄本島などを除く、日本のいわゆる「離島（本土5島以外の有人島）」の中で最も人口が多いのは「淡路島」です。約12万人の人口を擁し、神戸や徳島と大きな橋で結ばれているため交通の便も良く、独自の産業や観光地として大きく栄えています。",
+    "explanation": "2020年国勢調査では、主要5島を除く有人島の中で淡路島の人口が最も多く、約12万7000人でした。淡路島は兵庫県の3市にまたがっています。",
     "relatedCardId": "card_nature_geography_013",
     "sourceNote": "総務省「国勢調査・離島振興解説」",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_living_things_013",
@@ -1610,18 +1610,18 @@
     "id": "q_nature_geography_015",
     "category": "nature_geography",
     "difficulty": "easy",
-    "question": "津波が生まれる主なきっかけとして多いのは？",
+    "question": "津波が発生する原因として最も多いのは？",
     "choices": [
-      "海底近くの大地震",
-      "満月の強い光",
-      "台風の中心気圧",
-      "海水の塩分変化"
+      "海底下の大地震に伴う海底の急な上下変動",
+      "強い海風が長時間吹き続けること",
+      "満潮と干潮が同時に起こること",
+      "川の水が大量に海へ流れ込むこと"
     ],
     "answerIndex": 0,
-    "explanation": "津波は海水全体が急に動かされることで起こる。多くは海底や海の近くで起きる大地震により、海底が変形することで発生する。",
+    "explanation": "海底下で大きな地震が起き、断層運動によって海底が急に隆起または沈降すると、海面も変動して津波が発生します。",
     "relatedCardId": "card_nature_geography_015",
     "sourceNote": "NOAA・津波発生の解説",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_nature_geography_016",
@@ -1773,10 +1773,10 @@
       "桜切手"
     ],
     "answerIndex": 1,
-    "explanation": "1840年にイギリスで発行されたペニー・ブラックは、世界初の粘着式郵便切手として知られる。ビクトリア女王の横顔が描かれた。",
+    "explanation": "ペニー・ブラックは1840年にイギリスで発行された額面1ペニーの切手で、世界初の粘着式郵便切手として広く知られています。",
     "relatedCardId": "card_history_011",
     "sourceNote": "英国郵便博物館・ペニー黒切手",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_history_012",
@@ -1868,18 +1868,18 @@
     "id": "q_science_011",
     "category": "science",
     "difficulty": "easy",
-    "question": "石けんが油汚れを落としやすい主な理由は？",
+    "question": "石けんが油汚れを水で洗い流しやすくする主な仕組みは？",
     "choices": [
-      "水と油になじむ部分を持つ",
-      "油をすべて蒸発させる",
-      "金属に変える",
-      "水を凍らせる"
+      "石けん分子が水になじむ部分と油になじむ部分の両方を持つ",
+      "油を高温にして蒸発させる",
+      "油を化学反応で砂糖に変える",
+      "水の温度を必ず100度まで上げる"
     ],
     "answerIndex": 0,
-    "explanation": "石けん分子には水になじむ部分と油になじむ部分がある。油汚れを包み込み、水で洗い流しやすくする。",
+    "explanation": "石けんは界面活性剤の一種です。油になじむ親油基が汚れに結びつき、水になじむ親水基が外側を向いて油を包み込むため、水中に分散して洗い流しやすくなります。",
     "relatedCardId": "card_science_011",
     "sourceNote": "イェール医学部・石けんの仕組み",
-    "verified": false
+    "verified": true
   },
   {
     "id": "q_food_012",
