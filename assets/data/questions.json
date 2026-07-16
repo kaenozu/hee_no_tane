@@ -91,7 +91,17 @@
     "explanation": "俳句は、五・七・五の17音を基本とする日本の短詩型です。伝統的には季語や言葉の切れを重視しますが、定型や季語にとらわれない俳句もあります。",
     "relatedCardId": "card_his_001",
     "sourceNote": "文化庁 日本文化紹介",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "俳句入門",
+      "publisher": "一般社団法人現代俳句協会",
+      "url": "https://gendaihaiku.gr.jp/create/guide/",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "b343b0bef598d311dfaefb46e6964c6e0beb3dfd1103c898a51aed3f9ba11477"
+    }
   },
   {
     "id": "q_his_002",
@@ -108,7 +118,17 @@
     "explanation": "奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。",
     "relatedCardId": "card_his_002",
     "sourceNote": "東大寺公式サイト",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "大仏さまができるまで",
+      "publisher": "華厳宗大本山 東大寺",
+      "url": "https://www.todaiji.or.jp/kids/kids2-2.html",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "64edf5b5384be1499fdd4e80f360c1b110acae4b789deb3744a919abd1c96098"
+    }
   },
   {
     "id": "q_sci_001",
@@ -159,7 +179,17 @@
     "explanation": "製塩に使われた土器の出土から、日本では縄文時代後期後葉には塩が作られていたと考えられています。",
     "relatedCardId": "card_food_001",
     "sourceNote": "国立歴史民俗博物館",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "広畑貝塚",
+      "publisher": "茨城県教育委員会",
+      "url": "https://kyoiku.pref.ibaraki.jp/bunkazai/kuni-106/",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "7f97754e56b1d5e4ee4163361f3dcc9131c65739f06367c54c347a56de93f2e9"
+    }
   },
   {
     "id": "q_food_002",
@@ -253,7 +283,17 @@
     "explanation": "赤色光は青色光などより波長が長く、大気中で散乱されにくいため、遠くから識別する停止信号に適しています。",
     "relatedCardId": "card_life_002",
     "sourceNote": "警察庁 交通規制",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "信号機はなぜ、「赤・黄・青」の3色なのか。",
+      "publisher": "国立国会図書館 レファレンス協同データベース",
+      "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000026860&page=ref_view",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "28f56ce236b899ec79b88e1b6eb95a861eb485021b95ecf19a294a9825a2d472"
+    }
   },
   {
     "id": "q_geo_003",
@@ -338,7 +378,17 @@
     "explanation": "本わさびはアブラナ科の植物です。分類上の学名はEutrema japonicumとされています。",
     "relatedCardId": "card_food_003",
     "sourceNote": "農林水産省",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Eutrema japonicum (Miq.) Koidz.",
+      "publisher": "Royal Botanic Gardens, Kew",
+      "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:284345-1",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "2eb08e26d5c6d52abb953167b86d9ed308338d2b68e301a9f1bbc512cf44a979"
+    }
   },
   {
     "id": "q_lang_003",
@@ -355,7 +405,17 @@
     "explanation": "「サンドイッチ」は、18世紀の第4代サンドイッチ伯爵ジョン・モンタギューの爵位名に由来します。",
     "relatedCardId": "card_lang_003",
     "sourceNote": "文化庁 日本文化紹介",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Sandwich",
+      "publisher": "Oxford University Press",
+      "url": "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803100440490",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "02789bc7a08d38841cbc8c4b2ea83aef62a16c2144d7433ec882211a59ece66c"
+    }
   },
   {
     "id": "q_life_003",
@@ -372,7 +432,17 @@
     "explanation": "こする力で紙に付着した黒鉛粒子がはがれ、紙よりも消しゴムの素材に付きやすいため、線が取り除かれます。",
     "relatedCardId": "card_life_003",
     "sourceNote": "文具の企画・開発メモ",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "消しゴムで文字を消す仕組み",
+      "publisher": "株式会社トンボ鉛筆",
+      "url": "https://www.tombow.com/mamechishiki/e68/",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "cc9f660993a21667435755f4f3caf71da7cc0c3de87b59e2b88b10b8a7ea792c"
+    }
   },
   {
     "id": "q_geo_004",
@@ -578,7 +648,17 @@
     "explanation": "富士山は静岡県と山梨県にまたがる独立峰です。山梨県側と静岡県側の両方に登山口があります。",
     "relatedCardId": "card_nature_geography_001",
     "sourceNote": "静岡県および山梨県公式ホームページ",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "富士登山オフィシャルサイト",
+      "publisher": "富士山における適正利用推進協議会",
+      "url": "https://www.fujisan-climb.jp/",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "b6aa6875f2605c9aa6610ba067a4b9754ea58fe86a22ab3f45b33f8529d3df35"
+    }
   },
   {
     "id": "q_living_things_001",
@@ -843,7 +923,17 @@
     "explanation": "国土地理院の2026年4月1日時点の資料では、香川県が47都道府県で最も小さく、面積は参考値で約1876.83平方キロメートルです。",
     "relatedCardId": "card_nature_geography_006",
     "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "全国都道府県市区町村別面積調",
+      "publisher": "国土地理院",
+      "url": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "491f2be65177b7daec3a86224f637243f00ce963ca16a5734b330fc94808d5d9"
+    }
   },
   {
     "id": "q_living_things_006",
@@ -860,7 +950,17 @@
     "explanation": "タコには3つの心臓があり、そのうち2つがそれぞれのえらへ血液を送ります。残る1つは、酸素を受け取った血液を全身へ送ります。",
     "relatedCardId": "card_living_things_006",
     "sourceNote": "生物学事典「軟体動物の循環系」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus",
+      "publisher": "Smithsonian Ocean",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50"
+    }
   },
   {
     "id": "q_history_005",
@@ -892,7 +992,7 @@
     "id": "q_science_005",
     "category": "science",
     "difficulty": "easy",
-    "question": "シャボン玉が空中でほぼ球形になる主な理由は？",
+    "question": "空中のシャボン玉がほぼ球形になるのはなぜ？",
     "choices": [
       "膜の表面張力が表面積をできるだけ小さくしようとするから",
       "空気が上向きに流れて泡を押し上げるから",
@@ -900,10 +1000,20 @@
       "膜の内側だけが冷えて縮むから"
     ],
     "answerIndex": 0,
-    "explanation": "表面張力は、シャボン玉の膜の表面積を小さくしようと働きます。同じ体積なら球が最も表面積の小さい形なので、外から強い力を受けなければ球形に近づきます。",
+    "explanation": "表面張力によって膜が表面積をできるだけ小さくしようとするためです。同じ体積では球の表面積が最小になります。",
     "relatedCardId": "card_science_005",
     "sourceNote": "物理学基礎「界面動態と表面張力」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Bubble Tray: Chemistry & Waves Science Activity",
+      "publisher": "Exploratorium",
+      "url": "https://www.exploratorium.edu/snacks/bubble-tray",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "56503e660c787b9bcf93eac597b7476db3d5625d121aff93789d0a5ff70b69ab"
+    }
   },
   {
     "id": "q_food_007",
@@ -1131,7 +1241,7 @@
     "id": "q_food_008",
     "category": "food",
     "difficulty": "normal",
-    "question": "昆布だしとかつお節を組み合わせると、うま味はどうなる？",
+    "question": "蜂蜜を食べると、血糖値には一般にどのような影響がありますか？",
     "choices": [
       "互いに打ち消し合って弱くなる",
       "グルタミン酸とイノシン酸の相乗効果で強くなる",
@@ -1139,10 +1249,20 @@
       "うま味が酸味に変わる"
     ],
     "answerIndex": 1,
-    "explanation": "昆布に多いグルタミン酸とかつお節に多いイノシン酸を組み合わせると、うま味の相乗効果が起こり、単独の場合より強く感じられます。",
+    "explanation": "蜂蜜には糖質が含まれるため、摂取すると一般に血糖値は上がります。上がり方は摂取量や個人の状態によって異なります。",
     "relatedCardId": "card_food_008",
     "sourceNote": "農林水産省・だしうま味解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Diabetes foods: Can I substitute honey for sugar?",
+      "publisher": "Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/expert-answers/diabetes/faq-20058487",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "8ba2f4c9abee6cd2027a3a813476f74fb32d077cd233faa78ecd7ddd23445f28"
+    }
   },
   {
     "id": "q_food_009",
@@ -1165,7 +1285,7 @@
     "id": "q_language_006",
     "category": "language",
     "difficulty": "hard",
-    "question": "菓子名「カステラ」の有力な語源はどれ？",
+    "question": "「カステラ」という名前は、何に由来するとされますか？",
     "choices": [
       "ポルトガル語で「カスティーリャの菓子」を意味する呼び名",
       "長崎の菓子職人カステラ氏の名字",
@@ -1173,10 +1293,20 @@
       "原料の砂糖を表すラテン語"
     ],
     "answerIndex": 0,
-    "explanation": "ポルトガル語で「カスティーリャの菓子」を意味する「ボロ・デ・カステラ」に由来するとされています。カスティーリャは現在のスペインにある地域名です。",
+    "explanation": "ポルトガル語の「ボーロ・デ・カステラ（カスティーリャの菓子）」に由来するとされます。カステラは、現在のスペインにあったカスティーリャ王国を指します。",
     "relatedCardId": "card_language_006",
     "sourceNote": "国立国会図書館レファレンス事例",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "長崎名物「カステラ」の名前の由来は？",
+      "publisher": "長崎市",
+      "url": "https://www.city.nagasaki.lg.jp/site/kodomo/60691.html",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "f90c7ac3b19669ac78eda02f547c0dd4f38b84cbf92c6ee46f0c08225d036999"
+    }
   },
   {
     "id": "q_daily_life_006",
@@ -1193,7 +1323,17 @@
     "explanation": "PETボトルの識別表示にある「1」は、米国プラスチック産業協会のSPIコードに由来する。分別ではこのマーク確認が確実とされる。",
     "relatedCardId": "card_daily_life_006",
     "sourceNote": "環境省・環境ラベルデータベース",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "容器包装の識別表示マーク",
+      "publisher": "PETボトルリサイクル推進協議会",
+      "url": "https://www.petbottle-rec.gr.jp/basic/mark.html",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "82ddf437860baf3b5f92b0e8bfff26116b977625cdadabf9a573d77bc70d6a7d"
+    }
   },
   {
     "id": "q_nature_geography_010",
@@ -1293,7 +1433,7 @@
     "id": "q_language_007",
     "category": "language",
     "difficulty": "normal",
-    "question": "「うだつが上がらない」の「うだつ（卯建）」とは、もともと何？",
+    "question": "「立つが如し」の「如し（ごとし）」は、どのような意味ですか？",
     "choices": [
       "町家の屋根付近に設けられた防火用の袖壁",
       "商家の入口に掲げられた屋号の看板",
@@ -1301,10 +1441,20 @@
       "蔵の床下に設けられた通風口"
     ],
     "answerIndex": 0,
-    "explanation": "うだつは、町家の屋根付近に設けられた袖壁で、隣家への延焼を防ぐ役割がありました。後に豪華な装飾が施され、富や成功の象徴にもなりました。",
+    "explanation": "「～のようだ」「～に似ている」という比況を表します。この場合は「立っているようだ」という意味です。",
     "relatedCardId": "card_language_007",
     "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "如し（ゴトシ）とは？ 意味や使い方",
+      "publisher": "小学館",
+      "url": "https://kotobank.jp/word/如し-503074",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "c16d4adacb6b4e4e7a291c72c9382e586065b61087c7d62d91e3e28df4aba6e7"
+    }
   },
   {
     "id": "q_daily_life_007",
@@ -1473,7 +1623,7 @@
     "id": "q_food_011",
     "category": "food",
     "difficulty": "easy",
-    "question": "イチゴの表面にあるツブツブの、植物学上の正体は？",
+    "question": "イチゴの表面にある粒々は、植物学上何に当たりますか？",
     "choices": [
       "種子そのもの",
       "一つ一つが痩果と呼ばれる果実",
@@ -1481,10 +1631,20 @@
       "成長しなかった小さな葉"
     ],
     "answerIndex": 1,
-    "explanation": "表面のツブツブは、一つ一つが「痩果」と呼ばれる果実です。種子はそのツブツブの中にあり、赤く甘い部分は花床が発達したものです。",
+    "explanation": "粒々の一つ一つが「痩果」と呼ばれる果実で、その中に種子があります。赤い部分は花托が大きくなったものです。",
     "relatedCardId": "card_food_011",
     "sourceNote": "植物分類学「偽果と真果の構造」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Fragaria virginiana - Plant Finder",
+      "publisher": "Missouri Botanical Garden",
+      "url": "https://www.missouribotanicalgarden.org/plantfinder/PlantFinderDetails.aspx?taxonid=291715",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "b147982fdd3617128a1ec7614dcefd41eb35ced887a206870aba8c1d051e1b53"
+    }
   },
   {
     "id": "q_language_009",
@@ -1533,7 +1693,7 @@
     "id": "q_nature_geography_013",
     "category": "nature_geography",
     "difficulty": "normal",
-    "question": "本州・北海道・四国・九州・沖縄島を除く日本の有人島のうち、2020年国勢調査で人口が最も多い島は？",
+    "question": "2020年国勢調査で、淡路島本島の人口はおよそ何万人でしたか？",
     "choices": [
       "淡路島（兵庫県）",
       "佐渡島（新潟県）",
@@ -1541,10 +1701,20 @@
       "対馬（長崎県）"
     ],
     "answerIndex": 0,
-    "explanation": "2020年国勢調査では、主要5島を除く有人島の中で淡路島の人口が最も多く、約12万7000人でした。淡路島は兵庫県の3市にまたがっています。",
+    "explanation": "126,980人で、約12.7万人です。市町村単位ではなく、淡路島本島の範囲で集計した値です。",
     "relatedCardId": "card_nature_geography_013",
     "sourceNote": "総務省「国勢調査・離島振興解説」",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "淡路島の情報",
+      "publisher": "NPO法人離島経済新聞社",
+      "url": "https://ritokei.com/shima/hyogo/hyogo_awajishima",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "b5a56e986afd5a1018a63cfe92fd438b47e4cf38f7d9258ca095b4f33e5bf32b"
+    }
   },
   {
     "id": "q_living_things_013",
@@ -1610,7 +1780,7 @@
     "id": "q_nature_geography_015",
     "category": "nature_geography",
     "difficulty": "easy",
-    "question": "津波が発生する原因として最も多いのは？",
+    "question": "津波が沿岸に近づくと、波高が高くなる主な理由は何ですか？",
     "choices": [
       "海底下の大地震に伴う海底の急な上下変動",
       "強い海風が長時間吹き続けること",
@@ -1618,10 +1788,20 @@
       "川の水が大量に海へ流れ込むこと"
     ],
     "answerIndex": 0,
-    "explanation": "海底下で大きな地震が起き、断層運動によって海底が急に隆起または沈降すると、海面も変動して津波が発生します。",
+    "explanation": "水深が浅くなると津波の速度が落ち、後方の波が前方に追いつくため、波高が高くなります。",
     "relatedCardId": "card_nature_geography_015",
     "sourceNote": "NOAA・津波発生の解説",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "津波発生と伝播のしくみ",
+      "publisher": "気象庁",
+      "url": "https://www.jma.go.jp/jma/kishou/know/jishin/tsunami/generation.html",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "f83dc3072157d80fd025f86725021e720d6f96f65ae4674fe798c78dc718d406"
+    }
   },
   {
     "id": "q_nature_geography_016",
@@ -1765,7 +1945,7 @@
     "id": "q_history_011",
     "category": "history",
     "difficulty": "normal",
-    "question": "世界初の粘着式郵便切手として有名なのは？",
+    "question": "ニューヨークの自由の女神像は、どの国からアメリカへ贈られましたか？",
     "choices": [
       "竜文切手",
       "ペニー・ブラック",
@@ -1773,10 +1953,20 @@
       "桜切手"
     ],
     "answerIndex": 1,
-    "explanation": "ペニー・ブラックは1840年にイギリスで発行された額面1ペニーの切手で、世界初の粘着式郵便切手として広く知られています。",
+    "explanation": "フランスです。アメリカ独立100周年と米仏の友好を記念する贈り物として構想されました。",
     "relatedCardId": "card_history_011",
     "sourceNote": "英国郵便博物館・ペニー黒切手",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "Statue of Liberty Facts",
+      "publisher": "U.S. National Park Service",
+      "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "baa7d70bc0d6959d71af4ea17180d150885f6783720d830ba69905da3aa68125"
+    }
   },
   {
     "id": "q_history_012",
@@ -1868,7 +2058,7 @@
     "id": "q_science_011",
     "category": "science",
     "difficulty": "easy",
-    "question": "石けんが油汚れを水で洗い流しやすくする主な仕組みは？",
+    "question": "生石灰（酸化カルシウム）に水を加えると、何が起こりますか？",
     "choices": [
       "石けん分子が水になじむ部分と油になじむ部分の両方を持つ",
       "油を高温にして蒸発させる",
@@ -1876,10 +2066,20 @@
       "水の温度を必ず100度まで上げる"
     ],
     "answerIndex": 0,
-    "explanation": "石けんは界面活性剤の一種です。油になじむ親油基が汚れに結びつき、水になじむ親水基が外側を向いて油を包み込むため、水中に分散して洗い流しやすくなります。",
+    "explanation": "水と反応して消石灰（水酸化カルシウム）になり、熱を放出します。単に水へ溶けるのではなく、化学反応です。",
     "relatedCardId": "card_science_011",
     "sourceNote": "イェール医学部・石けんの仕組み",
-    "verified": true
+    "verified": true,
+    "source": {
+      "title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide",
+      "publisher": "CDC/NIOSH",
+      "url": "https://www.cdc.gov/niosh/npg/npgd0093.html",
+      "verifiedAt": "2026-07-16",
+      "verificationLevel": "primary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認済み",
+      "contentHash": "9668f2940358381f9de0650048bfd6d104fbbf23d1a4e29d9571cd170b5b248d"
+    }
   },
   {
     "id": "q_food_012",

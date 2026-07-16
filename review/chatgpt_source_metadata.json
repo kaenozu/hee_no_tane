@@ -1,0 +1,131 @@
+{
+  "corrections": [
+    {
+      "questionId": "q_science_005",
+      "question": "空中のシャボン玉がほぼ球形になるのはなぜ？",
+      "explanation": "表面張力によって膜が表面積をできるだけ小さくしようとするためです。同じ体積では球の表面積が最小になります。"
+    },
+    {
+      "questionId": "q_food_008",
+      "question": "蜂蜜を食べると、血糖値には一般にどのような影響がありますか？",
+      "explanation": "蜂蜜には糖質が含まれるため、摂取すると一般に血糖値は上がります。上がり方は摂取量や個人の状態によって異なります。"
+    },
+    {
+      "questionId": "q_language_006",
+      "question": "「カステラ」という名前は、何に由来するとされますか？",
+      "explanation": "ポルトガル語の「ボーロ・デ・カステラ（カスティーリャの菓子）」に由来するとされます。カステラは、現在のスペインにあったカスティーリャ王国を指します。"
+    },
+    {
+      "questionId": "q_language_007",
+      "question": "「立つが如し」の「如し（ごとし）」は、どのような意味ですか？",
+      "explanation": "「～のようだ」「～に似ている」という比況を表します。この場合は「立っているようだ」という意味です。"
+    },
+    {
+      "questionId": "q_food_011",
+      "question": "イチゴの表面にある粒々は、植物学上何に当たりますか？",
+      "explanation": "粒々の一つ一つが「痩果」と呼ばれる果実で、その中に種子があります。赤い部分は花托が大きくなったものです。"
+    },
+    {
+      "questionId": "q_nature_geography_013",
+      "question": "2020年国勢調査で、淡路島本島の人口はおよそ何万人でしたか？",
+      "explanation": "126,980人で、約12.7万人です。市町村単位ではなく、淡路島本島の範囲で集計した値です。"
+    },
+    {
+      "questionId": "q_nature_geography_015",
+      "question": "津波が沿岸に近づくと、波高が高くなる主な理由は何ですか？",
+      "explanation": "水深が浅くなると津波の速度が落ち、後方の波が前方に追いつくため、波高が高くなります。"
+    },
+    {
+      "questionId": "q_history_011",
+      "question": "ニューヨークの自由の女神像は、どの国からアメリカへ贈られましたか？",
+      "explanation": "フランスです。アメリカ独立100周年と米仏の友好を記念する贈り物として構想されました。"
+    },
+    {
+      "questionId": "q_science_011",
+      "question": "生石灰（酸化カルシウム）に水を加えると、何が起こりますか？",
+      "explanation": "水と反応して消石灰（水酸化カルシウム）になり、熱を放出します。単に水へ溶けるのではなく、化学反応です。"
+    }
+  ],
+  "sources": [
+    {
+      "questionId": "q_his_001",
+      "source": {"title": "俳句入門", "publisher": "一般社団法人現代俳句協会", "url": "https://gendaihaiku.gr.jp/create/guide/", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_his_002",
+      "source": {"title": "大仏さまができるまで", "publisher": "華厳宗大本山 東大寺", "url": "https://www.todaiji.or.jp/kids/kids2-2.html", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_food_001",
+      "source": {"title": "広畑貝塚", "publisher": "茨城県教育委員会", "url": "https://kyoiku.pref.ibaraki.jp/bunkazai/kuni-106/", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_life_002",
+      "source": {"title": "信号機はなぜ、「赤・黄・青」の3色なのか。", "publisher": "国立国会図書館 レファレンス協同データベース", "url": "https://crd.ndl.go.jp/reference/entry/index.php?id=1000026860&page=ref_view", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_food_003",
+      "source": {"title": "Eutrema japonicum (Miq.) Koidz.", "publisher": "Royal Botanic Gardens, Kew", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:284345-1", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_lang_003",
+      "source": {"title": "Sandwich", "publisher": "Oxford University Press", "url": "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803100440490", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_life_003",
+      "source": {"title": "消しゴムで文字を消す仕組み", "publisher": "株式会社トンボ鉛筆", "url": "https://www.tombow.com/mamechishiki/e68/", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_nature_geography_001",
+      "source": {"title": "富士登山オフィシャルサイト", "publisher": "富士山における適正利用推進協議会", "url": "https://www.fujisan-climb.jp/", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_nature_geography_006",
+      "source": {"title": "全国都道府県市区町村別面積調", "publisher": "国土地理院", "url": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_living_things_006",
+      "source": {"title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus", "publisher": "Smithsonian Ocean", "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_daily_life_006",
+      "source": {"title": "容器包装の識別表示マーク", "publisher": "PETボトルリサイクル推進協議会", "url": "https://www.petbottle-rec.gr.jp/basic/mark.html", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_science_005",
+      "source": {"title": "Bubble Tray: Chemistry & Waves Science Activity", "publisher": "Exploratorium", "url": "https://www.exploratorium.edu/snacks/bubble-tray", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_food_008",
+      "source": {"title": "Diabetes foods: Can I substitute honey for sugar?", "publisher": "Mayo Clinic", "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/expert-answers/diabetes/faq-20058487", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_language_006",
+      "source": {"title": "長崎名物「カステラ」の名前の由来は？", "publisher": "長崎市", "url": "https://www.city.nagasaki.lg.jp/site/kodomo/60691.html", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_language_007",
+      "source": {"title": "如し（ゴトシ）とは？ 意味や使い方", "publisher": "小学館", "url": "https://kotobank.jp/word/如し-503074", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_food_011",
+      "source": {"title": "Fragaria virginiana - Plant Finder", "publisher": "Missouri Botanical Garden", "url": "https://www.missouribotanicalgarden.org/plantfinder/PlantFinderDetails.aspx?taxonid=291715", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_nature_geography_013",
+      "source": {"title": "淡路島の情報", "publisher": "NPO法人離島経済新聞社", "url": "https://ritokei.com/shima/hyogo/hyogo_awajishima", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_nature_geography_015",
+      "source": {"title": "津波発生と伝播のしくみ", "publisher": "気象庁", "url": "https://www.jma.go.jp/jma/kishou/know/jishin/tsunami/generation.html", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_history_011",
+      "source": {"title": "Statue of Liberty Facts", "publisher": "U.S. National Park Service", "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    },
+    {
+      "questionId": "q_science_011",
+      "source": {"title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide", "publisher": "CDC/NIOSH", "url": "https://www.cdc.gov/niosh/npg/npgd0093.html", "verifiedAt": "2026-07-16", "verificationLevel": "primary", "reviewStatus": "approved", "reviewNote": "ChatGPTによる内容確認済み", "contentHash": ""}
+    }
+  ]
+}

@@ -10,7 +10,9 @@ plugins {
 val keystorePropsFile = rootProject.file("app/keystore.properties")
 val keystoreProps = Properties()
 if (keystorePropsFile.exists()) {
-    keystoreProps.load(FileInputStream(keystorePropsFile))
+    keystorePropsFile.inputStream().use {
+        keystoreProps.load(it)
+    }
 }
 
 val releaseTaskRequested = gradle.startParameter.taskNames.any {
@@ -82,6 +84,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

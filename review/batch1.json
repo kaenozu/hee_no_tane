@@ -1,0 +1,401 @@
+[
+  {
+    "num": 1,
+    "question_id": "q_geo_001",
+    "card_id": "card_geo_001",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "世界でいちばん深い湖は？",
+    "choices": [
+      "バイカル湖",
+      "琵琶湖",
+      "カスピ海",
+      "スペリオル湖"
+    ],
+    "answerIndex": 0,
+    "explanation": "バイカル湖の最大深度は約1,642m。湖の中でいちばん深い湖として知られているよ。",
+    "card_title": "バイカル湖",
+    "card_shortText": "世界で最も深い湖。ロシアにあり、透明度の高さでも有名。",
+    "card_detailText": "バイカル湖はロシアのシベリアにある湖で、最大深度は約1,642m。深さだけでなく透明度の高さや多数の固有種でも知られている。",
+    "sourceNote": "Wikipedia: Lake Baikal",
+    "has_source_url": false
+  },
+  {
+    "num": 2,
+    "question_id": "q_geo_002",
+    "card_id": "card_geo_002",
+    "category": "nature_geography",
+    "difficulty": "easy",
+    "question": "日本でいちばん面積が大きい都道府県は？",
+    "choices": [
+      "北海道",
+      "岩手県",
+      "福島県",
+      "長野県"
+    ],
+    "answerIndex": 0,
+    "explanation": "北海道の面積は約8万3千km²。日本の都道府県で断トツの広さだよ。",
+    "card_title": "北海道",
+    "card_shortText": "日本で最も面積が大きい都道府県。",
+    "card_detailText": "北海道の面積は約83,424km²で、2位の岩手県の約2倍。日本の総面積の約22%を占める。",
+    "sourceNote": "国土地理院",
+    "has_source_url": false
+  },
+  {
+    "num": 3,
+    "question_id": "q_bio_001",
+    "card_id": "card_bio_001",
+    "category": "living_things",
+    "difficulty": "easy",
+    "question": "カンガルーの赤ちゃんは何と呼ばれている？",
+    "choices": [
+      "ジョーイ",
+      "カーフ",
+      "カブ",
+      "パップ"
+    ],
+    "answerIndex": 0,
+    "explanation": "カンガルーの赤ちゃんは「ジョーイ」と呼ばれているよ。生まれた時はわずか2cmほどなんだ。",
+    "card_title": "ジョーイ",
+    "card_shortText": "カンガルーの赤ちゃんの呼び名。",
+    "card_detailText": "カンガルーの赤ちゃんは「ジョーイ」と呼ばれる。生まれた時の大きさはわずか2cmほどで、母親の袋の中で育つ。",
+    "sourceNote": "Australian Museum",
+    "has_source_url": false
+  },
+  {
+    "num": 4,
+    "question_id": "q_his_001",
+    "card_id": "card_his_001",
+    "category": "history",
+    "difficulty": "easy",
+    "question": "江戸時代、庶民の間で流行った「世界一短い手紙」と呼ばれるものは？",
+    "choices": [
+      "一行書簡",
+      "矢立",
+      "早桶",
+      "五七五"
+    ],
+    "answerIndex": 3,
+    "explanation": "俳句は「五・七・五」の17音で詠む世界一短い詩の形式。江戸時代に庶民文化として大きく広がったんだ。",
+    "card_title": "俳句",
+    "card_shortText": "世界一短い詩の形式。",
+    "card_detailText": "俳句は「五・七・五」の17音で詠む日本発祥の詩。江戸時代に松尾芭蕉によって芸術として確立され、庶民文化として広まった。",
+    "sourceNote": "文化庁 日本文化紹介",
+    "has_source_url": false
+  },
+  {
+    "num": 5,
+    "question_id": "q_his_002",
+    "card_id": "card_his_002",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "奈良の大仏を作るのに使われた主な材料は？",
+    "choices": [
+      "金",
+      "銅",
+      "鉄",
+      "木"
+    ],
+    "answerIndex": 1,
+    "explanation": "奈良の大仏（東大寺盧舎那仏像）は主に銅で作られている。約500トンの銅が使われたと言われているよ。",
+    "card_title": "奈良の大仏",
+    "card_shortText": "約500トンの銅で作られた巨大仏像。",
+    "card_detailText": "東大寺の盧舎那仏像（奈良の大仏）は高さ約15m。752年の開眼供養には多くの人々が集まった。",
+    "sourceNote": "東大寺公式サイト",
+    "has_source_url": false
+  },
+  {
+    "num": 6,
+    "question_id": "q_sci_001",
+    "card_id": "card_sci_001",
+    "category": "science",
+    "difficulty": "easy",
+    "question": "空気の中でいちばん多い成分は？",
+    "choices": [
+      "酸素",
+      "二酸化炭素",
+      "窒素",
+      "アルゴン"
+    ],
+    "answerIndex": 2,
+    "explanation": "空気の約78%は窒素。酸素は約21%で2番目。二酸化炭素は約0.04%しかないんだ。",
+    "card_title": "大気の成分",
+    "card_shortText": "空気の約78%は窒素。",
+    "card_detailText": "地球の大気は窒素約78%、酸素約21%、アルゴン約0.9%、二酸化炭素約0.04%で構成されている。",
+    "sourceNote": "気象庁 大気成分",
+    "has_source_url": false
+  },
+  {
+    "num": 7,
+    "question_id": "q_sci_002",
+    "card_id": "card_sci_002",
+    "category": "science",
+    "difficulty": "normal",
+    "question": "光の速さは1秒間に地球を何周できる？",
+    "choices": [
+      "約1周",
+      "約7.5周",
+      "約30周",
+      "約100周"
+    ],
+    "answerIndex": 1,
+    "explanation": "光は1秒間に約30万km進む。地球1周は約4万kmだから、1秒で約7.5周できる計算になるよ。",
+    "card_title": "光の速さ",
+    "card_shortText": "1秒で地球を約7.5周。",
+    "card_detailText": "光の速度は秒速約299,792km。地球1周が約4万kmなので、1秒で7.5周できる計算になる。",
+    "sourceNote": "国立天文台",
+    "has_source_url": false
+  },
+  {
+    "num": 8,
+    "question_id": "q_food_001",
+    "card_id": "card_food_001",
+    "category": "food",
+    "difficulty": "easy",
+    "question": "日本でいちばん古い調味料と言われているのは？",
+    "choices": [
+      "醤油",
+      "味噌",
+      "塩",
+      "酢"
+    ],
+    "answerIndex": 2,
+    "explanation": "塩は日本で最も古くから使われている調味料。縄文時代には海水から作っていたことがわかっているよ。",
+    "card_title": "塩",
+    "card_shortText": "日本最古の調味料。",
+    "card_detailText": "塩は日本で最も古い調味料で、縄文時代には海水から作っていた。必須ミネラルの補給源としても重要だった。",
+    "sourceNote": "国立歴史民俗博物館",
+    "has_source_url": false
+  },
+  {
+    "num": 9,
+    "question_id": "q_lang_001",
+    "card_id": "card_lang_001",
+    "category": "language",
+    "difficulty": "easy",
+    "question": "「ありがとう」の語源として有力な説は？",
+    "choices": [
+      "「有り難し」が変化した",
+      "「愛礼感謝」が変化した",
+      "「安里河糖」が変化した",
+      "「在り方問う」が変化した"
+    ],
+    "answerIndex": 0,
+    "explanation": "「ありがとう」は「有り難し（存在することが難しい→めったにない→貴重だ）」という意味の古語が変化したものと言われているよ。",
+    "card_title": "ありがとうの語源",
+    "card_shortText": "「有り難し」が変化した言葉。",
+    "card_detailText": "「ありがとう」の語源は「有り難し」。元々は「存在することが難しい→めったにない→貴重だ」という意味だった。",
+    "sourceNote": "日本国語大辞典",
+    "has_source_url": false
+  },
+  {
+    "num": 10,
+    "question_id": "q_lang_002",
+    "card_id": "card_lang_002",
+    "category": "language",
+    "difficulty": "normal",
+    "question": "「ほんのわずかな時間」を表す「瞬き」にまつわる言葉は？",
+    "choices": [
+      "一瞬",
+      "一目",
+      "一息",
+      "一汗"
+    ],
+    "answerIndex": 0,
+    "explanation": "「一瞬」は「瞬き（まばたき）する間」という意味。サンスクリット語の「ksana（刹那）」の訳語として作られた漢語だよ。",
+    "card_title": "一瞬",
+    "card_shortText": "「瞬きする間」という意味。",
+    "card_detailText": "「一瞬」はサンスクリット語「ksana（刹那）」の訳語。まばたきするほんのわずかな時間を表す。",
+    "sourceNote": "岩波 仏教辞典",
+    "has_source_url": false
+  },
+  {
+    "num": 11,
+    "question_id": "q_life_001",
+    "card_id": "card_life_001",
+    "category": "daily_life",
+    "difficulty": "easy",
+    "question": "マンホールのふたが丸い理由として正しいのは？",
+    "choices": [
+      "落ちないから",
+      "転がしやすいから",
+      "製造が簡単だから",
+      "デザインが美しいから"
+    ],
+    "answerIndex": 0,
+    "explanation": "丸いふたは斜めにしても穴に落ちないから。四角いふただと対角線が辺より長いため、落ちる可能性があるんだ。",
+    "card_title": "マンホールのふた",
+    "card_shortText": "丸い理由は落ちないから。",
+    "card_detailText": "丸いマンホールのふたは、どの向きにしても穴より大きいので落ちない。四角いふただと対角線が辺より長いため落ちる危険がある。",
+    "sourceNote": "日本下水道協会",
+    "has_source_url": false
+  },
+  {
+    "num": 12,
+    "question_id": "q_life_002",
+    "card_id": "card_life_002",
+    "category": "daily_life",
+    "difficulty": "easy",
+    "question": "信号機の色が赤・黄・青の3色なのはなぜ？",
+    "choices": [
+      "光の波長で最も遠くまで届く色だから",
+      "花の色から取ったから",
+      "国旗の色を集めたから",
+      "目に優しい色だから"
+    ],
+    "answerIndex": 0,
+    "explanation": "赤は波長が長く遠くまで届くため「止まれ」に使われる。青（実際は緑）はその中間。黄色は注意を促す色として選ばれたんだ。",
+    "card_title": "信号機の色",
+    "card_shortText": "遠くまで届く色が選ばれた。",
+    "card_detailText": "赤は波長が長く遠くまで届くため「止まれ」に採用された。青（実際は緑）はその中間。信号機の3色は光の性質に基づいて選ばれている。",
+    "sourceNote": "警察庁 交通規制",
+    "has_source_url": false
+  },
+  {
+    "num": 13,
+    "question_id": "q_geo_003",
+    "card_id": "card_geo_003",
+    "category": "nature_geography",
+    "difficulty": "normal",
+    "question": "世界でいちばん標高が高い山は？",
+    "choices": [
+      "K2",
+      "エベレスト",
+      "キリマンジャロ",
+      "マッキンリー"
+    ],
+    "answerIndex": 1,
+    "explanation": "エベレストの標高は8,848m。世界で最も高い山で、ネパールと中国の国境にあるよ。",
+    "card_title": "エベレスト",
+    "card_shortText": "世界最高峰。標高8,848m。",
+    "card_detailText": "エベレストはヒマラヤ山脈にある世界最高峰。ネパールと中国（チベット）の国境に位置する。",
+    "sourceNote": "USGS",
+    "has_source_url": false
+  },
+  {
+    "num": 14,
+    "question_id": "q_bio_003",
+    "card_id": "card_bio_003",
+    "category": "living_things",
+    "difficulty": "hard",
+    "question": "タコの心臓はいくつある？",
+    "choices": [
+      "1つ",
+      "2つ",
+      "3つ",
+      "4つ"
+    ],
+    "answerIndex": 2,
+    "explanation": "タコには心臓が3つある。全身に血液を送る心臓が1つと、エラに血液を送る心臓が2つ。不思議な体の仕組みだね。",
+    "card_title": "タコの心臓",
+    "card_shortText": "タコには心臓が3つある。",
+    "card_detailText": "タコは3つの心臓を持つ。全身用の心臓1つと、エラ用の心臓2つ。不思議な循環器系を持っている。",
+    "sourceNote": "National Geographic",
+    "has_source_url": false
+  },
+  {
+    "num": 15,
+    "question_id": "q_his_003",
+    "card_id": "card_his_003",
+    "category": "history",
+    "difficulty": "normal",
+    "question": "日本の紙幣に初めて肖像画が使われたのはいつ？",
+    "choices": [
+      "明治時代",
+      "大正時代",
+      "昭和時代",
+      "平成時代"
+    ],
+    "answerIndex": 0,
+    "explanation": "日本で初めて肖像画入りの紙幣は1885年（明治18年）発行の日本銀行券。神功皇后の肖像が使われていたんだ。",
+    "card_title": "紙幣の肖像",
+    "card_shortText": "日本初の肖像画紙幣は1885年。",
+    "card_detailText": "日本で初めて肖像画が使われた紙幣は1885年発行の日本銀行券。神功皇后の肖像が描かれていた。",
+    "sourceNote": "日本銀行 貨幣博物館",
+    "has_source_url": false
+  },
+  {
+    "num": 16,
+    "question_id": "q_sci_003",
+    "card_id": "card_sci_003",
+    "category": "science",
+    "difficulty": "hard",
+    "question": "絶対零度は何℃？",
+    "choices": [
+      "-100℃",
+      "-173℃",
+      "-273℃",
+      "-373℃"
+    ],
+    "answerIndex": 2,
+    "explanation": "絶対零度は-273.15℃。これより低い温度は理論上存在しないとされているんだ。",
+    "card_title": "絶対零度",
+    "card_shortText": "理論上の最低温度。-273.15℃。",
+    "card_detailText": "絶対零度は-273.15℃。この温度では原子の動きが理論上停止する。これより低い温度は存在しないとされている。",
+    "sourceNote": "国立科学博物館",
+    "has_source_url": false
+  },
+  {
+    "num": 17,
+    "question_id": "q_food_003",
+    "card_id": "card_food_003",
+    "category": "food",
+    "difficulty": "normal",
+    "question": "ワサビの本来の原材料は何の植物？",
+    "choices": [
+      "大根",
+      "山葵",
+      "西洋わさび",
+      "からし菜"
+    ],
+    "answerIndex": 1,
+    "explanation": "本わさびは「山葵」という植物の根茎をすりおろしたもの。スーパーで売っているチューブわさびの多くは「西洋わさび」が主原料なんだ。",
+    "card_title": "本わさび",
+    "card_shortText": "山葵の根茎をすりおろしたもの。",
+    "card_detailText": "本わさびはアブラナ科の植物「山葵」の根茎から作られる。一般のチューブわさびは「西洋わさび」（ホースラディッシュ）が主原料。",
+    "sourceNote": "農林水産省",
+    "has_source_url": false
+  },
+  {
+    "num": 18,
+    "question_id": "q_lang_003",
+    "card_id": "card_lang_003",
+    "category": "language",
+    "difficulty": "hard",
+    "question": "「サンドイッチ」の名前の由来は？",
+    "choices": [
+      "考案した伯爵の名前",
+      "砂の間という意味",
+      "三枚重ねが語源",
+      "サンドという地名から"
+    ],
+    "answerIndex": 0,
+    "explanation": "サンドイッチは18世紀のイギリス、第4代サンドイッチ伯爵ジョン・モンタギューが、食事の手を止めずにトランプを続けられるよう頼んだのが始まりと言われているよ。",
+    "card_title": "サンドイッチ伯爵",
+    "card_shortText": "伯爵の名前が由来。",
+    "card_detailText": "サンドイッチは18世紀イギリスの第4代サンドイッチ伯爵が、トランプに夢中で食事を頼んだことが始まりと言われている。",
+    "sourceNote": "オックスフォード英語辞典",
+    "has_source_url": false
+  },
+  {
+    "num": 19,
+    "question_id": "q_life_003",
+    "card_id": "card_life_003",
+    "category": "daily_life",
+    "difficulty": "normal",
+    "question": "消しゴムで鉛筆の字が消えるのはなぜ？",
+    "choices": [
+      "摩擦で紙の表面が削れるから",
+      "消しゴムがインクを吸収するから",
+      "熱でインクが蒸発するから",
+      "化学反応で透明になるから"
+    ],
+    "answerIndex": 0,
+    "explanation": "消しゴムでこすると、紙の表面ごと鉛筆の黒鉛を削り取っているんだ。消しゴムのかすは削り取られた紙と黒鉛のカスなんだよ。",
+    "card_title": "消しゴムの原理",
+    "card_shortText": "紙の表面を削って消している。",
+    "card_detailText": "消しゴムが鉛筆の字を消せるのは、摩擦で紙の表面ごと黒鉛を削り取っているから。消しかすは紙と黒鉛のカスなんだ。",
+    "sourceNote": "文具の企画・開発メモ",
+    "has_source_url": false
+  }
+]
