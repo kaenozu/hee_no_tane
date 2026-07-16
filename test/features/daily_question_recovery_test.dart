@@ -66,7 +66,9 @@ void main() {
     expect(find.text('破棄してホームへ戻る'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_back), findsOneWidget);
 
-    await tester.tap(find.text('破棄してホームへ戻る'));
+    final discardButton = find.text('破棄してホームへ戻る');
+    await tester.ensureVisible(discardButton);
+    await tester.tap(discardButton);
     await tester.pumpAndSettle();
     expect(find.text('回答を破棄しますか？'), findsOneWidget);
 
