@@ -168,7 +168,7 @@ class DailyProgressService {
     if (date.trim().isEmpty ||
         questionId.trim().isEmpty ||
         cardId.trim().isEmpty) {
-      throw const ArgumentError(
+      throw ArgumentError(
         'Daily assignment date, question id, and card id are required.',
       );
     }
