@@ -10,10 +10,11 @@ library;
 ///   - data/repositories/
 ///   - domain/services/
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' hide debugPrint, debugPrintStack;
+import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
 import 'package:hee_no_tane_app/app.dart';
 import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
+import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/data/repositories/card_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/question_repository.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
