@@ -3,7 +3,8 @@ library;
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' hide debugPrint, debugPrintStack;
+import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences/util/legacy_to_async_migration_util.dart';
