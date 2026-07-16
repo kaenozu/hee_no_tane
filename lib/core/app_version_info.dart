@@ -8,14 +8,9 @@ class AppVersionInfo {
   final String version;
   final String buildNumber;
 
-  const AppVersionInfo({
-    required this.version,
-    required this.buildNumber,
-  });
+  const AppVersionInfo({required this.version, required this.buildNumber});
 
-  const AppVersionInfo.unavailable()
-    : version = '',
-      buildNumber = '';
+  const AppVersionInfo.unavailable() : version = '', buildNumber = '';
 
   bool get isAvailable => version.isNotEmpty;
 
@@ -24,8 +19,7 @@ class AppVersionInfo {
     return buildNumber.isEmpty ? version : '$version ($buildNumber)';
   }
 
-  String get settingsSubtitle =>
-      isAvailable ? 'へぇのタネ v$displayValue' : 'へぇのタネ';
+  String get settingsSubtitle => isAvailable ? 'へぇのタネ v$displayValue' : 'へぇのタネ';
 
   factory AppVersionInfo.fromJson(Map<String, dynamic> json) {
     final version = json['version'];
@@ -46,7 +40,9 @@ class AppVersionInfo {
     final raw = await rootBundle.loadString(assetPath);
     final decoded = jsonDecode(raw);
     if (decoded is! Map) {
-      throw const FormatException('app version metadata root must be an object');
+      throw const FormatException(
+        'app version metadata root must be an object',
+      );
     }
     return AppVersionInfo.fromJson(Map<String, dynamic>.from(decoded));
   }

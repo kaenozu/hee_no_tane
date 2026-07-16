@@ -18,10 +18,7 @@ class ImageReviewMetadata {
     uncheckedStatus,
   };
 
-  static const acceptedInputStatuses = <String>{
-    ...allowedStatuses,
-    fitAlias,
-  };
+  static const acceptedInputStatuses = <String>{...allowedStatuses, fitAlias};
 
   final String status;
   final String reviewedAt;

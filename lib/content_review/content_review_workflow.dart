@@ -50,11 +50,7 @@ class ContentReviewException implements Exception {
 abstract interface class ContentReviewFileStore {
   Future<String> readAsString(String path);
 
-  Future<void> writeAsString(
-    String path,
-    String content, {
-    bool flush = false,
-  });
+  Future<void> writeAsString(String path, String content, {bool flush = false});
 
   Future<void> rename(String sourcePath, String targetPath);
 
@@ -303,7 +299,8 @@ class ContentReviewWorkflow {
       final nextImage = _imageReviewFromRow(row, cardId);
       final previousStatus = _statusOf(question['source']);
       final nextStatus =
-          nextSource?['reviewStatus'] as String? ?? SourceMetadata.pendingStatus;
+          nextSource?['reviewStatus'] as String? ??
+          SourceMetadata.pendingStatus;
       final nextVerified = nextStatus == SourceMetadata.approvedStatus;
       final oldQuestionSource = _canonical(question['source']);
       final oldCardSource = _canonical(card['source']);
@@ -478,10 +475,7 @@ class ContentReviewWorkflow {
     if (await fileStore.exists(path)) await fileStore.delete(path);
   }
 
-  Future<void> _tryDelete(
-    ContentReviewFileStore fileStore,
-    String path,
-  ) async {
+  Future<void> _tryDelete(ContentReviewFileStore fileStore, String path) async {
     try {
       await _deleteIfExists(fileStore, path);
     } catch (_) {
@@ -667,7 +661,9 @@ class ContentReviewWorkflow {
       verificationLevel: level,
       reviewStatus: status,
       reviewNote: note.isEmpty ? null : note,
-      contentHash: status == SourceMetadata.approvedStatus ? expectedHash : null,
+      contentHash: status == SourceMetadata.approvedStatus
+          ? expectedHash
+          : null,
     );
     if (!SourceMetadata.allowedVerificationLevels.contains(level)) {
       throw ContentReviewException(

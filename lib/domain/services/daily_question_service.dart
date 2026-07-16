@@ -14,9 +14,8 @@ DateTime _systemDateProvider() => DateTime.now();
 class DailyQuestionService {
   final DateProvider _dateProvider;
 
-  const DailyQuestionService({
-    DateProvider? dateProvider,
-  }) : _dateProvider = dateProvider ?? _systemDateProvider;
+  const DailyQuestionService({DateProvider? dateProvider})
+    : _dateProvider = dateProvider ?? _systemDateProvider;
 
   /// Returns the current date and time supplied by the configured provider.
   DateTime currentDateTime() => _dateProvider();

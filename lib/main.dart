@@ -31,10 +31,7 @@ Future<void> main() async {
     FlutterError.presentError(details);
   };
 
-  PlatformDispatcher.instance.onError = (
-    error,
-    stackTrace,
-  ) {
+  PlatformDispatcher.instance.onError = (error, stackTrace) {
     debugPrint('Uncaught platform error: $error');
     debugPrintStack(stackTrace: stackTrace);
 
@@ -73,33 +70,21 @@ Future<void> main() async {
     debugPrint('Failed to initialize app: $error');
     debugPrintStack(stackTrace: stackTrace);
 
-    runApp(
-      StartupErrorApp(
-        details: _safeStartupErrorDetails(error),
-      ),
-    );
+    runApp(StartupErrorApp(details: _safeStartupErrorDetails(error)));
   }
 }
 
-void _requirePlayableContent(
-  List<Question> questions,
-  List<HeeCard> cards,
-) {
-  final cardsById = <String, HeeCard>{
-    for (final card in cards) card.id: card,
-  };
+void _requirePlayableContent(List<Question> questions, List<HeeCard> cards) {
+  final cardsById = <String, HeeCard>{for (final card in cards) card.id: card};
 
   final hasPlayablePair = questions.any((question) {
     final card = cardsById[question.relatedCardId];
 
-    return card != null &&
-        ContentReleasePolicy.isPlayablePair(question, card);
+    return card != null && ContentReleasePolicy.isPlayablePair(question, card);
   });
 
   if (!hasPlayablePair) {
-    throw const ContentLoadException(
-      '公開可能な問題データが見つかりませんでした。',
-    );
+    throw const ContentLoadException('公開可能な問題データが見つかりませんでした。');
   }
 }
 

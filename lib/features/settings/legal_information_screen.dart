@@ -4,11 +4,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/core/app_version_info.dart';
 
-enum LegalInformationSection {
-  privacyPolicy,
-  support,
-  version,
-}
+enum LegalInformationSection { privacyPolicy, support, version }
 
 class LegalInformationScreen extends StatelessWidget {
   final LegalInformationSection initialSection;
@@ -61,10 +57,7 @@ class LegalInformationScreen extends StatelessWidget {
           '共有を実行しない限り、画像が外部へ送られることはありません。'
           '共有先でのデータの取り扱いは、そのサービスの規約とプライバシーポリシーに従います。',
     ),
-    _Section(
-      title: '第三者提供',
-      body: '法令に基づく場合を除き、個人情報を第三者に提供することはありません。',
-    ),
+    _Section(title: '第三者提供', body: '法令に基づく場合を除き、個人情報を第三者に提供することはありません。'),
     _Section(
       title: '保存期間と削除',
       body:
@@ -110,10 +103,7 @@ class LegalInformationScreen extends StatelessWidget {
         : 'v${versionInfo.version}の機能';
 
     return [
-      _Section(
-        title: 'アプリ情報',
-        body: 'へぇのタネ\nバージョン $versionLabel',
-      ),
+      _Section(title: 'アプリ情報', body: 'へぇのタネ\nバージョン $versionLabel'),
       _Section(
         title: featureTitle,
         body:

@@ -7,33 +7,36 @@ import '../../tool/validate_release_readiness.dart';
 import '../helpers/release_content.dart';
 
 void main() {
-  test('passes when every pair is verified, approved, and has a final image', () async {
-    final first = _pair('1');
-    final second = _pair('2');
-    final fixture = await _ReleaseFixture.create(
-      questions: [first.question, second.question],
-      cards: [first.card, second.card],
-      existingImagePaths: {
-        first.card['imageAsset'] as String,
-        second.card['imageAsset'] as String,
-      },
-    );
-    addTearDown(fixture.dispose);
+  test(
+    'passes when every pair is verified, approved, and has a final image',
+    () async {
+      final first = _pair('1');
+      final second = _pair('2');
+      final fixture = await _ReleaseFixture.create(
+        questions: [first.question, second.question],
+        cards: [first.card, second.card],
+        existingImagePaths: {
+          first.card['imageAsset'] as String,
+          second.card['imageAsset'] as String,
+        },
+      );
+      addTearDown(fixture.dispose);
 
-    final invocation = await fixture.run([
-      '--expected-pairs',
-      '2',
-      '--require-final-images',
-    ]);
+      final invocation = await fixture.run([
+        '--expected-pairs',
+        '2',
+        '--require-final-images',
+      ]);
 
-    expect(invocation.exitCode, 0);
-    expect(invocation.report['success'], isTrue);
-    expect(invocation.summary['matchedPairCount'], 2);
-    expect(invocation.summary['verifiedCount'], 2);
-    expect(invocation.summary['approvedPairCount'], 2);
-    expect(invocation.summary['genericPlaceholderCount'], 0);
-    expect(invocation.summary['missingImageCount'], 0);
-  });
+      expect(invocation.exitCode, 0);
+      expect(invocation.report['success'], isTrue);
+      expect(invocation.summary['matchedPairCount'], 2);
+      expect(invocation.summary['verifiedCount'], 2);
+      expect(invocation.summary['approvedPairCount'], 2);
+      expect(invocation.summary['genericPlaceholderCount'], 0);
+      expect(invocation.summary['missingImageCount'], 0);
+    },
+  );
 
   test('returns exit code 1 and reports every release blocker', () async {
     final pair = _pair(
@@ -65,47 +68,56 @@ void main() {
     expect(invocation.summary['missingImageCount'], 1);
   });
 
-  test('--require-final-images changes placeholders from audit data to failure', () async {
-    final pair = _pair('placeholder', imageReviewStatus: 'generic_placeholder');
-    final fixture = await _ReleaseFixture.create(
-      questions: [pair.question],
-      cards: [pair.card],
-      existingImagePaths: {pair.card['imageAsset'] as String},
-    );
-    addTearDown(fixture.dispose);
+  test(
+    '--require-final-images changes placeholders from audit data to failure',
+    () async {
+      final pair = _pair(
+        'placeholder',
+        imageReviewStatus: 'generic_placeholder',
+      );
+      final fixture = await _ReleaseFixture.create(
+        questions: [pair.question],
+        cards: [pair.card],
+        existingImagePaths: {pair.card['imageAsset'] as String},
+      );
+      addTearDown(fixture.dispose);
 
-    final auditOnly = await fixture.run(['--expected-pairs', '1']);
-    final releaseGate = await fixture.run([
-      '--expected-pairs',
-      '1',
-      '--require-final-images',
-    ]);
+      final auditOnly = await fixture.run(['--expected-pairs', '1']);
+      final releaseGate = await fixture.run([
+        '--expected-pairs',
+        '1',
+        '--require-final-images',
+      ]);
 
-    expect(auditOnly.exitCode, 0);
-    expect(auditOnly.check('finalImages')['required'], isFalse);
-    expect(auditOnly.summary['genericPlaceholderCount'], 1);
+      expect(auditOnly.exitCode, 0);
+      expect(auditOnly.check('finalImages')['required'], isFalse);
+      expect(auditOnly.summary['genericPlaceholderCount'], 1);
 
-    expect(releaseGate.exitCode, 1);
-    expect(releaseGate.check('finalImages')['required'], isTrue);
-    expect(releaseGate.check('finalImages')['passed'], isFalse);
-  });
+      expect(releaseGate.exitCode, 1);
+      expect(releaseGate.check('finalImages')['required'], isTrue);
+      expect(releaseGate.check('finalImages')['passed'], isFalse);
+    },
+  );
 
-  test('fails when approved metadata has a stale content fingerprint', () async {
-    final pair = _pair('stale');
-    pair.question['question'] = '承認後に変更された問題';
-    final fixture = await _ReleaseFixture.create(
-      questions: [pair.question],
-      cards: [pair.card],
-      existingImagePaths: {pair.card['imageAsset'] as String},
-    );
-    addTearDown(fixture.dispose);
+  test(
+    'fails when approved metadata has a stale content fingerprint',
+    () async {
+      final pair = _pair('stale');
+      pair.question['question'] = '承認後に変更された問題';
+      final fixture = await _ReleaseFixture.create(
+        questions: [pair.question],
+        cards: [pair.card],
+        existingImagePaths: {pair.card['imageAsset'] as String},
+      );
+      addTearDown(fixture.dispose);
 
-    final invocation = await fixture.run(['--expected-pairs', '1']);
+      final invocation = await fixture.run(['--expected-pairs', '1']);
 
-    expect(invocation.exitCode, 1);
-    expect(invocation.check('allApproved')['passed'], isFalse);
-    expect(invocation.summary['approvedPairCount'], 0);
-  });
+      expect(invocation.exitCode, 1);
+      expect(invocation.check('allApproved')['passed'], isFalse);
+      expect(invocation.summary['approvedPairCount'], 0);
+    },
+  );
 
   test('fails when the content is not an exact one-to-one pair set', () async {
     final first = _pair('duplicate_1');
@@ -138,15 +150,18 @@ void main() {
   test('invalid expected pair count returns JSON and exit code 1', () async {
     final output = StringBuffer();
 
-    final result = await runReleaseReadiness(
-      ['--expected-pairs', '0'],
-      writeOutput: (value) => output.writeln(value),
-    );
+    final result = await runReleaseReadiness([
+      '--expected-pairs',
+      '0',
+    ], writeOutput: (value) => output.writeln(value));
     final report = jsonDecode(output.toString()) as Map<String, dynamic>;
 
     expect(result, 1);
     expect(report['success'], isFalse);
-    expect((report['error'] as Map<String, dynamic>)['code'], 'invalid_arguments');
+    expect(
+      (report['error'] as Map<String, dynamic>)['code'],
+      'invalid_arguments',
+    );
   });
 }
 
@@ -205,12 +220,12 @@ class _ReleaseFixture {
     );
     final dataDirectory = Directory('${root.path}/assets/data');
     await dataDirectory.create(recursive: true);
-    await File('${dataDirectory.path}/questions.json').writeAsString(
-      jsonEncode(questions),
-    );
-    await File('${dataDirectory.path}/cards.json').writeAsString(
-      jsonEncode(cards),
-    );
+    await File(
+      '${dataDirectory.path}/questions.json',
+    ).writeAsString(jsonEncode(questions));
+    await File(
+      '${dataDirectory.path}/cards.json',
+    ).writeAsString(jsonEncode(cards));
     for (final relativePath in existingImagePaths) {
       final file = File('${root.path}/$relativePath');
       await file.parent.create(recursive: true);
@@ -221,10 +236,11 @@ class _ReleaseFixture {
 
   Future<_InvocationResult> run(List<String> arguments) async {
     final output = StringBuffer();
-    final exitCode = await runReleaseReadiness(
-      ['--root', root.path, ...arguments],
-      writeOutput: (value) => output.writeln(value),
-    );
+    final exitCode = await runReleaseReadiness([
+      '--root',
+      root.path,
+      ...arguments,
+    ], writeOutput: (value) => output.writeln(value));
     return _InvocationResult(
       exitCode: exitCode,
       report: jsonDecode(output.toString()) as Map<String, dynamic>,
@@ -240,8 +256,7 @@ class _InvocationResult {
 
   const _InvocationResult({required this.exitCode, required this.report});
 
-  Map<String, dynamic> get summary =>
-      report['summary'] as Map<String, dynamic>;
+  Map<String, dynamic> get summary => report['summary'] as Map<String, dynamic>;
 
   Map<String, dynamic> check(String name) {
     final checks = report['checks'] as Map<String, dynamic>;

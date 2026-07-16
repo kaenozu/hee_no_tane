@@ -7,11 +7,7 @@ void debugPrint(String? message, {int? wrapWidth}) {
   foundation.debugPrint(message, wrapWidth: wrapWidth);
 }
 
-void debugPrintStack({
-  StackTrace? stackTrace,
-  String? label,
-  int? maxFrames,
-}) {
+void debugPrintStack({StackTrace? stackTrace, String? label, int? maxFrames}) {
   if (!foundation.kDebugMode) return;
   foundation.debugPrintStack(
     stackTrace: stackTrace,

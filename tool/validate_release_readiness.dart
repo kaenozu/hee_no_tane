@@ -8,8 +8,10 @@ import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 
-typedef ReleaseReadinessEvaluation =
-    ({bool success, Map<String, Object?> report});
+typedef ReleaseReadinessEvaluation = ({
+  bool success,
+  Map<String, Object?> report,
+});
 
 Future<void> main(List<String> arguments) async {
   exitCode = await runReleaseReadiness(arguments);
@@ -51,10 +53,7 @@ Future<int> runReleaseReadiness(
     });
   }
   if (!cardsFile.existsSync()) {
-    inputErrors.add({
-      'code': 'cards_file_missing',
-      'path': cardsFile.path,
-    });
+    inputErrors.add({'code': 'cards_file_missing', 'path': cardsFile.path});
   }
   if (inputErrors.isNotEmpty) {
     emit(
@@ -186,7 +185,9 @@ ReleaseReadinessEvaluation validateReleaseReadiness({
 
     final relatedCardId = _nonEmptyString(questionJson['relatedCardId']);
     final cardJson = relatedCardId == null ? null : cardById[relatedCardId];
-    final parsedCard = relatedCardId == null ? null : parsedCards[relatedCardId];
+    final parsedCard = relatedCardId == null
+        ? null
+        : parsedCards[relatedCardId];
     if (cardJson == null) {
       missingRelatedCardIds.add(relatedCardId ?? '$questionId:<missing>');
       unapprovedPairIds.add(questionId);

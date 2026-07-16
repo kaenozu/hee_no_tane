@@ -51,69 +51,71 @@ final class _FailingFileStore implements ContentReviewFileStore {
 void main() {
   const workflow = ContentReviewWorkflow();
 
-  test('two-file write restores both originals when the second install fails', () async {
-    final questions = '${jsonEncode([
-      <String, dynamic>{
-        'id': 'q_1',
-        'category': 'science',
-        'difficulty': 'easy',
-        'question': '空気の主成分は？',
-        'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
-        'answerIndex': 1,
-        'explanation': '窒素です。',
-        'relatedCardId': 'card_1',
-        'sourceNote': '確認中',
-        'verified': false,
-      },
-    ])}\n';
-    final cards = '${jsonEncode([
-      <String, dynamic>{
-        'id': 'card_1',
-        'title': '大気',
-        'category': 'science',
-        'shortText': '空気の主成分。',
-        'detailText': '空気には窒素が多く含まれます。',
-        'imageAsset': 'assets/images/cards/card_1.png',
-        'rarity': 'normal',
-        'sourceNote': '確認中',
-        'imageReview': <String, dynamic>{
-          'status': 'unchecked',
-          'reviewedAt': '',
-        },
-      },
-    ])}\n';
+  test(
+    'two-file write restores both originals when the second install fails',
+    () async {
+      final questions =
+          '${jsonEncode([
+            <String, dynamic>{
+              'id': 'q_1',
+              'category': 'science',
+              'difficulty': 'easy',
+              'question': '空気の主成分は？',
+              'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+              'answerIndex': 1,
+              'explanation': '窒素です。',
+              'relatedCardId': 'card_1',
+              'sourceNote': '確認中',
+              'verified': false,
+            },
+          ])}\n';
+      final cards =
+          '${jsonEncode([
+            <String, dynamic>{
+              'id': 'card_1',
+              'title': '大気',
+              'category': 'science',
+              'shortText': '空気の主成分。',
+              'detailText': '空気には窒素が多く含まれます。',
+              'imageAsset': 'assets/images/cards/card_1.png',
+              'rarity': 'normal',
+              'sourceNote': '確認中',
+              'imageReview': <String, dynamic>{'status': 'unchecked', 'reviewedAt': ''},
+            },
+          ])}\n';
 
-    final table = _parseCsv(
-      workflow.exportCsv(questionsJson: questions, cardsJson: cards),
-    );
-    final header = table.first;
-    final row = table[1];
-    row[header.indexOf('imageReviewStatus')] = 'generic_placeholder';
-    row[header.indexOf('imageReviewedAt')] = '2026-07-16';
-    row[header.indexOf('imageReviewNote')] = '汎用画像として確認';
-    final csv = _encodeCsv(table);
+      final table = _parseCsv(
+        workflow.exportCsv(questionsJson: questions, cardsJson: cards),
+      );
+      final header = table.first;
+      final row = table[1];
+      row[header.indexOf('imageReviewStatus')] = 'generic_placeholder';
+      row[header.indexOf('imageReviewedAt')] = '2026-07-16';
+      row[header.indexOf('imageReviewNote')] = '汎用画像として確認';
+      final csv = _encodeCsv(table);
 
-    final store = _FailingFileStore(<String, String>{
-      'questions.json': questions,
-      'cards.json': cards,
-    });
+      final store = _FailingFileStore(<String, String>{
+        'questions.json': questions,
+        'cards.json': cards,
+      });
 
-    await expectLater(
-      workflow.applyCsvToFiles(
-        csv: csv,
-        questionsPath: 'questions.json',
-        cardsPath: 'cards.json',
-        write: true,
-        fileStore: store,
-      ),
-      throwsA(isA<StateError>()),
-    );
+      await expectLater(
+        workflow.applyCsvToFiles(
+          csv: csv,
+          questionsPath: 'questions.json',
+          cardsPath: 'cards.json',
+          write: true,
+          fileStore: store,
+        ),
+        throwsA(isA<StateError>()),
+      );
 
-    expect(store.files['questions.json'], questions);
-    expect(store.files['cards.json'], cards);
-    expect(store.files.keys.where((path) => path.endsWith('.bak')), isEmpty);
-    expect(store.files.keys.where((path) => path.endsWith('.tmp')), isEmpty);
-  });
+      expect(store.files['questions.json'], questions);
+      expect(store.files['cards.json'], cards);
+      expect(store.files.keys.where((path) => path.endsWith('.bak')), isEmpty);
+      expect(store.files.keys.where((path) => path.endsWith('.tmp')), isEmpty);
+    },
+  );
 }
 
 List<List<String>> _parseCsv(String source) {

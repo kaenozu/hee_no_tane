@@ -92,10 +92,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(repository.saveCallCount, 0);
-    expect(
-      find.textContaining('日付が変わりました'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('日付が変わりました'), findsOneWidget);
     expect(find.text('再試行'), findsNothing);
     expect(find.text('破棄してホームへ戻る'), findsOneWidget);
   });

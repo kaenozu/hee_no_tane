@@ -6,10 +6,8 @@ import 'package:hee_no_tane_app/features/settings/settings_screen.dart';
 
 import '../helpers/fake_save_repository.dart';
 
-Future<AppVersionInfo> _loadTestVersion() async => const AppVersionInfo(
-  version: '9.8.7',
-  buildNumber: '42',
-);
+Future<AppVersionInfo> _loadTestVersion() async =>
+    const AppVersionInfo(version: '9.8.7', buildNumber: '42');
 
 SettingsScreen _screen({
   required SaveRepository repository,
@@ -57,10 +55,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -75,10 +70,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -95,10 +87,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pumpAndSettle();
@@ -115,10 +104,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -136,10 +122,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pump();
@@ -158,10 +141,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: _screen(
-          repository: repository,
-          onDataReset: () async {},
-        ),
+        home: _screen(repository: repository, onDataReset: () async {}),
       ),
     );
     await tester.pumpAndSettle();

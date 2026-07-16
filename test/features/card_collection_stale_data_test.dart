@@ -375,9 +375,7 @@ void main() {
 
     test('D2. malformed data throws from strict load', () async {
       final store = InMemoryPreferenceStore(
-        initialValues: {
-          'hee_no_tane_save_data': '{not valid json',
-        },
+        initialValues: {'hee_no_tane_save_data': '{not valid json'},
       );
       final realRepository = SaveRepository(store: store);
 
@@ -389,9 +387,7 @@ void main() {
 
     test('D3. load uses the same strict contract as loadOrThrow', () async {
       final store = InMemoryPreferenceStore(
-        initialValues: {
-          'hee_no_tane_save_data': '{not valid json',
-        },
+        initialValues: {'hee_no_tane_save_data': '{not valid json'},
       );
       final realRepository = SaveRepository(store: store);
       await expectLater(

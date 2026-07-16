@@ -15,9 +15,8 @@ void main() {
 
   test('rejects incomplete app version metadata', () {
     expect(
-      () => AppVersionInfo.fromJson(const <String, dynamic>{
-        'version': '1.2.3',
-      }),
+      () =>
+          AppVersionInfo.fromJson(const <String, dynamic>{'version': '1.2.3'}),
       throwsFormatException,
     );
   });

@@ -170,8 +170,7 @@ class ContentRiskClassifier {
         card['shortText'],
         cardDetail,
       ].whereType<String>().join(' ');
-      final evidenceText =
-          '$questionText $explanation $cardTitle $cardDetail';
+      final evidenceText = '$questionText $explanation $cardTitle $cardDetail';
       candidates.add(
         _RiskCandidate(
           questionId: questionId,
