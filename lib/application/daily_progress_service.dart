@@ -33,12 +33,19 @@ class DailyProgressService {
   }) {
     _requireAssignmentValues(date, questionId, cardId);
     return _saveRepository.update((current) {
+      final exactCompletion = current.hasDailyCompletion(
+        date: date,
+        questionId: questionId,
+        cardId: cardId,
+      );
+      final legacyCompletion =
+          current.lastDailyQuestionDate == date &&
+          current.lastDailyQuestionId.isEmpty &&
+          current.lastDailyCardId.isEmpty &&
+          current.ownedCardIds.contains(cardId);
       if (current.lastDailyQuestionDate == date &&
-          !current.hasDailyCompletion(
-            date: date,
-            questionId: questionId,
-            cardId: cardId,
-          )) {
+          !exactCompletion &&
+          !legacyCompletion) {
         throw const SaveException(
           '本日の回答履歴と割り当てられた問題が一致しません。アプリを更新して再度お試しください。',
         );
@@ -79,7 +86,11 @@ class DailyProgressService {
     var cardWasOwnedBeforeAnswer = true;
     var alreadyCompleted = false;
     final updated = await _saveRepository.update((current) {
+      final hasStoredAssignmentIds =
+          current.dailyAssignmentQuestionId.isNotEmpty ||
+          current.dailyAssignmentCardId.isNotEmpty;
       if (current.dailyAssignmentDate == date &&
+          hasStoredAssignmentIds &&
           !current.hasDailyAssignment(
             date: date,
             questionId: question.id,
