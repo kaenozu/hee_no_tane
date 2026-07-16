@@ -187,13 +187,27 @@ class SaveRepository {
 
     final completionHasQuestion = proposed.lastDailyQuestionId.isNotEmpty;
     final completionHasCard = proposed.lastDailyCardId.isNotEmpty;
-    if (completionHasQuestion != completionHasCard) {
-      throw const SaveException('回答履歴の問題IDとカードIDが一致していません。');
+    if (completionHasCard && !completionHasQuestion) {
+      throw const SaveException('回答履歴のカードIDに対応する問題IDがありません。');
     }
 
-    if (proposed.lastDailyQuestionDate.isEmpty ||
-        !completionHasQuestion ||
-        !completionHasCard) {
+    if (proposed.lastDailyQuestionDate.isEmpty || !completionHasQuestion) {
+      return proposed;
+    }
+
+    // Version 3 and direct legacy screen calls allowed questions without a
+    // related card. Runtime v2 content never enters this path because the
+    // approved bundle contains only validated question/card pairs.
+    if (!completionHasCard) {
+      final hasAssignmentForCompletionDate =
+          proposed.dailyAssignmentDate == proposed.lastDailyQuestionDate &&
+          proposed.dailyAssignmentQuestionId.isNotEmpty &&
+          proposed.dailyAssignmentCardId.isNotEmpty;
+      if (hasAssignmentForCompletionDate) {
+        throw const SaveException(
+          'カード付きで割り当てられた問題をカードなし回答として保存できません。',
+        );
+      }
       return proposed;
     }
 
