@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   quality:
@@ -29,6 +33,50 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Generate release blocker report
+        run: dart run tool/generate_release_blockers.dart
+
+      - name: Add release blocker summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ ! -f build/release-blockers.json ]]; then
+            echo "## Release blockers" >> "$GITHUB_STEP_SUMMARY"
+            echo "Report generation failed; no JSON report was produced." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          expected=$(jq -r '.summary.expectedPairCount' build/release-blockers.json)
+          pairs=$(jq -r '.summary.pairCount' build/release-blockers.json)
+          blocked=$(jq -r '.summary.blockedPairCount' build/release-blockers.json)
+          unblocked=$(jq -r '.summary.unblockedPairCount' build/release-blockers.json)
+          ready=$(jq -r '.summary.releaseReady' build/release-blockers.json)
+          structural=$(jq -r '.summary.structuralBlockers | if length == 0 then "none" else join(", ") end' build/release-blockers.json)
+
+          {
+            echo "## Release blockers"
+            echo ""
+            echo "| Metric | Count / value |"
+            echo "| --- | ---: |"
+            echo "| Expected pairs | $expected |"
+            echo "| Evaluated pairs | $pairs |"
+            echo "| Blocked pairs | $blocked |"
+            echo "| Unblocked pairs | $unblocked |"
+            echo "| Release ready | $ready |"
+            echo "| Structural blockers | $structural |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload release blocker reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-blockers-${{ github.run_id }}
+          path: |
+            build/release-blockers.json
+            build/release-blockers.md
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Validate content
         run: dart run tool/validate_content.dart
@@ -82,12 +130,15 @@ jobs:
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             base="${{ github.event.pull_request.base.sha }}"
             head="${{ github.event.pull_request.head.sha }}"
-          else
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
             base="${{ github.event.before }}"
             head="${{ github.sha }}"
             if [[ "$base" =~ ^0+$ ]]; then
               base="${head}^"
             fi
+          else
+            head="${{ github.sha }}"
+            base="${head}^"
           fi
           git diff --check "$base...$head" 2>&1 | tee build/reports/whitespace.log
 
@@ -179,3 +230,49 @@ jobs:
         shell: bash
         run: |
           rm -f android/app/ci-release-key.jks android/app/keystore.properties
+
+  release-readiness:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate release blocker report
+        run: dart run tool/generate_release_blockers.dart
+
+      - name: Upload release blocker reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-blockers-final-${{ github.run_id }}
+          path: |
+            build/release-blockers.json
+            build/release-blockers.md
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Validate final release readiness
+        shell: bash
+        run: |
+          set -o pipefail
+          dart run tool/validate_release_readiness.dart --require-final-images \
+            | tee build/release-readiness.json
+
+      - name: Upload release readiness result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-readiness-${{ github.run_id }}
+          path: build/release-readiness.json
+          if-no-files-found: error
+          retention-days: 90
