@@ -118,7 +118,6 @@ class SaveRepository {
       }
 
       final decoded = jsonDecode(raw);
-
       if (decoded is! Map) {
         throw const FormatException('Save data root must be an object.');
       }
@@ -149,10 +148,10 @@ class SaveRepository {
   Future<SaveData> update(SaveData Function(SaveData current) updater) {
     return _enqueue<SaveData>(() async {
       final current = await loadOrThrow();
-      final updated = updater(current);
+      final proposed = updater(current);
+      final updated = _enforceDailyInvariants(current, proposed);
 
       await save(updated);
-
       return updated;
     });
   }
@@ -175,6 +174,68 @@ class SaveRepository {
         throw SaveException('データの初期化に失敗しました。もう一度お試しください。', cause: error);
       }
     });
+  }
+
+  SaveData _enforceDailyInvariants(SaveData current, SaveData proposed) {
+    final assignmentHasQuestion = proposed.dailyAssignmentQuestionId.isNotEmpty;
+    final assignmentHasCard = proposed.dailyAssignmentCardId.isNotEmpty;
+    if (assignmentHasQuestion != assignmentHasCard ||
+        ((assignmentHasQuestion || assignmentHasCard) &&
+            proposed.dailyAssignmentDate.isEmpty)) {
+      throw const SaveException('今日の問題の割り当てデータが不完全です。');
+    }
+
+    final completionHasQuestion = proposed.lastDailyQuestionId.isNotEmpty;
+    final completionHasCard = proposed.lastDailyCardId.isNotEmpty;
+    if (completionHasQuestion != completionHasCard) {
+      throw const SaveException('回答履歴の問題IDとカードIDが一致していません。');
+    }
+
+    if (proposed.lastDailyQuestionDate.isEmpty ||
+        !completionHasQuestion ||
+        !completionHasCard) {
+      return proposed;
+    }
+
+    final completionDate = proposed.lastDailyQuestionDate;
+    final completionQuestionId = proposed.lastDailyQuestionId;
+    final completionCardId = proposed.lastDailyCardId;
+    final currentHasAssignmentForDate =
+        current.dailyAssignmentDate == completionDate &&
+        current.dailyAssignmentQuestionId.isNotEmpty &&
+        current.dailyAssignmentCardId.isNotEmpty;
+    if (currentHasAssignmentForDate &&
+        !current.hasDailyAssignment(
+          date: completionDate,
+          questionId: completionQuestionId,
+          cardId: completionCardId,
+        )) {
+      throw const SaveException(
+        '割り当てられた問題と保存しようとした回答が一致しません。ホームへ戻って最新の問題を開いてください。',
+      );
+    }
+
+    final proposedHasAssignmentForDate =
+        proposed.dailyAssignmentDate == completionDate &&
+        proposed.dailyAssignmentQuestionId.isNotEmpty &&
+        proposed.dailyAssignmentCardId.isNotEmpty;
+    if (proposedHasAssignmentForDate &&
+        !proposed.hasDailyAssignment(
+          date: completionDate,
+          questionId: completionQuestionId,
+          cardId: completionCardId,
+        )) {
+      throw const SaveException(
+        '今日の問題の割り当てと回答履歴が一致していません。',
+      );
+    }
+
+    if (proposedHasAssignmentForDate) return proposed;
+    return proposed.copyWith(
+      dailyAssignmentDate: completionDate,
+      dailyAssignmentQuestionId: completionQuestionId,
+      dailyAssignmentCardId: completionCardId,
+    );
   }
 
   Future<T> _enqueue<T>(Future<T> Function() operation) {
