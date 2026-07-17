@@ -4,6 +4,7 @@ library;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/application/daily_progress_service.dart';
 import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
@@ -40,6 +41,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final DailyProgressService _dailyProgressService;
   SaveData _saveData = SaveData();
   Question? _todayQuestion;
   HeeCard? _todayCard;
@@ -51,6 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    _dailyProgressService = DailyProgressService(
+      saveRepository: widget.saveRepository,
+      rewardService: widget.rewardService,
+    );
     _lifecycleListener = AppLifecycleListener(onResume: _handleResume);
     _load();
   }
@@ -184,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
           question: question,
           questionDate: _todayDate,
           relatedCard: _todayCard,
+          dailyProgressService: _dailyProgressService,
           saveRepository: widget.saveRepository,
           rewardService: widget.rewardService,
           dateProvider: widget.dailyQuestionService.currentDateTime,
