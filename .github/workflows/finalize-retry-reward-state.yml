@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - agent/v1-release-preparation
+  pull_request:
+    types:
+      - reopened
   workflow_dispatch:
 
 permissions:
@@ -11,7 +14,10 @@ permissions:
 
 jobs:
   finalize:
-    if: github.actor == 'kaenozu'
+    if: >-
+      github.event_name == 'pull_request' ||
+      github.event_name == 'workflow_dispatch' ||
+      github.actor == 'kaenozu'
     runs-on: macos-latest
     steps:
       - name: Checkout
