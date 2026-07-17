@@ -40,7 +40,7 @@ void main() {
     final changed = _deepCopy(reviewDocument);
     final entries = changed['entries']! as List<dynamic>;
     final first = entries.first as Map<String, dynamic>;
-    first['contentHash'] = '0' * 64;
+    first['contentHash'] = List<String>.filled(64, '0').join();
 
     expect(
       SemanticReviewGate.validate(
