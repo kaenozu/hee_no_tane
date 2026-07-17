@@ -1,6 +1,9 @@
 name: Apply Daily Progress Refactor
 
 on:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - feature/daily-progress-service
