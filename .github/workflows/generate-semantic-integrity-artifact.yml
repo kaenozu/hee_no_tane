@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - agent/approved-content-semantic-integrity
+  pull_request:
+    types:
+      - opened
+      - reopened
   workflow_dispatch:
 
 permissions:
@@ -11,6 +15,9 @@ permissions:
 
 jobs:
   generate-and-validate:
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.head_ref == 'agent/approved-content-semantic-integrity'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
