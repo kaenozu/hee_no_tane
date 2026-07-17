@@ -20,10 +20,7 @@ class SemanticReviewGate {
     required ContentBundle bundle,
     required Map<String, dynamic> reviewDocument,
   }) {
-    final errors = validate(
-      bundle: bundle,
-      reviewDocument: reviewDocument,
-    );
+    final errors = validate(bundle: bundle, reviewDocument: reviewDocument);
     if (errors.isNotEmpty) {
       throw FormatException(
         'Semantic review validation failed:\n- ${errors.join('\n- ')}',
@@ -134,7 +131,9 @@ class SemanticReviewGate {
 
     for (final questionId in reviewsByQuestionId.keys) {
       if (!releaseQuestionIds.contains(questionId)) {
-        errors.add('Stale semantic review for non-release question $questionId.');
+        errors.add(
+          'Stale semantic review for non-release question $questionId.',
+        );
       }
     }
 

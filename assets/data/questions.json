@@ -1445,25 +1445,25 @@
     "difficulty": "normal",
     "question": "蜂蜜を食べると、血糖値には一般にどのような影響がありますか？",
     "choices": [
-      "互いに打ち消し合って弱くなる",
-      "グルタミン酸とイノシン酸の相乗効果で強くなる",
-      "塩味だけが強くなる",
-      "うま味が酸味に変わる"
+      "一般に上昇する",
+      "必ず低下する",
+      "まったく変化しない",
+      "糖質を含まないため影響しない"
     ],
-    "answerIndex": 1,
+    "answerIndex": 0,
     "explanation": "蜂蜜には糖質が含まれるため、摂取すると一般に血糖値は上がります。上がり方は摂取量や個人の状態によって異なります。",
     "relatedCardId": "card_food_008",
-    "sourceNote": "農林水産省・だしうま味解説",
+    "sourceNote": "Mayo Clinic「蜂蜜と血糖値」",
     "verified": true,
     "source": {
       "title": "Diabetes foods: Can I substitute honey for sugar?",
       "publisher": "Mayo Clinic",
       "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/expert-answers/diabetes/faq-20058487",
-      "verifiedAt": "2026-07-16",
-      "verificationLevel": "primary",
+      "verifiedAt": "2026-07-17",
+      "verificationLevel": "secondary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "8ba2f4c9abee6cd2027a3a813476f74fb32d077cd233faa78ecd7ddd23445f28"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "5fd76f1f13fe61fc3d66c4cb44bdf411430896032b5951197d52d58d80671b55"
     }
   },
   {
@@ -1663,25 +1663,25 @@
     "difficulty": "normal",
     "question": "「立つが如し」の「如し（ごとし）」は、どのような意味ですか？",
     "choices": [
-      "町家の屋根付近に設けられた防火用の袖壁",
-      "商家の入口に掲げられた屋号の看板",
-      "井戸水をくみ上げるための滑車",
-      "蔵の床下に設けられた通風口"
+      "「～のようだ」「～に似ている」",
+      "「必ず～する」",
+      "「～してはいけない」",
+      "「～であった」"
     ],
     "answerIndex": 0,
-    "explanation": "「～のようだ」「～に似ている」という比況を表します。この場合は「立っているようだ」という意味です。",
+    "explanation": "「如し」は、あるものを別のものになぞらえて「～のようだ」「～に似ている」と表す比況の助動詞です。「立つが如し」なら「立っているようだ」という意味です。",
     "relatedCardId": "card_language_007",
-    "sourceNote": "建築意匠辞典「うだつ・町家の装飾」",
+    "sourceNote": "小学館「如し」",
     "verified": true,
     "source": {
       "title": "如し（ゴトシ）とは？ 意味や使い方",
       "publisher": "小学館",
       "url": "https://kotobank.jp/word/如し-503074",
-      "verifiedAt": "2026-07-16",
-      "verificationLevel": "primary",
+      "verifiedAt": "2026-07-17",
+      "verificationLevel": "secondary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "c16d4adacb6b4e4e7a291c72c9382e586065b61087c7d62d91e3e28df4aba6e7"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "bd4c6a1db8ebee803e3b35565c3891b541d31174ca7d57332dda42bd5f45a568"
     }
   },
   {
@@ -1959,25 +1959,25 @@
     "difficulty": "normal",
     "question": "2020年国勢調査で、淡路島本島の人口はおよそ何万人でしたか？",
     "choices": [
-      "淡路島（兵庫県）",
-      "佐渡島（新潟県）",
-      "奄美大島（鹿児島県）",
-      "対馬（長崎県）"
+      "約3.2万人",
+      "約7.5万人",
+      "約12.7万人",
+      "約25.4万人"
     ],
-    "answerIndex": 0,
-    "explanation": "126,980人で、約12.7万人です。市町村単位ではなく、淡路島本島の範囲で集計した値です。",
+    "answerIndex": 2,
+    "explanation": "2020年国勢調査に基づく淡路島本島の人口は126,980人で、約12.7万人です。淡路市、洲本市、南あわじ市の合計です。",
     "relatedCardId": "card_nature_geography_013",
-    "sourceNote": "総務省「国勢調査・離島振興解説」",
+    "sourceNote": "離島経済新聞社「淡路島の情報」",
     "verified": true,
     "source": {
       "title": "淡路島の情報",
       "publisher": "NPO法人離島経済新聞社",
       "url": "https://ritokei.com/shima/hyogo/hyogo_awajishima",
-      "verifiedAt": "2026-07-16",
-      "verificationLevel": "primary",
+      "verifiedAt": "2026-07-17",
+      "verificationLevel": "secondary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "b5a56e986afd5a1018a63cfe92fd438b47e4cf38f7d9258ca095b4f33e5bf32b"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "acb4266641d9ee09d17544d02284c77c77f6231e3f218440816d545fcd1923c9"
     }
   },
   {
@@ -2060,25 +2060,25 @@
     "difficulty": "easy",
     "question": "津波が沿岸に近づくと、波高が高くなる主な理由は何ですか？",
     "choices": [
-      "海底下の大地震に伴う海底の急な上下変動",
-      "強い海風が長時間吹き続けること",
-      "満潮と干潮が同時に起こること",
-      "川の水が大量に海へ流れ込むこと"
+      "水深が浅くなると津波の速度が落ち、後方の波が追いつくから",
+      "沿岸では風が必ず強くなるから",
+      "満潮と干潮が同時に起こるから",
+      "川の水が大量に海へ流れ込むから"
     ],
     "answerIndex": 0,
-    "explanation": "水深が浅くなると津波の速度が落ち、後方の波が前方に追いつくため、波高が高くなります。",
+    "explanation": "津波は水深が浅くなるほど速度が遅くなります。減速した前方の波に後方の波が追いつくため、沿岸へ近づくほど波高が高くなります。",
     "relatedCardId": "card_nature_geography_015",
-    "sourceNote": "NOAA・津波発生の解説",
+    "sourceNote": "気象庁「津波発生と伝播のしくみ」",
     "verified": true,
     "source": {
       "title": "津波発生と伝播のしくみ",
       "publisher": "気象庁",
       "url": "https://www.jma.go.jp/jma/kishou/know/jishin/tsunami/generation.html",
-      "verifiedAt": "2026-07-16",
+      "verifiedAt": "2026-07-17",
       "verificationLevel": "primary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "f83dc3072157d80fd025f86725021e720d6f96f65ae4674fe798c78dc718d406"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "a68a19c410e7f90385686cd2ee2cac18c931d408cf0bd73869a3ccc7e291bdcb"
     }
   },
   {
@@ -2245,25 +2245,25 @@
     "difficulty": "normal",
     "question": "ニューヨークの自由の女神像は、どの国からアメリカへ贈られましたか？",
     "choices": [
-      "竜文切手",
-      "ペニー・ブラック",
-      "ブルー・モーリシャス",
-      "桜切手"
+      "フランス",
+      "イギリス",
+      "スペイン",
+      "カナダ"
     ],
-    "answerIndex": 1,
-    "explanation": "フランスです。アメリカ独立100周年と米仏の友好を記念する贈り物として構想されました。",
+    "answerIndex": 0,
+    "explanation": "自由の女神像はフランスから贈られました。アメリカ独立100周年と米仏の友好を記念する贈り物として構想され、1886年にニューヨーク港で除幕されました。",
     "relatedCardId": "card_history_011",
-    "sourceNote": "英国郵便博物館・ペニー黒切手",
+    "sourceNote": "U.S. National Park Service「Statue of Liberty Facts」",
     "verified": true,
     "source": {
       "title": "Statue of Liberty Facts",
       "publisher": "U.S. National Park Service",
       "url": "https://www.nps.gov/stli/learn/statue-of-liberty-facts.htm",
-      "verifiedAt": "2026-07-16",
+      "verifiedAt": "2026-07-17",
       "verificationLevel": "primary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "baa7d70bc0d6959d71af4ea17180d150885f6783720d830ba69905da3aa68125"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "a042c990ea59f277b7dd93ca79e0fc9eb46f3f7715d281fa2943bf069a4ae1ca"
     }
   },
   {
@@ -2378,25 +2378,25 @@
     "difficulty": "easy",
     "question": "生石灰（酸化カルシウム）に水を加えると、何が起こりますか？",
     "choices": [
-      "石けん分子が水になじむ部分と油になじむ部分の両方を持つ",
-      "油を高温にして蒸発させる",
-      "油を化学反応で砂糖に変える",
-      "水の温度を必ず100度まで上げる"
+      "消石灰（水酸化カルシウム）になり、熱を出す",
+      "石けんになって油を落とす",
+      "水に溶けて温度が必ず下がる",
+      "砂糖に変化する"
     ],
     "answerIndex": 0,
-    "explanation": "水と反応して消石灰（水酸化カルシウム）になり、熱を放出します。単に水へ溶けるのではなく、化学反応です。",
+    "explanation": "生石灰（酸化カルシウム）は水と反応して消石灰（水酸化カルシウム）になり、熱を放出します。単に水へ溶けるのではなく、発熱を伴う化学反応です。",
     "relatedCardId": "card_science_011",
-    "sourceNote": "イェール医学部・石けんの仕組み",
+    "sourceNote": "CDC/NIOSH「Calcium oxide」",
     "verified": true,
     "source": {
       "title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide",
       "publisher": "CDC/NIOSH",
       "url": "https://www.cdc.gov/niosh/npg/npgd0093.html",
-      "verifiedAt": "2026-07-16",
+      "verifiedAt": "2026-07-17",
       "verificationLevel": "primary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
-      "contentHash": "9668f2940358381f9de0650048bfd6d104fbbf23d1a4e29d9571cd170b5b248d"
+      "reviewNote": "Semantic alignment re-reviewed on 2026-07-17.",
+      "contentHash": "dfed4a51868218559883488c33fa47f64d50dfb109fd59086a92f1088293bb6a"
     }
   },
   {

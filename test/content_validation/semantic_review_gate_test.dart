@@ -12,9 +12,7 @@ void main() {
   setUp(() {
     bundle = ContentBundle.fromJson(
       Map<String, dynamic>.from(
-        jsonDecode(
-              File('assets/data/content_bundle.json').readAsStringSync(),
-            )
+        jsonDecode(File('assets/data/content_bundle.json').readAsStringSync())
             as Map,
       ),
     );
@@ -43,10 +41,7 @@ void main() {
     first['contentHash'] = List<String>.filled(64, '0').join();
 
     expect(
-      SemanticReviewGate.validate(
-        bundle: bundle,
-        reviewDocument: changed,
-      ),
+      SemanticReviewGate.validate(bundle: bundle, reviewDocument: changed),
       contains(contains('contentHash is stale')),
     );
   });
@@ -59,10 +54,7 @@ void main() {
     checks['cardAligned'] = false;
 
     expect(
-      SemanticReviewGate.validate(
-        bundle: bundle,
-        reviewDocument: changed,
-      ),
+      SemanticReviewGate.validate(bundle: bundle, reviewDocument: changed),
       contains(contains('required check cardAligned is not true')),
     );
   });

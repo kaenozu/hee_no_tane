@@ -14,10 +14,10 @@ void main() {
     final entries = bundle['entries']! as List<dynamic>;
     pairsByQuestionId = <String, Map<String, dynamic>>{
       for (final value in entries)
-        Map<String, dynamic>.from(
-              (value as Map)['question'] as Map,
-            )['id']
-            as String: Map<String, dynamic>.from(value),
+        Map<String, dynamic>.from((value as Map)['question'] as Map)['id']
+            as String: Map<String, dynamic>.from(
+          value,
+        ),
     };
   });
 
@@ -61,20 +61,28 @@ void main() {
     final question = _question(pair);
     final card = _card(pair);
 
-    expect(question['choices'], <String>['約3.2万人', '約7.5万人', '約12.7万人', '約25.4万人']);
+    expect(question['choices'], <String>[
+      '約3.2万人',
+      '約7.5万人',
+      '約12.7万人',
+      '約25.4万人',
+    ]);
     expect(question['answerIndex'], 2);
     expect(card['shortText'], contains('約12.7万人'));
   });
 
-  test('tsunami question and card both explain shallow-water amplification', () {
-    final pair = pairsByQuestionId['q_nature_geography_015']!;
-    final question = _question(pair);
-    final card = _card(pair);
+  test(
+    'tsunami question and card both explain shallow-water amplification',
+    () {
+      final pair = pairsByQuestionId['q_nature_geography_015']!;
+      final question = _question(pair);
+      final card = _card(pair);
 
-    expect(question['choices'][0], contains('水深が浅くなる'));
-    expect(question['answerIndex'], 0);
-    expect(card['title'], contains('高くなる'));
-  });
+      expect(question['choices'][0], contains('水深が浅くなる'));
+      expect(question['answerIndex'], 0);
+      expect(card['title'], contains('高くなる'));
+    },
+  );
 
   test('quicklime pair consistently describes the exothermic reaction', () {
     final pair = pairsByQuestionId['q_science_011']!;
