@@ -1,0 +1,58 @@
+name: Capture Daily Progress Test Output
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: feature/daily-progress-service
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Extract and apply refactor
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          lines = Path('.github/workflows/apply-daily-progress-refactor.yml').read_text().splitlines()
+          start = next(i for i, line in enumerate(lines) if line.strip() == "python3 <<'PY'") + 1
+          end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
+          script = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end])
+          Path('/tmp/apply_refactor.py').write_text(script + '\n')
+          PY
+          python3 /tmp/apply_refactor.py
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Capture delegation test output
+        shell: bash
+        run: |
+          set +e
+          flutter test test/features/daily_question_progress_service_test.dart > /tmp/delegation-test.log 2>&1
+          status=$?
+          {
+            echo "exit_code=$status"
+            echo
+            tail -n 160 /tmp/delegation-test.log
+          } > .github/daily-progress-delegation-report.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .github/daily-progress-delegation-report.txt
+          git commit -m "Record daily progress delegation test failure"
+          git push origin HEAD:feature/daily-progress-service
