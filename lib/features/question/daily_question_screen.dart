@@ -4,6 +4,7 @@ library;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hee_no_tane_app/application/daily_progress_service.dart';
 import 'package:hee_no_tane_app/core/date_utils.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
@@ -22,6 +23,7 @@ class DailyQuestionScreen extends StatefulWidget {
   final HeeCard? relatedCard;
   final SaveRepository saveRepository;
   final RewardService rewardService;
+  final DailyProgressService? dailyProgressService;
   final QuestionDateProvider dateProvider;
 
   const DailyQuestionScreen({
@@ -31,6 +33,7 @@ class DailyQuestionScreen extends StatefulWidget {
     this.relatedCard,
     required this.saveRepository,
     required this.rewardService,
+    this.dailyProgressService,
     this.dateProvider = _systemDateProvider,
   });
 
@@ -39,6 +42,13 @@ class DailyQuestionScreen extends StatefulWidget {
 }
 
 class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
+  DailyProgressService get _dailyProgressService =>
+      widget.dailyProgressService ??
+      DailyProgressService(
+        saveRepository: widget.saveRepository,
+        rewardService: widget.rewardService,
+      );
+
   int? _selectedAnswerIndex;
   bool _saving = false;
   bool _saveSucceeded = false;
@@ -95,52 +105,16 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
       return;
     }
 
-    final cardId = widget.relatedCard?.id ?? widget.question.relatedCardId;
-
     try {
-      await widget.saveRepository.update((current) {
-        if (current.lastDailyQuestionDate == date) {
-          final exactMatch = current.hasDailyCompletion(
-            date: date,
-            questionId: widget.question.id,
-            cardId: cardId,
-          );
-          final legacyMatch =
-              current.lastDailyQuestionId.isEmpty &&
-              current.lastDailyCardId.isEmpty &&
-              current.ownedCardIds.contains(cardId);
-          if (exactMatch || legacyMatch) {
-            _cardWasOwnedBeforeAnswer ??= true;
-            return legacyMatch
-                ? current.copyWith(
-                    lastDailyQuestionId: widget.question.id,
-                    lastDailyCardId: cardId,
-                  )
-                : current;
-          }
-          throw const SaveException(
-            '同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。',
-          );
-        }
-
-        final card = widget.relatedCard;
-        _cardWasOwnedBeforeAnswer ??=
-            card == null || current.ownedCardIds.contains(card.id);
-
-        var updated = widget.rewardService.recordDailyAnswer(current, date);
-        updated = updated.copyWith(
-          lastDailyQuestionDate: date,
-          lastDailyQuestionId: widget.question.id,
-          lastDailyCardId: cardId,
-        );
-        if (card != null && !current.ownedCardIds.contains(card.id)) {
-          updated = widget.rewardService.applyReward(updated, card);
-        }
-        return updated;
-      });
+      final result = await _dailyProgressService.submitAnswer(
+        date: date,
+        question: widget.question,
+        card: widget.relatedCard,
+      );
 
       if (!mounted) return;
       setState(() {
+        _cardWasOwnedBeforeAnswer = result.cardWasOwnedBeforeAnswer;
         _saving = false;
         _saveSucceeded = true;
         _saveError = null;

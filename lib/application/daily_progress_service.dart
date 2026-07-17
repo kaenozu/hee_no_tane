@@ -80,7 +80,7 @@ class DailyProgressService {
     HeeCard? card,
   }) async {
     final cardId = card?.id ?? question.relatedCardId;
-    _requireAssignmentValues(date, question.id, cardId);
+    _requireAnswerValues(date, question.id);
 
     var cardWasOwnedBeforeAnswer = true;
     var alreadyCompleted = false;
@@ -101,11 +101,12 @@ class DailyProgressService {
       }
 
       var assigned = current;
-      if (!current.hasDailyAssignment(
-        date: date,
-        questionId: question.id,
-        cardId: cardId,
-      )) {
+      if (cardId.isNotEmpty &&
+          !current.hasDailyAssignment(
+            date: date,
+            questionId: question.id,
+            cardId: cardId,
+          )) {
         assigned = current.copyWith(
           dailyAssignmentDate: date,
           dailyAssignmentQuestionId: question.id,
@@ -155,6 +156,12 @@ class DailyProgressService {
       cardWasOwnedBeforeAnswer: cardWasOwnedBeforeAnswer,
       alreadyCompleted: alreadyCompleted,
     );
+  }
+
+  static void _requireAnswerValues(String date, String questionId) {
+    if (date.trim().isEmpty || questionId.trim().isEmpty) {
+      throw ArgumentError('Daily answer date and question id are required.');
+    }
   }
 
   static void _requireAssignmentValues(
