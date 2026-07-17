@@ -1,0 +1,69 @@
+name: Repair Daily Progress Refactor
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: feature/daily-progress-service
+          fetch-depth: 0
+
+      - name: Repair workflow
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/apply-daily-progress-refactor.yml')
+          text = path.read_text()
+          retry = "              await tester.tap(find.text('再試行'));"
+          replacement = "              await tester.ensureVisible(find.text('再試行'));\n              await tester.tap(find.text('再試行'));"
+          if text.count(retry) != 1:
+              raise SystemExit(f'expected one retry tap, found {text.count(retry)}')
+          text = text.replace(retry, replacement, 1)
+
+          marker = '      - name: Commit validated changes\n'
+          if text.count(marker) != 1:
+              raise SystemExit(f'expected one commit marker, found {text.count(marker)}')
+          head = text.split(marker, 1)[0]
+          tail = '''      - name: Commit validated changes
+            shell: bash
+            run: |
+              rm -f .github/workflows/apply-daily-progress-refactor.yml \\
+                .github/workflows/diagnose-daily-progress-refactor.yml \\
+                .github/workflows/capture-daily-progress-test-output.yml \\
+                .github/workflows/fix-daily-progress-refactor-workflow.yml \\
+                .github/workflows/repair-daily-progress-refactor.yml \\
+                .github/daily-progress-delegation-report.txt
+              git config user.name github-actions[bot]
+              git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+              git add -A .github \\
+                lib/features/question/daily_question_screen.dart \\
+                lib/features/home/home_screen.dart \\
+                lib/application/daily_progress_service.dart \\
+                test/features/daily_question_progress_service_test.dart
+              git commit -m "Use DailyProgressService for daily answers"
+              git push origin HEAD:feature/daily-progress-service
+          '''
+          path.write_text(head + tail)
+          PY
+
+          rm .github/workflows/fix-daily-progress-refactor-workflow.yml
+          rm .github/workflows/repair-daily-progress-refactor.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .github/workflows/apply-daily-progress-refactor.yml \
+            .github/workflows/fix-daily-progress-refactor-workflow.yml \
+            .github/workflows/repair-daily-progress-refactor.yml
+          git commit -m "Repair daily progress refactor validation"
+          git push origin HEAD:feature/daily-progress-service
