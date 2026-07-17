@@ -9,6 +9,10 @@ on:
       - reopened
   workflow_dispatch:
 
+concurrency:
+  group: retry-reward-finalizer-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
