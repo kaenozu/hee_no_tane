@@ -1,0 +1,65 @@
+name: Finalize Semantic Integrity Fixes
+
+on:
+  push:
+    branches:
+      - agent/v1-release-preparation
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor == 'kaenozu'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: agent/v1-release-preparation
+          fetch-depth: 0
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Apply semantic corrections and regenerate approvals
+        run: dart run tool/apply_semantic_integrity_fixes.dart
+
+      - name: Format changed Dart files
+        run: >-
+          dart format
+          lib/content_validation/semantic_review_gate.dart
+          tool/validate_semantic_reviews.dart
+          test/content_validation/semantic_review_gate_test.dart
+          test/content_validation/approved_content_semantic_regression_test.dart
+
+      - name: Validate generated content
+        run: |
+          dart run tool/generate_content_bundle.dart --check
+          dart run tool/validate_semantic_reviews.dart
+          dart run tool/validate_runtime_content.dart
+          dart run tool/validate_content.dart
+          dart run tool/audit_content_sources.dart --require-approved
+          flutter analyze
+          flutter test test/content_validation/content_bundle_builder_test.dart test/content_validation/semantic_review_gate_test.dart test/content_validation/approved_content_semantic_regression_test.dart test/application/daily_progress_service_test.dart
+
+      - name: Remove one-shot files
+        run: |
+          rm tool/apply_semantic_integrity_fixes.dart
+          rm .github/workflows/generate-semantic-integrity-artifact.yml
+          rm .github/workflows/finalize-semantic-integrity.yml
+
+      - name: Commit validated changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix approved content semantic integrity'
+          git push origin HEAD:agent/v1-release-preparation
