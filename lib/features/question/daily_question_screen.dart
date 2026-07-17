@@ -114,7 +114,7 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
 
       if (!mounted) return;
       setState(() {
-        _cardWasOwnedBeforeAnswer = result.cardWasOwnedBeforeAnswer;
+        _cardWasOwnedBeforeAnswer ??= result.cardWasOwnedBeforeAnswer;
         _saving = false;
         _saveSucceeded = true;
         _saveError = null;
@@ -130,6 +130,9 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
         message = '回答の保存に失敗しました。もう一度お試しください。';
       }
       setState(() {
+        if (error is DailyAnswerSaveException) {
+          _cardWasOwnedBeforeAnswer ??= error.cardWasOwnedBeforeAnswer;
+        }
         _saving = false;
         _saveSucceeded = false;
         _saveError = message;
@@ -258,78 +261,40 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     final choice = question.choices[index];
     final isCorrect = index == question.answerIndex;
     final isSelected = _selectedAnswerIndex == index;
-    Color? background;
+    Color? bg;
     Color? border;
-    Color? textColor;
-    String? suffix;
+    IconData? icon;
     if (_hasAnswered) {
       if (isCorrect) {
-        background = Colors.green.withValues(alpha: 0.1);
-        border = Colors.green;
-        textColor = Colors.green.shade800;
-        suffix = '✓ 正解';
+        bg = cs.primaryContainer;
+        border = cs.primary;
+        icon = Icons.check_circle;
       } else if (isSelected) {
-        background = Colors.red.withValues(alpha: 0.08);
-        border = Colors.red.withValues(alpha: 0.5);
-        textColor = Colors.red.shade700;
-        suffix = '✗';
+        bg = cs.errorContainer;
+        border = cs.error;
+        icon = Icons.cancel;
       }
     }
-
-    final semantics = _hasAnswered
-        ? '$choice${isCorrect
-              ? '、正解'
-              : isSelected
-              ? '、選択した不正解'
-              : ''}'
-        : choice;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Semantics(
-        button: true,
-        enabled: _canAnswer,
-        selected: isSelected,
-        label: semantics,
-        child: Material(
-          color: background ?? cs.surface,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: border ?? cs.outlineVariant.withValues(alpha: 0.5),
-              width: isSelected && !_hasAnswered ? 1.5 : 1,
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: bg ?? cs.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: _canAnswer ? () => _answer(index) : null,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: border ?? cs.outlineVariant),
             ),
-          ),
-          child: InkWell(
-            key: ValueKey('answer-choice-$index'),
-            onTap: _canAnswer ? () => _answer(index) : null,
-            borderRadius: BorderRadius.circular(12),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      choice,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: textColor ?? cs.onSurface,
-                        fontWeight: isSelected
-                            ? FontWeight.w600
-                            : FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  if (suffix != null)
-                    Text(
-                      suffix,
-                      style: TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
-                      ),
-                    ),
-                ],
-              ),
+            child: Row(
+              children: [
+                Expanded(child: Text(choice)),
+                if (icon != null) Icon(icon, color: border),
+              ],
             ),
           ),
         ),
@@ -338,47 +303,25 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
   }
 
   Widget _explanationBlock(Question question, ColorScheme cs) {
+    final isCorrect = _selectedAnswerIndex == question.answerIndex;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: cs.primary.withValues(alpha: 0.06),
+        color: isCorrect ? cs.primaryContainer : cs.secondaryContainer,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Icon(Icons.info_outline, size: 16, color: cs.primary),
-              const SizedBox(width: 6),
-              Text(
-                '解説',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: cs.primary,
-                  fontSize: 13,
-                ),
-              ),
-            ],
+          Text(
+            isCorrect ? '正解！' : 'おしい！',
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Text(
-            question.explanation,
-            style: TextStyle(
-              height: 1.6,
-              color: cs.onSurface.withValues(alpha: 0.8),
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '出典: ${question.sourceNote}',
-            style: TextStyle(
-              fontSize: 12,
-              color: cs.onSurface.withValues(alpha: 0.55),
-            ),
-          ),
+          Text(question.explanation),
         ],
       ),
     );
@@ -386,14 +329,8 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
 
   Widget _savingIndicator() => const Center(
     child: Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 8),
-          Text('回答を保存しています...'),
-        ],
-      ),
+      padding: EdgeInsets.symmetric(vertical: 16),
+      child: CircularProgressIndicator(),
     ),
   );
 
@@ -401,84 +338,66 @@ class _DailyQuestionScreenState extends State<DailyQuestionScreen> {
     width: double.infinity,
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: Colors.red.withValues(alpha: 0.1),
+      color: Theme.of(context).colorScheme.errorContainer,
       borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           '保存エラー',
-          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.red),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 8),
-        Text(_saveError!, style: TextStyle(color: Colors.red.shade700)),
+        Text(_saveError!),
         const SizedBox(height: 12),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            if (_answerDate != null)
-              FilledButton.icon(
-                onPressed: _retrySave,
-                icon: const Icon(Icons.refresh, size: 18),
-                label: const Text('再試行'),
-              ),
-            OutlinedButton.icon(
-              onPressed: _confirmDiscardAndLeave,
-              icon: const Icon(Icons.home_outlined, size: 18),
-              label: const Text('破棄してホームへ戻る'),
-            ),
-          ],
+        FilledButton.icon(
+          onPressed: _saving ? null : _retrySave,
+          icon: const Icon(Icons.refresh),
+          label: const Text('再試行'),
+        ),
+        const SizedBox(height: 8),
+        TextButton(
+          onPressed: _saving ? null : _confirmDiscardAndLeave,
+          child: const Text('回答を破棄してホームへ戻る'),
         ),
       ],
     ),
   );
 
-  Widget _cardRewardBlock(HeeCard card, ColorScheme cs) {
-    final isNew = !(_cardWasOwnedBeforeAnswer ?? true);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: cs.surfaceContainerHighest.withValues(alpha: 0.3),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            isNew ? '新しい知識カードを発見' : 'このカードは発見済みです',
-            style: TextStyle(fontWeight: FontWeight.w600, color: cs.primary),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            card.title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: _canNavigate ? _openCardDetail : null,
-                  child: Text(isNew ? '図鑑で見る' : 'カードを読む'),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: FilledButton(
-                  onPressed: _canNavigate ? _goHome : null,
-                  child: const Text('ホームへ戻る'),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  Widget _cardRewardBlock(HeeCard card, ColorScheme cs) => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: cs.surfaceContainerHighest,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _cardWasOwnedBeforeAnswer == true ? '知識カードを確認' : '新しい知識カードを発見',
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 8),
+        Text(card.title),
+        const SizedBox(height: 12),
+        FilledButton.icon(
+          onPressed: _openCardDetail,
+          icon: const Icon(Icons.style),
+          label: const Text('カードを見る'),
+        ),
+        const SizedBox(height: 8),
+        OutlinedButton.icon(
+          onPressed: _goHome,
+          icon: const Icon(Icons.home_outlined),
+          label: const Text('ホームへ戻る'),
+        ),
+      ],
+    ),
+  );
 }
