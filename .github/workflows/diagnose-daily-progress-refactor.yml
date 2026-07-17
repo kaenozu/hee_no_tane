@@ -1,0 +1,57 @@
+name: Diagnose Daily Progress Refactor
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: feature/daily-progress-service
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Extract and apply refactor
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          lines = Path('.github/workflows/apply-daily-progress-refactor.yml').read_text().splitlines()
+          start = next(i for i, line in enumerate(lines) if line.strip() == "python3 <<'PY'") + 1
+          end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
+          script = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end])
+          Path('/tmp/apply_refactor.py').write_text(script + '\n')
+          PY
+          python3 /tmp/apply_refactor.py
+
+      - name: Format
+        run: dart format lib/features/question/daily_question_screen.dart lib/features/home/home_screen.dart lib/application/daily_progress_service.dart test/features/daily_question_progress_service_test.dart
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: DailyProgressService tests
+        run: flutter test test/application/daily_progress_service_test.dart
+
+      - name: DailyQuestionScreen tests
+        run: flutter test test/features/daily_question_screen_test.dart
+
+      - name: Daily question recovery tests
+        run: flutter test test/features/daily_question_recovery_test.dart
+
+      - name: Service delegation tests
+        run: flutter test test/features/daily_question_progress_service_test.dart
