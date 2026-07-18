@@ -28,12 +28,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [[ ! -d .github/apply-payload ]]; then
+            echo 'Review-fix payload already applied.'
+            exit 0
+          fi
           cat .github/apply-payload/part-* > /tmp/review-fixes-overlay.b64
           base64 --decode /tmp/review-fixes-overlay.b64 > /tmp/review-fixes-overlay.tar.gz
           echo '1c024b4c80cbd30b07fe64ac7ff4387ad15b587ec0f613c1afa94316f8c66c8b  /tmp/review-fixes-overlay.tar.gz' | sha256sum --check
           tar -xzf /tmp/review-fixes-overlay.tar.gz -C .
+          git checkout -- \
+            .github/workflows/flutter-ci.yml \
+            .github/workflows/content-ci.yml \
+            .github/workflows/ios-ci.yml \
+            .github/workflows/security-ci.yml \
+            .github/workflows/export-source.yml
           rm -rf .github/apply-payload
-          rm -f .github/workflows/export-source.yml
           dart format lib test integration_test tool
 
       - name: Commit and push
