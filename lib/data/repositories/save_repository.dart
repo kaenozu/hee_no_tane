@@ -240,7 +240,15 @@ class SaveRepository {
       throw const SaveException('今日の問題の割り当てと回答履歴が一致していません。');
     }
 
-    if (proposedHasAssignmentForDate) return proposed;
+    final proposedHasIdentifiedAssignment =
+        proposed.dailyAssignmentDate.isNotEmpty &&
+        assignmentHasQuestion &&
+        assignmentHasCard;
+    if (proposedHasIdentifiedAssignment) return proposed;
+
+    // Legacy callers may write a completion before a daily assignment exists.
+    // Backfill only that missing assignment. A complete assignment for a newer
+    // date must remain intact so the app can advance after yesterday's answer.
     return proposed.copyWith(
       dailyAssignmentDate: completionDate,
       dailyAssignmentQuestionId: completionQuestionId,
