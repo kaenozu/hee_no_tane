@@ -123,6 +123,7 @@ class DailyProgressService {
     late final SaveData updated;
     try {
       updated = await saveRepository.update((current) {
+        cardWasOwnedBeforeAnswer = null;
         final hasStoredAssignmentIds =
             current.dailyAssignmentQuestionId.isNotEmpty ||
             current.dailyAssignmentCardId.isNotEmpty;
