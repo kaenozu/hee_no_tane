@@ -38,6 +38,7 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
   String _assignedDate = '';
   String? _errorMessage;
   bool _loading = true;
+  bool _todayCompletionUnavailable = false;
 
   @override
   void initState() {
@@ -64,6 +65,7 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
       setState(() {
         _loading = true;
         _errorMessage = null;
+        _todayCompletionUnavailable = false;
       });
     }
 
@@ -71,64 +73,97 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
       var saveData = await widget.saveRepository.loadOrThrow();
       final currentDateTime = widget.dailyQuestionService.currentDateTime();
       final date = widget.dailyQuestionService.currentDateSeed(currentDateTime);
-
-      String? questionId;
-      String? cardId;
-      if (saveData.lastDailyQuestionDate == date &&
-          saveData.lastDailyQuestionId.isNotEmpty &&
-          saveData.lastDailyCardId.isNotEmpty) {
-        questionId = saveData.lastDailyQuestionId;
-        cardId = saveData.lastDailyCardId;
-      } else if (saveData.dailyAssignmentDate == date &&
-          saveData.dailyAssignmentQuestionId.isNotEmpty &&
-          saveData.dailyAssignmentCardId.isNotEmpty) {
-        questionId = saveData.dailyAssignmentQuestionId;
-        cardId = saveData.dailyAssignmentCardId;
-      } else {
-        final generated = widget.dailyQuestionService.generateTodayQuestions(
-          widget.allQuestions,
-          allCards: widget.allCards,
-          count: 1,
-          dateTime: currentDateTime,
-        );
-        if (generated.isNotEmpty) {
-          questionId = generated.first.id;
-          cardId = generated.first.relatedCardId;
-        }
-      }
+      final progressService = DailyProgressService(
+        saveRepository: widget.saveRepository,
+        rewardService: widget.rewardService,
+      );
 
       DailyQuestionService pinnedService = widget.dailyQuestionService;
-      if (questionId != null && cardId != null) {
-        final proposedQuestion = _questionById(questionId);
-        final proposedCard = _cardById(cardId);
-        _requirePlayablePair(proposedQuestion, proposedCard);
+      var completionUnavailable = false;
+      final hasIdentifiedCompletion =
+          saveData.lastDailyQuestionDate == date &&
+          saveData.lastDailyQuestionId.isNotEmpty &&
+          saveData.lastDailyCardId.isNotEmpty;
 
-        final progressService = DailyProgressService(
-          saveRepository: widget.saveRepository,
-          rewardService: widget.rewardService,
-        );
-        saveData = await progressService.ensureAssignment(
-          date: date,
-          questionId: proposedQuestion!.id,
-          cardId: proposedCard!.id,
-        );
+      if (hasIdentifiedCompletion) {
+        final completedQuestion = _questionById(saveData.lastDailyQuestionId);
+        final completedCard = _cardById(saveData.lastDailyCardId);
+        if (_isPlayablePair(completedQuestion, completedCard)) {
+          saveData = await progressService.ensureAssignment(
+            date: date,
+            questionId: completedQuestion!.id,
+            cardId: completedCard!.id,
+          );
+          pinnedService = _pinnedFor(
+            date: date,
+            question: completedQuestion,
+          );
+        } else {
+          completionUnavailable = true;
+        }
+      } else {
+        Question? proposedQuestion;
+        HeeCard? proposedCard;
+        var needsRepair = false;
+        final hasAssignmentDataForToday =
+            saveData.dailyAssignmentDate == date &&
+            (saveData.dailyAssignmentQuestionId.isNotEmpty ||
+                saveData.dailyAssignmentCardId.isNotEmpty);
 
-        final assignedQuestion = _questionById(
-          saveData.dailyAssignmentQuestionId,
-        );
-        final assignedCard = _cardById(saveData.dailyAssignmentCardId);
-        _requirePlayablePair(assignedQuestion, assignedCard);
-        pinnedService = _PinnedDailyQuestionService(
-          delegate: widget.dailyQuestionService,
-          assignedDate: date,
-          assignedQuestion: assignedQuestion!,
-        );
+        if (hasAssignmentDataForToday) {
+          proposedQuestion = _questionById(saveData.dailyAssignmentQuestionId);
+          proposedCard = _cardById(saveData.dailyAssignmentCardId);
+          if (!_isPlayablePair(proposedQuestion, proposedCard)) {
+            proposedQuestion = null;
+            proposedCard = null;
+            needsRepair = true;
+          }
+        }
+
+        if (proposedQuestion == null || proposedCard == null) {
+          final generated = widget.dailyQuestionService.generateTodayQuestions(
+            widget.allQuestions,
+            allCards: widget.allCards,
+            count: 1,
+            dateTime: currentDateTime,
+          );
+          if (generated.isNotEmpty) {
+            proposedQuestion = generated.first;
+            proposedCard = _cardById(proposedQuestion.relatedCardId);
+            _requirePlayablePair(proposedQuestion, proposedCard);
+          }
+        }
+
+        if (proposedQuestion != null && proposedCard != null) {
+          saveData = needsRepair
+              ? await progressService.repairAssignment(
+                  date: date,
+                  questionId: proposedQuestion.id,
+                  cardId: proposedCard.id,
+                )
+              : await progressService.ensureAssignment(
+                  date: date,
+                  questionId: proposedQuestion.id,
+                  cardId: proposedCard.id,
+                );
+
+          final assignedQuestion = _questionById(
+            saveData.dailyAssignmentQuestionId,
+          );
+          final assignedCard = _cardById(saveData.dailyAssignmentCardId);
+          _requirePlayablePair(assignedQuestion, assignedCard);
+          pinnedService = _pinnedFor(
+            date: date,
+            question: assignedQuestion!,
+          );
+        }
       }
 
       if (!mounted) return;
       setState(() {
         _assignedDate = date;
         _pinnedService = pinnedService;
+        _todayCompletionUnavailable = completionUnavailable;
         _loading = false;
       });
     } on SaveLoadException catch (error) {
@@ -140,10 +175,22 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
     }
   }
 
+  DailyQuestionService _pinnedFor({
+    required String date,
+    required Question question,
+  }) => _PinnedDailyQuestionService(
+    delegate: widget.dailyQuestionService,
+    assignedDate: date,
+    assignedQuestion: question,
+  );
+
+  bool _isPlayablePair(Question? question, HeeCard? card) =>
+      question != null &&
+      card != null &&
+      ContentReleasePolicy.isPlayablePair(question, card);
+
   void _requirePlayablePair(Question? question, HeeCard? card) {
-    if (question == null ||
-        card == null ||
-        !ContentReleasePolicy.isPlayablePair(question, card)) {
+    if (!_isPlayablePair(question, card)) {
       throw const FormatException(
         '本日分として保存された問題が現在の公開コンテンツと一致しません。アプリを更新して再度お試しください。',
       );
@@ -211,12 +258,15 @@ class _DailyAssignmentGateState extends State<DailyAssignmentGate> {
     }
 
     return HomeScreen(
-      key: ValueKey<String>('home-$_assignedDate'),
+      key: ValueKey<String>(
+        'home-$_assignedDate-${_todayCompletionUnavailable ? 'unavailable' : 'ready'}',
+      ),
       allQuestions: widget.allQuestions,
       allCards: widget.allCards,
       saveRepository: widget.saveRepository,
       rewardService: widget.rewardService,
       dailyQuestionService: service,
+      todayCompletionUnavailable: _todayCompletionUnavailable,
       onDataReset: widget.onDataReset,
     );
   }
