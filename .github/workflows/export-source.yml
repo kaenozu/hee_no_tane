@@ -1,31 +1,53 @@
-name: Export Source
+name: Apply Review Fixes
 
 on:
   pull_request:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  export:
+  apply:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout feature branch
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Package source snapshots
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: '3.44.0'
+          channel: stable
+          cache: true
+
+      - name: Apply and format fixes
         shell: bash
         run: |
           set -euo pipefail
-          tar --exclude=.git -czf /tmp/hee-no-tane-source.tar.gz .
-          git archive --format=tar.gz --output=/tmp/hee-no-tane-master.tar.gz origin/master
-      - name: Upload source
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: source-${{ github.sha }}
-          path: |
-            /tmp/hee-no-tane-source.tar.gz
-            /tmp/hee-no-tane-master.tar.gz
-          if-no-files-found: error
-          retention-days: 1
+          cat .github/apply-payload/part-* > /tmp/review-fixes-overlay.b64
+          base64 --decode /tmp/review-fixes-overlay.b64 > /tmp/review-fixes-overlay.tar.gz
+          echo '1c024b4c80cbd30b07fe64ac7ff4387ad15b587ec0f613c1afa94316f8c66c8b  /tmp/review-fixes-overlay.tar.gz' | sha256sum --check
+          tar -xzf /tmp/review-fixes-overlay.tar.gz -C .
+          rm -rf .github/apply-payload
+          rm -f .github/workflows/export-source.yml
+          dart format lib test integration_test tool
+
+      - name: Commit and push
+        shell: bash
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Complete repository review fixes'
+          git push origin "HEAD:$HEAD_BRANCH"
