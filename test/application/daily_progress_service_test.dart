@@ -93,6 +93,36 @@ void main() {
     },
   );
 
+  test('repository retry does not reuse stale answer metadata', () async {
+    final repository = _RetryingSaveRepository(
+      firstAttempt: SaveData(),
+      secondAttempt: SaveData(
+        dailyAssignmentDate: '2026-07-17',
+        dailyAssignmentQuestionId: 'q_other',
+        dailyAssignmentCardId: 'c_other',
+      ),
+    );
+    final service = DailyProgressService(
+      saveRepository: repository,
+      rewardService: RewardService(),
+    );
+
+    await expectLater(
+      service.submitAnswer(
+        date: '2026-07-17',
+        question: _question(),
+        card: _card(),
+      ),
+      throwsA(
+        isA<SaveException>().having(
+          (error) => error is DailyAnswerSaveException,
+          'is DailyAnswerSaveException',
+          isFalse,
+        ),
+      ),
+    );
+  });
+
   test('removed unanswered assignment can be repaired', () async {
     final repository = SaveRepository(store: _MemoryPreferenceStore());
     final service = DailyProgressService(
@@ -196,6 +226,22 @@ HeeCard _card() => const HeeCard(
   rarity: 'common',
   sourceNote: 'テスト出典',
 );
+
+final class _RetryingSaveRepository extends SaveRepository {
+  final SaveData firstAttempt;
+  final SaveData secondAttempt;
+
+  _RetryingSaveRepository({
+    required this.firstAttempt,
+    required this.secondAttempt,
+  }) : super(store: _MemoryPreferenceStore());
+
+  @override
+  Future<SaveData> update(SaveData Function(SaveData current) updater) async {
+    updater(firstAttempt);
+    return updater(secondAttempt);
+  }
+}
 
 final class _MemoryPreferenceStore implements PreferenceStore {
   final Map<String, String> _values = <String, String>{};
