@@ -102,6 +102,41 @@ void main() {
       expect(card.effectiveSource.isApproved, isTrue);
     });
 
+    test('pending review stubs fall back to legacy source notes', () {
+      final question = Question.fromJson({
+        'id': 'q_001',
+        'category': 'science',
+        'difficulty': 'easy',
+        'question': '空気の中で一番多い成分は？',
+        'choices': ['酸素', '窒素', '二酸化炭素', 'アルゴン'],
+        'answerIndex': 1,
+        'explanation': '空気の約78%は窒素です。',
+        'relatedCardId': 'card_001',
+        'sourceNote': '気象庁',
+        'verified': false,
+        'source': {'reviewStatus': 'pending', 'reviewNote': '出典を再確認する'},
+      });
+      final card = HeeCard.fromJson({
+        'id': 'card_001',
+        'title': '大気の成分',
+        'category': 'science',
+        'shortText': '空気の約78%は窒素。',
+        'detailText': '地球の大気は窒素、酸素などで構成されています。',
+        'imageAsset': '',
+        'rarity': 'normal',
+        'sourceNote': '気象庁',
+        'source': {
+          'reviewStatus': 'correction_required',
+          'reviewNote': '説明文を修正する',
+        },
+      });
+
+      expect(question.sourceMetadata, isNull);
+      expect(card.sourceMetadata, isNull);
+      expect(question.effectiveSource.title, '気象庁');
+      expect(card.effectiveSource.title, '気象庁');
+    });
+
     test('runtime models reject malformed structured source metadata', () {
       expect(
         () => Question.fromJson({
@@ -137,7 +172,7 @@ void main() {
           'sourceNote': '気象庁',
           'source': 'not-an-object',
         }),
-        throwsA(anyOf(isA<TypeError>(), isA<FormatException>())),
+        throwsFormatException,
       );
     });
   });

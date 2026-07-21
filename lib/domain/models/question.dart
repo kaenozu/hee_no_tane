@@ -61,13 +61,6 @@ class Question {
       );
     }
 
-    final sourceValue = json['source'];
-    final source = sourceValue == null
-        ? null
-        : SourceMetadata.fromJson(
-            Map<String, dynamic>.from(sourceValue as Map),
-          );
-
     return Question(
       id: _requiredString(json, 'id'),
       category: _requiredString(json, 'category'),
@@ -79,7 +72,7 @@ class Question {
       relatedCardId: _requiredString(json, 'relatedCardId'),
       sourceNote: _requiredString(json, 'sourceNote'),
       verified: json['verified'] as bool,
-      sourceMetadata: source,
+      sourceMetadata: SourceMetadata.fromOptionalJson(json['source']),
     );
   }
 

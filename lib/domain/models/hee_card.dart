@@ -41,7 +41,6 @@ class HeeCard {
   }
 
   factory HeeCard.fromJson(Map<String, dynamic> json) {
-    final sourceValue = json['source'];
     final imageReviewValue = json['imageReview'];
     return HeeCard(
       id: _requiredString(json, 'id'),
@@ -52,11 +51,7 @@ class HeeCard {
       imageAsset: (json['imageAsset'] as String?)?.trim() ?? '',
       rarity: _requiredString(json, 'rarity'),
       sourceNote: _requiredString(json, 'sourceNote'),
-      sourceMetadata: sourceValue == null
-          ? null
-          : SourceMetadata.fromJson(
-              Map<String, dynamic>.from(sourceValue as Map),
-            ),
+      sourceMetadata: SourceMetadata.fromOptionalJson(json['source']),
       imageReview: imageReviewValue == null
           ? const ImageReviewMetadata.unchecked()
           : ImageReviewMetadata.fromJson(
