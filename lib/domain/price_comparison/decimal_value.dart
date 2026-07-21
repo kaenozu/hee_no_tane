@@ -85,7 +85,9 @@ final class DecimalValue implements Comparable<DecimalValue> {
     int resultScale = 12,
     MoneyRounding rounding = MoneyRounding.halfUp,
   }) {
-    if (other.isZero) throw IntegerDivisionByZeroException();
+    if (other.isZero) {
+      throw ArgumentError.value(other, 'other', 'must not be zero');
+    }
     if (resultScale < 0) {
       throw ArgumentError.value(resultScale, 'resultScale', 'must be >= 0');
     }
@@ -175,7 +177,13 @@ final class DecimalValue implements Comparable<DecimalValue> {
     BigInt denominator,
     MoneyRounding rounding,
   ) {
-    if (denominator == BigInt.zero) throw IntegerDivisionByZeroException();
+    if (denominator == BigInt.zero) {
+      throw ArgumentError.value(
+        denominator,
+        'denominator',
+        'must not be zero',
+      );
+    }
 
     final negative = numerator.isNegative != denominator.isNegative;
     final absoluteNumerator = numerator.abs();
