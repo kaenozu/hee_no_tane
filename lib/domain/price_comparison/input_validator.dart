@@ -56,14 +56,13 @@ class InputValidator {
       if (!required) return 0;
       throw InputValidationException(<String>['$fieldNameを入力してください。']);
     }
-    final number = num.tryParse(normalized);
-    if (number == null || !number.isFinite || number < 0) {
-      throw InputValidationException(<String>['$fieldNameは0以上の数値で入力してください。']);
-    }
-    if (number % 1 != 0) {
+    if (!RegExp(r'^\d+$').hasMatch(normalized)) {
       throw InputValidationException(<String>['$fieldNameは1円単位の整数で入力してください。']);
     }
-    final result = number.toInt();
+    final result = int.tryParse(normalized);
+    if (result == null) {
+      throw InputValidationException(<String>['$fieldNameが大きすぎます。']);
+    }
     if (!allowZero && result == 0) {
       throw InputValidationException(<String>['$fieldNameは1円以上で入力してください。']);
     }
@@ -89,6 +88,9 @@ class InputValidator {
         throw InputValidationException(<String>['$fieldNameを入力してください。']);
       }
       return 0;
+    }
+    if (!RegExp(r'^\d+(?:\.\d{1,6})?$').hasMatch(normalized)) {
+      throw InputValidationException(<String>['$fieldNameは小数6桁以内で入力してください。']);
     }
     final percent = double.tryParse(normalized);
     if (percent == null || !percent.isFinite || percent < 0 || percent > 100) {
@@ -119,8 +121,11 @@ class InputValidator {
   static void validateOffer(Offer offer) {
     final errors = <String>[];
     if (offer.id.trim().isEmpty) errors.add('商品IDが空です。');
+    if (offer.id.length > 64) errors.add('商品IDは64文字以内にしてください。');
     if (offer.productName.trim().isEmpty) errors.add('商品名を入力してください。');
+    if (offer.productName.length > 256) errors.add('商品名は256文字以内にしてください。');
     if (offer.storeName.trim().isEmpty) errors.add('店舗名を入力してください。');
+    if (offer.storeName.length > 256) errors.add('店舗名は256文字以内にしてください。');
     if (offer.price <= 0) errors.add('価格は1円以上で入力してください。');
     if (offer.taxRate < 0 || offer.taxRate > 1) {
       errors.add('税率は0〜100%の範囲で入力してください。');
@@ -130,6 +135,13 @@ class InputValidator {
     }
     if (offer.pointRate < 0 || offer.pointRate > 1) {
       errors.add('ポイント率は0〜100%の範囲で入力してください。');
+    }
+    if (offer.fixedDiscount < 0 ||
+        offer.couponDiscount < 0 ||
+        offer.fixedPoints < 0 ||
+        (offer.earnedPoints != null && offer.earnedPoints! < 0) ||
+        (offer.shippingFee != null && offer.shippingFee! < 0)) {
+      errors.add('値引・ポイント・送料は0以上にしてください。');
     }
     if (offer.quantity != null &&
         (offer.quantity!.value <= 0 || offer.quantity!.packageCount < 1)) {
