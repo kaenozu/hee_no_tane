@@ -1,6 +1,7 @@
 name: Temporary Dart Format
 
 on:
+  pull_request:
   push:
     branches:
       - agent/price-comparison-flutter-20260721
