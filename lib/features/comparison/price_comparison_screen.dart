@@ -22,6 +22,7 @@ class _PriceComparisonScreenState extends State<PriceComparisonScreen> {
   final _formKey = GlobalKey<FormState>();
   late List<ComparisonOfferControllers> _controllers;
   ComparisonResult? _result;
+  int _formGeneration = 0;
   Map<String, PriceOffer> _offers = const <String, PriceOffer>{};
 
   @override
@@ -81,13 +82,17 @@ class _PriceComparisonScreenState extends State<PriceComparisonScreen> {
   }
 
   void _reset() {
-    for (final controller in _controllers) {
-      controller.dispose();
-    }
+    final previousControllers = _controllers;
     setState(() {
       _controllers = _newControllers();
+      _formGeneration++;
       _offers = const <String, PriceOffer>{};
       _result = null;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      for (final controller in previousControllers) {
+        controller.dispose();
+      }
     });
   }
 
@@ -139,7 +144,9 @@ class _PriceComparisonScreenState extends State<PriceComparisonScreen> {
             const SizedBox(height: 16),
             for (var index = 0; index < _controllers.length; index++) ...[
               ComparisonOfferCard(
-                key: ValueKey('comparison-offer-card-$index'),
+                key: ValueKey(
+                  'comparison-offer-card-$_formGeneration-$index',
+                ),
                 index: index,
                 controllers: _controllers[index],
               ),
