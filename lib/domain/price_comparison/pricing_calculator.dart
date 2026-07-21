@@ -10,11 +10,27 @@ library;
 
 import 'models.dart';
 
-int _roundMoney(double value, MoneyRounding rounding) => switch (rounding) {
-  MoneyRounding.halfUp => (value + 0.5).floor(),
-  MoneyRounding.down => value.floor(),
-  MoneyRounding.up => value.ceil(),
-};
+const int _rateScale = 1000000;
+
+int _scaledRate(double rate) => (rate * _rateScale).round();
+
+int _roundRatio(
+  int value,
+  int numerator,
+  int denominator,
+  MoneyRounding rounding,
+) {
+  final dividend = BigInt.from(value) * BigInt.from(numerator);
+  final divisor = BigInt.from(denominator);
+  final quotient = dividend ~/ divisor;
+  final remainder = dividend.remainder(divisor);
+  final increment = switch (rounding) {
+    MoneyRounding.halfUp => remainder * BigInt.two >= divisor,
+    MoneyRounding.down => false,
+    MoneyRounding.up => remainder > BigInt.zero,
+  };
+  return (increment ? quotient + BigInt.one : quotient).toInt();
+}
 
 PriceBreakdown calculatePrice(
   Offer offer, {
@@ -22,25 +38,30 @@ PriceBreakdown calculatePrice(
   CalculationPolicy policy = const CalculationPolicy(),
 }) {
   final warnings = <WarningCode>[];
+  final taxRate = _scaledRate(offer.taxRate);
 
   final int preTaxPrice;
   final int taxAmount;
   final int basePriceInclTax;
-  if (offer.taxRate == 0) {
+  if (taxRate == 0) {
     preTaxPrice = offer.price;
     taxAmount = 0;
     basePriceInclTax = offer.price;
   } else if (offer.taxIncluded) {
-    taxAmount = _roundMoney(
-      offer.price * offer.taxRate / (1 + offer.taxRate),
+    taxAmount = _roundRatio(
+      offer.price,
+      taxRate,
+      _rateScale + taxRate,
       policy.taxRounding,
     );
     preTaxPrice = offer.price - taxAmount;
     basePriceInclTax = offer.price;
   } else {
     preTaxPrice = offer.price;
-    taxAmount = _roundMoney(
-      offer.price * offer.taxRate,
+    taxAmount = _roundRatio(
+      offer.price,
+      taxRate,
+      _rateScale,
       policy.taxRounding,
     );
     basePriceInclTax = offer.price + taxAmount;
@@ -48,9 +69,12 @@ PriceBreakdown calculatePrice(
 
   var current = basePriceInclTax;
   var discountAmount = 0;
-  if (offer.percentageDiscount > 0) {
-    var percentageAmount = _roundMoney(
-      current * offer.percentageDiscount,
+  final percentageRate = _scaledRate(offer.percentageDiscount);
+  if (percentageRate > 0) {
+    var percentageAmount = _roundRatio(
+      current,
+      percentageRate,
+      _rateScale,
       policy.discountRounding,
     );
     if (percentageAmount > current) {
@@ -101,8 +125,17 @@ PriceBreakdown calculatePrice(
   int? earnedPoints;
   if (offer.earnedPoints != null) {
     earnedPoints = offer.earnedPoints;
-  } else if (offer.pointRate > 0 || offer.fixedPoints > 0) {
-    earnedPoints = (payableNow * offer.pointRate).floor() + offer.fixedPoints;
+  } else {
+    final pointRate = _scaledRate(offer.pointRate);
+    if (pointRate > 0 || offer.fixedPoints > 0) {
+      earnedPoints = _roundRatio(
+            payableNow,
+            pointRate,
+            _rateScale,
+            MoneyRounding.down,
+          ) +
+          offer.fixedPoints;
+    }
   }
 
   int? pointValue;
@@ -110,8 +143,10 @@ PriceBreakdown calculatePrice(
   if (earnedPoints == null) {
     warnings.add(WarningCode.pointsMissing);
   } else {
-    pointValue = _roundMoney(
-      earnedPoints * policy.pointValueRate,
+    pointValue = _roundRatio(
+      earnedPoints,
+      _scaledRate(policy.pointValueRate),
+      _rateScale,
       policy.discountRounding,
     );
     effectiveCost = payableNow - pointValue;
