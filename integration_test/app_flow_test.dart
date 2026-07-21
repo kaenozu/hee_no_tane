@@ -85,12 +85,7 @@ void main() {
 
     expect(find.text('今日の1問を始める'), findsOneWidget);
 
-    final answeredQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final answeredQuestion = await _answerToday(tester, questions: questions);
 
     expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
@@ -133,12 +128,7 @@ void main() {
       findsNothing,
     );
 
-    final firstQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final firstQuestion = await _answerToday(tester, questions: questions);
 
     final firstDaySave = await repository.loadOrThrow();
 
@@ -163,12 +153,7 @@ void main() {
     );
     expect(find.text('今日の1問を始める'), findsOneWidget);
 
-    final secondQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final secondQuestion = await _answerToday(tester, questions: questions);
 
     expect(secondQuestion.id, isNot(firstQuestion.id));
 
@@ -211,12 +196,7 @@ void main() {
       cards: cards,
     );
 
-    await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    await _answerToday(tester, questions: questions);
 
     await tester.tap(find.text('ホームへ戻る'));
     await tester.pumpAndSettle();
@@ -253,9 +233,7 @@ void main() {
 
     final recoveredQuestion = await _answerToday(
       tester,
-      dailyQuestionService: dailyQuestionService,
       questions: questions,
-      cards: cards,
     );
 
     expect(find.text('新しい知識カードを発見'), findsOneWidget);
@@ -339,23 +317,17 @@ Future<void> _completeOnboarding(WidgetTester tester) async {
 
 Future<Question> _answerToday(
   WidgetTester tester, {
-  required DailyQuestionService dailyQuestionService,
   required List<Question> questions,
-  required List<HeeCard> cards,
 }) async {
-  final generated = dailyQuestionService.generateTodayQuestions(
-    questions,
-    allCards: cards,
-    count: 1,
-  );
-
-  expect(generated, hasLength(1));
-
-  final question = generated.single;
-
   await tester.tap(find.text('今日の1問を始める'));
   await tester.pumpAndSettle();
 
+  final displayedQuestions = questions
+      .where((question) => find.text(question.question).evaluate().isNotEmpty)
+      .toList(growable: false);
+  expect(displayedQuestions, hasLength(1));
+
+  final question = displayedQuestions.single;
   final answerChoice = find.byKey(
     ValueKey<String>('answer-choice-${question.answerIndex}'),
   );
