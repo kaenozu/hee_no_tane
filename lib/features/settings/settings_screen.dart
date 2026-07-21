@@ -124,7 +124,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
               Navigator.of(context).push<void>(
-                MaterialPageRoute(builder: (_) => const PriceComparisonScreen()),
+                MaterialPageRoute(
+                  builder: (_) => const PriceComparisonScreen(),
+                ),
               );
             },
           ),

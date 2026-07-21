@@ -83,7 +83,10 @@ class _PriceComparisonScreenState extends State<PriceComparisonScreen> {
             ),
             if (_error != null) ...[
               const SizedBox(height: 12),
-              Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+              Text(
+                _error!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
             ],
             if (_result != null) ...[
               const SizedBox(height: 20),
@@ -127,7 +130,11 @@ class _OfferCardState extends State<_OfferCard> {
               decoration: const InputDecoration(labelText: '店舗名（任意）'),
             ),
             const SizedBox(height: 8),
-            _NumberField(controller: data.price, label: '表示価格（円）', required: true),
+            _NumberField(
+              controller: data.price,
+              label: '表示価格（円）',
+              required: true,
+            ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: const Text('税込価格'),
@@ -137,36 +144,70 @@ class _OfferCardState extends State<_OfferCard> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _NumberField(controller: data.quantity, label: '内容量')),
+                Expanded(
+                  child: _NumberField(controller: data.quantity, label: '内容量'),
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: DropdownButtonFormField<PriceUnit>(
                     initialValue: data.unit,
                     decoration: const InputDecoration(labelText: '単位'),
                     items: PriceUnit.values
-                        .map((unit) => DropdownMenuItem(value: unit, child: Text(unit.symbol)))
+                        .map(
+                          (unit) => DropdownMenuItem(
+                            value: unit,
+                            child: Text(unit.symbol),
+                          ),
+                        )
                         .toList(),
-                    onChanged: (value) => setState(() => data.unit = value ?? data.unit),
+                    onChanged: (value) =>
+                        setState(() => data.unit = value ?? data.unit),
                   ),
                 ),
                 const SizedBox(width: 8),
-                Expanded(child: _NumberField(controller: data.packageCount, label: '個数', integer: true)),
+                Expanded(
+                  child: _NumberField(
+                    controller: data.packageCount,
+                    label: '個数',
+                    integer: true,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
             Row(
               children: [
-                Expanded(child: _NumberField(controller: data.percentDiscount, label: '割引率（%）')),
+                Expanded(
+                  child: _NumberField(
+                    controller: data.percentDiscount,
+                    label: '割引率（%）',
+                  ),
+                ),
                 const SizedBox(width: 8),
-                Expanded(child: _NumberField(controller: data.fixedDiscount, label: '値引き（円）')),
+                Expanded(
+                  child: _NumberField(
+                    controller: data.fixedDiscount,
+                    label: '値引き（円）',
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
             Row(
               children: [
-                Expanded(child: _NumberField(controller: data.coupon, label: 'クーポン（円）')),
+                Expanded(
+                  child: _NumberField(
+                    controller: data.coupon,
+                    label: 'クーポン（円）',
+                  ),
+                ),
                 const SizedBox(width: 8),
-                Expanded(child: _NumberField(controller: data.pointRate, label: 'ポイント率（%）')),
+                Expanded(
+                  child: _NumberField(
+                    controller: data.pointRate,
+                    label: 'ポイント率（%）',
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -196,13 +237,18 @@ class _NumberField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(integer ? r'[0-9]' : r'[0-9.]'))],
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(
+          RegExp(integer ? r'[0-9]' : r'[0-9.]'),
+        ),
+      ],
       decoration: InputDecoration(labelText: label),
       validator: (value) {
         final text = value?.trim() ?? '';
         if (text.isEmpty) return required ? '$labelを入力してください' : null;
         final number = double.tryParse(text);
-        if (number == null || !number.isFinite || number < 0) return '0以上の数値を入力してください';
+        if (number == null || !number.isFinite || number < 0)
+          return '0以上の数値を入力してください';
         return null;
       },
     );
@@ -214,7 +260,11 @@ class _ResultCard extends StatelessWidget {
   final _OfferFormData left;
   final _OfferFormData right;
 
-  const _ResultCard({required this.result, required this.left, required this.right});
+  const _ResultCard({
+    required this.result,
+    required this.left,
+    required this.right,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -223,8 +273,8 @@ class _ResultCard extends StatelessWidget {
     final title = !result.canCompare
         ? '比較できませんでした'
         : tie
-            ? '同じ価格です'
-            : '${best == 'left' ? left.displayName : right.displayName}がお得です';
+        ? '同じ価格です'
+        : '${best == 'left' ? left.displayName : right.displayName}がお得です';
     return Card(
       key: const ValueKey('price-comparison-result'),
       child: Padding(
@@ -235,14 +285,19 @@ class _ResultCard extends StatelessWidget {
             Text(title, style: Theme.of(context).textTheme.titleLarge),
             if (result.difference != null && result.difference! > 0) ...[
               const SizedBox(height: 4),
-              Text('${_formatMoney(result.difference!)}円安い（約${result.percentageDifference?.toStringAsFixed(2)}%差）'),
+              Text(
+                '${_formatMoney(result.difference!)}円安い（約${result.percentageDifference?.toStringAsFixed(2)}%差）',
+              ),
             ],
             const Divider(height: 24),
             _breakdownRow(left.displayName, result.breakdowns['left']!),
             const SizedBox(height: 12),
             _breakdownRow(right.displayName, result.breakdowns['right']!),
             const SizedBox(height: 12),
-            Text('比較基準: ${_basisLabel(result.basis)}', style: Theme.of(context).textTheme.bodySmall),
+            Text(
+              '比較基準: ${_basisLabel(result.basis)}',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ],
         ),
       ),
@@ -256,8 +311,10 @@ class _ResultCard extends StatelessWidget {
       children: [
         Text(name, style: const TextStyle(fontWeight: FontWeight.w700)),
         Text('支払額: ${_formatMoney(breakdown.payableNow)}円'),
-        if (breakdown.effectiveCost != null) Text('実質価格: ${_formatMoney(breakdown.effectiveCost!)}円'),
-        if (unit != null) Text('単価: ${unit.toStringAsFixed(3)}円/${breakdown.quantityUnit}'),
+        if (breakdown.effectiveCost != null)
+          Text('実質価格: ${_formatMoney(breakdown.effectiveCost!)}円'),
+        if (unit != null)
+          Text('単価: ${unit.toStringAsFixed(3)}円/${breakdown.quantityUnit}'),
       ],
     );
   }
@@ -269,7 +326,8 @@ class _ResultCard extends StatelessWidget {
     ComparisonBasis.cashTotal => '支払総額',
   };
 
-  static String _formatMoney(double value) => NumberFormat('#,##0').format(value);
+  static String _formatMoney(double value) =>
+      NumberFormat('#,##0').format(value);
 }
 
 class _OfferFormData {
@@ -295,7 +353,9 @@ class _OfferFormData {
       double.tryParse(controller.text.trim()) ?? 0;
 
   PriceOffer toOffer(String id) {
-    final quantityValue = quantity.text.trim().isEmpty ? null : optional(quantity);
+    final quantityValue = quantity.text.trim().isEmpty
+        ? null
+        : optional(quantity);
     return PriceOffer(
       id: id,
       productName: displayName,
@@ -317,7 +377,18 @@ class _OfferFormData {
   }
 
   void dispose() {
-    for (final controller in [name, store, price, quantity, packageCount, percentDiscount, fixedDiscount, coupon, pointRate, shipping]) {
+    for (final controller in [
+      name,
+      store,
+      price,
+      quantity,
+      packageCount,
+      percentDiscount,
+      fixedDiscount,
+      coupon,
+      pointRate,
+      shipping,
+    ]) {
       controller.dispose();
     }
   }

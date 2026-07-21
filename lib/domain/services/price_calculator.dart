@@ -27,7 +27,8 @@ class PriceCalculator {
     );
     warnings.addAll(discounts.warnings);
 
-    final shippingFee = context.shippingAllocation == ShippingAllocation.excluded
+    final shippingFee =
+        context.shippingAllocation == ShippingAllocation.excluded
         ? null
         : context.shippingFee;
     if (shippingFee != null &&
@@ -36,7 +37,8 @@ class PriceCalculator {
     }
 
     final payableNow = discounts.afterDiscount + (shippingFee ?? 0);
-    final earnedPoints = offer.earnedPoints ??
+    final earnedPoints =
+        offer.earnedPoints ??
         ((offer.pointRate > 0 || offer.fixedPoints > 0)
             ? _roundDown(payableNow * offer.pointRate) + offer.fixedPoints
             : null);
@@ -206,7 +208,8 @@ class PriceCalculator {
     }
 
     var couponActual = 0.0;
-    final couponEligible = offer.couponMinimumSubtotal == null ||
+    final couponEligible =
+        offer.couponMinimumSubtotal == null ||
         basePrice >= offer.couponMinimumSubtotal!;
     if (offer.couponDiscount > 0 && couponEligible) {
       couponActual = math.min(offer.couponDiscount, current);
@@ -226,7 +229,8 @@ class PriceCalculator {
 
   ComparisonBasis? _bestBasis(Iterable<PriceBreakdown> breakdowns) {
     for (final basis in ComparisonBasis.values) {
-      if (breakdowns.where((item) => _valueFor(item, basis) != null).length >= 2) {
+      if (breakdowns.where((item) => _valueFor(item, basis) != null).length >=
+          2) {
         return basis;
       }
     }
@@ -271,15 +275,15 @@ class PriceCalculator {
   }
 
   double _round(double value, MoneyRounding rounding) => switch (rounding) {
-    MoneyRounding.halfUp => value >= 0
-        ? (value + 0.5).floorToDouble()
-        : (value - 0.5).ceilToDouble(),
+    MoneyRounding.halfUp =>
+      value >= 0 ? (value + 0.5).floorToDouble() : (value - 0.5).ceilToDouble(),
     MoneyRounding.down => value.truncateToDouble(),
-    MoneyRounding.up => value == value.truncateToDouble()
-        ? value
-        : value > 0
-            ? value.ceilToDouble()
-            : value.floorToDouble(),
+    MoneyRounding.up =>
+      value == value.truncateToDouble()
+          ? value
+          : value > 0
+          ? value.ceilToDouble()
+          : value.floorToDouble(),
   };
 
   double _roundDown(double value) => value.floorToDouble();

@@ -114,10 +114,7 @@ void main() {
         'relatedCardId': 'card_001',
         'sourceNote': '気象庁',
         'verified': false,
-        'source': {
-          'reviewStatus': 'pending',
-          'reviewNote': '出典を再確認する',
-        },
+        'source': {'reviewStatus': 'pending', 'reviewNote': '出典を再確認する'},
       });
       final card = HeeCard.fromJson({
         'id': 'card_001',
