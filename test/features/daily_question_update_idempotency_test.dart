@@ -34,6 +34,7 @@ void main() {
   testWidgets(
     'U6. retry after committed-but-reported-failed save is idempotent',
     (tester) async {
+      const today = '2026-07-21';
       final repository = CommitThenThrowRepository();
       final card = HeeCard(
         id: 'card_retry',
@@ -62,9 +63,11 @@ void main() {
         MaterialApp(
           home: DailyQuestionScreen(
             question: question,
+            questionDate: today,
             relatedCard: card,
             saveRepository: repository,
             rewardService: RewardService(),
+            dateProvider: () => DateTime(2026, 7, 21),
           ),
         ),
       );
@@ -75,7 +78,9 @@ void main() {
       expect(repository.data.totalPlayCount, 1);
       expect(repository.data.ownedCardIds, [card.id]);
 
-      await tester.tap(find.text('再試行'));
+      final retryButton = find.text('再試行');
+      await tester.ensureVisible(retryButton);
+      await tester.tap(retryButton);
       await tester.pumpAndSettle();
 
       expect(find.text('保存エラー'), findsNothing);
@@ -85,7 +90,7 @@ void main() {
         repository.data.ownedCardIds.where((id) => id == card.id),
         hasLength(1),
       );
-      expect(repository.data.lastDailyQuestionDate, isNotEmpty);
+      expect(repository.data.lastDailyQuestionDate, today);
       expect(repository.data.lastDailyQuestionId, question.id);
       expect(repository.data.lastDailyCardId, card.id);
       expect(repository.saveCallCount, 2);
