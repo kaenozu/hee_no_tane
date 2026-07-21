@@ -97,7 +97,7 @@ final class ComparisonOfferControllers {
 
   static DecimalValue _percentAsRate(String text) {
     final percent = _decimalOrZero(text);
-    return percent.divide(DecimalValue.hundred, resultScale: 8);
+    return percent.divide(DecimalValue.hundred, resultScale: percent.scale + 2);
   }
 }
 
