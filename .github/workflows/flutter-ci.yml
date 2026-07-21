@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  format-branch:
+  regenerate-content:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -23,18 +23,21 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Format Dart sources
-        run: dart format lib test integration_test tool
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Commit formatting
+      - name: Regenerate content bundle
+        run: dart run tool/generate_content_bundle.dart
+
+      - name: Commit generated content
         shell: bash
         run: |
           if git diff --quiet; then
-            echo "No formatting changes required."
+            echo "Generated content is already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add --all
-          git commit -m "style: apply Dart formatting"
+          git add assets/data/content_bundle.json assets/data/content_manifest.json
+          git commit -m "chore: regenerate approved content bundle"
           git push origin HEAD:${{ github.head_ref }}
