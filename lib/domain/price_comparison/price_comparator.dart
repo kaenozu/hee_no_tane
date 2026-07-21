@@ -85,10 +85,8 @@ ComparisonResult rankOffers(Map<String, PriceBreakdown> breakdowns) {
   );
 }
 
-ComparisonResult compareOffers(
-  PriceBreakdown first,
-  PriceBreakdown second,
-) => rankOffers(<String, PriceBreakdown>{'left': first, 'right': second});
+ComparisonResult compareOffers(PriceBreakdown first, PriceBreakdown second) =>
+    rankOffers(<String, PriceBreakdown>{'left': first, 'right': second});
 
 ComparisonBasis? _findBestBasis(List<PriceBreakdown> breakdowns) {
   for (final candidate in ComparisonBasis.values) {
@@ -100,12 +98,10 @@ ComparisonBasis? _findBestBasis(List<PriceBreakdown> breakdowns) {
   return null;
 }
 
-DecimalValue? _getValue(
-  PriceBreakdown breakdown,
-  ComparisonBasis basis,
-) => switch (basis) {
-  ComparisonBasis.effectiveUnitCost => breakdown.effectiveUnitCost,
-  ComparisonBasis.cashUnitCost => breakdown.cashUnitCost,
-  ComparisonBasis.effectiveTotal => breakdown.effectiveCost,
-  ComparisonBasis.cashTotal => breakdown.payableNow,
-};
+DecimalValue? _getValue(PriceBreakdown breakdown, ComparisonBasis basis) =>
+    switch (basis) {
+      ComparisonBasis.effectiveUnitCost => breakdown.effectiveUnitCost,
+      ComparisonBasis.cashUnitCost => breakdown.cashUnitCost,
+      ComparisonBasis.effectiveTotal => breakdown.effectiveCost,
+      ComparisonBasis.cashTotal => breakdown.payableNow,
+    };

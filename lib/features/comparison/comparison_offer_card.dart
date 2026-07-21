@@ -160,7 +160,9 @@ class _ComparisonOfferCardState extends State<ComparisonOfferCard> {
               key: ValueKey('comparison-price-${widget.index}'),
               controller: widget.controllers.price,
               decoration: _decoration('表示価格', suffixText: '円'),
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               textInputAction: TextInputAction.next,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) => _requiredNonNegative(value, '価格'),
@@ -168,7 +170,9 @@ class _ComparisonOfferCardState extends State<ComparisonOfferCard> {
             SwitchListTile.adaptive(
               contentPadding: EdgeInsets.zero,
               title: const Text('税込価格'),
-              subtitle: Text(widget.controllers.taxIncluded ? '税込として計算' : '税抜として計算'),
+              subtitle: Text(
+                widget.controllers.taxIncluded ? '税込として計算' : '税抜として計算',
+              ),
               value: widget.controllers.taxIncluded,
               onChanged: (value) {
                 setState(() => widget.controllers.taxIncluded = value);

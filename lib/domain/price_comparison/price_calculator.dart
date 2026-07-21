@@ -150,22 +150,11 @@ _calculateTax({
       resultScale: 0,
       rounding: policy.taxRounding,
     );
-    return (
-      preTaxPrice: gross - tax,
-      taxAmount: tax,
-      basePriceInclTax: gross,
-    );
+    return (preTaxPrice: gross - tax, taxAmount: tax, basePriceInclTax: gross);
   }
 
-  final tax = (price * taxRate).quantize(
-    0,
-    rounding: policy.taxRounding,
-  );
-  return (
-    preTaxPrice: price,
-    taxAmount: tax,
-    basePriceInclTax: price + tax,
-  );
+  final tax = (price * taxRate).quantize(0, rounding: policy.taxRounding);
+  return (preTaxPrice: price, taxAmount: tax, basePriceInclTax: price + tax);
 }
 
 ({

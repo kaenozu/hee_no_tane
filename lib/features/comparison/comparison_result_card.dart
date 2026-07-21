@@ -38,9 +38,9 @@ class ComparisonResultCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Text(
                   '比較結果',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ],
             ),
@@ -197,9 +197,9 @@ class ComparisonResultCard extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             _formatValue(value, result.basis),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
         ],
       ),
@@ -216,10 +216,11 @@ class ComparisonResultCard extends StatelessWidget {
     return '支払 ¥${payable.toFixed(0)}';
   }
 
-  String _formatValue(DecimalValue value, ComparisonBasis basis) => switch (basis) {
-    ComparisonBasis.cashTotal || ComparisonBasis.effectiveTotal =>
-      '¥${value.toFixed(0)}',
-    ComparisonBasis.cashUnitCost || ComparisonBasis.effectiveUnitCost =>
-      '¥${value.toFixed(3)}/単位',
-  };
+  String _formatValue(DecimalValue value, ComparisonBasis basis) =>
+      switch (basis) {
+        ComparisonBasis.cashTotal ||
+        ComparisonBasis.effectiveTotal => '¥${value.toFixed(0)}',
+        ComparisonBasis.cashUnitCost ||
+        ComparisonBasis.effectiveUnitCost => '¥${value.toFixed(3)}/単位',
+      };
 }

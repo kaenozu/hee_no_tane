@@ -7,9 +7,7 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(800, 2400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    await tester.pumpWidget(
-      const MaterialApp(home: PriceComparisonScreen()),
-    );
+    await tester.pumpWidget(const MaterialApp(home: PriceComparisonScreen()));
 
     await tester.enterText(
       find.byKey(const ValueKey('comparison-price-0')),

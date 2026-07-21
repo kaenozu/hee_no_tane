@@ -133,20 +133,14 @@ class _PriceComparisonScreenState extends State<PriceComparisonScreen> {
                 children: [
                   Icon(Icons.compare_arrows),
                   SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      '価格だけでなく、税・値引き・送料・ポイント・容量をまとめて比較します。',
-                    ),
-                  ),
+                  Expanded(child: Text('価格だけでなく、税・値引き・送料・ポイント・容量をまとめて比較します。')),
                 ],
               ),
             ),
             const SizedBox(height: 16),
             for (var index = 0; index < _controllers.length; index++) ...[
               ComparisonOfferCard(
-                key: ValueKey(
-                  'comparison-offer-card-$_formGeneration-$index',
-                ),
+                key: ValueKey('comparison-offer-card-$_formGeneration-$index'),
                 index: index,
                 controllers: _controllers[index],
               ),

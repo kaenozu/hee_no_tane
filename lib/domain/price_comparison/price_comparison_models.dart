@@ -61,8 +61,9 @@ extension PriceUnitProperties on PriceUnit {
   };
 
   DecimalValue get factor => switch (this) {
-    PriceUnit.milliliter || PriceUnit.gram || PriceUnit.piece =>
-      DecimalValue.one,
+    PriceUnit.milliliter ||
+    PriceUnit.gram ||
+    PriceUnit.piece => DecimalValue.one,
     PriceUnit.liter || PriceUnit.kilogram => DecimalValue.fromInt(1000),
   };
 

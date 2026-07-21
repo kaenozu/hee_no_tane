@@ -38,9 +38,7 @@ void main() {
   );
 
   test('税抜398円に10%の税を四捨五入して加算する', () {
-    final result = calculatePrice(
-      offer(price: '398', taxIncluded: false),
-    );
+    final result = calculatePrice(offer(price: '398', taxIncluded: false));
 
     expect(result.preTaxPrice, DecimalValue.parse('398'));
     expect(result.taxAmount, DecimalValue.parse('40'));
@@ -62,11 +60,7 @@ void main() {
 
   test('クーポン最低利用額を満たさない場合は適用しない', () {
     final result = calculatePrice(
-      offer(
-        price: '500',
-        couponDiscount: '50',
-        couponMinimumSubtotal: '1000',
-      ),
+      offer(price: '500', couponDiscount: '50', couponMinimumSubtotal: '1000'),
     );
 
     expect(result.couponDiscount, DecimalValue.zero);
