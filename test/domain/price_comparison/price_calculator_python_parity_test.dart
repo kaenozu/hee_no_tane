@@ -126,6 +126,7 @@ void main() {
 
     final result = calculator.compare({'volume': volume, 'mass': mass});
 
+    expect(result.canCompare, isTrue);
     expect(result.basis, ComparisonBasis.effectiveTotal);
     expect(result.bestId, 'mass');
     expect(result.warnings, contains(PriceWarning.dimensionMismatch));
