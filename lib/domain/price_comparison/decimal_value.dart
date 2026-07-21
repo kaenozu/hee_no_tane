@@ -136,8 +136,7 @@ final class DecimalValue implements Comparable<DecimalValue> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DecimalValue && compareTo(other) == 0;
+      identical(this, other) || other is DecimalValue && compareTo(other) == 0;
 
   @override
   int get hashCode {
@@ -161,11 +160,7 @@ final class DecimalValue implements Comparable<DecimalValue> {
     DecimalRounding rounding,
   ) {
     if (denominator == BigInt.zero) {
-      throw ArgumentError.value(
-        denominator,
-        'denominator',
-        'must not be zero',
-      );
+      throw ArgumentError.value(denominator, 'denominator', 'must not be zero');
     }
 
     final negative = numerator.isNegative != denominator.isNegative;

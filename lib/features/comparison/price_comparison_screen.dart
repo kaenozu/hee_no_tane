@@ -163,10 +163,7 @@ class _OfferCardState extends State<_OfferCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: _NumberField(
-                    controller: data.quantity,
-                    label: '内容量',
-                  ),
+                  child: _NumberField(controller: data.quantity, label: '内容量'),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

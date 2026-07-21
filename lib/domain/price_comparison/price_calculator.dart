@@ -40,8 +40,8 @@ class PriceCalculator {
       warnings.add(PriceWarning.shippingFullOrder);
     }
 
-    final payableNow = discounts.afterDiscount +
-        (shippingFee ?? DecimalValue.zero);
+    final payableNow =
+        discounts.afterDiscount + (shippingFee ?? DecimalValue.zero);
     final earnedPoints = _calculatePoints(offer, payableNow);
 
     DecimalValue? pointValue;
@@ -69,7 +69,8 @@ class PriceCalculator {
       if (quantityValue.isZero) {
         warnings.add(PriceWarning.quantityZero);
       } else {
-        normalizedQuantity = quantityValue *
+        normalizedQuantity =
+            quantityValue *
             DecimalValue.fromInt(_unitFactor(quantity.unit)) *
             DecimalValue.fromInt(quantity.packageCount);
         quantityUnit = quantity.unit.normalizedSymbol;

@@ -40,9 +40,7 @@ void main() {
   );
 
   test('税抜398円に10%の税を四捨五入して加算する', () {
-    final result = calculator.calculate(
-      offer(price: 398, taxIncluded: false),
-    );
+    final result = calculator.calculate(offer(price: 398, taxIncluded: false));
 
     expect(result.preTaxPrice, 398);
     expect(result.taxAmount, 40);
@@ -67,11 +65,7 @@ void main() {
 
   test('割合値引き、固定値引き、クーポンを順番に適用する', () {
     final result = calculator.calculate(
-      offer(
-        percentageDiscount: 0.1,
-        fixedDiscount: 50,
-        couponDiscount: 30,
-      ),
+      offer(percentageDiscount: 0.1, fixedDiscount: 50, couponDiscount: 30),
     );
 
     expect(result.discountAmount, 180);
@@ -80,11 +74,7 @@ void main() {
 
   test('クーポン最低利用額を満たさない場合は適用しない', () {
     final result = calculator.calculate(
-      offer(
-        price: 500,
-        couponDiscount: 50,
-        couponMinimumSubtotal: 1000,
-      ),
+      offer(price: 500, couponDiscount: 50, couponMinimumSubtotal: 1000),
     );
 
     expect(result.couponDiscount, 0);
@@ -96,10 +86,7 @@ void main() {
       offer(
         price: 330,
         pointRate: 0.05,
-        quantity: const PriceQuantity(
-          value: 1000,
-          unit: PriceUnit.milliliter,
-        ),
+        quantity: const PriceQuantity(value: 1000, unit: PriceUnit.milliliter),
       ),
       context: const PurchaseContext(shippingFee: 80),
     );
@@ -112,9 +99,7 @@ void main() {
   });
 
   test('値引きが価格を超えた場合もPython版と同じ内訳を返す', () {
-    final result = calculator.calculate(
-      offer(price: 100, fixedDiscount: 200),
-    );
+    final result = calculator.calculate(offer(price: 100, fixedDiscount: 200));
 
     expect(result.discountAmount, 200);
     expect(result.payableNow, 0);
