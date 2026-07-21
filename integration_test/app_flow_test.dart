@@ -163,14 +163,8 @@ void main() {
     expect(secondDaySave.lastPlayedDate, '2026-07-17');
     expect(secondDaySave.lastDailyQuestionDate, '2026-07-17');
     expect(secondDaySave.lastDailyQuestionId, secondQuestion.id);
-    expect(
-      secondDaySave.ownedCardIds,
-      contains(firstQuestion.relatedCardId),
-    );
-    expect(
-      secondDaySave.ownedCardIds,
-      contains(secondQuestion.relatedCardId),
-    );
+    expect(secondDaySave.ownedCardIds, contains(firstQuestion.relatedCardId));
+    expect(secondDaySave.ownedCardIds, contains(secondQuestion.relatedCardId));
   });
 
   testWidgets('リセットと復旧: 全データ削除後に再度開始して回答できる', (tester) async {
