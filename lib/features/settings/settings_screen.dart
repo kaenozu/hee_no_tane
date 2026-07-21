@@ -1,11 +1,12 @@
 /// lib/features/settings/settings_screen.dart
 ///
-/// 設定画面。データリセット・アプリ情報を表示。
+/// 設定画面。価格比較・データリセット・アプリ情報を表示。
 library;
 
 import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/core/app_version_info.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
+import 'package:hee_no_tane_app/features/comparison/price_comparison_screen.dart';
 import 'package:hee_no_tane_app/features/settings/legal_information_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -115,6 +116,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          ListTile(
+            key: const ValueKey('settings-price-comparison'),
+            leading: Icon(Icons.compare_arrows, color: cs.primary),
+            title: const Text('価格比較'),
+            subtitle: const Text('税・値引き・送料・ポイント・容量を含めて比較'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (_) => const PriceComparisonScreen(),
+                ),
+              );
+            },
+          ),
+          const Divider(),
           ListTile(
             key: const ValueKey('settings-reset-data'),
             leading: _resetting
