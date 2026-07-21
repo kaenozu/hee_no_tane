@@ -95,10 +95,7 @@ void main() {
       final content = _releaseJson();
       final question = Map<String, dynamic>.from(content.questions.single)
         ..['verified'] = false
-        ..['source'] = {
-          'reviewStatus': 'pending',
-          'reviewNote': '出典を再確認する',
-        };
+        ..['source'] = {'reviewStatus': 'pending', 'reviewNote': '出典を再確認する'};
       final card = Map<String, dynamic>.from(content.cards.single)
         ..['source'] = {
           'reviewStatus': 'correction_required',
