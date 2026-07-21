@@ -453,7 +453,7 @@ class ContentValidator {
       return null;
     }
     try {
-      return SourceMetadata.fromJson(Map<String, dynamic>.from(value));
+      return SourceMetadata.fromOptionalJson(value);
     } on FormatException catch (error) {
       issues.add(ContentValidationIssue(path, error.message));
       return null;
