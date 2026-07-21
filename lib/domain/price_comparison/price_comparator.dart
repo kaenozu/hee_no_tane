@@ -62,13 +62,13 @@ ComparisonResult rankOffers(Map<String, PriceBreakdown> breakdowns) {
   final bestValue = values[rankedIds[0]]!;
   final secondValue = values[rankedIds[1]]!;
   final difference = secondValue - bestValue;
-  final average = (bestValue + secondValue).divide(
-    DecimalValue.fromInt(2),
-    resultScale: 12,
-  );
-  final percentageDifference = average.isPositive
-      ? (difference.divide(average, resultScale: 12) * DecimalValue.hundred)
-            .quantize(2, rounding: MoneyRounding.halfUp)
+  final valueSum = bestValue + secondValue;
+  final percentageDifference = valueSum.isPositive
+      ? (difference * DecimalValue.fromInt(200)).divide(
+          valueSum,
+          resultScale: 2,
+          rounding: MoneyRounding.halfUp,
+        )
       : null;
 
   return ComparisonResult(
