@@ -79,6 +79,12 @@ class ComparisonRepository {
   }
 
   Future<SavedComparison> save(List<Offer> offers) {
+    if (offers.length < 2 || offers.length > 5) {
+      throw const ComparisonSaveException('比較する商品は2〜5件にしてください。');
+    }
+    if (offers.map((offer) => offer.id).toSet().length != offers.length) {
+      throw const ComparisonSaveException('商品IDが重複しています。');
+    }
     return _enqueue<SavedComparison>(() async {
       try {
         final current = await loadAll();
