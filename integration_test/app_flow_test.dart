@@ -165,10 +165,11 @@ void main() {
     expect(secondDaySave.lastDailyQuestionId, secondQuestion.id);
     expect(
       secondDaySave.ownedCardIds,
-      containsAll(<String>[
-        firstQuestion.relatedCardId,
-        secondQuestion.relatedCardId,
-      ]),
+      contains(firstQuestion.relatedCardId),
+    );
+    expect(
+      secondDaySave.ownedCardIds,
+      contains(secondQuestion.relatedCardId),
     );
   });
 
