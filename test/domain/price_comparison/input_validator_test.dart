@@ -37,4 +37,11 @@ void main() {
       closeTo(0.125, 0.000001),
     );
   });
+
+  test('指数表記は金額として拒否する', () {
+    expect(
+      () => InputValidator.parseMoney('1e3', fieldName: '価格'),
+      throwsA(isA<InputValidationException>()),
+    );
+  });
 }
