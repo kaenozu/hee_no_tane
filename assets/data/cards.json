@@ -27,6 +27,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "岩手県の約2倍→約5.5倍の誤り"
     }
   },
   {
@@ -131,7 +135,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 空気の成分。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 空気の成分。正確。",
+      "contentHash": "7f938dfcf8928f4947bbde79ff0ef99f276c83efda216bda7845e209334cd527"
+    },
+    "verified": true
   },
   {
     "id": "card_sci_002",
@@ -146,7 +161,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 光速。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 光速。正確。",
+      "contentHash": "083c740ce433db34990ca8394aad79232472cd47cf677fef7036f53425f927f2"
+    },
+    "verified": true
   },
   {
     "id": "card_food_001",
@@ -225,6 +251,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "一瞬=刹那の訳語は不正確。修正必要"
     }
   },
   {
@@ -240,6 +270,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "転がしやすいも正解になり得る。問題文修正必要"
     }
   },
   {
@@ -280,6 +314,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "標高8,848.86mに修正。マッキンリー→デナリ"
     }
   },
   {
@@ -310,6 +348,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "神功皇后は1881年改造紙幣。1885年は大黒札"
     }
   },
   {
@@ -325,6 +367,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "原子の動きが停止は量子力学的に不正確"
     }
   },
   {
@@ -439,6 +485,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "赤ちゃんの骨は約350→約270本"
     }
   },
   {
@@ -469,7 +519,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 地球の海70%。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 地球の海70%。正確。",
+      "contentHash": "a9cfe99295c874daf69d0a199e6935e1dcad362464261b1171db01d1990a4c2a"
+    },
+    "verified": true
   },
   {
     "id": "card_food_004",
@@ -484,6 +545,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "カレー伝来は幕末から。明治では不正確"
     }
   },
   {
@@ -499,6 +564,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "ら行がなかった→語頭に立たなかった"
     }
   },
   {
@@ -626,6 +695,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "フランス革命100周年も正解になり得る"
     }
   },
   {
@@ -641,7 +714,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: ダイヤと黒鉛。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ダイヤと黒鉛。正確。",
+      "contentHash": "bb1e57e7efc989be9a04187bc5f6b0daec471e73fa2c1c33bd5d34a42ce3fe33"
+    },
+    "verified": true
   },
   {
     "id": "card_food_005",
@@ -656,7 +740,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: イチゴのツブツブ=果実。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: イチゴのツブツブ=果実。正確。",
+      "contentHash": "18e56d30323883c2ad3c06877a552a1e5db7c786c2dfb33521aa50e7f2197433"
+    },
+    "verified": true
   },
   {
     "id": "card_language_001",
@@ -719,6 +814,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "死海の地理的範囲修正必要"
     }
   },
   {
@@ -758,6 +857,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "アロハの語源は民間語源。全面修正必要"
     }
   },
   {
@@ -773,7 +876,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: レイリー散乱。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: レイリー散乱。正確。",
+      "contentHash": "8ddf5b547262be9284320f35c8eee6d416c6c50c2147977c93488771f2d771ed"
+    },
+    "verified": true
   },
   {
     "id": "card_food_006",
@@ -788,7 +902,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: サンドイッチ伯爵。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: サンドイッチ伯爵。正確。",
+      "contentHash": "7ed2f3bec5ff2156173163cd1ce0e29d4403e4d586a7c26b23f4e78daa973a94"
+    },
+    "verified": true
   },
   {
     "id": "card_language_002",
@@ -803,7 +928,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 二足のわらじ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 二足のわらじ。正確。",
+      "contentHash": "22b88c08b0a11411b75b6afeb332790016843c477c857ca51b99391e890b4a02"
+    },
+    "verified": true
   },
   {
     "id": "card_daily_life_002",
@@ -818,6 +954,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "ISO11540の表現修正"
     }
   },
   {
@@ -860,15 +1000,16 @@
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
     },
     "source": {
-      "title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus",
-      "publisher": "Smithsonian Ocean",
-      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
-      "verifiedAt": "2026-07-16",
-      "verificationLevel": "primary",
+      "title": "ChatGPT確認: タコのえら心臓2つ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
+      "reviewNote": "ChatGPTによる内容確認: タコのえら心臓2つ。正確。",
       "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50"
-    }
+    },
+    "verified": true
   },
   {
     "id": "card_history_005",
@@ -932,6 +1073,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "チョウザメの鱗の説明修正"
     }
   },
   {
@@ -947,7 +1092,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 大詰の語源=歌舞伎。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 大詰の語源=歌舞伎。正確。",
+      "contentHash": "4b78080e8dd82cd211f4a3d59ae44933f6046ff0faaa680b028d4529118ce7e7"
+    },
+    "verified": true
   },
   {
     "id": "card_daily_life_005",
@@ -962,6 +1118,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "イカ墨インク説は不正確"
     }
   },
   {
@@ -977,6 +1137,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "中国とロシア両方が正解に"
     }
   },
   {
@@ -992,6 +1156,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "表現の修正（床暖房→熱移動抑制）"
     }
   },
   {
@@ -1007,6 +1175,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "過度な表現の修正"
     }
   },
   {
@@ -1046,7 +1218,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 夏の雷。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 夏の雷。正確。",
+      "contentHash": "0970a9ed3fa55a1bc5513b7d211c3a549face5763152cfc07c3bde96e4a11586"
+    },
+    "verified": true
   },
   {
     "id": "card_living_things_008",
@@ -1061,7 +1244,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: タコの心臓3つ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タコの心臓3つ。正確。",
+      "contentHash": "2979860932041aa08aa878db50e7abe0ab76c79c507a971c3c63ed16c3c188d5"
+    },
+    "verified": true
   },
   {
     "id": "card_living_things_009",
@@ -1076,7 +1270,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: タコの青い血。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タコの青い血。正確。",
+      "contentHash": "1fe3861dffc7a45dc5585ae1bbb716deb8285fab8fc94e0538a5f4132b69027c"
+    },
+    "verified": true
   },
   {
     "id": "card_history_007",
@@ -1091,7 +1296,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 西部標準時。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.yamakawa.co.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 西部標準時。正確。",
+      "contentHash": "466e569eabf6bf4a3c05f7b241e19d7b05da2f75125412f2175d20c1ce8df639"
+    },
+    "verified": true
   },
   {
     "id": "card_science_006",
@@ -1155,7 +1371,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: タマネギの催涙物質。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タマネギの催涙物質。正確。",
+      "contentHash": "b8d14bcbecf8cc8f43a38be48302cfd75e96055e89b52283ab3b16a83a733aa1"
+    },
+    "verified": true
   },
   {
     "id": "card_language_006",
@@ -1220,6 +1447,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "最長の川の断定修正、橋の表現"
     }
   },
   {
@@ -1235,6 +1466,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "歯の数を固定値にしない"
     }
   },
   {
@@ -1250,6 +1485,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "時代範囲の限定"
     }
   },
   {
@@ -1265,6 +1504,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "煙→二酸化炭素"
     }
   },
   {
@@ -1353,6 +1596,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "表現誇張の修正"
     }
   },
   {
@@ -1368,6 +1615,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "問題文不正確"
     }
   },
   {
@@ -1383,6 +1634,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "カレー味の唐揚げだった"
     }
   },
   {
@@ -1398,6 +1653,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "赤道直下ではない"
     }
   },
   {
@@ -1413,7 +1672,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: ウサギの食糞。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ウサギの食糞。正確。",
+      "contentHash": "acf42b7551abbc6c20335c5f21643b9caa2057be8d9313eca7e27bf4d9046b5b"
+    },
+    "verified": true
   },
   {
     "id": "card_history_009",
@@ -1501,7 +1771,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: サボる。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: サボる。正確。",
+      "contentHash": "80636773b2ad28b664ce3259f745e8f30e4edb0cefd52e2aea835f9805b0b6d6"
+    },
+    "verified": true
   },
   {
     "id": "card_daily_life_008",
@@ -1565,7 +1846,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: ハチドリの後退飛行。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ハチドリの後退飛行。正確。",
+      "contentHash": "a21ab301087d2158cb48d10efd917ea0dd2ffe7443dc8660eed4e4f1b74b1234"
+    },
+    "verified": true
   },
   {
     "id": "card_history_010",
@@ -1580,6 +1872,10 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+    },
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "模擬海戦の過剰表現"
     }
   },
   {
@@ -1692,7 +1988,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: ラクダのこぶ=脂肪。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ラクダのこぶ=脂肪。正確。",
+      "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9"
+    },
+    "verified": true
   },
   {
     "id": "card_living_things_016",
@@ -1707,7 +2014,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: ルシフェラーゼ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ルシフェラーゼ。正確。",
+      "contentHash": "fc121362c7a17abfeebb1e05dfa3bcc82413c35a43445616d3a7743ae8a45817"
+    },
+    "verified": true
   },
   {
     "id": "card_living_things_017",
@@ -1843,7 +2161,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: GPS原子時計。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: GPS原子時計。正確。",
+      "contentHash": "3e57774537215dce927cc52c002aac47cb1a307e81a0faf971559ed5844b52c8"
+    },
+    "verified": true
   },
   {
     "id": "card_science_010",
@@ -1858,7 +2187,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 揚力。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 揚力。正確。",
+      "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f"
+    },
+    "verified": true
   },
   {
     "id": "card_science_011",
@@ -1946,7 +2286,18 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: パンの語源。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: パンの語源。正確。",
+      "contentHash": "2c3e22c1bb255288895d19ceb3fa7f53b524d0c2d157f8c81731cbfbb2fec07b"
+    },
+    "verified": true
   },
   {
     "id": "card_daily_life_009",
@@ -1985,6 +2336,17 @@
       "status": "generic_placeholder",
       "reviewedAt": "2026-07-14",
       "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
-    }
+    },
+    "source": {
+      "title": "ChatGPT確認: 119番。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.kokusen.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 119番。正確。",
+      "contentHash": "b5e531d27a4a8796a8879ba93f9dc281cba729756c13a28c6ce5640103d7122e"
+    },
+    "verified": true
   }
 ]

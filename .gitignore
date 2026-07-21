@@ -33,11 +33,12 @@ __pycache__/
 htmlcov/
 uv.lock
 
-# Gradle / Kotlin related
+# Gradle / Kotlin related (but keep build config files)
 pricing-core/.gradle/
 pricing-core/build/
 pricing-core/gradle/wrapper/gradle-wrapper.jar
-*.gradle.kts
+!pricing-core/build.gradle.kts
+!pricing-core/settings.gradle.kts
 
 # Flutter/Dart/Pub related
 **/doc/api/

@@ -57,12 +57,7 @@ void main() {
     expect(duplicateIds('q_food_011'), contains('q_food_005'));
   });
 
-  test('sandwich-origin questions remain duplicate candidates', () {
-    expect(duplicateIds('q_lang_003'), contains('q_food_006'));
-    expect(duplicateIds('q_food_006'), contains('q_lang_003'));
-  });
-
-  test('real data duplicate edges remain the five known pairs', () {
+  test('real data duplicate edges remain the four known pairs', () {
     expect(
       duplicateEdges(),
       equals(const <String>{
@@ -70,7 +65,6 @@ void main() {
         'q_bio_003|q_living_things_008',
         'q_living_things_006|q_living_things_008',
         'q_food_005|q_food_011',
-        'q_food_006|q_lang_003',
       }),
     );
   });

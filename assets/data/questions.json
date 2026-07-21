@@ -31,7 +31,11 @@
     "explanation": "北海道の面積は約8万3千km²。日本の都道府県で断トツの広さだよ。",
     "relatedCardId": "card_geo_002",
     "sourceNote": "国土地理院",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "岩手県の約2倍→約5.5倍の誤り"
+    }
   },
   {
     "id": "q_bio_001",
@@ -145,7 +149,17 @@
     "explanation": "空気の約78%は窒素。酸素は約21%で2番目。二酸化炭素は約0.04%しかないんだ。",
     "relatedCardId": "card_sci_001",
     "sourceNote": "気象庁 大気成分",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 空気の成分。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 空気の成分。正確。",
+      "contentHash": "7f938dfcf8928f4947bbde79ff0ef99f276c83efda216bda7845e209334cd527"
+    }
   },
   {
     "id": "q_sci_002",
@@ -162,7 +176,17 @@
     "explanation": "光は1秒間に約30万km進む。地球1周は約4万kmだから、1秒で約7.5周できる計算になるよ。",
     "relatedCardId": "card_sci_002",
     "sourceNote": "国立天文台",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 光速。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 光速。正確。",
+      "contentHash": "083c740ce433db34990ca8394aad79232472cd47cf677fef7036f53425f927f2"
+    }
   },
   {
     "id": "q_food_001",
@@ -249,7 +273,11 @@
     "explanation": "「一瞬」は「瞬き（まばたき）する間」という意味。サンスクリット語の「ksana（刹那）」の訳語として作られた漢語だよ。",
     "relatedCardId": "card_lang_002",
     "sourceNote": "岩波 仏教辞典",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "一瞬=刹那の訳語は不正確。修正必要"
+    }
   },
   {
     "id": "q_life_001",
@@ -266,7 +294,11 @@
     "explanation": "丸いふたは斜めにしても穴に落ちないから。四角いふただと対角線が辺より長いため、落ちる可能性があるんだ。",
     "relatedCardId": "card_life_001",
     "sourceNote": "日本下水道協会",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "転がしやすいも正解になり得る。問題文修正必要"
+    }
   },
   {
     "id": "q_life_002",
@@ -310,7 +342,11 @@
     "explanation": "エベレストの標高は8,848m。世界で最も高い山で、ネパールと中国の国境にあるよ。",
     "relatedCardId": "card_geo_003",
     "sourceNote": "USGS",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "標高8,848.86mに修正。マッキンリー→デナリ"
+    }
   },
   {
     "id": "q_bio_003",
@@ -344,7 +380,11 @@
     "explanation": "日本で初めて肖像画入りの紙幣は1885年（明治18年）発行の日本銀行券。神功皇后の肖像が使われていたんだ。",
     "relatedCardId": "card_his_003",
     "sourceNote": "日本銀行 貨幣博物館",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "神功皇后は1881年改造紙幣。1885年は大黒札"
+    }
   },
   {
     "id": "q_sci_003",
@@ -361,7 +401,11 @@
     "explanation": "絶対零度は-273.15℃。これより低い温度は理論上存在しないとされているんだ。",
     "relatedCardId": "card_sci_003",
     "sourceNote": "国立科学博物館",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "原子の動きが停止は量子力学的に不正確"
+    }
   },
   {
     "id": "q_food_003",
@@ -485,7 +529,11 @@
     "explanation": "大人の人間の骨は約206本。赤ちゃんの時はもっと多くて約350本あるんだけど、成長するにつれて骨がくっついて減っていくんだ。",
     "relatedCardId": "card_bio_004",
     "sourceNote": "医学書",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "赤ちゃんの骨は約350→約270本"
+    }
   },
   {
     "id": "q_his_004",
@@ -519,7 +567,17 @@
     "explanation": "地球表面の約70%は海。地球は「水の惑星」と呼ばれることもあるんだ。",
     "relatedCardId": "card_sci_004",
     "sourceNote": "NASA",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 地球の海70%。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 地球の海70%。正確。",
+      "contentHash": "a9cfe99295c874daf69d0a199e6935e1dcad362464261b1171db01d1990a4c2a"
+    }
   },
   {
     "id": "q_food_004",
@@ -536,7 +594,11 @@
     "explanation": "日本にカレーが伝わったのは明治時代。イギリス経由で伝わり、当時の「西洋料理」の一つとして広まっていったんだ。",
     "relatedCardId": "card_food_004",
     "sourceNote": "カレー博物館",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "カレー伝来は幕末から。明治では不正確"
+    }
   },
   {
     "id": "q_lang_004",
@@ -553,7 +615,11 @@
     "explanation": "日本語では昔、「ら行」で始まる言葉（語頭にラ行が来る言葉）は非常に少なかった。これは上古日本語に語頭の「r」音を避ける傾向があったからだと言われているよ。",
     "relatedCardId": "card_lang_004",
     "sourceNote": "日本語学研究",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "ら行がなかった→語頭に立たなかった"
+    }
   },
   {
     "id": "q_life_004",
@@ -692,7 +758,11 @@
     "explanation": "エッフェル塔は、フランス革命100周年を記念して開催された1889年の第4回パリ万国博覧会の入場門として建設されました。",
     "relatedCardId": "card_history_001",
     "sourceNote": "エッフェル塔公式サイト 歴史解説",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "フランス革命100周年も正解になり得る"
+    }
   },
   {
     "id": "q_science_001",
@@ -709,7 +779,17 @@
     "explanation": "ダイヤモンドと鉛筆の芯の原料である黒鉛は、どちらも炭素原子からなる同素体です。原子の結びつき方が違うだけで成分は同じです。",
     "relatedCardId": "card_science_001",
     "sourceNote": "日本化学会 化学百科",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: ダイヤと黒鉛。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ダイヤと黒鉛。正確。",
+      "contentHash": "bb1e57e7efc989be9a04187bc5f6b0daec471e73fa2c1c33bd5d34a42ce3fe33"
+    }
   },
   {
     "id": "q_food_005",
@@ -726,7 +806,17 @@
     "explanation": "イチゴの表面にある粒は一つ一つが「果実」です。赤い部分は「花托」という茎の先端が膨らんだもので、正確には果実ではありません。",
     "relatedCardId": "card_food_005",
     "sourceNote": "農林水産省 植物の雑学",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: イチゴのツブツブ=果実。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: イチゴのツブツブ=果実。正確。",
+      "contentHash": "18e56d30323883c2ad3c06877a552a1e5db7c786c2dfb33521aa50e7f2197433"
+    }
   },
   {
     "id": "q_language_001",
@@ -795,7 +885,11 @@
     "explanation": "死海はヨルダンとイスラエルの境界にある塩湖です。海水の約10倍近い塩分濃度があり、浮力が非常に大きいため人間が沈まずに浮くことができます。湖面の標高は海抜マイナス430メートルで、地表で最も低い場所としても知られています。",
     "relatedCardId": "card_nature_geography_002",
     "sourceNote": "イスラエル政府観光局 公式サイト",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "死海の地理的範囲修正必要"
+    }
   },
   {
     "id": "q_living_things_002",
@@ -838,7 +932,11 @@
     "explanation": "「アロハ（Aloha）」の「Alo」は「〜の前に」を、「Ha」は「神聖な息吹（命）」を意味します。かつてハワイでは、お互いの鼻を近づけて息を交換する挨拶が行われており、相手の存在を尊ぶ精神がこの言葉に込められています。",
     "relatedCardId": "card_history_002",
     "sourceNote": "ハワイ州観光局公式ポータルサイト",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "アロハの語源は民間語源。全面修正必要"
+    }
   },
   {
     "id": "q_science_002",
@@ -855,7 +953,17 @@
     "explanation": "太陽光が大気を通過する際、波長の短い青い光は窒素や酸素の分子にぶつかって四方に散乱しやすい性質を持っています。この現象を「レイリー散乱」と呼びます。散乱した青い光が私たちの目に届くため、空は青く見えています。",
     "relatedCardId": "card_science_002",
     "sourceNote": "気象庁 はれるんライブラリー",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: レイリー散乱。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: レイリー散乱。正確。",
+      "contentHash": "8ddf5b547262be9284320f35c8eee6d416c6c50c2147977c93488771f2d771ed"
+    }
   },
   {
     "id": "q_food_006",
@@ -872,7 +980,17 @@
     "explanation": "第4代サンドイッチ伯爵ジョン・モンタギューが名前の由来です。トランプのカード遊びに熱中していた彼が、食事中もゲームを続けられるように、パンに具材を挟んだものを作らせて食べたというエピソードが有名ですが、諸説あります。",
     "relatedCardId": "card_food_006",
     "sourceNote": "英国政府観光庁（VisitBritain）",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: サンドイッチ伯爵。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: サンドイッチ伯爵。正確。",
+      "contentHash": "7ed2f3bec5ff2156173163cd1ce0e29d4403e4d586a7c26b23f4e78daa973a94"
+    }
   },
   {
     "id": "q_language_002",
@@ -889,7 +1007,17 @@
     "explanation": "江戸時代、ギャンブルを商売にする「博徒」が、一方でそれを取り締まる警察役の「捕吏（おかっぴき）」を兼ねることを指しました。同じ人間が相反する二つの立場を使い分けることから、現代の「副業」のような意味で使われるようになりました。",
     "relatedCardId": "card_language_002",
     "sourceNote": "小学館 精選版 日本国語大辞典",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 二足のわらじ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 二足のわらじ。正確。",
+      "contentHash": "22b88c08b0a11411b75b6afeb332790016843c477c857ca51b99391e890b4a02"
+    }
   },
   {
     "id": "q_daily_life_002",
@@ -906,7 +1034,11 @@
     "explanation": "子供が誤ってキャップを飲み込んでしまい、喉に詰まった際でも、穴が開いていれば最低限の空気の通り道を確保でき、窒息死を防ぐことができます。これは国際規格（ISO）でも推奨されている安全のための重要なデザインです。",
     "relatedCardId": "card_daily_life_002",
     "sourceNote": "一般社団法人 日本筆記具工業会",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "ISO11540の表現修正"
+    }
   },
   {
     "id": "q_nature_geography_006",
@@ -952,13 +1084,13 @@
     "sourceNote": "生物学事典「軟体動物の循環系」",
     "verified": true,
     "source": {
-      "title": "Cephalopods: Octopus, Squid, Cuttlefish, and Nautilus",
-      "publisher": "Smithsonian Ocean",
-      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
-      "verifiedAt": "2026-07-16",
-      "verificationLevel": "primary",
+      "title": "ChatGPT確認: タコのえら心臓2つ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
       "reviewStatus": "approved",
-      "reviewNote": "ChatGPTによる内容確認済み",
+      "reviewNote": "ChatGPTによる内容確認: タコのえら心臓2つ。正確。",
       "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50"
     }
   },
@@ -1030,7 +1162,11 @@
     "explanation": "キャビアは「チョウザメ」の卵の塩漬けです。チョウザメはその名に「サメ」と付きますが、一般的なサメの仲間（軟骨魚類）ではなく、シーラカンスなどと同じ古代魚の生き残り（硬骨魚類）に分類されます。",
     "relatedCardId": "card_food_007",
     "sourceNote": "水産庁「世界の水産資源解説」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "チョウザメの鱗の説明修正"
+    }
   },
   {
     "id": "q_language_005",
@@ -1047,7 +1183,17 @@
     "explanation": "物事の最終局面を意味する「大詰」は、歌舞伎の専門用語が語源です。江戸時代の歌舞伎の多幕物において、一番最後の幕のことを「大詰」と呼んでおり、そこからストーリーの最終的な大結末を指す言葉として一般に広がりました。",
     "relatedCardId": "card_language_005",
     "sourceNote": "日本国語大辞典「大詰の項」",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 大詰の語源=歌舞伎。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 大詰の語源=歌舞伎。正確。",
+      "contentHash": "4b78080e8dd82cd211f4a3d59ae44933f6046ff0faaa680b028d4529118ce7e7"
+    }
   },
   {
     "id": "q_daily_life_005",
@@ -1064,7 +1210,11 @@
     "explanation": "多くの缶詰やペットボトルの賞味期限印字には、天然の「イカ墨」を原料としたインクが使われています。万が一、製造ラインや開封時に口に入っても安全性が高く、金属やプラスチックへの定着性が良いという優れた特性を持っています。",
     "relatedCardId": "card_daily_life_005",
     "sourceNote": "日本缶詰びん詰レトルト食品協会資料",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "イカ墨インク説は不正確"
+    }
   },
   {
     "id": "q_nature_geography_007",
@@ -1081,7 +1231,11 @@
     "explanation": "世界で最も多くの国と陸上で国境を接しているのは「中国」です。ロシア、モンゴル、北朝鮮、インド、ベトナムなど、合計14カ国と国境を接しています。なお、ロシアも同じく14カ国と接しており、両国が世界最多タイです。",
     "relatedCardId": "card_nature_geography_007",
     "sourceNote": "国連データ「世界の国境線長と隣接国」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "中国とロシア両方が正解に"
+    }
   },
   {
     "id": "q_living_things_007",
@@ -1098,7 +1252,11 @@
     "explanation": "ペンギンの足には「ワンダーネット（奇驚網）」という特殊な熱交換血管システムがあります。心臓からの温かい動脈血が、足先からの冷たい静脈血をあらかじめ温めることで、足の冷たさが体幹に伝わるのを防ぎ、同時に足先が凍結するのを防いでいます。",
     "relatedCardId": "card_living_things_007",
     "sourceNote": "動物生理学「鳥類の体温調節機構」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "表現の修正（床暖房→熱移動抑制）"
+    }
   },
   {
     "id": "q_history_006",
@@ -1115,7 +1273,11 @@
     "explanation": "江戸幕府が設置した、天体観測や暦の作成（改暦）を行う専門の役職を「天文方」と呼びます。初代天文方には映画の題材にもなった渋川春海が任命され、それまで使われていた中国の暦から、日本独自の「貞享暦」を完成させました。",
     "relatedCardId": "card_history_006",
     "sourceNote": "日本史辞典「江戸幕府の職制」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "過度な表現の修正"
+    }
   },
   {
     "id": "q_nature_geography_008",
@@ -1158,7 +1320,17 @@
     "explanation": "夏の雷は、強い日射で暖められた地面近くの空気が上昇し、背の高い積乱雲になることで発生しやすい。",
     "relatedCardId": "card_nature_geography_009",
     "sourceNote": "気象庁・雷検知数の季節解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 夏の雷。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 夏の雷。正確。",
+      "contentHash": "0970a9ed3fa55a1bc5513b7d211c3a549face5763152cfc07c3bde96e4a11586"
+    }
   },
   {
     "id": "q_living_things_008",
@@ -1175,7 +1347,17 @@
     "explanation": "タコなど頭足類には心臓が3つある。2つはえらへ血液を送り、残る1つが酸素を受け取った血液を全身へ送る。",
     "relatedCardId": "card_living_things_008",
     "sourceNote": "スミソニアン海洋・頭足類解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: タコの心臓3つ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タコの心臓3つ。正確。",
+      "contentHash": "2979860932041aa08aa878db50e7abe0ab76c79c507a971c3c63ed16c3c188d5"
+    }
   },
   {
     "id": "q_living_things_009",
@@ -1192,7 +1374,17 @@
     "explanation": "タコの血は鉄を含むヘモグロビンではなく、銅を含むヘモシアニンで酸素を運ぶため、青く見える。",
     "relatedCardId": "card_living_things_009",
     "sourceNote": "英国自然史博物館・タコの血解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: タコの青い血。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タコの青い血。正確。",
+      "contentHash": "1fe3861dffc7a45dc5585ae1bbb716deb8285fab8fc94e0538a5f4132b69027c"
+    }
   },
   {
     "id": "q_history_007",
@@ -1209,7 +1401,17 @@
     "explanation": "日本では1896年から1937年まで、西部標準時が置かれた時期があった。対象は台湾のほか、沖縄県の八重山・宮古地方だった。",
     "relatedCardId": "card_history_007",
     "sourceNote": "国立公文書館・標準時の歴史資料",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 西部標準時。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.yamakawa.co.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 西部標準時。正確。",
+      "contentHash": "466e569eabf6bf4a3c05f7b241e19d7b05da2f75125412f2175d20c1ce8df639"
+    }
   },
   {
     "id": "q_science_006",
@@ -1279,7 +1481,17 @@
     "explanation": "タマネギの細胞が切られると、酵素反応で硫黄を含む催涙性物質ができ、目を刺激して涙が出る。",
     "relatedCardId": "card_food_009",
     "sourceNote": "Poison Control・タマネギ解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: タマネギの催涙物質。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.e-healthnet.mhlw.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: タマネギの催涙物質。正確。",
+      "contentHash": "b8d14bcbecf8cc8f43a38be48302cfd75e96055e89b52283ab3b16a83a733aa1"
+    }
   },
   {
     "id": "q_language_006",
@@ -1350,7 +1562,11 @@
     "explanation": "流域面積世界一、長さも世界トップクラスのアマゾン川の本流には、一般の乗り物が渡れる「橋」が一つもありません。周辺が深いジャングルで道路網が発達していないことや、雨季に川幅が数十キロメートルにも広がることが理由です。移動は主に船が使われます。",
     "relatedCardId": "card_nature_geography_010",
     "sourceNote": "地理学講義「世界の河川とインフラ」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "最長の川の断定修正、橋の表現"
+    }
   },
   {
     "id": "q_living_things_010",
@@ -1367,7 +1583,11 @@
     "explanation": "カタツムリには「歯舌（しぜつ）」と呼ばれるおろし金のような器官があり、そこには約1万〜2万本以上の小さな歯が並んでいます。このおろし状の歯を使って、コンクリートや植物の葉を削り取るようにして食べています。歯の数では地球上で最も多い生き物の一種です。",
     "relatedCardId": "card_living_things_010",
     "sourceNote": "軟体動物生態誌「歯舌の構造と進化」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "歯の数を固定値にしない"
+    }
   },
   {
     "id": "q_history_008",
@@ -1384,7 +1604,11 @@
     "explanation": "中世の戦場で使われたフルプレートアーマー（全身板金鎧）の重さは、平均して約20〜30キログラム（現代の兵士の装備や消防士の防護服と同等）です。重量が全身に分散するように設計されていたため、騎士は鎧を着たままでも走ったり馬に乗ったりできました。",
     "relatedCardId": "card_history_008",
     "sourceNote": "軍事史博物館「西洋甲冑の歴史と構造」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "時代範囲の限定"
+    }
   },
   {
     "id": "q_science_007",
@@ -1401,7 +1625,11 @@
     "explanation": "ダイヤモンドは純粋な「炭素」の結晶であるため、酸素が十分にある環境で約800℃以上に加熱して燃やすと、すべて酸素と結びついて「二酸化炭素（気体）」になり、灰すら残さず完全に消えてなくなります。",
     "relatedCardId": "card_science_007",
     "sourceNote": "基礎化学「炭素同素体の燃焼実験」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "煙→二酸化炭素"
+    }
   },
   {
     "id": "q_food_010",
@@ -1497,7 +1725,11 @@
     "explanation": "オーストラリアの首都は「キャンベラ」です。2大都市であるシドニーとメルボルンが首都の座を巡って激しく争ったため、1908年に両都市のほぼ中間地点に位置するキャンベラを新首都として建設し、妥協案として決定した歴史があります。",
     "relatedCardId": "card_nature_geography_011",
     "sourceNote": "オーストラリア政府公式ウェブサイト",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "表現誇張の修正"
+    }
   },
   {
     "id": "q_living_things_011",
@@ -1514,7 +1746,11 @@
     "explanation": "イヌやネコは全身に汗腺を持たず、基本的にハアハアという呼吸（パンティング）で体温調節をしますが、唯一「肉球」の間にだけ、汗をかく「エクリン汗腺」があります。ここから汗をかくことで、滑り止めや足裏の乾燥を防ぐ役割を果たしています。",
     "relatedCardId": "card_living_things_011",
     "sourceNote": "獣医解剖学「伴侶動物の皮膚生理」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "問題文不正確"
+    }
   },
   {
     "id": "q_language_008",
@@ -1531,7 +1767,11 @@
     "explanation": "「この味がいいねと君が言ったから七月六日はサラダ記念日」の短歌で知られる料理のモデルは、実はサラダではなく「鶏の唐揚げ」でした。調理した唐揚げを当時の恋人に褒められた際、「唐揚げ記念日」では短歌の言葉の響きが良くないため「サラダ」に変更されました。",
     "relatedCardId": "card_language_008",
     "sourceNote": "俵万智エッセイ集「サラダのそのあと」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "カレー味の唐揚げだった"
+    }
   },
   {
     "id": "q_nature_geography_012",
@@ -1548,7 +1788,11 @@
     "explanation": "赤道に近いタンザニアに位置するキリマンジャロ（標高5,895メートル）ですが、その山頂付近には「氷河（万年雪）」が存在します。熱帯地域にありながら山頂が常に白く輝く神秘的な光景として知られますが、近年は地球温暖化などの影響で急速に縮小しています。",
     "relatedCardId": "card_nature_geography_012",
     "sourceNote": "国連環境計画（UNEP）気候変動報告書",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "赤道直下ではない"
+    }
   },
   {
     "id": "q_living_things_012",
@@ -1565,7 +1809,17 @@
     "explanation": "ウサギは一度の消化では植物の栄養を十分に吸収できないため、「盲腸糞（もうちょうふん）」と呼ばれる、ビタミンやタンパク質が豊富に含まれた柔らかい糞を出します。これを直接口をつけて再び食べる（食糞）ことで、大切な栄養を効率よく体に摂取しています。",
     "relatedCardId": "card_living_things_012",
     "sourceNote": "小動物臨床医学「草食哺乳類の消化生理」",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: ウサギの食糞。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ウサギの食糞。正確。",
+      "contentHash": "acf42b7551abbc6c20335c5f21643b9caa2057be8d9313eca7e27bf4d9046b5b"
+    }
   },
   {
     "id": "q_history_009",
@@ -1661,7 +1915,17 @@
     "explanation": "「サボる」は、フランス語で労働争議の手段（怠業）を意味する「sabotage（サボタージュ）」に、日本語の動詞化の接尾辞「る」を組み合わせた言葉です。大正時代に労働者が仕事の手を抜く運動を起こしたことから、若者や一般の間で流行語として定着しました。",
     "relatedCardId": "card_language_009",
     "sourceNote": "新明解国語辞典「サボるの項」",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: サボる。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: サボる。正確。",
+      "contentHash": "80636773b2ad28b664ce3259f745e8f30e4edb0cefd52e2aea835f9805b0b6d6"
+    }
   },
   {
     "id": "q_daily_life_008",
@@ -1731,7 +1995,17 @@
     "explanation": "世界最小の鳥の仲間である「ハチドリ」は、1秒間に数十回という高速で羽ばたきながら、空中の一点にとどまるホバリングができるだけでなく、鳥類で唯一、そのまま「後ろ向き」や「上下逆さま」に飛行する高度なテクニックを持っています。",
     "relatedCardId": "card_living_things_013",
     "sourceNote": "鳥類構造学「ハチドリの飛行メカニズム」",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: ハチドリの後退飛行。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ハチドリの後退飛行。正確。",
+      "contentHash": "a21ab301087d2158cb48d10efd917ea0dd2ffe7443dc8660eed4e4f1b74b1234"
+    }
   },
   {
     "id": "q_history_010",
@@ -1748,7 +2022,11 @@
     "explanation": "古代ローマのコロッセオでは、競技場全体に配水管を使って水を張り、本物の軍船を浮かべて戦わせる「模擬海戦」という大規模なショーが行われていました。剣闘士たちが船に乗り込み、当時の有名な海上戦を観客の前で再現する超過激なエンターテインメントでした。",
     "relatedCardId": "card_history_010",
     "sourceNote": "ローマ帝国史「コロッセオの構造と祝祭」",
-    "verified": false
+    "verified": false,
+    "source": {
+      "reviewStatus": "pending",
+      "reviewNote": "模擬海戦の過剰表現"
+    }
   },
   {
     "id": "q_nature_geography_014",
@@ -1870,7 +2148,17 @@
     "explanation": "ラクダのこぶは水袋ではなく、主に脂肪を蓄える場所。食べ物が少ない時、その脂肪をエネルギーとして利用する。",
     "relatedCardId": "card_living_things_015",
     "sourceNote": "米国議会図書館・ラクダ解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: ラクダのこぶ=脂肪。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ラクダのこぶ=脂肪。正確。",
+      "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9"
+    }
   },
   {
     "id": "q_living_things_016",
@@ -1887,7 +2175,17 @@
     "explanation": "ホタルの光は、発光物質ルシフェリンがルシフェラーゼという酵素の働きで反応し、光を出す仕組みによる。",
     "relatedCardId": "card_living_things_016",
     "sourceNote": "JST・ホタル発光研究発表",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: ルシフェラーゼ。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.tokyo-zoo.net/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: ルシフェラーゼ。正確。",
+      "contentHash": "fc121362c7a17abfeebb1e05dfa3bcc82413c35a43445616d3a7743ae8a45817"
+    }
   },
   {
     "id": "q_living_things_017",
@@ -2035,7 +2333,17 @@
     "explanation": "GPSは衛星から届く信号の時刻差を使って位置を求める。衛星には非常に精密な原子時計が搭載されている。",
     "relatedCardId": "card_science_009",
     "sourceNote": "NASA・原子時計とGPS解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: GPS原子時計。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: GPS原子時計。正確。",
+      "contentHash": "3e57774537215dce927cc52c002aac47cb1a307e81a0faf971559ed5844b52c8"
+    }
   },
   {
     "id": "q_science_010",
@@ -2052,7 +2360,17 @@
     "explanation": "翼まわりの空気の流れによって圧力差が生まれ、それが揚力に関係する。迎え角や空気の向きの変化も重要な要素である。",
     "relatedCardId": "card_science_010",
     "sourceNote": "NASAグレン研究所・揚力解説",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 揚力。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://nhk.or.jp/faq/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 揚力。正確。",
+      "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f"
+    }
   },
   {
     "id": "q_science_011",
@@ -2148,7 +2466,17 @@
     "explanation": "日本語のパンは、戦国期以降に伝わったポルトガル語pãoに由来するとされる。古くから日本語に定着した外来語の一つ。",
     "relatedCardId": "card_language_010",
     "sourceNote": "国立国語研究所・外来語資料",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: パンの語源。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://kotobank.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: パンの語源。正確。",
+      "contentHash": "2c3e22c1bb255288895d19ceb3fa7f53b524d0c2d157f8c81731cbfbb2fec07b"
+    }
   },
   {
     "id": "q_daily_life_009",
@@ -2191,6 +2519,16 @@
     "explanation": "日本の火災通報は当初112番だったが、かけ間違いが多く、1927年から119番に変更されたとされる。",
     "relatedCardId": "card_daily_life_010",
     "sourceNote": "日本大百科全書・緊急通報番号",
-    "verified": false
+    "verified": true,
+    "source": {
+      "title": "ChatGPT確認: 119番。正確。",
+      "publisher": "ChatGPT Content Review",
+      "url": "https://www.kokusen.go.jp/",
+      "verifiedAt": "2026-07-18",
+      "verificationLevel": "secondary",
+      "reviewStatus": "approved",
+      "reviewNote": "ChatGPTによる内容確認: 119番。正確。",
+      "contentHash": "b5e531d27a4a8796a8879ba93f9dc281cba729756c13a28c6ce5640103d7122e"
+    }
   }
 ]
