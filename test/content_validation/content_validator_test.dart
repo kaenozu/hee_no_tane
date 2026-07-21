@@ -91,6 +91,28 @@ void main() {
       );
     });
 
+    test('pending source review stubs are accepted for editable content', () {
+      final content = _releaseJson();
+      final question = Map<String, dynamic>.from(content.questions.single)
+        ..['verified'] = false
+        ..['source'] = {'reviewStatus': 'pending', 'reviewNote': '出典を再確認する'};
+      final card = Map<String, dynamic>.from(content.cards.single)
+        ..['source'] = {
+          'reviewStatus': 'correction_required',
+          'reviewNote': '説明文を修正する',
+        };
+
+      final result = validator.validateJsonStrings(
+        questionsJson: jsonEncode([question]),
+        cardsJson: jsonEncode([card]),
+        assetExists: (_) => true,
+        requirePlayable: false,
+      );
+
+      expect(result.isValid, isTrue, reason: _messages(result).join('\n'));
+      expect(result.playableQuestionCount, 0);
+    });
+
     test('changed reviewed text invalidates its content hash', () {
       final content = _releaseJson();
       final question = Map<String, dynamic>.from(content.questions.single)

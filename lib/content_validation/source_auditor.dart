@@ -218,15 +218,21 @@ class ContentSourceAuditor {
         invalidMetadata = true;
       } else {
         try {
-          metadata = SourceMetadata.fromJson(source);
-          _appendApprovalFindings(
-            metadata,
-            findings,
-            requireReleaseApproval: requireReleaseApproval,
-          );
-          if (metadata.reviewStatus == 'approved' && !metadata.isApproved) {
-            invalidMetadata = true;
-            findings.add('approvedですが必須情報が不足しています');
+          final parsed = SourceMetadata.fromOptionalJson(source);
+          if (parsed == null) {
+            metadata = SourceMetadata.legacy(sourceNote);
+            findings.add('構造化されたsourceはレビュー待ち');
+          } else {
+            metadata = parsed;
+            _appendApprovalFindings(
+              metadata,
+              findings,
+              requireReleaseApproval: requireReleaseApproval,
+            );
+            if (metadata.reviewStatus == 'approved' && !metadata.isApproved) {
+              invalidMetadata = true;
+              findings.add('approvedですが必須情報が不足しています');
+            }
           }
         } on FormatException catch (error) {
           metadata = SourceMetadata.legacy(sourceNote);

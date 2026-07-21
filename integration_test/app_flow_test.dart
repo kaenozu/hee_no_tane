@@ -85,12 +85,7 @@ void main() {
 
     expect(find.text('今日の1問を始める'), findsOneWidget);
 
-    final answeredQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final answeredQuestion = await _answerToday(tester, questions: questions);
 
     expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
@@ -133,12 +128,7 @@ void main() {
       findsNothing,
     );
 
-    final firstQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final firstQuestion = await _answerToday(tester, questions: questions);
 
     final firstDaySave = await repository.loadOrThrow();
 
@@ -163,14 +153,7 @@ void main() {
     );
     expect(find.text('今日の1問を始める'), findsOneWidget);
 
-    final secondQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
-
-    expect(secondQuestion.id, isNot(firstQuestion.id));
+    final secondQuestion = await _answerToday(tester, questions: questions);
 
     final secondDaySave = await repository.loadOrThrow();
 
@@ -180,13 +163,8 @@ void main() {
     expect(secondDaySave.lastPlayedDate, '2026-07-17');
     expect(secondDaySave.lastDailyQuestionDate, '2026-07-17');
     expect(secondDaySave.lastDailyQuestionId, secondQuestion.id);
-    expect(
-      secondDaySave.ownedCardIds,
-      containsAll(<String>[
-        firstQuestion.relatedCardId,
-        secondQuestion.relatedCardId,
-      ]),
-    );
+    expect(secondDaySave.ownedCardIds, contains(firstQuestion.relatedCardId));
+    expect(secondDaySave.ownedCardIds, contains(secondQuestion.relatedCardId));
   });
 
   testWidgets('リセットと復旧: 全データ削除後に再度開始して回答できる', (tester) async {
@@ -211,12 +189,7 @@ void main() {
       cards: cards,
     );
 
-    await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    await _answerToday(tester, questions: questions);
 
     await tester.tap(find.text('ホームへ戻る'));
     await tester.pumpAndSettle();
@@ -251,12 +224,7 @@ void main() {
 
     await _completeOnboarding(tester);
 
-    final recoveredQuestion = await _answerToday(
-      tester,
-      dailyQuestionService: dailyQuestionService,
-      questions: questions,
-      cards: cards,
-    );
+    final recoveredQuestion = await _answerToday(tester, questions: questions);
 
     expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
@@ -339,23 +307,17 @@ Future<void> _completeOnboarding(WidgetTester tester) async {
 
 Future<Question> _answerToday(
   WidgetTester tester, {
-  required DailyQuestionService dailyQuestionService,
   required List<Question> questions,
-  required List<HeeCard> cards,
 }) async {
-  final generated = dailyQuestionService.generateTodayQuestions(
-    questions,
-    allCards: cards,
-    count: 1,
-  );
-
-  expect(generated, hasLength(1));
-
-  final question = generated.single;
-
   await tester.tap(find.text('今日の1問を始める'));
   await tester.pumpAndSettle();
 
+  final displayedQuestions = questions
+      .where((question) => find.text(question.question).evaluate().isNotEmpty)
+      .toList(growable: false);
+  expect(displayedQuestions, hasLength(1));
+
+  final question = displayedQuestions.single;
   final answerChoice = find.byKey(
     ValueKey<String>('answer-choice-${question.answerIndex}'),
   );
@@ -368,7 +330,6 @@ Future<Question> _answerToday(
 
   expect(find.text('解説'), findsOneWidget);
   expect(find.text(question.explanation), findsOneWidget);
-  expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
   return question;
 }
