@@ -23,6 +23,22 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
+# Python related
+__pycache__/
+*.pyc
+*.egg-info/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+uv.lock
+
+# Gradle / Kotlin related
+pricing-core/.gradle/
+pricing-core/build/
+pricing-core/gradle/wrapper/gradle-wrapper.jar
+*.gradle.kts
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id

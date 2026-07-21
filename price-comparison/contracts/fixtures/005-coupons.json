@@ -1,0 +1,138 @@
+{
+  "description": "Coupon scenarios: basic coupon, with minimum met/not met, exceeds remaining",
+  "offers": {
+    "basic_coupon": {
+      "id": "basic_coupon",
+      "product_name": "Coupon 30 Yen",
+      "store_name": "Store",
+      "price": "398",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "coupon_discount": "30"
+    },
+    "coupon_with_min_met": {
+      "id": "coupon_with_min_met",
+      "product_name": "Min Met",
+      "store_name": "Store",
+      "price": "500",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "coupon_discount": "50",
+      "coupon_minimum_subtotal": "200"
+    },
+    "coupon_min_not_met": {
+      "id": "coupon_min_not_met",
+      "product_name": "Min Not Met",
+      "store_name": "Store",
+      "price": "500",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "coupon_discount": "50",
+      "coupon_minimum_subtotal": "1000"
+    }
+  },
+  "expected": {
+    "breakdowns": {
+      "basic_coupon": {
+        "display_price": "398",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "362",
+        "tax_amount": "36",
+        "base_price_incl_tax": "398",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "30",
+        "discount_amount": "30",
+        "shipping_fee": null,
+        "payable_now": "368",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      },
+      "coupon_with_min_met": {
+        "display_price": "500",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "455",
+        "tax_amount": "45",
+        "base_price_incl_tax": "500",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "50",
+        "discount_amount": "50",
+        "shipping_fee": null,
+        "payable_now": "450",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      },
+      "coupon_min_not_met": {
+        "display_price": "500",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "455",
+        "tax_amount": "45",
+        "base_price_incl_tax": "500",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "500",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      }
+    },
+    "comparison": {
+      "basis": "CASH_TOTAL",
+      "ranked_ids": [
+        "basic_coupon",
+        "coupon_with_min_met",
+        "coupon_min_not_met"
+      ],
+      "best_id": "basic_coupon",
+      "values": {
+        "basic_coupon": "368",
+        "coupon_with_min_met": "450",
+        "coupon_min_not_met": "500"
+      },
+      "difference": "82",
+      "percentage_difference": "20.05",
+      "incomparable_ids": [],
+      "can_compare": true,
+      "warnings": []
+    }
+  }
+}

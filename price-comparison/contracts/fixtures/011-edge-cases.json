@@ -1,0 +1,173 @@
+{
+  "description": "Edge cases: zero price, zero tax, rounding modes, coupon exceeds remaining",
+  "offers": {
+    "zero_price": {
+      "id": "zero_price",
+      "product_name": "Free Item",
+      "store_name": "Store",
+      "price": "0",
+      "tax_included": true,
+      "tax_rate": "0.10"
+    },
+    "zero_tax": {
+      "id": "zero_tax",
+      "product_name": "Non-Taxable",
+      "store_name": "Store",
+      "price": "100",
+      "tax_included": false,
+      "tax_rate": "0"
+    },
+    "coupon_overflow": {
+      "id": "coupon_overflow",
+      "product_name": "Coupon Over Price",
+      "store_name": "Store",
+      "price": "100",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "coupon_discount": "200"
+    },
+    "free_with_discount": {
+      "id": "free_with_discount",
+      "product_name": "100% Off",
+      "store_name": "Store",
+      "price": "500",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "percentage_discount": "1"
+    }
+  },
+  "expected": {
+    "breakdowns": {
+      "zero_price": {
+        "display_price": "0",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "0",
+        "tax_amount": "0",
+        "base_price_incl_tax": "0",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "0",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      },
+      "zero_tax": {
+        "display_price": "100",
+        "tax_included": false,
+        "tax_rate": "0",
+        "pre_tax_price": "100",
+        "tax_amount": "0",
+        "base_price_incl_tax": "100",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "100",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      },
+      "coupon_overflow": {
+        "display_price": "100",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "91",
+        "tax_amount": "9",
+        "base_price_incl_tax": "100",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "100",
+        "discount_amount": "100",
+        "shipping_fee": null,
+        "payable_now": "0",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "COUPON_EXCEEDS_REMAINING",
+          "POINTS_MISSING"
+        ]
+      },
+      "free_with_discount": {
+        "display_price": "500",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "455",
+        "tax_amount": "45",
+        "base_price_incl_tax": "500",
+        "percentage_discount": "1",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "500",
+        "shipping_fee": null,
+        "payable_now": "0",
+        "earned_points": null,
+        "point_value": null,
+        "effective_cost": null,
+        "normalized_quantity": null,
+        "quantity_unit": null,
+        "cash_unit_cost": null,
+        "effective_unit_cost": null,
+        "cash_complete": true,
+        "reward_complete": false,
+        "unit_complete": false,
+        "warnings": [
+          "POINTS_MISSING"
+        ]
+      }
+    },
+    "comparison": {
+      "basis": "CASH_TOTAL",
+      "ranked_ids": [
+        "zero_price",
+        "coupon_overflow",
+        "free_with_discount",
+        "zero_tax"
+      ],
+      "best_id": null,
+      "values": {
+        "zero_price": "0",
+        "zero_tax": "100",
+        "coupon_overflow": "0",
+        "free_with_discount": "0"
+      },
+      "difference": "0",
+      "percentage_difference": null,
+      "incomparable_ids": [],
+      "can_compare": true,
+      "warnings": []
+    }
+  }
+}

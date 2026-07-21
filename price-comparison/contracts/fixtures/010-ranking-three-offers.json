@@ -1,0 +1,148 @@
+{
+  "description": "Three offers with effective unit cost ranking",
+  "offers": {
+    "a": {
+      "id": "a",
+      "product_name": "Offer A",
+      "store_name": "Store",
+      "price": "500",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "quantity": {
+        "value": "1",
+        "unit": "L",
+        "package_count": 1,
+        "measure_kind": "GENERIC_VOLUME"
+      },
+      "point_rate": "0.01"
+    },
+    "b": {
+      "id": "b",
+      "product_name": "Offer B",
+      "store_name": "Store",
+      "price": "380",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "quantity": {
+        "value": "1",
+        "unit": "L",
+        "package_count": 1,
+        "measure_kind": "GENERIC_VOLUME"
+      },
+      "point_rate": "0.02"
+    },
+    "c": {
+      "id": "c",
+      "product_name": "Offer C",
+      "store_name": "Store",
+      "price": "420",
+      "tax_included": true,
+      "tax_rate": "0.10",
+      "quantity": {
+        "value": "1",
+        "unit": "L",
+        "package_count": 1,
+        "measure_kind": "GENERIC_VOLUME"
+      },
+      "point_rate": "0.015"
+    }
+  },
+  "expected": {
+    "breakdowns": {
+      "a": {
+        "display_price": "500",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "455",
+        "tax_amount": "45",
+        "base_price_incl_tax": "500",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "500",
+        "earned_points": "5",
+        "point_value": "5",
+        "effective_cost": "495",
+        "normalized_quantity": "1000",
+        "quantity_unit": "L",
+        "cash_unit_cost": "0.500000",
+        "effective_unit_cost": "0.495000",
+        "cash_complete": true,
+        "reward_complete": true,
+        "unit_complete": true,
+        "warnings": []
+      },
+      "b": {
+        "display_price": "380",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "345",
+        "tax_amount": "35",
+        "base_price_incl_tax": "380",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "380",
+        "earned_points": "7",
+        "point_value": "7",
+        "effective_cost": "373",
+        "normalized_quantity": "1000",
+        "quantity_unit": "L",
+        "cash_unit_cost": "0.380000",
+        "effective_unit_cost": "0.373000",
+        "cash_complete": true,
+        "reward_complete": true,
+        "unit_complete": true,
+        "warnings": []
+      },
+      "c": {
+        "display_price": "420",
+        "tax_included": true,
+        "tax_rate": "0.10",
+        "pre_tax_price": "382",
+        "tax_amount": "38",
+        "base_price_incl_tax": "420",
+        "percentage_discount": "0",
+        "fixed_discount": "0",
+        "coupon_discount": "0",
+        "discount_amount": "0",
+        "shipping_fee": null,
+        "payable_now": "420",
+        "earned_points": "6",
+        "point_value": "6",
+        "effective_cost": "414",
+        "normalized_quantity": "1000",
+        "quantity_unit": "L",
+        "cash_unit_cost": "0.420000",
+        "effective_unit_cost": "0.414000",
+        "cash_complete": true,
+        "reward_complete": true,
+        "unit_complete": true,
+        "warnings": []
+      }
+    },
+    "comparison": {
+      "basis": "EFFECTIVE_UNIT_COST",
+      "ranked_ids": [
+        "b",
+        "c",
+        "a"
+      ],
+      "best_id": "b",
+      "values": {
+        "a": "0.495000",
+        "b": "0.373000",
+        "c": "0.414000"
+      },
+      "difference": "0.041000",
+      "percentage_difference": "10.42",
+      "incomparable_ids": [],
+      "can_compare": true,
+      "warnings": []
+    }
+  }
+}
