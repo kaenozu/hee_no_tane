@@ -231,10 +231,7 @@ void main() {
 
     await _completeOnboarding(tester);
 
-    final recoveredQuestion = await _answerToday(
-      tester,
-      questions: questions,
-    );
+    final recoveredQuestion = await _answerToday(tester, questions: questions);
 
     expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
