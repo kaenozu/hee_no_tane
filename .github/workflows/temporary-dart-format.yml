@@ -1,0 +1,44 @@
+name: Temporary Dart Format
+
+on:
+  push:
+    branches:
+      - agent/price-comparison-flutter-20260721
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Format price comparison files
+        run: |
+          dart format \
+            lib/domain/price_comparison \
+            lib/features/comparison \
+            lib/features/settings/settings_screen.dart \
+            test/domain/price_comparison \
+            test/features/comparison
+
+      - name: Upload formatted files
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: formatted-price-comparison
+          path: |
+            lib/domain/price_comparison
+            lib/features/comparison
+            lib/features/settings/settings_screen.dart
+            test/domain/price_comparison
+            test/features/comparison
+          if-no-files-found: error
+          retention-days: 1
