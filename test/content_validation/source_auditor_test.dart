@@ -24,10 +24,7 @@ void main() {
     final result = auditor.auditJsonStrings(
       questionsJson: jsonEncode([
         _question(
-          source: {
-            'reviewStatus': 'pending',
-            'reviewNote': '出典を再確認する',
-          },
+          source: {'reviewStatus': 'pending', 'reviewNote': '出典を再確認する'},
         ),
       ]),
       cardsJson: jsonEncode([
