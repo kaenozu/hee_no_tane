@@ -176,7 +176,7 @@ class _ComparisonOfferCardState extends State<ComparisonOfferCard> {
             ),
             DropdownButtonFormField<String>(
               key: ValueKey('comparison-tax-rate-${widget.index}'),
-              value: widget.controllers.taxRate,
+              initialValue: widget.controllers.taxRate,
               decoration: _decoration('税率'),
               items: const [
                 DropdownMenuItem(value: '0.10', child: Text('10%')),
@@ -212,7 +212,7 @@ class _ComparisonOfferCardState extends State<ComparisonOfferCard> {
                   flex: 2,
                   child: DropdownButtonFormField<PriceUnit>(
                     key: ValueKey('comparison-unit-${widget.index}'),
-                    value: widget.controllers.unit,
+                    initialValue: widget.controllers.unit,
                     decoration: _decoration('単位'),
                     items: PriceUnit.values
                         .map(
