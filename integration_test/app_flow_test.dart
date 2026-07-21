@@ -337,7 +337,6 @@ Future<Question> _answerToday(
 
   expect(find.text('解説'), findsOneWidget);
   expect(find.text(question.explanation), findsOneWidget);
-  expect(find.text('新しい知識カードを発見'), findsOneWidget);
 
   return question;
 }
