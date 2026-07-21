@@ -17,6 +17,7 @@ import 'package:hee_no_tane_app/domain/price_comparison/input_validator.dart';
 import 'package:hee_no_tane_app/domain/price_comparison/models.dart';
 import 'package:hee_no_tane_app/domain/price_comparison/pricing_calculator.dart';
 import 'package:hee_no_tane_app/features/comparison/comparison_result_screen.dart';
+import 'package:hee_no_tane_app/features/comparison/offer_form_controller.dart';
 import 'package:hee_no_tane_app/features/comparison/offer_input_card.dart';
 
 class ComparisonInputScreen extends StatefulWidget {
