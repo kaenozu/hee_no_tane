@@ -66,4 +66,21 @@ void main() {
     expect(result.payableNow, 398);
     expect(result.effectiveCost, 398);
   });
+
+  test('0.5円の境界をHALF_UPで1円に丸める', () {
+    const offer = Offer(
+      id: 'a',
+      productName: '端数商品',
+      storeName: 'A店',
+      price: 5,
+      taxIncluded: false,
+      taxRate: 0.10,
+      earnedPoints: 0,
+    );
+
+    final result = calculatePrice(offer);
+
+    expect(result.taxAmount, 1);
+    expect(result.payableNow, 6);
+  });
 }
