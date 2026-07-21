@@ -79,7 +79,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('保存エラー'), findsNothing);
-      expect(find.text('新しい知識カードを発見'), findsOneWidget);
+      expect(find.text('このカードは発見済みです'), findsOneWidget);
       expect(repository.data.totalPlayCount, 1);
       expect(
         repository.data.ownedCardIds.where((id) => id == card.id),
