@@ -95,6 +95,17 @@ class SourceMetadata {
     );
   }
 
+  static SourceMetadata? fromOptionalJson(Object? value) {
+    if (value == null) return null;
+    if (value is! Map) {
+      throw const FormatException('Source metadata must be an object.');
+    }
+
+    final json = Map<String, dynamic>.from(value);
+    if (_isPendingReviewStub(json)) return null;
+    return SourceMetadata.fromJson(json);
+  }
+
   static SourceMetadata? tryFromJson(Object? value) {
     if (value is! Map) return null;
     try {
@@ -151,6 +162,23 @@ class SourceMetadata {
     final parsed = DateTime.tryParse(value);
     if (parsed == null) return false;
     return parsed.toIso8601String().startsWith(value);
+  }
+
+  static bool _isPendingReviewStub(Map<String, dynamic> json) {
+    final reviewStatus = json['reviewStatus'];
+    if (reviewStatus != pendingStatus &&
+        reviewStatus != correctionRequiredStatus) {
+      return false;
+    }
+
+    return !_hasNonEmptyString(json, 'title') &&
+        !_hasNonEmptyString(json, 'publisher') &&
+        !_hasNonEmptyString(json, 'verificationLevel');
+  }
+
+  static bool _hasNonEmptyString(Map<String, dynamic> json, String key) {
+    final value = json[key];
+    return value is String && value.trim().isNotEmpty;
   }
 
   static String _requiredString(Map<String, dynamic> json, String key) {
