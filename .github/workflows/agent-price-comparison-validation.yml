@@ -53,10 +53,30 @@ jobs:
             test/features/comparison
 
       - name: Run full test suite
-        run: flutter test
+        id: full-tests
+        shell: bash
+        run: |
+          set +e
+          flutter test > full-test.log 2>&1
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          tail -n 120 full-test.log
+          exit 0
+
+      - name: Upload full test diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: price-comparison-full-test-log
+          path: full-test.log
+          if-no-files-found: error
 
       - name: Build web
         run: flutter build web
 
       - name: Build Android debug APK
         run: flutter build apk --debug
+
+      - name: Fail on full test errors
+        if: steps.full-tests.outputs.status != '0'
+        run: exit 1
