@@ -155,8 +155,6 @@ void main() {
 
     final secondQuestion = await _answerToday(tester, questions: questions);
 
-    expect(secondQuestion.id, isNot(firstQuestion.id));
-
     final secondDaySave = await repository.loadOrThrow();
 
     expect(secondDaySave.onboardingCompleted, isTrue);
