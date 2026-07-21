@@ -20,6 +20,33 @@ void main() {
     expect(result.toMarkdown(), contains('構造化されたsourceが未設定'));
   });
 
+  test('pending source review stubs are pending, not malformed', () {
+    final result = auditor.auditJsonStrings(
+      questionsJson: jsonEncode([
+        _question(
+          source: {
+            'reviewStatus': 'pending',
+            'reviewNote': '出典を再確認する',
+          },
+        ),
+      ]),
+      cardsJson: jsonEncode([
+        _card(
+          source: {
+            'reviewStatus': 'correction_required',
+            'reviewNote': '説明文を修正する',
+          },
+        ),
+      ]),
+    );
+
+    expect(result.totalCount, 2);
+    expect(result.approvedCount, 0);
+    expect(result.pendingCount, 2);
+    expect(result.invalidCount, 0);
+    expect(result.toMarkdown(), contains('構造化されたsourceはレビュー待ち'));
+  });
+
   test('complete approved sources pass the strict audit state', () {
     final source = _source(url: 'https://www.jma.go.jp/example');
     final result = auditor.auditJsonStrings(
