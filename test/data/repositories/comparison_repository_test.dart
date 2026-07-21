@@ -34,6 +34,15 @@ void main() {
     expect(restored.single.result.bestId, 'b');
     expect(store.values.values.single, contains('"schemaVersion":1'));
   });
+
+  test('2件未満の比較結果は保存しない', () {
+    final repository = ComparisonRepository(store: _MemoryStore());
+
+    expect(
+      () => repository.save(const <Offer>[]),
+      throwsA(isA<ComparisonSaveException>()),
+    );
+  });
 }
 
 class _MemoryStore implements PreferenceStore {
