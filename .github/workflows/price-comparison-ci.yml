@@ -1,0 +1,55 @@
+name: Price Comparison CI
+
+on:
+  pull_request:
+    paths:
+      - 'lib/domain/models/price_comparison.dart'
+      - 'lib/domain/price_comparison/**'
+      - 'lib/domain/services/price_calculator.dart'
+      - 'lib/features/comparison/price_comparison_screen.dart'
+      - 'test/domain/price_comparison/**'
+      - 'test/features/comparison/price_comparison_screen_test.dart'
+      - '.github/workflows/price-comparison-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: >-
+          dart format --output=none --set-exit-if-changed
+          lib/domain/models/price_comparison.dart
+          lib/domain/price_comparison
+          lib/domain/services/price_calculator.dart
+          lib/features/comparison/price_comparison_screen.dart
+          test/domain/price_comparison
+          test/features/comparison/price_comparison_screen_test.dart
+
+      - name: Analyze price comparison implementation
+        run: |
+          dart analyze lib/domain/price_comparison
+          dart analyze lib/features/comparison/price_comparison_screen.dart
+          dart analyze test/domain/price_comparison
+          dart analyze test/features/comparison/price_comparison_screen_test.dart
+
+      - name: Run price comparison tests
+        run: >-
+          flutter test
+          test/domain/price_comparison/price_calculator_python_parity_test.dart
+          test/features/comparison/price_comparison_screen_test.dart

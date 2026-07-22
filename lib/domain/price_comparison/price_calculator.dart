@@ -228,6 +228,7 @@ class PriceCalculator {
     final fixedDiscount = _decimal(offer.fixedDiscount);
     final couponDiscount = _decimal(offer.couponDiscount);
     var current = basePrice;
+    var percentageActual = DecimalValue.zero;
 
     if (percentageDiscount.isPositive) {
       var amount = (current * percentageDiscount).quantize(
@@ -238,16 +239,19 @@ class PriceCalculator {
         warnings.add(PriceWarning.discountExceedsPrice);
         amount = current;
       }
-      current -= amount;
+      percentageActual = amount;
+      current -= percentageActual;
     }
 
+    var fixedActual = DecimalValue.zero;
     if (fixedDiscount.isPositive) {
       if (fixedDiscount > current) {
         warnings.add(PriceWarning.discountExceedsPrice);
-        current = DecimalValue.zero;
+        fixedActual = current;
       } else {
-        current -= fixedDiscount;
+        fixedActual = fixedDiscount;
       }
+      current -= fixedActual;
     }
 
     var couponActual = DecimalValue.zero;
@@ -267,15 +271,8 @@ class PriceCalculator {
       }
     }
 
-    final percentageAmount = percentageDiscount.isPositive
-        ? (basePrice * percentageDiscount).quantize(
-            0,
-            rounding: _rounding(policy.discountRounding),
-          )
-        : DecimalValue.zero;
-    final discountTotal = percentageAmount + fixedDiscount + couponActual;
-    var afterDiscount = basePrice - discountTotal;
-    if (afterDiscount.isNegative) afterDiscount = DecimalValue.zero;
+    final discountTotal = percentageActual + fixedActual + couponActual;
+    final afterDiscount = current;
 
     return (
       afterDiscount: afterDiscount,

@@ -98,12 +98,28 @@ void main() {
     expect(result.effectiveUnitCost, 0.39);
   });
 
-  test('値引きが価格を超えた場合もPython版と同じ内訳を返す', () {
+  test('値引きが価格を超えても実適用額だけを内訳へ計上する', () {
     final result = calculator.calculate(offer(price: 100, fixedDiscount: 200));
 
-    expect(result.discountAmount, 200);
+    expect(result.discountAmount, 100);
     expect(result.payableNow, 0);
+    expect(result.basePriceInclTax - result.discountAmount, result.payableNow);
     expect(result.warnings, contains(PriceWarning.discountExceedsPrice));
+  });
+
+  test('全額の割合値引き後に固定値引きとクーポンを重複計上しない', () {
+    final result = calculator.calculate(
+      offer(
+        price: 100,
+        percentageDiscount: 1,
+        fixedDiscount: 50,
+        couponDiscount: 25,
+      ),
+    );
+
+    expect(result.discountAmount, 100);
+    expect(result.payableNow, 0);
+    expect(result.discountAmount, lessThanOrEqualTo(result.basePriceInclTax));
   });
 
   test('容量と重量は単価比較せず総額へフォールバックする', () {
