@@ -24,6 +24,7 @@ enum PriceWarning {
   couponExceedsRemaining,
   negativeEffectiveCost,
   quantityZero,
+  dimensionMismatch,
   cannotCompare,
 }
 
