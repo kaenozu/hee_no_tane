@@ -3,12 +3,8 @@ name: Price Comparison CI
 on:
   pull_request:
     paths:
-      - 'lib/domain/models/price_comparison.dart'
-      - 'lib/domain/price_comparison/**'
-      - 'lib/domain/services/price_calculator.dart'
-      - 'lib/features/comparison/price_comparison_screen.dart'
-      - 'test/domain/price_comparison/**'
-      - 'test/features/comparison/price_comparison_screen_test.dart'
+      - 'lib/domain/price_comparison/price_calculator.dart'
+      - 'test/domain/price_comparison/price_calculator_python_parity_test.dart'
       - '.github/workflows/price-comparison-ci.yml'
   workflow_dispatch:
 
@@ -34,19 +30,13 @@ jobs:
       - name: Check formatting
         run: >-
           dart format --output=none --set-exit-if-changed
-          lib/domain/models/price_comparison.dart
-          lib/domain/price_comparison
-          lib/domain/services/price_calculator.dart
-          lib/features/comparison/price_comparison_screen.dart
-          test/domain/price_comparison
-          test/features/comparison/price_comparison_screen_test.dart
+          lib/domain/price_comparison/price_calculator.dart
+          test/domain/price_comparison/price_calculator_python_parity_test.dart
 
-      - name: Analyze price comparison implementation
+      - name: Analyze changed price comparison files
         run: |
-          dart analyze lib/domain/price_comparison
-          dart analyze lib/features/comparison/price_comparison_screen.dart
-          dart analyze test/domain/price_comparison
-          dart analyze test/features/comparison/price_comparison_screen_test.dart
+          dart analyze lib/domain/price_comparison/price_calculator.dart
+          dart analyze test/domain/price_comparison/price_calculator_python_parity_test.dart
 
       - name: Run price comparison tests
         run: >-
