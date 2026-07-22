@@ -91,6 +91,25 @@ class DailyProgressService {
     });
   }
 
+  Future<SaveData> repairAssignment({
+    required String date,
+    required String questionId,
+    required String cardId,
+  }) {
+    _requireAssignmentValues(date, questionId, cardId);
+    return saveRepository.update((current) {
+      if (current.lastDailyQuestionDate == date) {
+        throw const SaveException('回答済みの日次割り当ては変更できません。');
+      }
+
+      return current.copyWith(
+        dailyAssignmentDate: date,
+        dailyAssignmentQuestionId: questionId,
+        dailyAssignmentCardId: cardId,
+      );
+    });
+  }
+
   Future<DailyAnswerResult> submitAnswer({
     required String date,
     required Question question,
@@ -104,6 +123,7 @@ class DailyProgressService {
     late final SaveData updated;
     try {
       updated = await saveRepository.update((current) {
+        cardWasOwnedBeforeAnswer = null;
         final hasStoredAssignmentIds =
             current.dailyAssignmentQuestionId.isNotEmpty ||
             current.dailyAssignmentCardId.isNotEmpty;

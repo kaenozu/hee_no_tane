@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:hee_no_tane_app/content_validation/atomic_generated_files_writer.dart';
 import 'package:hee_no_tane_app/content_validation/content_bundle_builder.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
@@ -55,10 +56,10 @@ void main(List<String> arguments) {
       return;
     }
 
-    File(_bundlePath)
-      ..parent.createSync(recursive: true)
-      ..writeAsStringSync(bundleText);
-    File(_manifestPath).writeAsStringSync(manifestText);
+    AtomicGeneratedFilesWriter.write(<String, String>{
+      _bundlePath: bundleText,
+      _manifestPath: manifestText,
+    });
     stdout.writeln(
       'Generated $_bundlePath with ${bundle.entries.length} approved pairs.',
     );
