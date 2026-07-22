@@ -16,6 +16,23 @@ class DailyAnswerResult {
   });
 }
 
+/// A daily-answer save failed after the updater had already determined the
+/// pre-answer reward state.
+///
+/// Persistent stores can fail after a write has reached storage but before the
+/// caller receives confirmation. Retaining this metadata lets the UI retry the
+/// idempotent update without changing an initial "new card" result into an
+/// "already owned" result.
+class DailyAnswerSaveException extends SaveException {
+  final bool cardWasOwnedBeforeAnswer;
+
+  const DailyAnswerSaveException(
+    super.message, {
+    super.cause,
+    required this.cardWasOwnedBeforeAnswer,
+  });
+}
+
 class DailyProgressService {
   final SaveRepository saveRepository;
   final RewardService rewardService;
@@ -82,78 +99,93 @@ class DailyProgressService {
     final cardId = card?.id ?? question.relatedCardId;
     _requireAnswerValues(date, question.id);
 
-    var cardWasOwnedBeforeAnswer = true;
+    bool? cardWasOwnedBeforeAnswer;
     var alreadyCompleted = false;
-    final updated = await saveRepository.update((current) {
-      final hasStoredAssignmentIds =
-          current.dailyAssignmentQuestionId.isNotEmpty ||
-          current.dailyAssignmentCardId.isNotEmpty;
-      if (current.dailyAssignmentDate == date &&
-          hasStoredAssignmentIds &&
-          !current.hasDailyAssignment(
-            date: date,
-            questionId: question.id,
-            cardId: cardId,
-          )) {
-        throw const SaveException(
-          '本日分として割り当てられた問題と回答対象が一致しません。ホームへ戻って最新の問題を開いてください。',
-        );
-      }
-
-      var assigned = current;
-      if (cardId.isNotEmpty &&
-          !current.hasDailyAssignment(
-            date: date,
-            questionId: question.id,
-            cardId: cardId,
-          )) {
-        assigned = current.copyWith(
-          dailyAssignmentDate: date,
-          dailyAssignmentQuestionId: question.id,
-          dailyAssignmentCardId: cardId,
-        );
-      }
-
-      if (assigned.lastDailyQuestionDate == date) {
-        final exactMatch = assigned.hasDailyCompletion(
-          date: date,
-          questionId: question.id,
-          cardId: cardId,
-        );
-        final legacyMatch =
-            assigned.lastDailyQuestionId.isEmpty &&
-            assigned.lastDailyCardId.isEmpty &&
-            assigned.ownedCardIds.contains(cardId);
-        if (exactMatch || legacyMatch) {
-          alreadyCompleted = true;
-          cardWasOwnedBeforeAnswer = true;
-          return legacyMatch
-              ? assigned.copyWith(
-                  lastDailyQuestionId: question.id,
-                  lastDailyCardId: cardId,
-                )
-              : assigned;
+    late final SaveData updated;
+    try {
+      updated = await saveRepository.update((current) {
+        final hasStoredAssignmentIds =
+            current.dailyAssignmentQuestionId.isNotEmpty ||
+            current.dailyAssignmentCardId.isNotEmpty;
+        if (current.dailyAssignmentDate == date &&
+            hasStoredAssignmentIds &&
+            !current.hasDailyAssignment(
+              date: date,
+              questionId: question.id,
+              cardId: cardId,
+            )) {
+          throw const SaveException(
+            '本日分として割り当てられた問題と回答対象が一致しません。ホームへ戻って最新の問題を開いてください。',
+          );
         }
-        throw const SaveException('同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。');
-      }
 
-      cardWasOwnedBeforeAnswer =
-          card == null || assigned.ownedCardIds.contains(card.id);
-      var result = rewardService.recordDailyAnswer(assigned, date);
-      result = result.copyWith(
-        lastDailyQuestionDate: date,
-        lastDailyQuestionId: question.id,
-        lastDailyCardId: cardId,
-      );
-      if (card != null && !assigned.ownedCardIds.contains(card.id)) {
-        result = rewardService.applyReward(result, card);
+        var assigned = current;
+        if (cardId.isNotEmpty &&
+            !current.hasDailyAssignment(
+              date: date,
+              questionId: question.id,
+              cardId: cardId,
+            )) {
+          assigned = current.copyWith(
+            dailyAssignmentDate: date,
+            dailyAssignmentQuestionId: question.id,
+            dailyAssignmentCardId: cardId,
+          );
+        }
+
+        if (assigned.lastDailyQuestionDate == date) {
+          final exactMatch = assigned.hasDailyCompletion(
+            date: date,
+            questionId: question.id,
+            cardId: cardId,
+          );
+          final legacyMatch =
+              assigned.lastDailyQuestionId.isEmpty &&
+              assigned.lastDailyCardId.isEmpty &&
+              assigned.ownedCardIds.contains(cardId);
+          if (exactMatch || legacyMatch) {
+            alreadyCompleted = true;
+            cardWasOwnedBeforeAnswer = true;
+            return legacyMatch
+                ? assigned.copyWith(
+                    lastDailyQuestionId: question.id,
+                    lastDailyCardId: cardId,
+                  )
+                : assigned;
+          }
+          throw const SaveException(
+            '同じ日付に別の問題の回答履歴があります。ホームへ戻って最新の問題を開いてください。',
+          );
+        }
+
+        cardWasOwnedBeforeAnswer =
+            card == null || assigned.ownedCardIds.contains(card.id);
+        var result = rewardService.recordDailyAnswer(assigned, date);
+        result = result.copyWith(
+          lastDailyQuestionDate: date,
+          lastDailyQuestionId: question.id,
+          lastDailyCardId: cardId,
+        );
+        if (card != null && !assigned.ownedCardIds.contains(card.id)) {
+          result = rewardService.applyReward(result, card);
+        }
+        return result;
+      });
+    } on SaveException catch (error) {
+      final ownership = cardWasOwnedBeforeAnswer;
+      if (ownership != null) {
+        throw DailyAnswerSaveException(
+          error.message,
+          cause: error.cause,
+          cardWasOwnedBeforeAnswer: ownership,
+        );
       }
-      return result;
-    });
+      rethrow;
+    }
 
     return DailyAnswerResult(
       saveData: updated,
-      cardWasOwnedBeforeAnswer: cardWasOwnedBeforeAnswer,
+      cardWasOwnedBeforeAnswer: cardWasOwnedBeforeAnswer ?? true,
       alreadyCompleted: alreadyCompleted,
     );
   }
