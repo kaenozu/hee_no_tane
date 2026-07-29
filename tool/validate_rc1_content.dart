@@ -17,23 +17,17 @@ void main() {
       Map<String, dynamic>.from(decoded),
     );
     final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
-    final excludedInRelease = <String>[
-      for (final entry in releaseBundle.entries)
-        if (Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id))
-          entry.question.id,
-    ];
-    if (excludedInRelease.isNotEmpty) {
-      throw FormatException(
-        'RC1 release still contains excluded questions: '
-        '${excludedInRelease.join(', ')}.',
+
+    if (Rc1ContentPolicy.excludedQuestionIds.isNotEmpty) {
+      throw const FormatException(
+        'RC1 must not keep temporary source-audit exclusions.',
       );
     }
 
     stdout.writeln(
       'RC1 content boundary passed: '
       '${approvedBundle.entries.length} approved pairs, '
-      '${releaseBundle.entries.length} release pairs, '
-      '${Rc1ContentPolicy.excludedQuestionIds.length} temporarily excluded.',
+      '${releaseBundle.entries.length} directly audited release pairs.',
     );
   } on Object catch (error, stackTrace) {
     stderr.writeln('RC1 content boundary failed: $error');
