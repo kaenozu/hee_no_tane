@@ -10,12 +10,12 @@ void main() {
     late ContentBundle approvedBundle;
 
     setUpAll(() {
-      final decoded = jsonDecode(
-        File('assets/data/content_bundle.json').readAsStringSync(),
-      );
-      approvedBundle = ContentBundle.fromJson(
-        Map<String, dynamic>.from(decoded as Map),
-      );
+      final raw = File(
+        'assets/data/content_bundle.json',
+      ).readAsStringSync();
+      final decoded = jsonDecode(raw);
+      final bundleJson = Map<String, dynamic>.from(decoded as Map);
+      approvedBundle = ContentBundle.fromJson(bundleJson);
     });
 
     test('keeps approved source data but exposes exactly 47 RC1 pairs', () {
@@ -32,16 +32,14 @@ void main() {
 
     test('removes every temporarily excluded question', () {
       final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
-      final releaseQuestionIds = <String>{
-        for (final entry in releaseBundle.entries) entry.question.id,
-      };
 
-      expect(
-        releaseQuestionIds.intersection(
-          Rc1ContentPolicy.excludedQuestionIds,
-        ),
-        isEmpty,
-      );
+      for (final entry in releaseBundle.entries) {
+        expect(
+          Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
+          isFalse,
+          reason: '${entry.question.id} must not be included in RC1.',
+        );
+      }
     });
   });
 }
