@@ -32,6 +32,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Show RC1 formatter patch
+        run: |
+          dart format test/content_validation/rc1_content_policy_test.dart
+          git diff -- test/content_validation/rc1_content_policy_test.dart
+
       - name: Check generated bundle
         run: dart run tool/generate_content_bundle.dart --check
 
