@@ -38,6 +38,9 @@ jobs:
       - name: Validate approved semantic reviews
         run: dart run tool/validate_semantic_reviews.dart
 
+      - name: Validate RC1 release target
+        run: dart run tool/validate_rc1_content.dart
+
       - name: Validate runtime content boundary
         run: dart run tool/validate_runtime_content.dart
 
@@ -53,4 +56,5 @@ jobs:
           test/content_validation/content_bundle_builder_test.dart
           test/content_validation/semantic_review_gate_test.dart
           test/content_validation/approved_content_semantic_regression_test.dart
+          test/content_validation/rc1_content_policy_test.dart
           test/application/daily_progress_service_test.dart
