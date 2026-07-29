@@ -17,15 +17,11 @@ void main() {
       Map<String, dynamic>.from(decoded),
     );
     final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
-
-    final excludedInRelease = releaseBundle.entries
-        .where(
-          (entry) => Rc1ContentPolicy.excludedQuestionIds.contains(
-            entry.question.id,
-          ),
-        )
-        .map((entry) => entry.question.id)
-        .toList(growable: false);
+    final excludedInRelease = <String>[
+      for (final entry in releaseBundle.entries)
+        if (Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id))
+          entry.question.id,
+    ];
     if (excludedInRelease.isNotEmpty) {
       throw FormatException(
         'RC1 release still contains excluded questions: '
