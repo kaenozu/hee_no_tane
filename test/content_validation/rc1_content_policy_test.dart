@@ -10,9 +10,7 @@ void main() {
     late ContentBundle approvedBundle;
 
     setUpAll(() {
-      final raw = File(
-        'assets/data/content_bundle.json',
-      ).readAsStringSync();
+      final raw = File('assets/data/content_bundle.json').readAsStringSync();
       final decoded = jsonDecode(raw);
       final bundleJson = Map<String, dynamic>.from(decoded as Map);
       approvedBundle = ContentBundle.fromJson(bundleJson);
