@@ -49,11 +49,10 @@ class Rc1ContentPolicy {
       );
     }
 
-    final releaseEntries = source.entries
-        .where(
-          (entry) => !excludedQuestionIds.contains(entry.question.id),
-        )
-        .toList(growable: false);
+    final releaseEntries = <ContentBundleEntry>[
+      for (final entry in source.entries)
+        if (!excludedQuestionIds.contains(entry.question.id)) entry,
+    ];
     if (releaseEntries.length != expectedReleasePairCount) {
       throw FormatException(
         'RC1 must contain exactly $expectedReleasePairCount pairs, got '
