@@ -16,28 +16,28 @@ void main() {
       approvedBundle = ContentBundle.fromJson(bundleJson);
     });
 
-    test('keeps approved source data but exposes exactly 47 RC1 pairs', () {
-      expect(approvedBundle.entries.length, 70);
-
+    test('exposes all 70 directly audited RC1 pairs', () {
       final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
 
+      expect(approvedBundle.entries.length, 70);
       expect(
         releaseBundle.entries.length,
         Rc1ContentPolicy.expectedReleasePairCount,
       );
-      expect(Rc1ContentPolicy.excludedQuestionIds.length, 23);
+      expect(Rc1ContentPolicy.excludedQuestionIds, isEmpty);
+      expect(identical(releaseBundle, approvedBundle), isTrue);
     });
 
-    test('removes every temporarily excluded question', () {
-      final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
+    test('fails closed when an approved pair is missing', () {
+      final incompleteBundle = ContentBundle.create(
+        contentVersion: approvedBundle.contentVersion,
+        entries: approvedBundle.entries.take(69).toList(growable: false),
+      );
 
-      for (final entry in releaseBundle.entries) {
-        expect(
-          Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
-          isFalse,
-          reason: '${entry.question.id} must not be included in RC1.',
-        );
-      }
+      expect(
+        () => Rc1ContentPolicy.apply(incompleteBundle),
+        throwsA(isA<FormatException>()),
+      );
     });
   });
 }
