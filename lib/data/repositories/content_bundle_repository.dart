@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:hee_no_tane_app/content_validation/content_release_policy.dart';
+import 'package:hee_no_tane_app/content_validation/rc1_content_policy.dart';
 import 'package:hee_no_tane_app/domain/models/content_bundle.dart';
 
 class ContentBundleLoadException implements Exception {
@@ -33,9 +34,14 @@ class ContentBundleRepository {
         throw const FormatException('Content bundle root must be an object.');
       }
 
-      final bundle = ContentBundle.fromJson(Map<String, dynamic>.from(decoded));
-      _validateEntries(bundle);
-      return bundle;
+      final approvedBundle = ContentBundle.fromJson(
+        Map<String, dynamic>.from(decoded),
+      );
+      _validateEntries(approvedBundle);
+
+      final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
+      _validateEntries(releaseBundle);
+      return releaseBundle;
     } catch (error) {
       throw ContentBundleLoadException('公開用コンテンツの読み込みに失敗しました。', cause: error);
     }
