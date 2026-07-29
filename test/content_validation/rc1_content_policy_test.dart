@@ -28,16 +28,13 @@ void main() {
         Rc1ContentPolicy.expectedReleasePairCount,
       );
       expect(Rc1ContentPolicy.excludedQuestionIds.length, 23);
-      expect(
-        releaseBundle.entries.map((entry) => entry.question.id).toSet(),
-        isNot(containsAll(Rc1ContentPolicy.excludedQuestionIds)),
-      );
     });
 
     test('removes every temporarily excluded question', () {
-      final releaseQuestionIds = Rc1ContentPolicy.apply(
-        approvedBundle,
-      ).entries.map((entry) => entry.question.id).toSet();
+      final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
+      final releaseQuestionIds = <String>{
+        for (final entry in releaseBundle.entries) entry.question.id,
+      };
 
       expect(
         releaseQuestionIds.intersection(
