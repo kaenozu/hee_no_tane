@@ -42,10 +42,12 @@ class SharePlusCardShareGateway implements CardShareGateway {
       throw const CardShareException('共有メニューの表示位置を取得できませんでした。');
     }
 
-    await Share.shareXFiles(
-      [XFile.fromData(bytes, mimeType: 'image/png')],
-      fileNameOverrides: [fileName],
-      sharePositionOrigin: sharePositionOrigin,
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [XFile.fromData(bytes, mimeType: 'image/png')],
+        fileNameOverrides: [fileName],
+        sharePositionOrigin: sharePositionOrigin,
+      ),
     );
   }
 }
