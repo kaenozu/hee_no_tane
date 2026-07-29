@@ -1,0 +1,20 @@
+name: Upload source audit inventory
+
+on:
+  pull_request:
+    types: [synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  upload:
+    if: github.head_ref == 'agent/re-audit-23-sources'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-audit-inventory
+          path: agent_source_audit_inventory.json
+          if-no-files-found: error
