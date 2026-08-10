@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# One-shot migration for PR #80. Removed after generated source artifacts are committed.
 import json
 from pathlib import Path
 
