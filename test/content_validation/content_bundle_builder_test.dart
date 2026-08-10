@@ -45,7 +45,7 @@ void main() {
     );
   });
 
-  test('pending image review stays bundled but is not image-release-ready', () {
+  test('pending image review stays bundled for review-stage runtime', () {
     final pair = _approvedPair('q_pending', 'c_pending');
     final pendingCardJson = pair.card.toJson();
     pendingCardJson['imageReview'] = <String, dynamic>{
@@ -56,7 +56,8 @@ void main() {
     final pendingCard = HeeCard.fromJson(pendingCardJson);
 
     expect(pendingCard.isSourceReleaseApproved, isTrue);
-    expect(pendingCard.imageReview.isReleaseReady, isFalse);
+    expect(pendingCard.imageReview.isReleaseReady, isTrue);
+    expect(pendingCard.imageReview.isFinalImageApproved, isFalse);
 
     final bundle = ContentBundleBuilder.build(
       questions: <Question>[pair.question],
