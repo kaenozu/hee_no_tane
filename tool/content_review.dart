@@ -43,14 +43,10 @@ Future<void> main(List<String> arguments) async {
             'import requires --input <csv-path>',
           );
         }
-        final cardsJson = await File(cardsPath).readAsString();
-        final baseCsv = classifier.stripReviewCsv(
-          reviewCsv: await File(input).readAsString(),
-          cardsJson: cardsJson,
-        );
+        final reviewCsv = await File(input).readAsString();
         final write = options.containsKey('write');
         final plan = await workflow.applyCsvToFiles(
-          csv: baseCsv,
+          csv: reviewCsv,
           questionsPath: questionsPath,
           cardsPath: cardsPath,
           write: write,
@@ -167,10 +163,12 @@ Common options:
   --cards <path>      Cards JSON path
 
 Import performs a full dry-run by default. JSON is changed only when every row
-passes validation and --write is supplied.
+passes validation and --write is supplied. The canonical ContentReviewWorkflow
+validates immutable fields, content hashes, source metadata, and image-review
+states.
 
-imageFit is a review-only field and accepts:
-  unchecked, fit, generic_placeholder, replace_required
+imageReviewStatus accepts the states supported by ImageReviewMetadata,
+including pending for generated images awaiting visual approval.
 
 Risk output separates dynamic and stable comparisons, current roles and current
 facts, health and anatomy, financial advice, prices, currency history, and
