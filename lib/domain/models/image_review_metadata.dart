@@ -3,6 +3,7 @@ library;
 
 class ImageReviewMetadata {
   static const approvedStatus = 'approved';
+  static const pendingStatus = 'pending';
   static const genericPlaceholderStatus = 'generic_placeholder';
   static const replaceRequiredStatus = 'replace_required';
   static const uncheckedStatus = 'unchecked';
@@ -13,6 +14,7 @@ class ImageReviewMetadata {
 
   static const allowedStatuses = <String>{
     approvedStatus,
+    pendingStatus,
     genericPlaceholderStatus,
     replaceRequiredStatus,
     uncheckedStatus,
