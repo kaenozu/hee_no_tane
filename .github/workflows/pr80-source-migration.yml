@@ -1,9 +1,10 @@
 name: PR80 source migration
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/v1-final-card-images-batch
+      - master
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
