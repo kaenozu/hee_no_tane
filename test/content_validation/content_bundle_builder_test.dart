@@ -45,6 +45,29 @@ void main() {
     );
   });
 
+  test('pending image review stays bundled but is not image-release-ready', () {
+    final pair = _approvedPair('q_pending', 'c_pending');
+    final pendingCardJson = pair.card.toJson();
+    pendingCardJson['imageReview'] = <String, dynamic>{
+      'status': 'pending',
+      'reviewedAt': '2026-08-10',
+      'note': 'visual review pending',
+    };
+    final pendingCard = HeeCard.fromJson(pendingCardJson);
+
+    expect(pendingCard.isSourceReleaseApproved, isTrue);
+    expect(pendingCard.imageReview.isReleaseReady, isFalse);
+
+    final bundle = ContentBundleBuilder.build(
+      questions: <Question>[pair.question],
+      cards: <HeeCard>[pendingCard],
+      contentVersion: '1.0.0+1',
+    );
+
+    expect(bundle.entries, hasLength(1));
+    expect(bundle.entries.single.card.imageReview.status, 'pending');
+  });
+
   test('bundle parser rejects payload changes without a new hash', () {
     final pair = _approvedPair('q_a', 'c_a');
     final bundle = ContentBundleBuilder.build(
