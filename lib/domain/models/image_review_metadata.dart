@@ -65,8 +65,16 @@ class ImageReviewMetadata {
     );
   }
 
+  /// Whether the image can participate in runtime/review-stage content.
+  ///
+  /// This is not the final publication gate. Production readiness can require
+  /// the stricter raw status `approved` via `--require-final-images`.
   bool get isReleaseReady =>
-      status == approvedStatus || status == genericPlaceholderStatus;
+      status == approvedStatus ||
+      status == pendingStatus ||
+      status == genericPlaceholderStatus;
+
+  bool get isFinalImageApproved => status == approvedStatus;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'status': status,
