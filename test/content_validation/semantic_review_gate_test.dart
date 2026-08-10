@@ -34,6 +34,16 @@ void main() {
     );
   });
 
+  test('historical bundle hash does not invalidate unchanged semantics', () {
+    final changed = _deepCopy(reviewDocument);
+    changed['bundleHash'] = List<String>.filled(64, '0').join();
+
+    expect(
+      SemanticReviewGate.validate(bundle: bundle, reviewDocument: changed),
+      isEmpty,
+    );
+  });
+
   test('stale content hash is rejected', () {
     final changed = _deepCopy(reviewDocument);
     final entries = changed['entries']! as List<dynamic>;
