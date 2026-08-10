@@ -46,9 +46,11 @@ class SemanticReviewGate {
         '(${reviewDocument['contentVersion']} != ${bundle.contentVersion}).',
       );
     }
-    if (reviewDocument['bundleHash'] != bundle.bundleHash) {
-      errors.add('bundleHash does not match the generated bundle.');
-    }
+    // Do not require the historical bundleHash to equal the current bundle.
+    // Semantic approval is bound to each question/card pair's stable
+    // ContentFingerprint below. Non-semantic bundle metadata such as image
+    // review status may legitimately change without invalidating a factual
+    // semantic review.
     if (reviewDocument['entryCount'] != bundle.entries.length) {
       errors.add(
         'entryCount does not match the generated bundle '

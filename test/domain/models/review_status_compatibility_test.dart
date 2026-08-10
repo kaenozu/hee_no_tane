@@ -27,6 +27,24 @@ void main() {
 
     expect(metadata.status, ImageReviewMetadata.approvedStatus);
     expect(metadata.isReleaseReady, isTrue);
+    expect(metadata.isFinalImageApproved, isTrue);
     expect(metadata.toJson()['status'], ImageReviewMetadata.approvedStatus);
+  });
+
+  test('pending image review round-trips but is not final-approved', () {
+    final metadata = ImageReviewMetadata.fromJson(const <String, dynamic>{
+      'status': 'pending',
+      'reviewedAt': '2026-08-10',
+      'note': '生成画像の目視確認待ち',
+    });
+
+    expect(metadata.status, ImageReviewMetadata.pendingStatus);
+    expect(metadata.isReleaseReady, isTrue);
+    expect(metadata.isFinalImageApproved, isFalse);
+    expect(metadata.toJson(), <String, dynamic>{
+      'status': 'pending',
+      'reviewedAt': '2026-08-10',
+      'note': '生成画像の目視確認待ち',
+    });
   });
 }

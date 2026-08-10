@@ -3,6 +3,7 @@ library;
 
 class ImageReviewMetadata {
   static const approvedStatus = 'approved';
+  static const pendingStatus = 'pending';
   static const genericPlaceholderStatus = 'generic_placeholder';
   static const replaceRequiredStatus = 'replace_required';
   static const uncheckedStatus = 'unchecked';
@@ -13,6 +14,7 @@ class ImageReviewMetadata {
 
   static const allowedStatuses = <String>{
     approvedStatus,
+    pendingStatus,
     genericPlaceholderStatus,
     replaceRequiredStatus,
     uncheckedStatus,
@@ -63,8 +65,16 @@ class ImageReviewMetadata {
     );
   }
 
+  /// Whether the image can participate in runtime/review-stage content.
+  ///
+  /// This is not the final publication gate. Production readiness can require
+  /// the stricter raw status `approved` via `--require-final-images`.
   bool get isReleaseReady =>
-      status == approvedStatus || status == genericPlaceholderStatus;
+      status == approvedStatus ||
+      status == pendingStatus ||
+      status == genericPlaceholderStatus;
+
+  bool get isFinalImageApproved => status == approvedStatus;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     'status': status,

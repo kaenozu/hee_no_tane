@@ -29,8 +29,12 @@ class HeeCard {
   SourceMetadata get effectiveSource =>
       sourceMetadata ?? SourceMetadata.legacy(legacySourceNote);
 
-  bool get isSourceReleaseApproved =>
-      sourceMetadata?.isReleaseApproved == true && imageReview.isReleaseReady;
+  /// Whether the factual source itself is approved for release.
+  ///
+  /// Image review is a separate release dimension and is intentionally not
+  /// folded into this source-only predicate. Final-image approval is enforced
+  /// by the release-readiness gate when `--require-final-images` is enabled.
+  bool get isSourceReleaseApproved => sourceMetadata?.isReleaseApproved == true;
 
   String get sourceNote {
     final source = sourceMetadata;

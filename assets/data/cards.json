@@ -67,9 +67,9 @@
       "contentHash": "fa048fcdaf21e7dcf8ba1ae027e926bd45d05ebfae8c8a9b1dc6bdda54fa2b00"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -82,9 +82,9 @@
     "rarity": "normal",
     "sourceNote": "文化庁 日本文化紹介",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "俳句入門",
@@ -107,9 +107,9 @@
     "rarity": "rare",
     "sourceNote": "東大寺公式サイト",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "大仏さまができるまで",
@@ -132,9 +132,9 @@
     "rarity": "normal",
     "sourceNote": "NOAA NESDIS「Peeling Back the Layers of the Atmosphere」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Peeling Back the Layers of the Atmosphere",
@@ -158,9 +158,9 @@
     "rarity": "normal",
     "sourceNote": "NASA Glenn「How Fast is the Speed of Light?」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "How Fast is the Speed of Light?",
@@ -184,9 +184,9 @@
     "rarity": "normal",
     "sourceNote": "国立歴史民俗博物館",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "広畑貝塚",
@@ -218,9 +218,9 @@
       "contentHash": "d5b9b95d4aaf141a64cf5a9567daa5ada1dea72c70d475b8afe9797b9c5c2e79"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -286,9 +286,9 @@
     "rarity": "normal",
     "sourceNote": "警察庁 交通規制",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "信号機はなぜ、「赤・黄・青」の3色なのか。",
@@ -383,9 +383,9 @@
     "rarity": "normal",
     "sourceNote": "農林水産省",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Eutrema japonicum (Miq.) Koidz.",
@@ -408,9 +408,9 @@
     "rarity": "normal",
     "sourceNote": "オックスフォード英語辞典",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Sandwich",
@@ -433,9 +433,9 @@
     "rarity": "normal",
     "sourceNote": "文具メーカー資料",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "消しゴムで文字を消す仕組み",
@@ -467,9 +467,9 @@
       "contentHash": "c287a5ca5263d64c8ba843f473983063c31b69dd2be46edcc87a76474edaddb9"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -516,9 +516,9 @@
     "rarity": "normal",
     "sourceNote": "NOAA Ocean Exploration「How much of the ocean has been explored?」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "How much of the ocean has been explored?",
@@ -589,9 +589,9 @@
       "contentHash": "43c903ec5373a1523495fc023f602d4b27ad090b6addb457c0277ade7b2fd6ba"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -613,9 +613,9 @@
       "contentHash": "e5dbc7052fdd711b9a8576ef2ba7abea296135b55400938da433eb5f72c4e873"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -637,9 +637,9 @@
       "contentHash": "1c7e0080509afd261728ee6ad7a897732967aebcf058f03769fb2326081b26d4"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -652,9 +652,9 @@
     "rarity": "normal",
     "sourceNote": "静岡県および山梨県公式ホームページ",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "富士登山オフィシャルサイト",
@@ -711,9 +711,9 @@
     "rarity": "normal",
     "sourceNote": "GIA「ダイヤモンドについて」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "ダイヤモンドについて",
@@ -737,9 +737,9 @@
     "rarity": "normal",
     "sourceNote": "農林水産省「いちごのあれこれ豆知識」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "いちごのあれこれ豆知識",
@@ -772,9 +772,9 @@
       "contentHash": "cc197214156c132bb1381d398c7858dc009895e1258708ab26e2f2a1aa7c11ce"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -796,9 +796,9 @@
       "contentHash": "b3c9ca44034e6961a3d6378dbc57ebad0489f5f4593128797e4e26770c61f3b7"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -839,9 +839,9 @@
       "contentHash": "248cbde8c90031a2bc5924d53ececc3606031ec837341fad3d8f384c009a9ffa"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -873,9 +873,9 @@
     "rarity": "normal",
     "sourceNote": "NASA GSFC「SeaWiFS: Atmospheric Correction」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "SeaWiFS: Atmospheric Correction",
@@ -899,9 +899,9 @@
     "rarity": "normal",
     "sourceNote": "HistoryExtra「Did The Earl Of Sandwich Invent The Sandwich?」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Did The Earl Of Sandwich Invent The Sandwich?",
@@ -925,9 +925,9 @@
     "rarity": "rare",
     "sourceNote": "コトバンク「二足の草鞋を履く」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "二足の草鞋を履く",
@@ -970,9 +970,9 @@
     "rarity": "normal",
     "sourceNote": "国土地理院「全国都道府県市区町村別面積調」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "全国都道府県市区町村別面積調",
@@ -995,9 +995,9 @@
     "rarity": "rare",
     "sourceNote": "生物学事典「軟体動物の循環系」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "ChatGPT確認: タコのえら心臓2つ。正確。",
@@ -1030,9 +1030,9 @@
       "contentHash": "f7419bff3e154a74e4c0276aa1cea31bb50e535276bd312786abc695117768bc"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1045,9 +1045,9 @@
     "rarity": "normal",
     "sourceNote": "物理学基礎「界面動態と表面張力」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Bubble Tray: Chemistry & Waves Science Activity",
@@ -1089,9 +1089,9 @@
     "rarity": "normal",
     "sourceNote": "コトバンク「大詰」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "大詰",
@@ -1200,9 +1200,9 @@
       "contentHash": "ef258b035470da0347462cd4029a814c659d9bba5cfd3b89e4e295b367da8da5"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1215,9 +1215,9 @@
     "rarity": "normal",
     "sourceNote": "気象庁「雷の発生しやすい時期や時間帯」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "雷の発生しやすい時期や時間帯",
@@ -1241,9 +1241,9 @@
     "rarity": "normal",
     "sourceNote": "Smithsonian Magazine「Ten Wild Facts About Octopuses」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Ten Wild Facts About Octopuses: They Have Three Hearts, Big Brains and Blue Blood",
@@ -1267,9 +1267,9 @@
     "rarity": "rare",
     "sourceNote": "Smithsonian Magazine「Ten Wild Facts About Octopuses」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Ten Wild Facts About Octopuses: They Have Three Hearts, Big Brains and Blue Blood",
@@ -1293,9 +1293,9 @@
     "rarity": "rare",
     "sourceNote": "理科年表オフィシャルサイト「日本の標準時」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "日本の標準時",
@@ -1328,9 +1328,9 @@
       "contentHash": "370ec2e6e8c075d6ac2a17e76e2855953e9486d961bf34bd6c3c4018462ef6e1"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1343,9 +1343,9 @@
     "rarity": "normal",
     "sourceNote": "Mayo Clinic「蜂蜜と血糖値」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Diabetes foods: Can I substitute honey for sugar?",
@@ -1368,9 +1368,9 @@
     "rarity": "normal",
     "sourceNote": "ACS Chemical Biology「Enzyme That Makes You Cry」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Enzyme That Makes You Cry–Crystal Structure of Lachrymatory Factor Synthase from Allium cepa",
@@ -1394,9 +1394,9 @@
     "rarity": "rare",
     "sourceNote": "国立国会図書館レファレンス事例",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "長崎名物「カステラ」の名前の由来は？",
@@ -1419,9 +1419,9 @@
     "rarity": "rare",
     "sourceNote": "環境省・環境ラベルデータベース",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "容器包装の識別表示マーク",
@@ -1529,9 +1529,9 @@
       "contentHash": "e4e741986da542f85c6368aaef1941eab69741b1280273d7cf4ba16a896f74cb"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1544,9 +1544,9 @@
     "rarity": "normal",
     "sourceNote": "小学館「如し」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "如し（ゴトシ）とは？ 意味や使い方",
@@ -1578,9 +1578,9 @@
       "contentHash": "e46963ca2972cc2aad8aa2aa56854dd25b8667862428d779d71a0605f71a2de8"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1669,9 +1669,9 @@
     "rarity": "normal",
     "sourceNote": "MSD Veterinary Manual「Nutrition of Rabbits」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Nutrition of Rabbits",
@@ -1704,9 +1704,9 @@
       "contentHash": "f65e18f7950bd9bad4eb9cd621851b934371752555576b6d9148d2c48f77a3cc"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1728,9 +1728,9 @@
       "contentHash": "d75c2c2c9278a7a7fc844eeee71d31397ad460527c956bcfeb00c6b1bd4d3f34"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1743,9 +1743,9 @@
     "rarity": "normal",
     "sourceNote": "植物分類学「偽果と真果の構造」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Fragaria virginiana - Plant Finder",
@@ -1768,9 +1768,9 @@
     "rarity": "normal",
     "sourceNote": "コトバンク仏和辞典「sabotage」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "sabotage",
@@ -1803,9 +1803,9 @@
       "contentHash": "e4cb2fbd02ff2b01c06c29828b5e02dc87f0404387a7d566afe0f5a09fbef06d"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1818,9 +1818,9 @@
     "rarity": "normal",
     "sourceNote": "離島経済新聞社「淡路島の情報」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "淡路島の情報",
@@ -1843,9 +1843,9 @@
     "rarity": "normal",
     "sourceNote": "Audubon「Hummingbird Flight Is Like Nothing Else in the Bird World」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Hummingbird Flight Is Like Nothing Else in the Bird World",
@@ -1897,9 +1897,9 @@
       "contentHash": "6d13ce449a47f461b8560d1cff5d16c5f6348a379e5ac0048e0eb31e28fefd2b"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1912,9 +1912,9 @@
     "rarity": "normal",
     "sourceNote": "気象庁「津波発生と伝播のしくみ」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "津波発生と伝播のしくみ",
@@ -1946,9 +1946,9 @@
       "contentHash": "d528fc4fe5d704bc2a5cb00e5d4d07d7154ab1f3aef2c6ecf4643f8b3c638053"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1970,9 +1970,9 @@
       "contentHash": "b87ee5673f4b62d6fa42c3efc8f8587d4ded88a10a63428bce97db8c58d7698e"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -1985,9 +1985,9 @@
     "rarity": "normal",
     "sourceNote": "San Diego Zoo「Camel」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Camel",
@@ -2011,9 +2011,9 @@
     "rarity": "rare",
     "sourceNote": "National Park Service「Synchronous Fireflies at Congaree」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Synchronous Fireflies at Congaree",
@@ -2046,9 +2046,9 @@
       "contentHash": "73a70f3cc743a56c147498ab6994c683a76fb41169a68c70f3dfafd2698f3335"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2070,9 +2070,9 @@
       "contentHash": "5cfca17fc79ecd874def176093409744320098e570b2fa3b5003f39fdedb1cb1"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2085,9 +2085,9 @@
     "rarity": "normal",
     "sourceNote": "U.S. National Park Service「Statue of Liberty Facts」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Statue of Liberty Facts",
@@ -2119,9 +2119,9 @@
       "contentHash": "4262af63f4eefd766b3ee2b5c2189da30af1b6d7335be3dcf1bb6b8c3e7d6732"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2143,9 +2143,9 @@
       "contentHash": "fe7a8fa782a2daf18f756e778b05b8ece61e4ffbdc99af848265604e4c877246"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2158,9 +2158,9 @@
     "rarity": "normal",
     "sourceNote": "GPS.gov「GPS and Telling Time」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "GPS and Telling Time",
@@ -2184,9 +2184,9 @@
     "rarity": "normal",
     "sourceNote": "NASA Glenn「Bernoulli and Newton」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "Bernoulli and Newton",
@@ -2210,9 +2210,9 @@
     "rarity": "normal",
     "sourceNote": "CDC/NIOSH「Calcium oxide」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "NIOSH Pocket Guide to Chemical Hazards: Calcium oxide",
@@ -2244,9 +2244,9 @@
       "contentHash": "277d3f37cdfc16c408db018dc317446fb67fd76db13b85e3e892f5a168f9869a"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2268,9 +2268,9 @@
       "contentHash": "beb05b916ae94ab025925372e71b7f88d698e313a2d718261b193fac8b7c61d4"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2283,9 +2283,9 @@
     "rarity": "normal",
     "sourceNote": "goo辞書「パン」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "パン",
@@ -2318,9 +2318,9 @@
       "contentHash": "424661125c34574839381e2fa95c2235f4f4083cb8899d4c4f8ebbf65c8df6ee"
     },
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     }
   },
   {
@@ -2333,9 +2333,9 @@
     "rarity": "rare",
     "sourceNote": "東京消防庁「火事があると電話局が困る」",
     "imageReview": {
-      "status": "generic_placeholder",
-      "reviewedAt": "2026-07-14",
-      "note": "All bundled card images are byte-identical generic placeholders; no claim-specific visual meaning is asserted."
+      "status": "pending",
+      "reviewedAt": "2026-08-10",
+      "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
     },
     "source": {
       "title": "火事があると電話局が困る",
