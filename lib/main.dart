@@ -10,8 +10,11 @@ library;
 ///   - data/repositories/
 ///   - domain/services/
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart' hide debugPrint, debugPrintStack;
 import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hee_no_tane_app/app.dart';
 import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/data/repositories/content_bundle_repository.dart';
@@ -22,6 +25,9 @@ import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialization is non-blocking so an ad service outage cannot prevent
+  // the daily question and saved collection from opening.
+  unawaited(MobileAds.instance.initialize());
 
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
