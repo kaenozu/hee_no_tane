@@ -34,4 +34,40 @@ void main() {
       isNot(AdConfig.androidProductionBannerId),
     );
   });
+
+  test('iOS stays fail-closed on official test banner ID in every mode', () {
+    for (final isProduction in [false, true]) {
+      expect(
+        AdConfig.bannerIdFor(isAndroid: false, isProduction: isProduction),
+        AdConfig.iosTestBannerId,
+      );
+      expect(
+        AdConfig.bannerIdFor(isAndroid: false, isProduction: isProduction),
+        isNot(AdConfig.androidProductionBannerId),
+      );
+    }
+  });
+
+  test('Android banner selection follows the build mode only', () {
+    expect(
+      AdConfig.bannerIdFor(isAndroid: true, isProduction: false),
+      AdConfig.androidTestBannerId,
+    );
+    expect(
+      AdConfig.bannerIdFor(isAndroid: true, isProduction: true),
+      AdConfig.androidProductionBannerId,
+    );
+  });
+
+  test('test IDs are the Google official sample units', () {
+    const googleMobileAdsTestPrefix = 'ca-app-pub-3940256099942544';
+    for (final id in [
+      AdConfig.androidTestAppId,
+      AdConfig.androidTestBannerId,
+      AdConfig.iosTestAppId,
+      AdConfig.iosTestBannerId,
+    ]) {
+      expect(id, startsWith(googleMobileAdsTestPrefix));
+    }
+  });
 }
