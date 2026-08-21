@@ -68,6 +68,13 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        // Only release tasks receive the production AdMob App ID. All other
+        // variants use Google's official test App ID.
+        manifestPlaceholders["adMobAppId"] = if (releaseTaskRequested) {
+            "ca-app-pub-1121980304554901~6127552891"
+        } else {
+            "ca-app-pub-3940256099942544~3347511713"
+        }
     }
 
     signingConfigs {
