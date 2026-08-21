@@ -51,14 +51,17 @@ PY
   fi
 }
 
+# Here-string instead of `printf | grep`: under `set -o pipefail`, grep -q
+# exiting early on a match kills printf with SIGPIPE and the pipeline would
+# report failure even when the marker was found.
 manifest_bytes=$(manifest_entry_selector "$manifest_entry")
 
 found_test=false
 found_production=false
-if printf '%s' "$manifest_bytes" | grep -qa "$google_test_publisher"; then
+if grep -qa "$google_test_publisher" <<<"$manifest_bytes"; then
   found_test=true
 fi
-if printf '%s' "$manifest_bytes" | grep -qa "$production_publisher"; then
+if grep -qa "$production_publisher" <<<"$manifest_bytes"; then
   found_production=true
 fi
 
