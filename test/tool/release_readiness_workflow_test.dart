@@ -10,10 +10,15 @@ void main() {
 
     expect(workflow, contains('workflow_dispatch:'));
     expect(workflow, contains("tags:\n      - 'v*'"));
-    expect(workflow, contains('release-readiness:\n    name: Blocking release readiness'));
     expect(
       workflow,
-      contains('dart run tool/validate_release_readiness.dart --require-final-images'),
+      contains('release-readiness:\n    name: Blocking release readiness'),
+    );
+    expect(
+      workflow,
+      contains(
+        'dart run tool/validate_release_readiness.dart --require-final-images',
+      ),
     );
     expect(workflow, contains('set -o pipefail'));
 
