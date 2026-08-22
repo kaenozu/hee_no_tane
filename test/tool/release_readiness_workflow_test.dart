@@ -22,7 +22,7 @@ void main() {
     );
     expect(workflow, contains('set -o pipefail'));
 
-    final jobBlock = workflow.split('release-readiness:', 2)[1];
+    final jobBlock = workflow.split('release-readiness:')[1];
     final firstStep = jobBlock.indexOf('steps:');
     expect(firstStep, greaterThan(0));
     expect(jobBlock.substring(0, firstStep), isNot(contains('\n    if:')));
