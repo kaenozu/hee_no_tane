@@ -24,7 +24,8 @@ void main() {
         '${Rc1ContentPolicy.excludedQuestionIds.length}.',
       );
     }
-    if (releaseBundle.entries.length != Rc1ContentPolicy.expectedReleasePairCount) {
+    if (releaseBundle.entries.length !=
+        Rc1ContentPolicy.expectedReleasePairCount) {
       throw FormatException(
         'v1.0 runtime pair count mismatch: expected '
         '${Rc1ContentPolicy.expectedReleasePairCount}, got '
