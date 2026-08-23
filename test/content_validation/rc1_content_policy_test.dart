@@ -16,24 +16,34 @@ void main() {
       editorialBundle = ContentBundle.fromJson(bundleJson);
     });
 
-    test('keeps 70 editorial pairs but exposes only the canonical 47 v1 pairs', () {
-      final releaseBundle = Rc1ContentPolicy.apply(editorialBundle);
+    test(
+      'keeps 70 editorial pairs but exposes only the canonical 47 v1 pairs',
+      () {
+        final releaseBundle = Rc1ContentPolicy.apply(editorialBundle);
 
-      expect(editorialBundle.entries.length, Rc1ContentPolicy.expectedSourcePairCount);
-      expect(Rc1ContentPolicy.excludedQuestionIds, hasLength(23));
-      expect(releaseBundle.entries.length, Rc1ContentPolicy.expectedReleasePairCount);
-      expect(
-        releaseBundle.entries.map((entry) => entry.question.id).toSet(),
-        isNot(containsAll(Rc1ContentPolicy.excludedQuestionIds)),
-      );
-      expect(
-        releaseBundle.entries.any(
-          (entry) => Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
-        ),
-        isFalse,
-      );
-      expect(identical(releaseBundle, editorialBundle), isFalse);
-    });
+        expect(
+          editorialBundle.entries.length,
+          Rc1ContentPolicy.expectedSourcePairCount,
+        );
+        expect(Rc1ContentPolicy.excludedQuestionIds, hasLength(23));
+        expect(
+          releaseBundle.entries.length,
+          Rc1ContentPolicy.expectedReleasePairCount,
+        );
+        expect(
+          releaseBundle.entries.map((entry) => entry.question.id).toSet(),
+          isNot(containsAll(Rc1ContentPolicy.excludedQuestionIds)),
+        );
+        expect(
+          releaseBundle.entries.any(
+            (entry) =>
+                Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
+          ),
+          isFalse,
+        );
+        expect(identical(releaseBundle, editorialBundle), isFalse);
+      },
+    );
 
     test('fails closed when the editorial bundle is not exactly 70 pairs', () {
       final incompleteBundle = ContentBundle.create(
