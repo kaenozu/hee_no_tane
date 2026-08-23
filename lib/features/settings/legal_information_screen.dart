@@ -48,7 +48,10 @@ class LegalInformationScreen extends StatelessWidget {
       title: '収集する情報',
       body:
           'へぇのタネは、クイズの回答状況、獲得カード、閲覧数、連続利用日数、設定を端末内に保存します。'
-          '現在のバージョンでは、これらの利用データを開発者のサーバーへ送信しません。',
+          'これらの利用データは開発者のサーバーへ送信しません。'
+          'また、本アプリでは広告表示のためにGoogle AdMobを使用しており、'
+          '広告の表示・タップ時にデバイス情報（デバイスモデル、OSバージョン、画面サイズなど）および'
+          '広告識別子がGoogleへ送信されます。詳細はGoogleのプライバシーポリシーをご確認ください。',
     ),
     _Section(
       title: '外部共有',
@@ -57,7 +60,13 @@ class LegalInformationScreen extends StatelessWidget {
           '共有を実行しない限り、画像が外部へ送られることはありません。'
           '共有先でのデータの取り扱いは、そのサービスの規約とプライバシーポリシーに従います。',
     ),
-    _Section(title: '第三者提供', body: '法令に基づく場合を除き、個人情報を第三者に提供することはありません。'),
+    _Section(
+      title: '第三者提供',
+      body:
+          '法令に基づく場合を除き、個人情報を第三者に提供することはありません。'
+          'ただし、広告配信のためにGoogle（Google LLC）へデバイス情報および広告識別子が送信されます。'
+          'Googleがこれらの情報を取り扱う方法については、Googleのプライバシーポリシーをご確認ください。',
+    ),
     _Section(
       title: '保存期間と削除',
       body:
@@ -116,7 +125,6 @@ class LegalInformationScreen extends StatelessWidget {
       const _Section(
         title: '含まれない機能',
         body:
-            '- 広告\n'
             '- 課金\n'
             '- アカウント・ログイン\n'
             '- クラウド同期\n'
