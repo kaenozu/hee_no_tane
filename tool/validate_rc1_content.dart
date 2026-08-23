@@ -13,21 +13,30 @@ void main() {
       throw const FormatException('Content bundle root must be an object.');
     }
 
-    final approvedBundle = ContentBundle.fromJson(
+    final editorialBundle = ContentBundle.fromJson(
       Map<String, dynamic>.from(decoded),
     );
-    final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
+    final releaseBundle = Rc1ContentPolicy.apply(editorialBundle);
 
-    if (Rc1ContentPolicy.excludedQuestionIds.isNotEmpty) {
-      throw const FormatException(
-        'RC1 must not keep temporary source-audit exclusions.',
+    if (Rc1ContentPolicy.excludedQuestionIds.length != 23) {
+      throw FormatException(
+        'v1.0 must keep exactly 23 v1.1 re-audit pairs outside runtime, got '
+        '${Rc1ContentPolicy.excludedQuestionIds.length}.',
+      );
+    }
+    if (releaseBundle.entries.length != Rc1ContentPolicy.expectedReleasePairCount) {
+      throw FormatException(
+        'v1.0 runtime pair count mismatch: expected '
+        '${Rc1ContentPolicy.expectedReleasePairCount}, got '
+        '${releaseBundle.entries.length}.',
       );
     }
 
     stdout.writeln(
       'RC1 content boundary passed: '
-      '${approvedBundle.entries.length} approved pairs, '
-      '${releaseBundle.entries.length} directly audited release pairs.',
+      '${editorialBundle.entries.length} editorial pairs, '
+      '${releaseBundle.entries.length} audited v1.0 runtime pairs, '
+      '${Rc1ContentPolicy.excludedQuestionIds.length} deferred to v1.1 re-audit.',
     );
   } on Object catch (error, stackTrace) {
     stderr.writeln('RC1 content boundary failed: $error');
