@@ -37,7 +37,10 @@ class ContentBundleRepository {
       final approvedBundle = ContentBundle.fromJson(
         Map<String, dynamic>.from(decoded),
       );
-      _validateEntries(approvedBundle);
+      // Validate the complete source bundle's structure and IDs before the
+      // RC1 policy removes any entries. Exclusions must only bypass
+      // playability validation, not source-integrity validation.
+      _validateStructure(approvedBundle);
 
       final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
       _validateEntries(releaseBundle);
@@ -47,7 +50,7 @@ class ContentBundleRepository {
     }
   }
 
-  void _validateEntries(ContentBundle bundle) {
+  void _validateStructure(ContentBundle bundle) {
     final questionIds = <String>{};
     final cardIds = <String>{};
     for (final entry in bundle.entries) {
@@ -61,6 +64,12 @@ class ContentBundleRepository {
           'Content bundle has duplicate card id: ${entry.card.id}.',
         );
       }
+    }
+  }
+
+  void _validateEntries(ContentBundle bundle) {
+    _validateStructure(bundle);
+    for (final entry in bundle.entries) {
       if (!ContentReleasePolicy.isPlayablePair(entry.question, entry.card)) {
         throw FormatException(
           'Content bundle contains a non-playable pair: ${entry.question.id}.',
