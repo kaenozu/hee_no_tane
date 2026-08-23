@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'ad_config.dart';
+import 'ad_consent.dart';
 
 class HeeAdBanner extends StatefulWidget {
   const HeeAdBanner({super.key});
@@ -18,7 +19,7 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   @override
   void initState() {
     super.initState();
-    if (!kIsWeb && AdConfig.supportedPlatform) {
+    if (!kIsWeb && AdConfig.supportedPlatform && AdConsent.canRequestAds) {
       _loadAd();
     }
   }
