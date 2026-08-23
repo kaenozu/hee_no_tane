@@ -16,36 +16,29 @@ void main() {
       editorialBundle = ContentBundle.fromJson(bundleJson);
     });
 
-    test(
-      'keeps 70 editorial pairs but exposes only the canonical 47 v1 pairs',
-      () {
-        final releaseBundle = Rc1ContentPolicy.apply(editorialBundle);
+    test('keeps 70 source pairs but exposes only 47 v1 pairs', () {
+      final releaseBundle = Rc1ContentPolicy.apply(editorialBundle);
+      final releaseIds = releaseBundle.entries
+          .map((entry) => entry.question.id)
+          .toSet();
+      final leakedIds = releaseIds.intersection(
+        Rc1ContentPolicy.excludedQuestionIds,
+      );
 
-        expect(
-          editorialBundle.entries.length,
-          Rc1ContentPolicy.expectedSourcePairCount,
-        );
-        expect(Rc1ContentPolicy.excludedQuestionIds, hasLength(23));
-        expect(
-          releaseBundle.entries.length,
-          Rc1ContentPolicy.expectedReleasePairCount,
-        );
-        expect(
-          releaseBundle.entries.map((entry) => entry.question.id).toSet(),
-          isNot(containsAll(Rc1ContentPolicy.excludedQuestionIds)),
-        );
-        expect(
-          releaseBundle.entries.any(
-            (entry) =>
-                Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
-          ),
-          isFalse,
-        );
-        expect(identical(releaseBundle, editorialBundle), isFalse);
-      },
-    );
+      expect(
+        editorialBundle.entries.length,
+        Rc1ContentPolicy.expectedSourcePairCount,
+      );
+      expect(Rc1ContentPolicy.excludedQuestionIds, hasLength(23));
+      expect(
+        releaseBundle.entries.length,
+        Rc1ContentPolicy.expectedReleasePairCount,
+      );
+      expect(leakedIds, isEmpty);
+      expect(identical(releaseBundle, editorialBundle), isFalse);
+    });
 
-    test('fails closed when the editorial bundle is not exactly 70 pairs', () {
+    test('fails closed when the source bundle is not exactly 70 pairs', () {
       final incompleteBundle = ContentBundle.create(
         contentVersion: editorialBundle.contentVersion,
         entries: editorialBundle.entries.take(69).toList(growable: false),
