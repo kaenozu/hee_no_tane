@@ -22,12 +22,16 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
+import 'package:hee_no_tane_app/monetization/ad_consent.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialization is non-blocking so an ad service outage cannot prevent
-  // the daily question and saved collection from opening.
-  unawaited(MobileAds.instance.initialize());
+  // Consent must be resolved before initializing the ad SDK. A consent or
+  // network failure disables ads for this session but never blocks the app.
+  await AdConsent.prepare();
+  if (AdConsent.canRequestAds) {
+    unawaited(MobileAds.instance.initialize());
+  }
 
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
