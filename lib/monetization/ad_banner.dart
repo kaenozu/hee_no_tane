@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,8 +15,13 @@ class HeeAdBanner extends StatefulWidget {
 }
 
 class _HeeAdBannerState extends State<HeeAdBanner> {
+  static const int _maxLoadAttempts = 3;
+  static const Duration _baseRetryDelay = Duration(seconds: 2);
+
   BannerAd? _bannerAd;
   bool _loaded = false;
+  int _loadAttempts = 0;
+  Timer? _retryTimer;
 
   @override
   void initState() {
@@ -40,14 +47,25 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
             _loaded = true;
           });
         },
-        onAdFailedToLoad: (ad, _) => ad.dispose(),
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+          // 一時的なネットワーク要因でセッション中ずっと空枠になるのを避ける
+          // ため、指数バックオフで有限回再試行する。
+          if (!mounted || _loadAttempts >= _maxLoadAttempts) return;
+          _loadAttempts += 1;
+          _retryTimer = Timer(_baseRetryDelay * (1 << (_loadAttempts - 1)), () {
+            if (mounted && !_loaded) _loadAd();
+          });
+        },
       ),
     );
+    _loadAttempts += 1;
     ad.load();
   }
 
   @override
   void dispose() {
+    _retryTimer?.cancel();
     _bannerAd?.dispose();
     super.dispose();
   }

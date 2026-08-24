@@ -34,6 +34,8 @@ class GameSettings {
 }
 
 class SaveData {
+  static const int currentSchemaVersion = 4;
+
   final int version;
   final int totalBrowseCount;
   final int totalPlayCount;
@@ -83,6 +85,7 @@ class SaveData {
     final completionCardId = json['lastDailyCardId'] as String? ?? '';
 
     return SaveData(
+      // versionフィールド欠落はv2以前のレガシーデータを意味する。
       version: json['version'] as int? ?? 2,
       totalBrowseCount:
           json['totalBrowseCount'] as int? ??
@@ -139,7 +142,7 @@ class SaveData {
       dailyAssignmentCardId.isNotEmpty;
 
   Map<String, dynamic> toJson() => {
-    'version': 4,
+    'version': currentSchemaVersion,
     'totalBrowseCount': totalBrowseCount,
     'totalPlayCount': totalPlayCount,
     'streakDays': streakDays,
@@ -172,7 +175,7 @@ class SaveData {
     GameSettings? settings,
     bool? onboardingCompleted,
   }) => SaveData(
-    version: 4,
+    version: currentSchemaVersion,
     totalBrowseCount: totalBrowseCount ?? this.totalBrowseCount,
     totalPlayCount: totalPlayCount ?? this.totalPlayCount,
     streakDays: streakDays ?? this.streakDays,
