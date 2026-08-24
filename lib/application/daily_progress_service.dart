@@ -186,9 +186,10 @@ class DailyProgressService {
         // 割り当て・履歴・所有の三点一致を保つ。これを怠ると、割り当てに
         // 含まれる未所有カードを翌起動のホーム所有チェックが拒否し、
         // 回答導線が恒久的に塞がる。
-        final grantsRewardCard = card != null &&
-            !assigned.ownedCardIds.contains(card.id);
-        final grantsRelatedCard = card == null &&
+        final grantsRewardCard =
+            card != null && !assigned.ownedCardIds.contains(card.id);
+        final grantsRelatedCard =
+            card == null &&
             cardId.isNotEmpty &&
             !assigned.ownedCardIds.contains(cardId);
         final effectiveOwnedCards = <String>{...assigned.ownedCardIds};

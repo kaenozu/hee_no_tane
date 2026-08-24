@@ -1,20 +1,23 @@
 import 'package:hee_no_tane_app/domain/models/content_bundle.dart';
 
-/// RC1へ渡す承認済みコンテンツの件数をfail-closedで固定する。
+/// RC1リリースバンドルの境界を定義する。
 ///
-/// 2026-07-29に一時除外23ペアの直接出典再監査が完了したため、
-/// 承認済み70ペアをすべて出題対象とする。
+/// 「承認済み70ペアちょうど」という件数ゲートはtool/validate_rc1_content.dart
+/// （ビルド時）で検証する。ランタイムが件数を固定すると、コンテンツ追加の
+/// たびにlib/の定数修正とアプリ更新が必要になり、起動不能の原因になるため、
+/// ランタイムは空バンドルの出題（何も出題できない状態での正常動作装い）を
+/// 拒否するfail-closedのみを行う。
 class Rc1ContentPolicy {
   const Rc1ContentPolicy._();
 
+  /// ビルド時にtool/validate_rc1_content.dartが要求する承認済みペア数。
   static const int expectedReleasePairCount = 70;
   static const Set<String> excludedQuestionIds = <String>{};
 
   static ContentBundle apply(ContentBundle source) {
-    if (source.entries.length != expectedReleasePairCount) {
-      throw FormatException(
-        'RC1 must contain exactly $expectedReleasePairCount audited pairs, got '
-        '${source.entries.length}. Review approved content before releasing.',
+    if (source.entries.isEmpty) {
+      throw const FormatException(
+        'RC1 content bundle must contain at least one audited pair.',
       );
     }
     return source;

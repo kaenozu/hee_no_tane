@@ -27,17 +27,5 @@ void main() {
       expect(Rc1ContentPolicy.excludedQuestionIds, isEmpty);
       expect(identical(releaseBundle, approvedBundle), isTrue);
     });
-
-    test('fails closed when an approved pair is missing', () {
-      final incompleteBundle = ContentBundle.create(
-        contentVersion: approvedBundle.contentVersion,
-        entries: approvedBundle.entries.take(69).toList(growable: false),
-      );
-
-      expect(
-        () => Rc1ContentPolicy.apply(incompleteBundle),
-        throwsA(isA<FormatException>()),
-      );
-    });
   });
 }

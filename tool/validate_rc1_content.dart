@@ -16,6 +16,16 @@ void main() {
     final approvedBundle = ContentBundle.fromJson(
       Map<String, dynamic>.from(decoded),
     );
+    // 件数ゲートはビルド時にのみ適用する（ランタイムは空チェックのみ）。
+    if (approvedBundle.entries.length !=
+        Rc1ContentPolicy.expectedReleasePairCount) {
+      throw FormatException(
+        'RC1 must contain exactly '
+        '${Rc1ContentPolicy.expectedReleasePairCount} audited pairs, got '
+        '${approvedBundle.entries.length}. Review approved content before '
+        'releasing.',
+      );
+    }
     final releaseBundle = Rc1ContentPolicy.apply(approvedBundle);
 
     if (Rc1ContentPolicy.excludedQuestionIds.isNotEmpty) {
