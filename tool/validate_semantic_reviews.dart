@@ -27,7 +27,7 @@ void main() {
     );
 
     stdout.writeln(
-      'Semantic reviews are current for ${bundle.entries.length} approved pairs '
+      'Semantic reviews are current for ${bundle.entries.length} stored/edited pairs '
       '(${bundle.bundleHash}).',
     );
   } on Object catch (error, stackTrace) {

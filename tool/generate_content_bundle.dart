@@ -50,7 +50,7 @@ void main(List<String> arguments) {
         return;
       }
       stdout.writeln(
-        'Content bundle is current: ${bundle.entries.length} approved pairs, '
+        'Content bundle is current: ${bundle.entries.length} stored/edited pairs, '
         '${bundle.bundleHash}.',
       );
       return;
@@ -61,7 +61,7 @@ void main(List<String> arguments) {
       _manifestPath: manifestText,
     });
     stdout.writeln(
-      'Generated $_bundlePath with ${bundle.entries.length} approved pairs.',
+      'Generated $_bundlePath with ${bundle.entries.length} stored/edited pairs ',
     );
   } on Object catch (error, stackTrace) {
     stderr.writeln('Content bundle generation failed: $error');

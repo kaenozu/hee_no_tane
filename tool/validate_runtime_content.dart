@@ -83,7 +83,7 @@ void main() {
 
   stdout.writeln(
     'Runtime content validation passed: '
-    '${bundle!.entries.length} approved pairs, ${bundle.bundleHash}.',
+    '${bundle!.entries.length} stored/edited pairs, ${bundle.bundleHash}.',
   );
 }
 
