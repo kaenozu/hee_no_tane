@@ -71,5 +71,6 @@ app.*.map.json
 /price-comparison/
 /pricing-core/
 /hee_dungeon_spec_design_agent_pack/
-/review/*`n!review/approved_semantic_reviews.json
+/review/*
+!review/approved_semantic_reviews.json
 /tmp/
