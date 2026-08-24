@@ -181,13 +181,33 @@ class DailyProgressService {
         cardWasOwnedBeforeAnswer =
             card == null || assigned.ownedCardIds.contains(card.id);
         var result = rewardService.recordDailyAnswer(assigned, date);
+        // lastDailyCardIdとして永続するIDは必ず回答時点で所有済みにする。
+        // card未解決でrelatedCardIdが未所有の場合は、ここで所有を先に付与し
+        // 割り当て・履歴・所有の三点一致を保つ。これを怠ると、割り当てに
+        // 含まれる未所有カードを翌起動のホーム所有チェックが拒否し、
+        // 回答導線が恒久的に塞がる。
+        final grantsRewardCard = card != null &&
+            !assigned.ownedCardIds.contains(card.id);
+        final grantsRelatedCard = card == null &&
+            cardId.isNotEmpty &&
+            !assigned.ownedCardIds.contains(cardId);
+        final effectiveOwnedCards = <String>{...assigned.ownedCardIds};
+        if (grantsRewardCard) effectiveOwnedCards.add(card.id);
+        if (grantsRelatedCard) effectiveOwnedCards.add(cardId);
+        final persistableCardId = effectiveOwnedCards.contains(cardId)
+            ? cardId
+            : '';
         result = result.copyWith(
           lastDailyQuestionDate: date,
           lastDailyQuestionId: question.id,
-          lastDailyCardId: cardId,
+          lastDailyCardId: persistableCardId,
         );
-        if (card != null && !assigned.ownedCardIds.contains(card.id)) {
+        if (grantsRewardCard) {
           result = rewardService.applyReward(result, card);
+        } else if (grantsRelatedCard) {
+          result = result.copyWith(
+            ownedCardIds: <String>[...result.ownedCardIds, cardId],
+          );
         }
         return result;
       });

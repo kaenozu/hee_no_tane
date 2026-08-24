@@ -93,6 +93,29 @@ void main() {
     },
   );
 
+  test('answering without a resolved card grants the related card first', () async {
+    final repository = SaveRepository(store: _MemoryPreferenceStore());
+    final service = DailyProgressService(
+      saveRepository: repository,
+      rewardService: RewardService(),
+    );
+    final question = _question();
+
+    final result = await service.submitAnswer(
+      date: '2026-07-17',
+      question: question,
+      card: null,
+    );
+
+    // card未解決でもrelatedCardIdで回答できる。未所有のIDを割り当てや
+    // 履歴へ永続したまま所有を付与しないと、翌起動のホーム所有チェックが
+    // 恒久的に失敗して回答導線が塞がるため、先に所有を付与する。
+    expect(result.cardWasOwnedBeforeAnswer, isTrue);
+    expect(result.saveData.ownedCardIds, <String>['c_1']);
+    expect(result.saveData.lastDailyQuestionId, question.id);
+    expect(result.saveData.lastDailyCardId, 'c_1');
+  });
+
   test('repository retry does not reuse stale answer metadata', () async {
     final repository = _RetryingSaveRepository(
       firstAttempt: SaveData(),
