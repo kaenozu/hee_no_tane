@@ -66,3 +66,10 @@ app.*.map.json
 **/android/app/*.keystore
 **/android/app/keystore.properties
 **/android/key.properties
+
+# Unrelated side projects and working files (kept outside version control)
+/price-comparison/
+/pricing-core/
+/hee_dungeon_spec_design_agent_pack/
+/review/
+/tmp/
