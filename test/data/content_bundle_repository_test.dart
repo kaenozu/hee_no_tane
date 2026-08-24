@@ -49,6 +49,36 @@ void main() {
       throwsA(isA<ContentBundleLoadException>()),
     );
   });
+
+  test(
+    'rejects duplicate source question IDs even when the duplicate is excluded',
+    () async {
+      final first = sourceBundle.entries.firstWhere(
+        (entry) =>
+            Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
+      );
+      final secondIndex = sourceBundle.entries.indexWhere(
+        (entry) =>
+            entry.question.id != first.question.id &&
+            Rc1ContentPolicy.excludedQuestionIds.contains(entry.question.id),
+      );
+      final second = sourceBundle.entries[secondIndex];
+      final entries = List<ContentBundleEntry>.from(sourceBundle.entries)
+        ..[secondIndex] = ContentBundleEntry(
+          question: second.question,
+          card: first.card,
+        );
+      final bundle = ContentBundle.create(
+        contentVersion: sourceBundle.contentVersion,
+        entries: entries,
+      );
+
+      await expectLater(
+        _loadBundle(bundle),
+        throwsA(isA<ContentBundleLoadException>()),
+      );
+    },
+  );
 }
 
 Future<ContentBundle> _loadBundle(ContentBundle bundle) {
