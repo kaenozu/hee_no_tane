@@ -1,0 +1,1059 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "1.0.0+1",
+  "bundleHash": "ee9dbdac9424900c9b8518a7f35983cb4a896fd58f783fdd4124d208b5280755",
+  "entryCount": 70,
+  "reviewedAt": "2026-07-29",
+  "entries": [
+    {
+      "questionId": "q_bio_002",
+      "cardId": "card_bio_002",
+      "contentHash": "fa048fcdaf21e7dcf8ba1ae027e926bd45d05ebfae8c8a9b1dc6bdda54fa2b00",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_bio_005",
+      "cardId": "card_bio_005",
+      "contentHash": "1c7e0080509afd261728ee6ad7a897732967aebcf058f03769fb2326081b26d4",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_001",
+      "cardId": "card_daily_life_001",
+      "contentHash": "b3c9ca44034e6961a3d6378dbc57ebad0489f5f4593128797e4e26770c61f3b7",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_006",
+      "cardId": "card_daily_life_006",
+      "contentHash": "82ddf437860baf3b5f92b0e8bfff26116b977625cdadabf9a573d77bc70d6a7d",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_007",
+      "cardId": "card_daily_life_007",
+      "contentHash": "e46963ca2972cc2aad8aa2aa56854dd25b8667862428d779d71a0605f71a2de8",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_008",
+      "cardId": "card_daily_life_008",
+      "contentHash": "e4cb2fbd02ff2b01c06c29828b5e02dc87f0404387a7d566afe0f5a09fbef06d",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_009",
+      "cardId": "card_daily_life_009",
+      "contentHash": "424661125c34574839381e2fa95c2235f4f4083cb8899d4c4f8ebbf65c8df6ee",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_daily_life_010",
+      "cardId": "card_daily_life_010",
+      "contentHash": "b5e531d27a4a8796a8879ba93f9dc281cba729756c13a28c6ce5640103d7122e",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_001",
+      "cardId": "card_food_001",
+      "contentHash": "7f97754e56b1d5e4ee4163361f3dcc9131c65739f06367c54c347a56de93f2e9",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_002",
+      "cardId": "card_food_002",
+      "contentHash": "d5b9b95d4aaf141a64cf5a9567daa5ada1dea72c70d475b8afe9797b9c5c2e79",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_003",
+      "cardId": "card_food_003",
+      "contentHash": "2eb08e26d5c6d52abb953167b86d9ed308338d2b68e301a9f1bbc512cf44a979",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_005",
+      "cardId": "card_food_005",
+      "contentHash": "18e56d30323883c2ad3c06877a552a1e5db7c786c2dfb33521aa50e7f2197433",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_006",
+      "cardId": "card_food_006",
+      "contentHash": "06d918712121f4bea60aa60049dbd5f99ae7e98ee36d26a31763f3f2e9c455ee",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_008",
+      "cardId": "card_food_008",
+      "contentHash": "5fd76f1f13fe61fc3d66c4cb44bdf411430896032b5951197d52d58d80671b55",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_009",
+      "cardId": "card_food_009",
+      "contentHash": "b8d14bcbecf8cc8f43a38be48302cfd75e96055e89b52283ab3b16a83a733aa1",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_010",
+      "cardId": "card_food_010",
+      "contentHash": "e4e741986da542f85c6368aaef1941eab69741b1280273d7cf4ba16a896f74cb",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_011",
+      "cardId": "card_food_011",
+      "contentHash": "b147982fdd3617128a1ec7614dcefd41eb35ced887a206870aba8c1d051e1b53",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_012",
+      "cardId": "card_food_012",
+      "contentHash": "277d3f37cdfc16c408db018dc317446fb67fd76db13b85e3e892f5a168f9869a",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_food_013",
+      "cardId": "card_food_013",
+      "contentHash": "beb05b916ae94ab025925372e71b7f88d698e313a2d718261b193fac8b7c61d4",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_geo_004",
+      "cardId": "card_geo_004",
+      "contentHash": "c287a5ca5263d64c8ba843f473983063c31b69dd2be46edcc87a76474edaddb9",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_geo_005",
+      "cardId": "card_geo_005",
+      "contentHash": "e5dbc7052fdd711b9a8576ef2ba7abea296135b55400938da433eb5f72c4e873",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_his_001",
+      "cardId": "card_his_001",
+      "contentHash": "b343b0bef598d311dfaefb46e6964c6e0beb3dfd1103c898a51aed3f9ba11477",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_his_002",
+      "cardId": "card_his_002",
+      "contentHash": "64edf5b5384be1499fdd4e80f360c1b110acae4b789deb3744a919abd1c96098",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_005",
+      "cardId": "card_history_005",
+      "contentHash": "f7419bff3e154a74e4c0276aa1cea31bb50e535276bd312786abc695117768bc",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_007",
+      "cardId": "card_history_007",
+      "contentHash": "466e569eabf6bf4a3c05f7b241e19d7b05da2f75125412f2175d20c1ce8df639",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_009",
+      "cardId": "card_history_009",
+      "contentHash": "f65e18f7950bd9bad4eb9cd621851b934371752555576b6d9148d2c48f77a3cc",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_011",
+      "cardId": "card_history_011",
+      "contentHash": "a042c990ea59f277b7dd93ca79e0fc9eb46f3f7715d281fa2943bf069a4ae1ca",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_012",
+      "cardId": "card_history_012",
+      "contentHash": "4262af63f4eefd766b3ee2b5c2189da30af1b6d7335be3dcf1bb6b8c3e7d6732",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_history_013",
+      "cardId": "card_history_013",
+      "contentHash": "fe7a8fa782a2daf18f756e778b05b8ece61e4ffbdc99af848265604e4c877246",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_lang_003",
+      "cardId": "card_lang_003",
+      "contentHash": "02789bc7a08d38841cbc8c4b2ea83aef62a16c2144d7433ec882211a59ece66c",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_001",
+      "cardId": "card_language_001",
+      "contentHash": "cc197214156c132bb1381d398c7858dc009895e1258708ab26e2f2a1aa7c11ce",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_002",
+      "cardId": "card_language_002",
+      "contentHash": "22b88c08b0a11411b75b6afeb332790016843c477c857ca51b99391e890b4a02",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_005",
+      "cardId": "card_language_005",
+      "contentHash": "4b78080e8dd82cd211f4a3d59ae44933f6046ff0faaa680b028d4529118ce7e7",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_006",
+      "cardId": "card_language_006",
+      "contentHash": "f90c7ac3b19669ac78eda02f547c0dd4f38b84cbf92c6ee46f0c08225d036999",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_007",
+      "cardId": "card_language_007",
+      "contentHash": "bd4c6a1db8ebee803e3b35565c3891b541d31174ca7d57332dda42bd5f45a568",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_009",
+      "cardId": "card_language_009",
+      "contentHash": "7c51196b7b064541f804da6d069a6948c30d8bf4d22e90989984beb28fae09ed",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_language_010",
+      "cardId": "card_language_010",
+      "contentHash": "2c3e22c1bb255288895d19ceb3fa7f53b524d0c2d157f8c81731cbfbb2fec07b",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_life_002",
+      "cardId": "card_life_002",
+      "contentHash": "28f56ce236b899ec79b88e1b6eb95a861eb485021b95ecf19a294a9825a2d472",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_life_003",
+      "cardId": "card_life_003",
+      "contentHash": "cc9f660993a21667435755f4f3caf71da7cc0c3de87b59e2b88b10b8a7ea792c",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_life_004",
+      "cardId": "card_life_004",
+      "contentHash": "43c903ec5373a1523495fc023f602d4b27ad090b6addb457c0277ade7b2fd6ba",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_002",
+      "cardId": "card_living_things_002",
+      "contentHash": "248cbde8c90031a2bc5924d53ececc3606031ec837341fad3d8f384c009a9ffa",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_006",
+      "cardId": "card_living_things_006",
+      "contentHash": "680ef12bb351c7919af2071e0f3b3f4b3353ec07bb92bd543d5e30cde6348b50",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_008",
+      "cardId": "card_living_things_008",
+      "contentHash": "2979860932041aa08aa878db50e7abe0ab76c79c507a971c3c63ed16c3c188d5",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_009",
+      "cardId": "card_living_things_009",
+      "contentHash": "1fe3861dffc7a45dc5585ae1bbb716deb8285fab8fc94e0538a5f4132b69027c",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_012",
+      "cardId": "card_living_things_012",
+      "contentHash": "acf42b7551abbc6c20335c5f21643b9caa2057be8d9313eca7e27bf4d9046b5b",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_013",
+      "cardId": "card_living_things_013",
+      "contentHash": "a21ab301087d2158cb48d10efd917ea0dd2ffe7443dc8660eed4e4f1b74b1234",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_014",
+      "cardId": "card_living_things_014",
+      "contentHash": "b87ee5673f4b62d6fa42c3efc8f8587d4ded88a10a63428bce97db8c58d7698e",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_015",
+      "cardId": "card_living_things_015",
+      "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_016",
+      "cardId": "card_living_things_016",
+      "contentHash": "fc121362c7a17abfeebb1e05dfa3bcc82413c35a43445616d3a7743ae8a45817",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_017",
+      "cardId": "card_living_things_017",
+      "contentHash": "73a70f3cc743a56c147498ab6994c683a76fb41169a68c70f3dfafd2698f3335",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_living_things_018",
+      "cardId": "card_living_things_018",
+      "contentHash": "5cfca17fc79ecd874def176093409744320098e570b2fa3b5003f39fdedb1cb1",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_001",
+      "cardId": "card_nature_geography_001",
+      "contentHash": "b6aa6875f2605c9aa6610ba067a4b9754ea58fe86a22ab3f45b33f8529d3df35",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_006",
+      "cardId": "card_nature_geography_006",
+      "contentHash": "491f2be65177b7daec3a86224f637243f00ce963ca16a5734b330fc94808d5d9",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_008",
+      "cardId": "card_nature_geography_008",
+      "contentHash": "ef258b035470da0347462cd4029a814c659d9bba5cfd3b89e4e295b367da8da5",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_009",
+      "cardId": "card_nature_geography_009",
+      "contentHash": "0970a9ed3fa55a1bc5513b7d211c3a549face5763152cfc07c3bde96e4a11586",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_013",
+      "cardId": "card_nature_geography_013",
+      "contentHash": "acb4266641d9ee09d17544d02284c77c77f6231e3f218440816d545fcd1923c9",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_014",
+      "cardId": "card_nature_geography_014",
+      "contentHash": "6d13ce449a47f461b8560d1cff5d16c5f6348a379e5ac0048e0eb31e28fefd2b",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_015",
+      "cardId": "card_nature_geography_015",
+      "contentHash": "a68a19c410e7f90385686cd2ee2cac18c931d408cf0bd73869a3ccc7e291bdcb",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_nature_geography_016",
+      "cardId": "card_nature_geography_016",
+      "contentHash": "d528fc4fe5d704bc2a5cb00e5d4d07d7154ab1f3aef2c6ecf4643f8b3c638053",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_sci_001",
+      "cardId": "card_sci_001",
+      "contentHash": "7f938dfcf8928f4947bbde79ff0ef99f276c83efda216bda7845e209334cd527",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_sci_002",
+      "cardId": "card_sci_002",
+      "contentHash": "083c740ce433db34990ca8394aad79232472cd47cf677fef7036f53425f927f2",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_sci_004",
+      "cardId": "card_sci_004",
+      "contentHash": "a9cfe99295c874daf69d0a199e6935e1dcad362464261b1171db01d1990a4c2a",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_001",
+      "cardId": "card_science_001",
+      "contentHash": "bb1e57e7efc989be9a04187bc5f6b0daec471e73fa2c1c33bd5d34a42ce3fe33",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_002",
+      "cardId": "card_science_002",
+      "contentHash": "8ddf5b547262be9284320f35c8eee6d416c6c50c2147977c93488771f2d771ed",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_005",
+      "cardId": "card_science_005",
+      "contentHash": "56503e660c787b9bcf93eac597b7476db3d5625d121aff93789d0a5ff70b69ab",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_006",
+      "cardId": "card_science_006",
+      "contentHash": "370ec2e6e8c075d6ac2a17e76e2855953e9486d961bf34bd6c3c4018462ef6e1",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_008",
+      "cardId": "card_science_008",
+      "contentHash": "d75c2c2c9278a7a7fc844eeee71d31397ad460527c956bcfeb00c6b1bd4d3f34",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Question, choices, answer, explanation, card, and source alignment reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_009",
+      "cardId": "card_science_009",
+      "contentHash": "3e57774537215dce927cc52c002aac47cb1a307e81a0faf971559ed5844b52c8",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_010",
+      "cardId": "card_science_010",
+      "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f",
+      "status": "approved",
+      "reviewedAt": "2026-07-29",
+      "reviewNote": "Question, choices, answer, explanation, card, and direct source evidence re-audited.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    },
+    {
+      "questionId": "q_science_011",
+      "cardId": "card_science_011",
+      "contentHash": "dfed4a51868218559883488c33fa47f64d50dfb109fd59086a92f1088293bb6a",
+      "status": "approved",
+      "reviewedAt": "2026-07-17",
+      "reviewNote": "Semantic mismatch corrected and the complete pair re-reviewed.",
+      "checks": {
+        "questionChoicesAligned": true,
+        "answerIndexCorrect": true,
+        "explanationAligned": true,
+        "cardAligned": true,
+        "sourceAligned": true
+      }
+    }
+  ]
+}
