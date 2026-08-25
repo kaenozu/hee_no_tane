@@ -37,7 +37,9 @@ void main() {
       if (decoded is! Map) {
         issues.add('$_bundlePath root must be an object');
       } else {
-        sourceBundle = ContentBundle.fromJson(Map<String, dynamic>.from(decoded));
+        sourceBundle = ContentBundle.fromJson(
+          Map<String, dynamic>.from(decoded),
+        );
         runtimeBundle = Rc1ContentPolicy.apply(sourceBundle);
       }
     } on Object catch (error) {

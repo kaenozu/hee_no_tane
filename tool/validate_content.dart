@@ -68,8 +68,7 @@ Future<void> main(List<String> arguments) async {
 
   if (errors.isEmpty) {
     final runtimePlayableCount =
-        result.playableQuestionCount ==
-            Rc1ContentPolicy.expectedSourcePairCount
+        result.playableQuestionCount == Rc1ContentPolicy.expectedSourcePairCount
         ? Rc1ContentPolicy.expectedReleasePairCount
         : result.playableQuestionCount;
     stdout.writeln(
@@ -95,7 +94,8 @@ List<String> _validateManifestCounts(
   } on FormatException catch (error) {
     return <String>['manifest: invalid JSON: ${error.message}'];
   }
-  if (decoded is! Map) return const <String>['manifest: root must be an object'];
+  if (decoded is! Map)
+    return const <String>['manifest: root must be an object'];
   final manifest = Map<String, dynamic>.from(decoded);
   if (manifest['schemaVersion'] != 1) {
     issues.add('manifest.schemaVersion: must be 1');
