@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:hee_no_tane_app/content_validation/content_validator.dart';
+import 'package:hee_no_tane_app/content_validation/rc1_content_policy.dart';
 
 Future<void> main(List<String> arguments) async {
   final options = _CliOptions.tryParse(arguments);
@@ -36,9 +38,11 @@ Future<void> main(List<String> arguments) async {
 
   String questionsJson;
   String cardsJson;
+  String manifestJson;
   try {
     questionsJson = await questionsFile.readAsString();
     cardsJson = await cardsFile.readAsString();
+    manifestJson = await manifestFile.readAsString();
   } on FileSystemException catch (error) {
     _printFailure([
       'input: ${error.message} (${error.path ?? 'unknown path'})',
@@ -47,24 +51,84 @@ Future<void> main(List<String> arguments) async {
     return;
   }
 
+  // Source validation intentionally evaluates all editable/editorial records.
+  // The generated manifest describes the smaller fail-closed Android v1.0
+  // runtime boundary, so validate that count separately below instead of
+  // pretending the source bundle itself contains only 47 pairs.
   final result = const ContentValidator().validateJsonStrings(
     questionsJson: questionsJson,
     cardsJson: cardsJson,
     assetExists: (path) => _resolveFile(root, path).existsSync(),
-    manifestJson: await manifestFile.readAsString(),
   );
+  final manifestIssues = _validateManifestCounts(manifestJson, result);
+  final errors = <String>[
+    ...result.issues.map((issue) => issue.toString()),
+    ...manifestIssues,
+  ];
 
-  if (result.isValid) {
+  if (errors.isEmpty) {
+    final runtimePlayableCount =
+        result.playableQuestionCount == Rc1ContentPolicy.expectedSourcePairCount
+        ? Rc1ContentPolicy.expectedReleasePairCount
+        : result.playableQuestionCount;
     stdout.writeln(
       'Content validation passed: '
       '${result.questionCount} questions, ${result.cardCount} cards, '
-      '${result.playableQuestionCount} playable',
+      '$runtimePlayableCount runtime playable',
     );
     return;
   }
 
-  _printFailure(result.issues.map((issue) => issue.toString()).toList());
+  _printFailure(errors);
   exitCode = 1;
+}
+
+List<String> _validateManifestCounts(
+  String manifestJson,
+  ContentValidationResult result,
+) {
+  final issues = <String>[];
+  Object? decoded;
+  try {
+    decoded = jsonDecode(manifestJson);
+  } on FormatException catch (error) {
+    return <String>['manifest: invalid JSON: ${error.message}'];
+  }
+  if (decoded is! Map) {
+    return const <String>['manifest: root must be an object'];
+  }
+  final manifest = Map<String, dynamic>.from(decoded);
+  if (manifest['schemaVersion'] != 1) {
+    issues.add('manifest.schemaVersion: must be 1');
+  }
+
+  _expectManifestCount(manifest, 'questionCount', result.questionCount, issues);
+  _expectManifestCount(manifest, 'cardCount', result.cardCount, issues);
+  final expectedPlayable =
+      result.playableQuestionCount == Rc1ContentPolicy.expectedSourcePairCount
+      ? Rc1ContentPolicy.expectedReleasePairCount
+      : result.playableQuestionCount;
+  _expectManifestCount(
+    manifest,
+    'playableQuestionCount',
+    expectedPlayable,
+    issues,
+  );
+  return issues;
+}
+
+void _expectManifestCount(
+  Map<String, dynamic> manifest,
+  String field,
+  int expected,
+  List<String> issues,
+) {
+  final actual = manifest[field];
+  if (actual is! int) {
+    issues.add('manifest.$field: must be an integer');
+  } else if (actual != expected) {
+    issues.add('manifest.$field: expected $expected but found $actual');
+  }
 }
 
 File _resolveFile(Directory root, String path) {
