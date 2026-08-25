@@ -51,7 +51,7 @@ Future<void> main(List<String> arguments) async {
     return;
   }
 
-  // Source validation intentionally evaluates all editable/editorial pairs.
+  // Source validation intentionally evaluates all editable/editorial records.
   // The generated manifest describes the smaller fail-closed Android v1.0
   // runtime boundary, so validate that count separately below instead of
   // pretending the source bundle itself contains only 47 pairs.
@@ -68,7 +68,8 @@ Future<void> main(List<String> arguments) async {
 
   if (errors.isEmpty) {
     final runtimePlayableCount =
-        result.questionCount == Rc1ContentPolicy.expectedSourcePairCount
+        result.playableQuestionCount ==
+            Rc1ContentPolicy.expectedSourcePairCount
         ? Rc1ContentPolicy.expectedReleasePairCount
         : result.playableQuestionCount;
     stdout.writeln(
@@ -103,7 +104,7 @@ List<String> _validateManifestCounts(
   _expectManifestCount(manifest, 'questionCount', result.questionCount, issues);
   _expectManifestCount(manifest, 'cardCount', result.cardCount, issues);
   final expectedPlayable =
-      result.questionCount == Rc1ContentPolicy.expectedSourcePairCount
+      result.playableQuestionCount == Rc1ContentPolicy.expectedSourcePairCount
       ? Rc1ContentPolicy.expectedReleasePairCount
       : result.playableQuestionCount;
   _expectManifestCount(
