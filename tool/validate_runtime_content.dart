@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:hee_no_tane_app/content_validation/rc1_content_policy.dart';
 import 'package:hee_no_tane_app/domain/models/content_bundle.dart';
 
 const _bundlePath = 'assets/data/content_bundle.json';
@@ -27,7 +28,8 @@ void main() {
     }
   }
 
-  ContentBundle? bundle;
+  ContentBundle? sourceBundle;
+  ContentBundle? runtimeBundle;
   final bundleRaw = _readFile(_bundlePath, issues);
   if (bundleRaw.isNotEmpty) {
     try {
@@ -35,7 +37,8 @@ void main() {
       if (decoded is! Map) {
         issues.add('$_bundlePath root must be an object');
       } else {
-        bundle = ContentBundle.fromJson(Map<String, dynamic>.from(decoded));
+        sourceBundle = ContentBundle.fromJson(Map<String, dynamic>.from(decoded));
+        runtimeBundle = Rc1ContentPolicy.apply(sourceBundle);
       }
     } on Object catch (error) {
       issues.add('$_bundlePath is invalid: $error');
@@ -44,29 +47,34 @@ void main() {
 
   final manifest = _readJsonObject(_manifestPath, issues);
   final appVersion = _readJsonObject(_appVersionPath, issues);
-  if (bundle != null) {
+  if (sourceBundle != null && runtimeBundle != null) {
     final expectedContentVersion =
         '${appVersion['version']}+${appVersion['buildNumber']}';
-    if (bundle.contentVersion != expectedContentVersion) {
+    if (sourceBundle.contentVersion != expectedContentVersion) {
       issues.add(
         'bundle contentVersion must match app version $expectedContentVersion',
       );
     }
-    if (manifest['playableQuestionCount'] != bundle.entries.length) {
-      issues.add('manifest playableQuestionCount must match bundle entryCount');
+    if (manifest['playableQuestionCount'] != runtimeBundle.entries.length) {
+      issues.add(
+        'manifest playableQuestionCount must match RC1 runtime entryCount',
+      );
     }
-    if (manifest['contentVersion'] != bundle.contentVersion) {
-      issues.add('manifest contentVersion must match bundle contentVersion');
+    if (manifest['contentVersion'] != runtimeBundle.contentVersion) {
+      issues.add('manifest contentVersion must match runtime contentVersion');
     }
-    if (manifest['bundleHash'] != bundle.bundleHash) {
-      issues.add('manifest bundleHash must match bundle bundleHash');
+    if (manifest['bundleHash'] != runtimeBundle.bundleHash) {
+      issues.add('manifest bundleHash must match RC1 runtime bundleHash');
     }
 
-    for (final entry in bundle.entries) {
+    // The source bundle is the asset actually shipped in the APK before the
+    // fail-closed RC1 policy is applied, so every referenced image still needs
+    // to exist even for entries deferred from v1.0 playability.
+    for (final entry in sourceBundle.entries) {
       final imageAsset = entry.card.imageAsset;
       if (imageAsset.isEmpty || !File(imageAsset).existsSync()) {
         issues.add(
-          'runtime bundle image is missing for ${entry.card.id}: $imageAsset',
+          'source bundle image is missing for ${entry.card.id}: $imageAsset',
         );
       }
     }
@@ -83,7 +91,9 @@ void main() {
 
   stdout.writeln(
     'Runtime content validation passed: '
-    '${bundle!.entries.length} stored/edited pairs, ${bundle.bundleHash}.',
+    '${sourceBundle!.entries.length} editorial pairs, '
+    '${runtimeBundle!.entries.length} RC1 runtime pairs, '
+    '${runtimeBundle.bundleHash}.',
   );
 }
 
