@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hee_no_tane_app/core/app_version_info.dart';
 import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/features/settings/legal_information_screen.dart';
+import 'package:hee_no_tane_app/monetization/ad_consent.dart';
 
 class SettingsScreen extends StatefulWidget {
   final SaveRepository saveRepository;
@@ -27,11 +28,13 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _resetting = false;
   late final Future<AppVersionInfo> _versionInfoFuture;
+  late final Future<bool> _privacyOptionsRequiredFuture;
 
   @override
   void initState() {
     super.initState();
     _versionInfoFuture = widget.versionInfoLoader();
+    _privacyOptionsRequiredFuture = AdConsent.privacyOptionsRequired();
   }
 
   Future<void> _confirmReset() async {
@@ -94,6 +97,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
+  Future<void> _openPrivacyOptions() async {
+    final shown = await AdConsent.showPrivacyOptions();
+    if (!mounted) return;
+    if (!shown) _showError('プライバシー設定を表示できませんでした。');
+  }
+
   Future<void> _openVersionInformation() async {
     final versionInfo = await _versionInfoFuture;
     if (!mounted) return;
@@ -143,6 +152,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     initialSection: LegalInformationSection.privacyPolicy,
                   ),
                 ),
+              );
+            },
+          ),
+          FutureBuilder<bool>(
+            future: _privacyOptionsRequiredFuture,
+            builder: (context, snapshot) {
+              if (snapshot.data != true) return const SizedBox.shrink();
+              return Column(
+                children: [
+                  const Divider(),
+                  ListTile(
+                    key: const ValueKey('settings-privacy-options'),
+                    leading: Icon(Icons.tune, color: cs.primary),
+                    title: const Text('広告とプライバシー設定'),
+                    subtitle: const Text('同意内容を確認・変更する'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: _openPrivacyOptions,
+                  ),
+                ],
               );
             },
           ),

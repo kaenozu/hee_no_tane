@@ -42,7 +42,7 @@ Appleは、端末内だけで処理され、端末外へ送信されないデー
 - バックエンドAPI
 - 氏名、メール、電話番号等の入力
 - IDFA、広告ID、独自ユーザーIDの取得
-- 広告SDK
+- Google AdMob広告SDK
 - 分析SDK
 - クラッシュ収集SDK
 - 課金、購入履歴
@@ -125,7 +125,7 @@ App Store Connectには、一般公開され、ログイン不要で閲覧可能
 - [ ] `pubspec.lock`の第三者パッケージを確認した
 - [ ] Xcode OrganizerでArchive内容を確認した
 - [ ] Privacy ManifestとRequired Reason API申告を確認した
-- [ ] Firebase、広告、分析、クラッシュ収集、通知、課金SDKがない
+- [ ] Firebase、分析、クラッシュ収集、通知、課金SDKがない（Google AdMobを除く）
 - [ ] 実機で通常フロー中の通信先を確認した
 - [ ] カード共有は利用者の明示操作だけで開始される
 - [ ] 外部リンクは外部ブラウザで開く
