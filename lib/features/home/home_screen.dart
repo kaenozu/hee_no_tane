@@ -250,15 +250,20 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: _header()),
             SliverToBoxAdapter(child: _statsRow()),
             const SliverToBoxAdapter(child: Center(child: HeeAdBanner())),
             SliverToBoxAdapter(child: _dailyQuestionSection()),
-            SliverToBoxAdapter(child: _bottomNav()),
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: bottomInset + 24),
+              sliver: SliverToBoxAdapter(child: _bottomNav()),
+            ),
           ],
         ),
       ),

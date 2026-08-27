@@ -79,4 +79,31 @@ void main() {
     expect(find.text(second.question), findsOneWidget);
     expect(find.text(first.question), findsNothing);
   });
+
+  testWidgets(
+    'home keeps the collection action above the system navigation inset',
+    (tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(viewPadding: EdgeInsets.only(bottom: 48)),
+          child: MaterialApp(
+            home: HomeScreen(
+              allQuestions: [releaseContentPair(id: 'inset_0').question],
+              allCards: [releaseContentPair(id: 'inset_0').card],
+              saveRepository: FakeSaveRepository(),
+              rewardService: RewardService(),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final safeArea = tester.widget<SafeArea>(find.byType(SafeArea).first);
+      expect(safeArea.bottom, isFalse);
+      final bottomPadding = tester.widget<SliverPadding>(
+        find.byType(SliverPadding).last,
+      );
+      expect(bottomPadding.padding, const EdgeInsets.only(bottom: 72));
+    },
+  );
 }
