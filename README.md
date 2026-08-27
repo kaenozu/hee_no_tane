@@ -25,6 +25,15 @@ AdMob IDはbuild modeで静的に切り替わり、手動置換は不要です�
 - 欠落設定によるfail-openはない: release Gradleタスク以外で本番IDは選ばれず、CIがdebug APK（テストID）とrelease AAB（本番ID）のmanifestを `tool/validate_ad_manifest.sh` で自動検証する
 - AdMobアカウント、収益受取設定、ストアの広告表示申告はコード外のリリース作業
 
+## 広告による収益化（実装済み・本番ID待ち）
+
+ホーム画面にGoogle Mobile Adsのバナー枠を追加しています。無料利用を制限せず、広告サービスが失敗してもクイズ・保存データの起動を妨げない設計です。
+
+- 開発・テスト時はGoogle公式テストApp ID / バナーIDを使用
+- 本番公開前にAdMobでへぇの種用の広告ユニットを作成し、`lib/monetization/ad_config.dart`、`android/app/src/main/AndroidManifest.xml`、`ios/Runner/Info.plist`のテストIDを本番IDへ置換
+- 本番ID未設定のまま公開しない（テスト広告は収益にならず、誤クリック防止のため）
+- AdMobアカウント、広告ユニット作成、収益受取設定、ストアの広告表示申告はコード外のリリース作業
+
 ## コンテンツの安全契約
 
 問題とカードは、定義済みの検証・承認条件を満たすものだけをruntime対象にします。
