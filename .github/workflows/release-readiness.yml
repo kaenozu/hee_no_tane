@@ -1,0 +1,61 @@
+name: Release Readiness
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  release-readiness:
+    name: Blocking release readiness
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: '3.44.0'
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check Dart formatting
+        run: dart format --output=none --set-exit-if-changed lib test integration_test tool
+
+      - name: Validate content
+        run: dart run tool/validate_content.dart
+
+      - name: Audit approved sources
+        run: dart run tool/audit_content_sources.dart --require-approved
+
+      - name: Generate release blocker report
+        run: dart run tool/generate_release_blockers.dart
+
+      - name: Enforce release readiness
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p build
+          dart run tool/validate_release_readiness.dart --require-final-images \
+            | tee build/release-readiness.json
+
+      - name: Upload release evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-readiness-${{ github.run_id }}
+          path: |
+            build/release-blockers.json
+            build/release-blockers.md
+            build/release-readiness.json
+          if-no-files-found: error
+          retention-days: 90

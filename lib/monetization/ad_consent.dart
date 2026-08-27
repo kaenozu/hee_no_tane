@@ -13,14 +13,42 @@ class AdConsent {
 
   static bool get canRequestAds => _canRequestAds;
 
+  /// Whether UMP requires an entry point for changing privacy options.
+  ///
+  /// Plugin failures deliberately return false so the settings screen never
+  /// makes the core app depend on UMP.
+  static Future<bool> privacyOptionsRequired() async {
+    try {
+      return await ConsentInformation.instance
+              .getPrivacyOptionsRequirementStatus() ==
+          PrivacyOptionsRequirementStatus.required;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Shows the UMP privacy-options form and refreshes the ad-request gate.
+  static Future<bool> showPrivacyOptions() async {
+    try {
+      FormError? formError;
+      await ConsentForm.showPrivacyOptionsForm((error) {
+        formError = error;
+      });
+      if (formError != null) return false;
+      _canRequestAds = await ConsentInformation.instance.canRequestAds();
+      return true;
+    } catch (_) {
+      _canRequestAds = false;
+      return false;
+    }
+  }
+
   static Future<void> prepare() async {
     _canRequestAds = false;
 
     final information = ConsentInformation.instance;
     try {
-      final updated = await _requestConsentInfoUpdate(
-        information,
-      ).timeout(const Duration(seconds: 5), onTimeout: () => false);
+      final updated = await _requestConsentInfoUpdate(information);
       if (!updated) return;
       await ConsentForm.loadAndShowConsentFormIfRequired((error) {
         if (error != null) {

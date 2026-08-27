@@ -1,7 +1,0 @@
-questionId,cardId,category,riskTags,triageStatus,confidence,currentProblem,proposedAction,evidenceLead,approvalBlocker
-q_daily_life_007,card_daily_life_007,daily_life,"etiology,calendar-symbolism,unsupported-causality,numeric",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,The Cloisters Playing Cards,旧主張を残さず、画像を含む全文照合が完了すること
-q_history_009,card_history_009,history,"economic-history,numeric,ranking,overgeneralization",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,The Rosetta Stone (EA24),旧主張を残さず、画像を含む全文照合が完了すること
-q_history_005,card_history_005,history,"historical-anecdote,causality,legend",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,1903 Wright Flyer,旧主張を残さず、画像を含む全文照合が完了すること
-q_science_008,card_science_008,science,"dynamic-price,unsupported-cost,financial",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,Circulating Coin Designs,旧主張を残さず、画像を含む全文照合が完了すること
-q_daily_life_008,card_daily_life_008,daily_life,"causality,standards,scope,color-psychology",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,Safety signs and signals: Guidance on Regulations L64,旧主張を残さず、画像を含む全文照合が完了すること
-q_food_010,card_food_010,food,"origin-ranking,manufacturer-conflict,scope",replacement_required,high,現行の問題・解説・カードに直接資料で支えられない数値・因果・逸話・起源断定が含まれる,直接取得できる公的機関・公的博物館資料の別事実へ全面置換,Alaska Pollock,旧主張を残さず、画像を含む全文照合が完了すること

@@ -247,6 +247,9 @@ jobs:
       - name: Build Android debug APK
         run: flutter build apk --debug
 
+      - name: Validate debug APK uses test AdMob App ID
+        run: tool/validate_ad_manifest.sh build/app/outputs/flutter-apk/app-debug.apk test
+
       - name: Create ephemeral Android release signing
         shell: bash
         run: |
@@ -269,6 +272,9 @@ jobs:
 
       - name: Build Android release AAB
         run: flutter build appbundle --release
+
+      - name: Validate release AAB uses production AdMob App ID
+        run: tool/validate_ad_manifest.sh build/app/outputs/bundle/release/app-release.aab production
 
       - name: Remove ephemeral Android release signing
         if: always()

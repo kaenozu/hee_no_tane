@@ -207,7 +207,10 @@ void main() {
         0,
         reason: '${success.stdout}\n${success.stderr}',
       );
-      expect(success.stdout, contains('1 questions, 1 cards, 1 playable'));
+      expect(
+        success.stdout,
+        contains('1 questions, 1 cards, 1 runtime playable'),
+      );
 
       final invalid = Map<String, dynamic>.from(content.questions.single)
         ..['answerIndex'] = 9;

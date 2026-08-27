@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:hee_no_tane_app/content_validation/atomic_generated_files_writer.dart';
 import 'package:hee_no_tane_app/content_validation/content_bundle_builder.dart';
+import 'package:hee_no_tane_app/content_validation/rc1_content_policy.dart';
 import 'package:hee_no_tane_app/domain/models/hee_card.dart';
 import 'package:hee_no_tane_app/domain/models/question.dart';
 
@@ -25,16 +26,20 @@ void main(List<String> arguments) {
     final questions = _readQuestions();
     final cards = _readCards();
     final contentVersion = _readContentVersion();
-    final bundle = ContentBundleBuilder.build(
+    final sourceBundle = ContentBundleBuilder.build(
       questions: questions,
       cards: cards,
       contentVersion: contentVersion,
     );
+    final runtimeBundle = Rc1ContentPolicy.apply(sourceBundle);
 
     const encoder = JsonEncoder.withIndent('  ');
-    final bundleText = '${encoder.convert(bundle.toJson())}\n';
+    // Keep the complete editorial/source bundle in the generated asset. The
+    // runtime repository applies the same RC1 policy when loading it, while the
+    // manifest reports the actual v1.0 playable boundary and runtime hash.
+    final bundleText = '${encoder.convert(sourceBundle.toJson())}\n';
     final manifestText =
-        '${encoder.convert(<String, dynamic>{'schemaVersion': 1, 'questionCount': questions.length, 'cardCount': cards.length, 'playableQuestionCount': bundle.entries.length, 'contentVersion': bundle.contentVersion, 'bundleHash': bundle.bundleHash})}\n';
+        '${encoder.convert(<String, dynamic>{'schemaVersion': 1, 'questionCount': questions.length, 'cardCount': cards.length, 'playableQuestionCount': runtimeBundle.entries.length, 'contentVersion': runtimeBundle.contentVersion, 'bundleHash': runtimeBundle.bundleHash})}\n';
 
     if (checkOnly) {
       final mismatches = <String>[];
@@ -50,8 +55,9 @@ void main(List<String> arguments) {
         return;
       }
       stdout.writeln(
-        'Content bundle is current: ${bundle.entries.length} approved pairs, '
-        '${bundle.bundleHash}.',
+        'Content bundle is current: ${sourceBundle.entries.length} editorial pairs, '
+        '${runtimeBundle.entries.length} RC1 runtime pairs, '
+        '${runtimeBundle.bundleHash}.',
       );
       return;
     }
@@ -61,7 +67,8 @@ void main(List<String> arguments) {
       _manifestPath: manifestText,
     });
     stdout.writeln(
-      'Generated $_bundlePath with ${bundle.entries.length} approved pairs.',
+      'Generated $_bundlePath with ${sourceBundle.entries.length} editorial pairs; '
+      'manifest exposes ${runtimeBundle.entries.length} RC1 runtime pairs.',
     );
   } on Object catch (error, stackTrace) {
     stderr.writeln('Content bundle generation failed: $error');

@@ -26,7 +26,8 @@ import 'package:hee_no_tane_app/monetization/ad_consent.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Consent/network failures disable ads but never block the core app.
+  // Consent must be resolved before initializing the ad SDK. A consent or
+  // network failure disables ads for this session but never blocks the app.
   await AdConsent.prepare();
   if (AdConsent.canRequestAds) {
     unawaited(MobileAds.instance.initialize());

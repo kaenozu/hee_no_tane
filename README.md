@@ -11,7 +11,19 @@
 - 初回オンボーディング、テーマ設定、全データリセット
 - Flutterクライアント（Android / iOS / Web）
 
-アカウント、バックエンド、広告、サブスクリプション、管理画面、オンラインAI生成は現行MVPに含みません。コンテンツは `assets/data` に同梱し、リリース前にレビュー工程で承認します。
+アカウント、バックエンド、サブスクリプション、管理画面、オンラインAI生成は現行MVPに含みません。コンテンツは `assets/data` に同梱し、リリース前にレビュー工程で承認します。
+
+## 広告による収益化（実装済み）
+
+ホーム画面にGoogle Mobile Adsのバナー枠を追加しています。無料利用を制限せず、広告サービスが失敗してもクイズ・保存データの起動を妨げない設計です。
+
+AdMob IDはbuild modeで静的に切り替わり、手動置換は不要です（契約の一意な定義は `lib/monetization/ad_config.dart` の先頭コメント）:
+
+- **production IDを使用するのはAndroidのrelease buildのみ**。`flutter build appbundle --release` / `flutter build apk --release` のとき、Gradleがmanifest placeholderへ本番App IDを注入し、Dart側も `dart.vm.product` で本番バナーIDを選択する
+- debug / profile / widget test / integration test / CI ではGoogle公式テストIDを使用
+- iOSは本番AdMobアプリ・広告ユニット登録まで、全build modeでGoogle公式テストIDのままfail-closed
+- 欠落設定によるfail-openはない: release Gradleタスク以外で本番IDは選ばれず、CIがdebug APK（テストID）とrelease AAB（本番ID）のmanifestを `tool/validate_ad_manifest.sh` で自動検証する
+- AdMobアカウント、収益受取設定、ストアの広告表示申告はコード外のリリース作業
 
 ## 広告による収益化（実装済み・本番ID待ち）
 
