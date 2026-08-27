@@ -10,8 +10,11 @@ library;
 ///   - data/repositories/
 ///   - domain/services/
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart' hide debugPrint, debugPrintStack;
 import 'package:flutter/material.dart' hide debugPrint, debugPrintStack;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hee_no_tane_app/app.dart';
 import 'package:hee_no_tane_app/core/app_log.dart';
 import 'package:hee_no_tane_app/data/repositories/content_bundle_repository.dart';
@@ -19,9 +22,15 @@ import 'package:hee_no_tane_app/data/repositories/save_repository.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
 import 'package:hee_no_tane_app/features/startup/startup_error_screen.dart';
+import 'package:hee_no_tane_app/monetization/ad_consent.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Consent/network failures disable ads but never block the core app.
+  await AdConsent.prepare();
+  if (AdConsent.canRequestAds) {
+    unawaited(MobileAds.instance.initialize());
+  }
 
   FlutterError.onError = (details) {
     FlutterError.presentError(details);

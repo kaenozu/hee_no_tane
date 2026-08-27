@@ -12,6 +12,7 @@ import 'package:hee_no_tane_app/domain/models/question.dart';
 import 'package:hee_no_tane_app/domain/models/save_data.dart';
 import 'package:hee_no_tane_app/domain/services/daily_question_service.dart';
 import 'package:hee_no_tane_app/domain/services/reward_service.dart';
+import 'package:hee_no_tane_app/monetization/ad_banner.dart';
 import 'package:hee_no_tane_app/features/collection/card_detail_screen.dart';
 import 'package:hee_no_tane_app/features/collection/card_list_screen.dart';
 import 'package:hee_no_tane_app/features/collection/category_util.dart';
@@ -249,14 +250,20 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: _header()),
             SliverToBoxAdapter(child: _statsRow()),
+            const SliverToBoxAdapter(child: Center(child: HeeAdBanner())),
             SliverToBoxAdapter(child: _dailyQuestionSection()),
-            SliverToBoxAdapter(child: _bottomNav()),
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: bottomInset + 24),
+              sliver: SliverToBoxAdapter(child: _bottomNav()),
+            ),
           ],
         ),
       ),
