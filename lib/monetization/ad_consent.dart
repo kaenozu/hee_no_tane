@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 /// Coordinates the UMP consent flow before any ad SDK/request is started.
@@ -8,6 +9,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 /// the app can launch, while ads remain disabled for that session.
 class AdConsent {
   AdConsent._();
+
+  @visibleForTesting
+  static const consentInfoUpdateTimeout = Duration(seconds: 5);
 
   static bool _canRequestAds = false;
 
@@ -65,12 +69,41 @@ class AdConsent {
   static Future<bool> _requestConsentInfoUpdate(
     ConsentInformation information,
   ) {
-    final completer = Completer<bool>();
-    information.requestConsentInfoUpdate(
-      ConsentRequestParameters(),
-      () => completer.complete(true),
-      (_) => completer.complete(false),
+    return _requestConsentInfoUpdateWithTimeout(
+      (onSuccess, onError) => information.requestConsentInfoUpdate(
+        ConsentRequestParameters(),
+        onSuccess,
+        onError,
+      ),
     );
-    return completer.future;
+  }
+
+  @visibleForTesting
+  static Future<bool> requestConsentInfoUpdateForTesting(
+    void Function(
+      void Function() onSuccess,
+      void Function(FormError? error) onError,
+    )
+    request, {
+    Duration timeout = consentInfoUpdateTimeout,
+  }) {
+    return _requestConsentInfoUpdateWithTimeout(request, timeout: timeout);
+  }
+
+  static Future<bool> _requestConsentInfoUpdateWithTimeout(
+    void Function(
+      void Function() onSuccess,
+      void Function(FormError? error) onError,
+    )
+    request, {
+    Duration timeout = consentInfoUpdateTimeout,
+  }) {
+    final completer = Completer<bool>();
+    void complete(bool value) {
+      if (!completer.isCompleted) completer.complete(value);
+    }
+
+    request(() => complete(true), (error) => complete(false));
+    return completer.future.timeout(timeout, onTimeout: () => false);
   }
 }
