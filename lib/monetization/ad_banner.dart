@@ -32,6 +32,9 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   }
 
   void _loadAd() {
+    if (_loadAttempts >= _maxLoadAttempts) return;
+    _loadAttempts += 1;
+
     final ad = BannerAd(
       adUnitId: AdConfig.bannerUnitId,
       size: AdSize.banner,
@@ -52,14 +55,15 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           // 一時的なネットワーク要因でセッション中ずっと空枠になるのを避ける
           // ため、指数バックオフで有限回再試行する。
           if (!mounted || _loadAttempts >= _maxLoadAttempts) return;
-          _loadAttempts += 1;
-          _retryTimer = Timer(_baseRetryDelay * (1 << (_loadAttempts - 1)), () {
-            if (mounted && !_loaded) _loadAd();
-          });
+          _retryTimer = Timer(
+            _baseRetryDelay * (1 << (_loadAttempts - 1)),
+            () {
+              if (mounted && !_loaded) _loadAd();
+            },
+          );
         },
       ),
     );
-    _loadAttempts += 1;
     ad.load();
   }
 
