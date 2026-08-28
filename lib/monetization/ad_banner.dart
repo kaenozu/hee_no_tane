@@ -26,13 +26,34 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   @override
   void initState() {
     super.initState();
+    AdConsent.canRequestAdsListenable.addListener(_handleConsentChanged);
     if (!kIsWeb && AdConfig.supportedPlatform && AdConsent.canRequestAds) {
       _loadAd();
     }
   }
 
+  void _handleConsentChanged() {
+    if (!mounted || kIsWeb || !AdConfig.supportedPlatform) return;
+    if (!AdConsent.canRequestAds) {
+      _retryTimer?.cancel();
+      _retryTimer = null;
+      final ad = _bannerAd;
+      _bannerAd = null;
+      ad?.dispose();
+      if (_loaded) {
+        setState(() => _loaded = false);
+      }
+      return;
+    }
+
+    if (!_loaded && _bannerAd == null) {
+      _loadAttempts = 0;
+      _loadAd();
+    }
+  }
+
   void _loadAd() {
-    if (_loadAttempts >= _maxLoadAttempts) return;
+    if (!AdConsent.canRequestAds || _loadAttempts >= _maxLoadAttempts) return;
     _loadAttempts += 1;
 
     final ad = BannerAd(
@@ -41,7 +62,7 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          if (!mounted) {
+          if (!mounted || !AdConsent.canRequestAds) {
             ad.dispose();
             return;
           }
@@ -52,13 +73,15 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
         },
         onAdFailedToLoad: (ad, error) {
           ad.dispose();
-          // 一時的なネットワーク要因でセッション中ずっと空枠になるのを避ける
-          // ため、指数バックオフで有限回再試行する。
-          if (!mounted || _loadAttempts >= _maxLoadAttempts) return;
+          if (!mounted ||
+              !AdConsent.canRequestAds ||
+              _loadAttempts >= _maxLoadAttempts) {
+            return;
+          }
           _retryTimer = Timer(
             _baseRetryDelay * (1 << (_loadAttempts - 1)),
             () {
-              if (mounted && !_loaded) _loadAd();
+              if (mounted && !_loaded && AdConsent.canRequestAds) _loadAd();
             },
           );
         },
@@ -69,6 +92,7 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
 
   @override
   void dispose() {
+    AdConsent.canRequestAdsListenable.removeListener(_handleConsentChanged);
     _retryTimer?.cancel();
     _bannerAd?.dispose();
     super.dispose();
