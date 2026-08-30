@@ -14,9 +14,8 @@ class AdConsent {
   static const consentInfoUpdateTimeout = Duration(seconds: 5);
 
   static bool _canRequestAds = false;
-  static final ValueNotifier<bool> canRequestAdsListenable = ValueNotifier<bool>(
-    false,
-  );
+  static final ValueNotifier<bool> canRequestAdsListenable =
+      ValueNotifier<bool>(false);
 
   static bool get canRequestAds => _canRequestAds;
 
