@@ -80,9 +80,8 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           }
           _retryTimer = Timer(
             _baseRetryDelay * (1 << (_loadAttempts - 1)),
-            () {
-              if (mounted && !_loaded && AdConsent.canRequestAds) _loadAd();
-            },
+            () =>
+                mounted && !_loaded && AdConsent.canRequestAds ? _loadAd() : null,
           );
         },
       ),
