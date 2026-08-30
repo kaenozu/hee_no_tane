@@ -14,8 +14,18 @@ class AdConsent {
   static const consentInfoUpdateTimeout = Duration(seconds: 5);
 
   static bool _canRequestAds = false;
+  static final ValueNotifier<bool> canRequestAdsListenable = ValueNotifier<bool>(
+    false,
+  );
 
   static bool get canRequestAds => _canRequestAds;
+
+  static void _setCanRequestAds(bool value) {
+    _canRequestAds = value;
+    if (canRequestAdsListenable.value != value) {
+      canRequestAdsListenable.value = value;
+    }
+  }
 
   /// Whether UMP requires an entry point for changing privacy options.
   ///
@@ -39,16 +49,16 @@ class AdConsent {
         formError = error;
       });
       if (formError != null) return false;
-      _canRequestAds = await ConsentInformation.instance.canRequestAds();
+      _setCanRequestAds(await ConsentInformation.instance.canRequestAds());
       return true;
     } catch (_) {
-      _canRequestAds = false;
+      _setCanRequestAds(false);
       return false;
     }
   }
 
   static Future<void> prepare() async {
-    _canRequestAds = false;
+    _setCanRequestAds(false);
 
     final information = ConsentInformation.instance;
     try {
@@ -56,13 +66,13 @@ class AdConsent {
       if (!updated) return;
       await ConsentForm.loadAndShowConsentFormIfRequired((error) {
         if (error != null) {
-          _canRequestAds = false;
+          _setCanRequestAds(false);
         }
       });
-      _canRequestAds = await information.canRequestAds();
+      _setCanRequestAds(await information.canRequestAds());
     } catch (_) {
       // Consent/network/platform failures must not block the core app.
-      _canRequestAds = false;
+      _setCanRequestAds(false);
     }
   }
 
