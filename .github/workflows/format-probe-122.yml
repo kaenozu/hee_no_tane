@@ -1,0 +1,30 @@
+name: PR 122 formatter probe
+
+on:
+  push:
+    branches:
+      - fix/issue-113-consent-transition-current
+
+permissions:
+  contents: read
+
+jobs:
+  format-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.0'
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Format target files and print exact diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          dart --version
+          dart format lib/monetization/ad_banner.dart lib/monetization/ad_consent.dart
+          git diff -- lib/monetization/ad_banner.dart lib/monetization/ad_consent.dart
