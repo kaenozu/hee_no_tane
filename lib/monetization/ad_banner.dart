@@ -55,12 +55,9 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           // 一時的なネットワーク要因でセッション中ずっと空枠になるのを避ける
           // ため、指数バックオフで有限回再試行する。
           if (!mounted || _loadAttempts >= _maxLoadAttempts) return;
-          _retryTimer = Timer(
-            _baseRetryDelay * (1 << (_loadAttempts - 1)),
-            () {
-              if (mounted && !_loaded) _loadAd();
-            },
-          );
+          _retryTimer = Timer(_baseRetryDelay * (1 << (_loadAttempts - 1)), () {
+            if (mounted && !_loaded) _loadAd();
+          });
         },
       ),
     );
