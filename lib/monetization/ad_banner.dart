@@ -53,26 +53,35 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   }
 
   void _loadAd() {
-    if (!AdConsent.canRequestAds || _loadAttempts >= _maxLoadAttempts) return;
+    if (!AdConsent.canRequestAds ||
+        _loadAttempts >= _maxLoadAttempts ||
+        _bannerAd != null) {
+      return;
+    }
     _loadAttempts += 1;
 
-    final ad = BannerAd(
+    late final BannerAd ad;
+    ad = BannerAd(
       adUnitId: AdConfig.bannerUnitId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          if (!mounted || !AdConsent.canRequestAds) {
-            ad.dispose();
+        onAdLoaded: (loadedAd) {
+          if (!mounted ||
+              !AdConsent.canRequestAds ||
+              !identical(_bannerAd, loadedAd)) {
+            loadedAd.dispose();
             return;
           }
           setState(() {
-            _bannerAd = ad as BannerAd;
             _loaded = true;
           });
         },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
+        onAdFailedToLoad: (failedAd, error) {
+          failedAd.dispose();
+          if (identical(_bannerAd, failedAd)) {
+            _bannerAd = null;
+          }
           if (!mounted ||
               !AdConsent.canRequestAds ||
               _loadAttempts >= _maxLoadAttempts) {
@@ -80,13 +89,20 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           }
           _retryTimer = Timer(
             _baseRetryDelay * (1 << (_loadAttempts - 1)),
-            () => mounted && !_loaded && AdConsent.canRequestAds
-                ? _loadAd()
-                : null,
+            () {
+              _retryTimer = null;
+              if (mounted &&
+                  !_loaded &&
+                  AdConsent.canRequestAds &&
+                  _bannerAd == null) {
+                _loadAd();
+              }
+            },
           );
         },
       ),
     );
+    _bannerAd = ad;
     ad.load();
   }
 
