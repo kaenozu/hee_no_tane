@@ -89,17 +89,14 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           if (!mounted) return;
           if (!AdConsent.canRequestAds) return;
           if (_loadAttempts >= _maxLoadAttempts) return;
-          _retryTimer = Timer(
-            _baseRetryDelay * (1 << (_loadAttempts - 1)),
-            () {
-              _retryTimer = null;
-              if (!mounted) return;
-              if (_loaded) return;
-              if (!AdConsent.canRequestAds) return;
-              if (_bannerAd != null) return;
-              _loadAd();
-            },
-          );
+          _retryTimer = Timer(_baseRetryDelay * (1 << (_loadAttempts - 1)), () {
+            _retryTimer = null;
+            if (!mounted) return;
+            if (_loaded) return;
+            if (!AdConsent.canRequestAds) return;
+            if (_bannerAd != null) return;
+            _loadAd();
+          });
         },
       ),
     );
