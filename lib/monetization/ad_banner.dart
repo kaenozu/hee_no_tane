@@ -53,9 +53,9 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   }
 
   void _loadAd() {
-    final noConsent = !AdConsent.canRequestAds;
-    final attemptsExhausted = _loadAttempts >= _maxLoadAttempts;
-    if (noConsent || attemptsExhausted || _bannerAd != null) return;
+    if (!AdConsent.canRequestAds) return;
+    if (_loadAttempts >= _maxLoadAttempts) return;
+    if (_bannerAd != null) return;
     _loadAttempts += 1;
 
     late final BannerAd ad;
@@ -65,8 +65,15 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (loadedAd) {
-          final staleLoad = !identical(_bannerAd, loadedAd);
-          if (!mounted || !AdConsent.canRequestAds || staleLoad) {
+          if (!mounted) {
+            loadedAd.dispose();
+            return;
+          }
+          if (!AdConsent.canRequestAds) {
+            loadedAd.dispose();
+            return;
+          }
+          if (!identical(_bannerAd, loadedAd)) {
             loadedAd.dispose();
             return;
           }
@@ -79,17 +86,18 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
           if (identical(_bannerAd, failedAd)) {
             _bannerAd = null;
           }
-          final retryExhausted = _loadAttempts >= _maxLoadAttempts;
-          if (!mounted || !AdConsent.canRequestAds || retryExhausted) return;
+          if (!mounted) return;
+          if (!AdConsent.canRequestAds) return;
+          if (_loadAttempts >= _maxLoadAttempts) return;
           _retryTimer = Timer(
             _baseRetryDelay * (1 << (_loadAttempts - 1)),
             () {
               _retryTimer = null;
-              final canRetry = mounted &&
-                  !_loaded &&
-                  AdConsent.canRequestAds &&
-                  _bannerAd == null;
-              if (canRetry) _loadAd();
+              if (!mounted) return;
+              if (_loaded) return;
+              if (!AdConsent.canRequestAds) return;
+              if (_bannerAd != null) return;
+              _loadAd();
             },
           );
         },
