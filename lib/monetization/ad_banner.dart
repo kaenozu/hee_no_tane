@@ -26,46 +26,87 @@ class _HeeAdBannerState extends State<HeeAdBanner> {
   @override
   void initState() {
     super.initState();
+    AdConsent.canRequestAdsListenable.addListener(_handleConsentChanged);
     if (!kIsWeb && AdConfig.supportedPlatform && AdConsent.canRequestAds) {
       _loadAd();
     }
   }
 
+  void _handleConsentChanged() {
+    if (!mounted || kIsWeb || !AdConfig.supportedPlatform) return;
+    if (!AdConsent.canRequestAds) {
+      _retryTimer?.cancel();
+      _retryTimer = null;
+      final ad = _bannerAd;
+      _bannerAd = null;
+      ad?.dispose();
+      if (_loaded) {
+        setState(() => _loaded = false);
+      }
+      return;
+    }
+
+    if (!_loaded && _bannerAd == null) {
+      _loadAttempts = 0;
+      _loadAd();
+    }
+  }
+
   void _loadAd() {
+    if (!AdConsent.canRequestAds) return;
     if (_loadAttempts >= _maxLoadAttempts) return;
+    if (_bannerAd != null) return;
     _loadAttempts += 1;
 
-    final ad = BannerAd(
+    late final BannerAd ad;
+    ad = BannerAd(
       adUnitId: AdConfig.bannerUnitId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (ad) {
+        onAdLoaded: (loadedAd) {
           if (!mounted) {
-            ad.dispose();
+            loadedAd.dispose();
+            return;
+          }
+          if (!AdConsent.canRequestAds) {
+            loadedAd.dispose();
+            return;
+          }
+          if (!identical(_bannerAd, loadedAd)) {
+            loadedAd.dispose();
             return;
           }
           setState(() {
-            _bannerAd = ad as BannerAd;
             _loaded = true;
           });
         },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          // 一時的なネットワーク要因でセッション中ずっと空枠になるのを避ける
-          // ため、指数バックオフで有限回再試行する。
-          if (!mounted || _loadAttempts >= _maxLoadAttempts) return;
+        onAdFailedToLoad: (failedAd, error) {
+          failedAd.dispose();
+          if (identical(_bannerAd, failedAd)) {
+            _bannerAd = null;
+          }
+          if (!mounted) return;
+          if (!AdConsent.canRequestAds) return;
+          if (_loadAttempts >= _maxLoadAttempts) return;
           _retryTimer = Timer(_baseRetryDelay * (1 << (_loadAttempts - 1)), () {
-            if (mounted && !_loaded) _loadAd();
+            _retryTimer = null;
+            if (!mounted) return;
+            if (_loaded) return;
+            if (!AdConsent.canRequestAds) return;
+            if (_bannerAd != null) return;
+            _loadAd();
           });
         },
       ),
     );
+    _bannerAd = ad;
     ad.load();
   }
 
   @override
   void dispose() {
+    AdConsent.canRequestAdsListenable.removeListener(_handleConsentChanged);
     _retryTimer?.cancel();
     _bannerAd?.dispose();
     super.dispose();
