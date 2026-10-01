@@ -132,9 +132,9 @@
     "rarity": "normal",
     "sourceNote": "NOAA NESDIS「Peeling Back the Layers of the Atmosphere」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: abstract white object does not communicate atmospheric nitrogen/oxygen composition."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows the atmosphere as a dominant-majority pie segment with smaller secondary components; no text or logo."
     },
     "source": {
       "title": "Peeling Back the Layers of the Atmosphere",
@@ -516,9 +516,9 @@
     "rarity": "normal",
     "sourceNote": "NOAA Ocean Exploration「How much of the ocean has been explored?」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: Earth/ocean image is relevant but contains generated pseudo-text."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows Earth dominated by ocean; no text or logo."
     },
     "source": {
       "title": "How much of the ocean has been explored?",
@@ -711,9 +711,9 @@
     "rarity": "normal",
     "sourceNote": "GIA「ダイヤモンドについて」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: crystal-only image does not communicate the diamond-versus-graphite same-carbon comparison."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration juxtaposes a diamond crystal and graphite block with a shared atomic-network motif; no text or logo."
     },
     "source": {
       "title": "ダイヤモンドについて",
@@ -737,9 +737,9 @@
     "rarity": "normal",
     "sourceNote": "農林水産省「いちごのあれこれ豆知識」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: strawberry is relevant, but the image contains generated pseudo-text; replace before v1.1 restoration."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows the strawberry surface achenes clearly; no text or logo."
     },
     "source": {
       "title": "いちごのあれこれ豆知識",
@@ -925,9 +925,9 @@
     "rarity": "rare",
     "sourceNote": "コトバンク「二足の草鞋を履く」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: abstract shapes do not clearly communicate two straw sandals or the idiom's opposing-role origin."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows two straw-sandal forms with opposing directions; no text or logo."
     },
     "source": {
       "title": "二足の草鞋を履く",
@@ -1089,9 +1089,9 @@
     "rarity": "normal",
     "sourceNote": "コトバンク「大詰」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: generic paper/folder image does not clearly communicate kabuki's final act and includes generated pseudo-text."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows a theatre stage at the final curtain; no text or logo."
     },
     "source": {
       "title": "大詰",
@@ -1241,9 +1241,9 @@
     "rarity": "normal",
     "sourceNote": "Smithsonian Magazine「Ten Wild Facts About Octopuses」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: octopus is relevant but the image does not communicate the three-heart fact and includes tiny generated text."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows an octopus with three heart symbols; no text or logo."
     },
     "source": {
       "title": "Ten Wild Facts About Octopuses: They Have Three Hearts, Big Brains and Blue Blood",
@@ -1267,9 +1267,9 @@
     "rarity": "rare",
     "sourceNote": "Smithsonian Magazine「Ten Wild Facts About Octopuses」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: octopus is relevant but the image does not communicate blue blood/copper-based hemocyanin."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows an octopus with blue circulatory/droplet motifs for hemocyanin; no text or logo."
     },
     "source": {
       "title": "Ten Wild Facts About Octopuses: They Have Three Hearts, Big Brains and Blue Blood",
@@ -1293,9 +1293,9 @@
     "rarity": "rare",
     "sourceNote": "理科年表オフィシャルサイト「日本の標準時」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: abstract clock panels do not clearly communicate Japan's former western standard-time region."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration uses two clocks with a Japan/Taiwan regional motif to distinguish historical time zones; no text or logo."
     },
     "source": {
       "title": "日本の標準時",
@@ -1368,9 +1368,9 @@
     "rarity": "normal",
     "sourceNote": "ACS Chemical Biology「Enzyme That Makes You Cry」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: onion is relevant, but the unexplained bright-green spill/shape is misleading for the lachrymatory-factor claim."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows an onion beside a tearing eye; no text or logo."
     },
     "source": {
       "title": "Enzyme That Makes You Cry–Crystal Structure of Lachrymatory Factor Synthase from Allium cepa",
@@ -1669,9 +1669,9 @@
     "rarity": "normal",
     "sourceNote": "MSD Veterinary Manual「Nutrition of Rabbits」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: rabbit portrait does not communicate cecotrophy/nutrient reabsorption."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows a rabbit with pellets and circular nutrient-recovery arrows; no text or logo."
     },
     "source": {
       "title": "Nutrition of Rabbits",
@@ -1768,9 +1768,9 @@
     "rarity": "normal",
     "sourceNote": "コトバンク仏和辞典「sabotage」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: abstract image does not communicate the French sabotage origin of サボる."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration combines a French tricolour motif, stopped gear and pause symbol for the sabotage etymology; no text or logo."
     },
     "source": {
       "title": "sabotage",
@@ -1843,9 +1843,9 @@
     "rarity": "normal",
     "sourceNote": "Audubon「Hummingbird Flight Is Like Nothing Else in the Bird World」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: hummingbird is relevant but shown in ordinary flight; it does not communicate backward-flight capability."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows a hummingbird facing forward with a clear backward-direction arrow; no text or logo."
     },
     "source": {
       "title": "Hummingbird Flight Is Like Nothing Else in the Bird World",
@@ -2158,9 +2158,9 @@
     "rarity": "normal",
     "sourceNote": "GPS.gov「GPS and Telling Time」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: compass/vehicle-like image does not communicate GPS satellite atomic clocks."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration shows a GPS satellite with a clock; no text or logo."
     },
     "source": {
       "title": "GPS and Telling Time",
@@ -2283,9 +2283,9 @@
     "rarity": "normal",
     "sourceNote": "goo辞書「パン」",
     "imageReview": {
-      "status": "replace_required",
-      "reviewedAt": "2026-09-30",
-      "note": "Human visual review 2026-09-30: sailing ship is only indirect context and the image contains generated pseudo-text."
+      "status": "approved",
+      "reviewedAt": "2026-10-01",
+      "note": "Replacement illustration combines bread with a Portuguese flag motif; no text or logo."
     },
     "source": {
       "title": "パン",
