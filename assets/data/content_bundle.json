@@ -417,9 +417,9 @@
           "contentHash": "b5e531d27a4a8796a8879ba93f9dc281cba729756c13a28c6ce5640103d7122e"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: rotary telephone illustration fits the 119-number origin card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -685,9 +685,9 @@
           "contentHash": "06d918712121f4bea60aa60049dbd5f99ae7e98ee36d26a31763f3f2e9c455ee"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: sandwich illustration directly fits the card subject; no visible brand/logo or problematic text."
         }
       }
     },
@@ -2549,9 +2549,9 @@
           "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: camel/hump illustration fits the card subject with no visible brand/logo or problematic text."
         }
       }
     },
@@ -2603,9 +2603,9 @@
           "contentHash": "fc121362c7a17abfeebb1e05dfa3bcc82413c35a43445616d3a7743ae8a45817"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: glowing firefly illustration fits the bioluminescence card with no visible brand/logo or problematic text."
         }
       }
     },
@@ -2921,9 +2921,9 @@
           "contentHash": "0970a9ed3fa55a1bc5513b7d211c3a549face5763152cfc07c3bde96e4a11586"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: thunderstorm/lightning illustration fits the summer-thunder card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3241,9 +3241,9 @@
           "contentHash": "083c740ce433db34990ca8394aad79232472cd47cf677fef7036f53425f927f2"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: light-speed visual motif fits the card subject; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3403,9 +3403,9 @@
           "contentHash": "8ddf5b547262be9284320f35c8eee6d416c6c50c2147977c93488771f2d771ed"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: blue-sky/cloud illustration fits the sky-colour/scattering card at the visual-summary level; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3669,9 +3669,9 @@
           "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: airplane-wing illustration fits the lift card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3730,5 +3730,5 @@
       }
     }
   ],
-  "bundleHash": "4650eb2bedc1883dcf0d4e621ebff2024920b925e6963c449a499c241f3c4473"
+  "bundleHash": "fdbb742895aa06e6a0620b2e0b194e9db19be35a67c24e070c0688d4764a5367"
 }
