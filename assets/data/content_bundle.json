@@ -417,9 +417,9 @@
           "contentHash": "b5e531d27a4a8796a8879ba93f9dc281cba729756c13a28c6ce5640103d7122e"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: rotary telephone illustration fits the 119-number origin card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -631,9 +631,9 @@
           "contentHash": "18e56d30323883c2ad3c06877a552a1e5db7c786c2dfb33521aa50e7f2197433"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows the strawberry surface achenes clearly; no text or logo."
         }
       }
     },
@@ -685,9 +685,9 @@
           "contentHash": "06d918712121f4bea60aa60049dbd5f99ae7e98ee36d26a31763f3f2e9c455ee"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: sandwich illustration directly fits the card subject; no visible brand/logo or problematic text."
         }
       }
     },
@@ -793,9 +793,9 @@
           "contentHash": "b8d14bcbecf8cc8f43a38be48302cfd75e96055e89b52283ab3b16a83a733aa1"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows an onion beside a tearing eye; no text or logo."
         }
       }
     },
@@ -1321,9 +1321,9 @@
           "contentHash": "466e569eabf6bf4a3c05f7b241e19d7b05da2f75125412f2175d20c1ce8df639"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration uses two clocks with a Japan/Taiwan regional motif to distinguish historical time zones; no text or logo."
         }
       }
     },
@@ -1691,9 +1691,9 @@
           "contentHash": "22b88c08b0a11411b75b6afeb332790016843c477c857ca51b99391e890b4a02"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows two straw-sandal forms with opposing directions; no text or logo."
         }
       }
     },
@@ -1745,9 +1745,9 @@
           "contentHash": "4b78080e8dd82cd211f4a3d59ae44933f6046ff0faaa680b028d4529118ce7e7"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows a theatre stage at the final curtain; no text or logo."
         }
       }
     },
@@ -1907,9 +1907,9 @@
           "contentHash": "7c51196b7b064541f804da6d069a6948c30d8bf4d22e90989984beb28fae09ed"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration combines a French tricolour motif, stopped gear and pause symbol for the sabotage etymology; no text or logo."
         }
       }
     },
@@ -1961,9 +1961,9 @@
           "contentHash": "2c3e22c1bb255288895d19ceb3fa7f53b524d0c2d157f8c81731cbfbb2fec07b"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration combines bread with a Portuguese flag motif; no text or logo."
         }
       }
     },
@@ -2281,9 +2281,9 @@
           "contentHash": "2979860932041aa08aa878db50e7abe0ab76c79c507a971c3c63ed16c3c188d5"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows an octopus with three heart symbols; no text or logo."
         }
       }
     },
@@ -2335,9 +2335,9 @@
           "contentHash": "1fe3861dffc7a45dc5585ae1bbb716deb8285fab8fc94e0538a5f4132b69027c"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows an octopus with blue circulatory/droplet motifs for hemocyanin; no text or logo."
         }
       }
     },
@@ -2389,9 +2389,9 @@
           "contentHash": "acf42b7551abbc6c20335c5f21643b9caa2057be8d9313eca7e27bf4d9046b5b"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows a rabbit with pellets and circular nutrient-recovery arrows; no text or logo."
         }
       }
     },
@@ -2443,9 +2443,9 @@
           "contentHash": "a21ab301087d2158cb48d10efd917ea0dd2ffe7443dc8660eed4e4f1b74b1234"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows a hummingbird facing forward with a clear backward-direction arrow; no text or logo."
         }
       }
     },
@@ -2549,9 +2549,9 @@
           "contentHash": "2ccf5d04080da47255dd300a16e0ac0742a62a5eedadc99ddd9bbbf274e507f9"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: camel/hump illustration fits the card subject with no visible brand/logo or problematic text."
         }
       }
     },
@@ -2603,9 +2603,9 @@
           "contentHash": "fc121362c7a17abfeebb1e05dfa3bcc82413c35a43445616d3a7743ae8a45817"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: glowing firefly illustration fits the bioluminescence card with no visible brand/logo or problematic text."
         }
       }
     },
@@ -2921,9 +2921,9 @@
           "contentHash": "0970a9ed3fa55a1bc5513b7d211c3a549face5763152cfc07c3bde96e4a11586"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: thunderstorm/lightning illustration fits the summer-thunder card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3187,9 +3187,9 @@
           "contentHash": "7f938dfcf8928f4947bbde79ff0ef99f276c83efda216bda7845e209334cd527"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows the atmosphere as a dominant-majority pie segment with smaller secondary components; no text or logo."
         }
       }
     },
@@ -3241,9 +3241,9 @@
           "contentHash": "083c740ce433db34990ca8394aad79232472cd47cf677fef7036f53425f927f2"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: light-speed visual motif fits the card subject; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3295,9 +3295,9 @@
           "contentHash": "a9cfe99295c874daf69d0a199e6935e1dcad362464261b1171db01d1990a4c2a"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows Earth dominated by ocean; no text or logo."
         }
       }
     },
@@ -3349,9 +3349,9 @@
           "contentHash": "bb1e57e7efc989be9a04187bc5f6b0daec471e73fa2c1c33bd5d34a42ce3fe33"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration juxtaposes a diamond crystal and graphite block with a shared atomic-network motif; no text or logo."
         }
       }
     },
@@ -3403,9 +3403,9 @@
           "contentHash": "8ddf5b547262be9284320f35c8eee6d416c6c50c2147977c93488771f2d771ed"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: blue-sky/cloud illustration fits the sky-colour/scattering card at the visual-summary level; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3615,9 +3615,9 @@
           "contentHash": "3e57774537215dce927cc52c002aac47cb1a307e81a0faf971559ed5844b52c8"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-10-01",
+          "note": "Replacement illustration shows a GPS satellite with a clock; no text or logo."
         }
       }
     },
@@ -3669,9 +3669,9 @@
           "contentHash": "c3fe8cc50074dade14b0d0536b374ee9075ace2e5b12c3cafebd032897d3410f"
         },
         "imageReview": {
-          "status": "pending",
-          "reviewedAt": "2026-08-10",
-          "note": "Generated card image (Pollinations batch, 220x160). Quality gate PASS. Awaiting human visual review for claim accuracy."
+          "status": "approved",
+          "reviewedAt": "2026-09-30",
+          "note": "Human visual review 2026-09-30: airplane-wing illustration fits the lift card; no visible brand/logo or problematic text."
         }
       }
     },
@@ -3730,5 +3730,5 @@
       }
     }
   ],
-  "bundleHash": "7624c53fb7395437be4e4b3cfdf01f0298fa18d1fa42db0444f3869ef8f00abe"
+  "bundleHash": "fdbb742895aa06e6a0620b2e0b194e9db19be35a67c24e070c0688d4764a5367"
 }
