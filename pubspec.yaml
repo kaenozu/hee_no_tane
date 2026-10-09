@@ -29,12 +29,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^2.0.0
   crypto: ^3.0.7
   shared_preferences: ^2.3.0
   intl: ^0.20.0
-  url_launcher: ^6.3.0
-  share_plus: ^13.3.0
+  url_launcher: ^6.3.3
+  share_plus: ^13.3.1
   google_mobile_ads: ^9.1.0
 
 dev_dependencies:
